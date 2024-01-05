@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  opa:
+    build:
+      context: ../../
+      dockerfile: docker/opa.Dockerfile
+      args:
+        BUNDLE: ${OPA_BUNDLE}
+    restart: unless-stopped
+    ports:
+      - ${DEV_OPA_PORT}:8181

@@ -1,0 +1,9 @@
+# Configuration file for generating proto definitions with `buf generate`.
+# Documentation at https://docs.buf.build/configuration/v1/buf-gen-yaml
+version: v1
+plugins:
+  - name: openapiv2
+    out: ts/libs/caremanager/data-access-types/openapi/v1
+    opt:
+      - openapi_naming_strategy=simple
+      - json_names_for_fields=false

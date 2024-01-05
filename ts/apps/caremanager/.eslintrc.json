@@ -1,0 +1,24 @@
+{
+  "extends": ["../../../.eslintrc.react.json", "plugin:promise/recommended"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "excludedFiles": ["**/mockServiceWorker.js"],
+      "parserOptions": {
+        "project": ["ts/apps/caremanager/tsconfig.*?.json"]
+      },
+      "rules": {
+        "@typescript-eslint/no-floating-promises": "error"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}

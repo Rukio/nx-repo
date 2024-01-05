@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link href="leaflet.icon-material.css" rel="stylesheet" />
+    <style>
+      body {
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+
+      .container {
+        display: flex;
+        height: 100%;
+        width: 100%;
+      }
+
+      #map {
+        flex: 1;
+      }
+
+      .data-panel {
+        flex: 1;
+        flex-direction: column;
+
+        display: flex;
+      }
+
+      .data-panel > * {
+        flex: 1;
+      }
+
+      .score {
+        display: flex;
+      }
+
+      .score > * {
+        flex: 1;
+      }
+
+      .button-panel {
+        flex-grow: 0;
+        padding: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="map"></div>
+      <div class="data-panel">
+        <div class="button-panel">
+          <button id="get-vrp-btn">Get New Example VRP</button>
+        </div>
+        <textarea
+          id="vrp-json-textarea"
+          placeholder="Example VRP JSON..."
+        ></textarea>
+        <div class="button-panel">
+          <button id="run-solver-btn">Run Solver</button>
+        </div>
+        <textarea
+          id="vrp-response"
+          placeholder="Solved VRP Response..."
+        ></textarea>
+        <div class="score">
+          <textarea
+            id="vrp-response-score"
+            placeholder="VRP Response Score..."
+          ></textarea>
+          <textarea
+            id="vrp-response-score-explanation"
+            placeholder="VRP Response Score Explanation..."
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <script src="leaflet.icon-material.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

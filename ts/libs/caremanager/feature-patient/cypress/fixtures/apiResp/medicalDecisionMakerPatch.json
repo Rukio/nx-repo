@@ -1,0 +1,22 @@
+{
+  "medical_decision_maker": {
+    "id": "91",
+    "first_name": "Juan",
+    "last_name": "Pérez",
+    "phone_number": "12345",
+    "address": "9191 Alcamo Street",
+    "relationship": "Father",
+    "patient_id": "1"
+  },
+  "patient_medical_decision_makers": [
+    {
+      "id": "91",
+      "first_name": "Juan",
+      "last_name": "Pérez",
+      "phone_number": "12345",
+      "address": "9191 Alcamo Street",
+      "relationship": "Father",
+      "patient_id": "1"
+    }
+  ]
+}

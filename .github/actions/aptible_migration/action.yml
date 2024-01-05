@@ -1,0 +1,70 @@
+name: 'Aptible Migration'
+description: |
+  Perform a migration in aptible over a db tunnel.
+
+  Assumes aptible cli is installed and logged in. See ./.github/actions/setup_aptible/action.yml for setting it up:
+
+inputs:
+  schema:
+    description: 'The migration schema to be run. Must be runnable via make commands'
+    required: true
+  db_handle:
+    description: 'The database handle to perform the migration on.'
+    required: true
+  version:
+    description: 'Version of database to migrate to'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout HEAD
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref || github.ref }}
+
+    - name: Install dependencies
+      shell: bash
+      run: make setup-linux-deploy
+
+    - name: 'Run ${{ inputs.schema }} migrations on ${{ inputs.db_handle }}'
+      shell: bash
+      run: |
+        echo "Creating aptible db tunnel to ${{ inputs.db_handle }} ..."
+        aptible db:tunnel ${{ inputs.db_handle }} 2> db.log &
+        ( (timeout "30s" tail -F "db.log" &) | grep -q "Connect at" ) || ( echo "Failed to create aptible db tunnel. Log:" && cat db.log && exit 1 )
+        TID=$!
+
+        export DATABASE_URL=$(grep 'Connect at' db.log | awk '{print $3}')
+        echo "Tunnel created and connected."
+
+        goose_output=$(./bin/goose -table schema_migrations postgres $DATABASE_URL version 2>&1)
+        current_version=$(echo "$goose_output" | awk '{print $5}')
+        if ! [[ "$current_version" =~ ^[0-9]+$ ]]; then
+          echo "::error::Could not get current database version"
+          echo "$goose_output"
+          exit 1
+        fi
+
+        export TARGET_DATABASE_VERSION=${{ inputs.version }}
+        echo "Current version: $current_version"
+        echo "Target  version: $TARGET_DATABASE_VERSION"
+
+        if [[ $current_version > $TARGET_DATABASE_VERSION ]]; then
+          echo "Rolling back"
+          make db-rollback-${{ inputs.schema }}
+          echo "::notice ::Rolled back ${{ inputs.db_handle }} | Previous version: $current_version | New version: $TARGET_DATABASE_VERSION"
+        elif [[ $current_version < $TARGET_DATABASE_VERSION ]]; then
+          echo "Migrating forward"
+          make db-migrate-${{ inputs.schema }}
+          echo "::notice ::Migrated ${{ inputs.db_handle }} | Previous version: $current_version | New version: $TARGET_DATABASE_VERSION"
+        else
+          echo "Doing nothing"
+          echo "::notice ::Migrations skipped | Current version: $current_version | Target version: $TARGET_DATABASE_VERSION"
+        fi
+
+        make db-status-${{ inputs.schema }}
+
+        echo "Destroying tunnel..."
+        kill -SIGINT "$TID"
+        echo "Tunnel destroyed"

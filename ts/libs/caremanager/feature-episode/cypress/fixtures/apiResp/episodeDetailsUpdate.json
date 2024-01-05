@@ -1,0 +1,229 @@
+{
+  "episode": {
+    "id": "1",
+    "care_day": "0",
+    "admitted_at": "2022-03-19T02:53:21.641Z",
+    "discharged_at": "2022-04-02T02:53:21.641Z",
+    "source": "string",
+    "patient_summary": "All Your Base Are Belong To Us.",
+    "primary_diagnosis": "Some diagnosis",
+    "payer": "string",
+    "doctors_primary_care": "string",
+    "created_at": "2022-03-17T02:53:21.641Z",
+    "updated_at": "2022-03-17T02:53:21.641Z",
+    "is_waiver": true,
+    "service_line": {
+      "id": "2",
+      "name": "Bridge Care"
+    },
+    "service_line_id": "2",
+    "care_phase": {
+      "id": "4",
+      "name": "Discharged"
+    },
+    "market": {
+      "id": "190",
+      "name": "Cleveland",
+      "short_name": "CLE",
+      "schedule_days": []
+    },
+    "user": {
+      "id": "0",
+      "first_name": "string",
+      "last_name": "string",
+      "email": "user@example.com",
+      "job_title": "string"
+    },
+    "patient_id": "1",
+    "patient": {
+      "id": "1",
+      "first_name": "Jane",
+      "middle_name": "",
+      "last_name": "Goodall",
+      "date_of_birth": "1934-04-03",
+      "sex": "female",
+      "phone_number": "324-533-3333",
+      "athena_medical_record_number": "123456789",
+      "medical_power_of_attorney_details": "",
+      "payer": "Medicare",
+      "preferred_pharmacy_details": "",
+      "primary_care_provider_details": "",
+      "address_street": "44 Derek St.",
+      "address_city": "Denver",
+      "address_state": "CO",
+      "address_zipcode": "04350",
+      "address_notes": ""
+    },
+    "notes": [
+      {
+        "id": "1",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th).",
+        "note_kind": "daily_update",
+        "noteable_id": 1,
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      {
+        "id": "2",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th).",
+        "note_kind": "daily_update",
+        "noteable_id": 1,
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      {
+        "id": "3",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th).",
+        "note_kind": "daily_update",
+        "noteable_id": 1,
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      {
+        "id": "4",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th).",
+        "note_kind": "daily_update",
+        "noteable_id": 1,
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      {
+        "id": "5",
+        "details": "This is a new note",
+        "note_kind": "daily_update",
+        "noteable_id": 2,
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      {
+        "id": "6",
+        "details": "This is a new note",
+        "note_kind": "daily_update",
+        "noteable_id": 1,
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "id": "1",
+        "task": "string",
+        "task_type": "daily_and_onboarding",
+        "taskable_type": "string",
+        "taskable_id": "0",
+        "status": "pending",
+        "completed_by_user_id": "1",
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      }
+    ],
+    "task_templates": []
+  }
+}

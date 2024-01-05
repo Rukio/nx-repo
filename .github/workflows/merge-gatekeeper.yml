@@ -1,0 +1,31 @@
+# Docs at docs/code/merge-gatekeeper.yml
+name: Merge Gatekeeper
+
+run-name: Gatekeeping ${{ github.ref }}
+
+on:
+  pull_request:
+    branches:
+      - trunk
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  merge-gatekeeper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Merge Gatekeeper
+        uses: upsidr/merge-gatekeeper@v1.2.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          timeout: 2100 # 35 minutes
+          # Any jobs/checks mentioned here are considered to be "not required" jobs/checks on PR's
+          # atlantis checks are required by branch protections
+          ignored: |
+            labeler,
+            security/snyk (*company-data-covered*),
+            license/snyk (*company-data-covered*),
+            atlantis/plan,
+            atlantis/apply

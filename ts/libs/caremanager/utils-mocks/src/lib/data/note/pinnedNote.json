@@ -1,0 +1,28 @@
+{
+  "note": {
+    "id": "1",
+    "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th).",
+    "note_kind": "daily_update",
+    "noteable_id": "1",
+    "noteable_type": "string",
+    "created_at": "2022-03-17T02:53:21.641Z",
+    "updated_at": "2022-03-17T02:53:21.641Z",
+    "pinned": true,
+    "created_by_user_id": "1",
+    "updated_by_user_id": "1",
+    "created_by": {
+      "id": "1",
+      "first_name": "Noter",
+      "last_name": "McNote",
+      "email": "user@example.com",
+      "job_title": "string"
+    },
+    "last_updated_by": {
+      "id": "1",
+      "first_name": "Noter",
+      "last_name": "McNote",
+      "email": "user@example.com",
+      "job_title": "string"
+    }
+  }
+}

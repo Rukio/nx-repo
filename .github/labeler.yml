@@ -1,0 +1,11 @@
+edd:
+  - docs/edd/**/*
+
+ephemeral:
+  - go/**
+  - java/**
+  - ts/**
+  - py/**
+  - .release/**
+  - docker/**
+  - Makefile

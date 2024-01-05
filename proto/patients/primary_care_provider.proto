@@ -1,0 +1,9 @@
+syntax = "proto3";
+package patients;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/patients";
+option ruby_package = "PatientGRPC";
+
+message PrimaryCareProvider {
+  optional string clinical_provider_id = 1;
+}

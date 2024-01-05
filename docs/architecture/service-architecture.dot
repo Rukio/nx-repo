@@ -1,0 +1,244 @@
+digraph G {
+  compound=true;
+  graph [ranksep="2"];
+  node [shape=box style=rounded];
+
+  // Rounded Box = Internal Service
+  // Ellipse = External Service
+  // Dotted Line = To Be Implemented
+  // Arrows just indicate connection and not directionality; most communication is 2-way.
+  subgraph legend {
+    label = "Legend";
+    subgraph {
+      rank = "source"
+      // Legend Keys
+      key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+        <tr><td align="right" port="i1">In Development</td></tr>
+        <tr><td align="right" port="i2">Current</td></tr>
+        </table>>]
+      // Empty table to be a target for example arrows
+      key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+        <tr><td port="i1">&nbsp;</td></tr>
+        <tr><td port="i2">&nbsp;</td></tr>
+        </table>>]
+      key:i1 -> key2:i1 [style=dashed]
+      key:i2 -> key2:i2
+    }
+  }
+
+  audit_service [label="Audit Service"]
+  wss [label="Web Socket Server"]
+  station [label="Station"]
+
+  subgraph frontend {
+    label = "Frontend"
+    rank = "source"
+    companion [label="Companion"]
+    onboarding_web [label="Onboarding"]
+    consumer_web [label="Web Request"]
+    express_web [label="Express"]
+    dashboard [label="Dashboard"]
+    caremanager [label="CareManager"]
+    rover [label="Rover (iOS)"]
+  }
+
+  subgraph external {
+    label = "External"
+    rank = "sink"
+    genesys [label="Genesys", shape="ellipse"]
+    verity_stream [label="VerityStream", shape="ellipse"]
+    tytocare [label="Tytocare", shape="ellipse"]
+    shift_admin [label="ShiftAdmin", shape="ellipse"]
+    sendgrid [label="Sendgrid", shape="ellipse"]
+    twilio [label="Twilio", shape="ellipse"]
+    redox [label="Redox", shape="ellipse"]
+    abbott [label="Abbott", shape="ellipse"]
+    athena [label="Athena", shape="ellipse"]
+    prefect [label="Prefect", shape="ellipse"]
+    slack [label="Slack", shape="ellipse"]
+    instamed [label="Instamed", shape="ellipse"]
+    google_maps [label="Google Maps", shape="ellipse"]
+  }
+
+  subgraph slack {
+    label = "Slack"
+    performance_hub [label="Performance Hub"]
+  }
+
+  subgraph calls {
+    label = "Calls"
+    call_manager [label="Call Manager"]
+  }
+
+  // Put services with tons of connections here
+  // Adding these hinders readability rather than helps it
+  subgraph cluster_universal {
+    label = "Too Many Connections For This Diagram"
+    auth0 [label="Auth0", shape="ellipse"]
+    statsig [label="Statsig", shape="ellipse"]
+    datadog [label="Datadog", shape="ellipse"]
+    amazon_s3 [label="Amazon S3", shape="ellipse"]
+  }
+
+  subgraph api_gateway {
+    label = "API Gateway"
+    rank = "same"
+    companion_api [label="Companion API"]
+    onboarding_api [label="Onboarding API"]
+    consumer_api [label="Web Request API"]
+    express_api [label="Express API"]
+  }
+
+  subgraph partner {
+    label = "Partner"
+    pophealth_service [label="Pophealth Service"]
+    partner_service [label="Partner Service"]
+  }
+
+  subgraph risk_acuity {
+    label = "Risk Strat and Acuity"
+    modality_service [label="Modality Service"]
+    acuity_model [label="Acuity Model"]
+    on_scene_model [label="On Scene Model"]
+    subgraph cluster_risk_strat_service {
+      label = "Risk Strat Service"
+      risk_stratification_service [label="Risk Stratification Service"]
+      turf_or_surf [label="Legacy Risk Strat"]
+    }
+  }
+
+  subgraph logistics {
+    label = "Logistics"
+    subgraph cluster_logistics_service {
+      label = "Logistics Service"
+      logistics_laa [label="Logistics/Elixir (LAA)"]
+      logistics_service [label="Logistics/Go Service"]
+      logistics_optimizer [label="Logistics Optimizer"]
+    }
+    vroom [label="Vroom"]
+    osrm [label="OSRM"]
+  }
+
+  subgraph provider {
+    label = "Provider"
+    clinical_kpi_service [label="Clinical KPI Service"]
+    tytocare_service [label="Tytocare Service"]
+    shift_schedule_service [label="Shift Schedule Service"]
+  }
+
+  subgraph patient {
+    label = "Patient Records"
+    athena_service [label="Athena Service"]
+    patients_service [label="Patients Service"]
+    caremanager_service [label="CareManager Service"]
+    ehr_adapter [label="Lab Results (EHR Adapter)"]
+  }
+
+  subgraph caravan {
+    label = "Caravan"
+    consents [label="Consents"]
+    orders [label="Orders"]
+    provider_credentials [label="Provider Credentials"]
+  }
+
+  subgraph notifications {
+    label = "Notifications"
+    subgraph cluster_notifications_service {
+      label = "Notifications Service"
+      provider_notifications_service [label="Provider notifications service"]
+      twilio_service [label="Twilio service"]
+      slack_service [label="Slack service"]
+    }
+  }
+
+  // Frontend
+  companion -> companion_api
+  onboarding_web -> onboarding_api
+  onboarding_web -> wss
+  consumer_web -> consumer_api
+  {companion_api, onboarding_api, consumer_api} -> station
+  onboarding_api -> google_maps
+  express_web -> express_api
+  express_api -> station
+  dashboard -> station
+  caremanager -> caremanager_service
+
+  // Web Socket Server
+  station -> wss
+  wss -> dashboard
+  wss -> logistics_laa
+  wss -> call_manager
+
+  // Station
+  station -> {verity_stream, google_maps}
+  rover -> {station, dashboard}
+
+  // Patients
+  station -> patients_service [style=dashed]
+  patients_service -> athena_service
+  caremanager_service -> station
+  {caremanager_service, onboarding_api} -> patients_service [style=dashed]
+  // Patients Legacy
+  station -> {athena, ehr_adapter}
+  athena_service -> athena
+  ehr_adapter -> athena
+  abbott -> ehr_adapter
+  abbott -> athena
+
+  // Billing
+  station -> instamed
+  instamed -> athena // via s3
+
+  // Logistics
+  station -> logistics_service
+  logistics_service -> {osrm, google_maps, logistics_optimizer, station}
+  // Logistics Legacy
+  station -> logistics_laa
+  logistics_laa -> {vroom, google_maps, osrm, wss}
+
+  // Risk Strat and Acuity
+  station -> {turf_or_surf, on_scene_model, acuity_model}
+  station -> {risk_stratification_service, modality_service} [style=dashed]
+
+  // Provider
+  station -> {clinical_kpi_service, shift_schedule_service} [style=dashed]
+  station -> tytocare_service
+  tytocare_service -> tytocare
+  shift_schedule_service -> shift_admin [style=dashed]
+
+  // Partner
+  station -> {pophealth_service, partner_service} [style=dashed]
+  pophealth_service -> prefect
+
+  // Caravan
+  station -> {consents, provider_credentials}
+  companion_api -> consents
+  orders -> station
+  redox -> orders
+  provider_credentials -> verity_stream
+
+  // Audit
+  {caremanager_service, patients_service, athena_service} -> audit_service
+
+  // Slack
+  performance_hub -> clinical_kpi_service [style=dashed]
+  performance_hub -> slack
+
+  // Comms
+  call_manager -> twilio
+  companion_api -> twilio
+  station -> twilio
+  station -> sendgrid
+  call_manager -> genesys
+  station -> genesys
+
+  // Notifications
+  provider_notifications_service -> station
+  provider_notifications_service -> logistics_service
+  provider_notifications_service -> twilio_service
+  twilio_service -> twilio
+  slack_service -> slack
+  // TODO
+  // Billing/RCM
+  // PCI Service
+}

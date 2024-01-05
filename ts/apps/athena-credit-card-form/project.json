@@ -1,0 +1,114 @@
+{
+  "name": "athena-credit-card-form",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/athena-credit-card-form/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/ts/apps/athena-credit-card-form",
+        "index": "ts/apps/athena-credit-card-form/src/index.html",
+        "baseHref": "/",
+        "main": "ts/apps/athena-credit-card-form/src/main.tsx",
+        "polyfills": "ts/apps/athena-credit-card-form/src/polyfills.ts",
+        "tsConfig": "ts/apps/athena-credit-card-form/tsconfig.app.json",
+        "assets": ["ts/apps/athena-credit-card-form/src/favicon.ico"],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nx/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "qa": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/athena-credit-card-form/src/environments/environment.ts",
+              "with": "ts/apps/athena-credit-card-form/src/environments/environment.qa.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "uat": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/athena-credit-card-form/src/environments/environment.ts",
+              "with": "ts/apps/athena-credit-card-form/src/environments/environment.uat.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "athena-credit-card-form:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "athena-credit-card-form:build:development"
+        },
+        "production": {
+          "buildTarget": "athena-credit-card-form:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "ts/apps/athena-credit-card-form/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ts/apps/athena-credit-card-form/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.app.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/athena-credit-card-form"
+      }
+    }
+  },
+  "tags": ["type:app", "scope:athena-credit-card-form"]
+}

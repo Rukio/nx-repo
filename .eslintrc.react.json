@@ -1,0 +1,21 @@
+{
+  "extends": ["plugin:@nx/react", "./.eslintrc.json"],
+  "rules": {
+    "react/no-array-index-key": "error",
+    "react/jsx-key": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "react/jsx-no-useless-fragment": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ]
+  }
+}

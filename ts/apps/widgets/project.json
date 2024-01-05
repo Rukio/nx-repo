@@ -1,0 +1,104 @@
+{
+  "name": "widgets",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/widgets/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/ts/apps/widgets",
+        "main": "ts/apps/widgets/src/main.tsx",
+        "tsConfig": "ts/apps/widgets/tsconfig.app.json",
+        "webpackConfig": "ts/apps/widgets/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "index": "ts/apps/widgets/src/index.html",
+          "baseHref": "/",
+          "main": "ts/apps/widgets/src/main.tsx",
+          "polyfills": "ts/apps/widgets/src/polyfills.ts",
+          "assets": [
+            "ts/apps/widgets/src/favicon.ico",
+            "ts/apps/widgets/src/assets"
+          ],
+          "styles": [],
+          "scripts": [],
+          "webpackConfig": "@nx/react/plugins/webpack",
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "qa": {
+          "index": "ts/apps/widgets/src/index.html",
+          "baseHref": "/",
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/widgets/src/environments/environment.ts",
+              "with": "ts/apps/widgets/src/environments/environment.qa.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "production": {
+          "index": "ts/apps/widgets/src/index.html",
+          "baseHref": "/",
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/widgets/src/environments/environment.ts",
+              "with": "ts/apps/widgets/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "widgets:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "widgets:build:development"
+        },
+        "production": {
+          "buildTarget": "widgets:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/widgets/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ts/apps/widgets/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["scope:widgets", "type:app"]
+}

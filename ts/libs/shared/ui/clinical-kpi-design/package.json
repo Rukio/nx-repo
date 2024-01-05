@@ -1,0 +1,17 @@
+{
+  "name": "@*company-data-covered*/clinical-kpi-design",
+  "version": "1.0.1",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/*company-data-covered*/services.git",
+    "directory": "ts/libs/shared/ui/clinical-kpi-design"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "sideEffects": false
+}

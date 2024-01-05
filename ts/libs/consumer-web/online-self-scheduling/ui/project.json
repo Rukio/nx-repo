@@ -1,0 +1,74 @@
+{
+  "name": "consumer-web-online-self-scheduling-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/consumer-web/online-self-scheduling/ui/src",
+  "projectType": "library",
+  "tags": ["scope:consumer-web", "type:ui"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "ts/libs/consumer-web/online-self-scheduling/ui/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ts/libs/consumer-web/online-self-scheduling/ui/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "ts/libs/consumer-web/online-self-scheduling/ui/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/consumer-web-ui-online-self-scheduling",
+        "configDir": "ts/libs/consumer-web/online-self-scheduling/ui/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/libs/consumer-web/online-self-scheduling/ui"
+      }
+    }
+  }
+}

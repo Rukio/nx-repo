@@ -1,0 +1,207 @@
+version: 2.1
+
+description: |
+  Aptible jobs and commands
+
+  Expects the usage of the `APTIBLE_ROBOTS` context to use the environment variables:
+  - `APTIBLE_LOGIN`
+  - `APTIBLE_PASS`
+
+  The following environment variables can be set (use DH_REGISTRY context):
+  - `DH_REGISTRY_USERNAME`
+  - `DH_REGISTRY_PASSWORD`
+
+commands:
+  setup:
+    # ```yml
+    # jobs:
+    #   my_job:
+    #     docker:
+    #       - image: cimg/base:current
+    #     resource_class: small
+    #     steps:
+    #       - aptible/setup
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - my_job:
+    #           context:
+    #             - APTIBLE_ROBOTS
+    # ```
+    description: |
+      Install `aptible-cli` using `dpkg` and login.
+      Expects the following context: `APTIBLE_ROBOTS`
+    steps:
+      - run:
+          name: Install Aptible CLI
+          command: |
+            curl -o aptible-cli.deb \
+              https://omnibus-aptible-toolbelt.s3.amazonaws.com/aptible/omnibus-aptible-toolbelt/master/340/pkg/aptible-toolbelt_0.19.3%2B20220317192542~ubuntu.16.04-1_amd64.deb
+            sudo dpkg -i aptible-cli.deb
+            rm -f aptible-cli.deb
+      - run:
+          name: Login to Aptible
+          command: |
+            aptible login \
+              --email "$APTIBLE_LOGIN" \
+              --password "$APTIBLE_PASS"
+
+  deploy:
+    # ```yml
+    # jobs:
+    #   my_job:
+    #     docker:
+    #       - image: cimg/base:current
+    #     resource_class: small
+    #     steps:
+    #       - ecr/ecr-login
+    #       - run: echo "export DOCKER_PASS=$(aws ecr get-login-password --region us-east-1)" >> "$BASH_ENV"
+    #       - aptible/setup
+    #       - aptible/deploy:
+    #           app_name: my-app
+    #           docker_image: 651625208281.dkr.ecr.us-east-1.amazonaws.com/my_image:0.0.1
+    #           private_registry_username: AWS
+    #           private_registry_password: $DOCKER_PASS
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - my_job:
+    #           context:
+    #             - APTIBLE_ROBOTS
+    #             - AWS_ECR_PUSH_PULL
+    # ```
+    description: |
+      Deploy a docker image to an Aptible app.
+      Expects image to exist and `aptible-cli` to be installed and logged in.
+    parameters:
+      app_name:
+        type: string
+        description: Name of the Aptible app to deploy the docker image to
+      docker_image:
+        type: string
+        description: 'The docker image to deploy (ex: registry.*company-data-covered*.com/my_image:0.0.1)'
+      private_registry_username:
+        type: string
+        default: ${DH_REGISTRY_USERNAME}
+        description: Username of the private docker registry that `docker_image` is pulled from. Defaults to the env var DH_REGISTRY_USERNAME
+      private_registry_password:
+        type: string
+        default: ${DH_REGISTRY_PASSWORD}
+        description: Password of the private docker registry that `docker_image` is pulled from. Defaults to the env var DH_REGISTRY_PASSWORD
+    steps:
+      - run:
+          name: Deploy docker image to Aptible
+          command: |
+            aptible deploy \
+              --app "<< parameters.app_name >>" \
+              --docker-image "<< parameters.docker_image >>" \
+              --private-registry-username "<< parameters.private_registry_username >>" \
+              --private-registry-password "<< parameters.private_registry_password >>"
+
+  ssh_command:
+    # ```yml
+    # jobs:
+    #   my_job:
+    #     docker:
+    #       - image: cimg/base:current
+    #     resource_class: small
+    #     steps:
+    #       - aptible/setup
+    #       - aptible/ssh_command:
+    #           app_name: my-app
+    #           command: bundle exec rake patients:cypress_delete_all
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - my_job:
+    #           context:
+    #             - APTIBLE_ROBOTS
+    # ```
+    description: |
+      Execute a command over ssh on an Aptible app.
+      Expects `aptible-cli` to be installed and logged in.
+    parameters:
+      app_name:
+        type: string
+        description: Aptible app name to perform command on
+      command:
+        type: string
+        description: Command to run on the Aptible app
+    steps:
+      - run:
+          name: Exec ssh command
+          command: aptible ssh --app << parameters.app_name >> << parameters.command >>
+          no_output_timeout: 30m
+
+jobs:
+  deploy:
+    # ```yml
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - aptible/deploy:
+    #           aptible_app_name: my_app
+    #           docker_image: registry.*company-data-covered*.com/my_image:0.0.1
+    #           context:
+    #             - APTIBLE_ROBOTS
+    #           environment:
+    # ```
+    description: |
+      Install `aptible-cli` and login to deploy a docker image to an Aptible app.
+      Expects the context: `APTIBLE_ROBOTS`
+    resource_class: small
+    parameters:
+      aptible_app_name:
+        type: string
+        description: Name of the Aptible app to deploy the docker image to
+      docker_image:
+        type: string
+        description: 'The docker image to deploy (ex: registry.*company-data-covered*.com/my_image:0.0.1)'
+      private_registry_username:
+        type: string
+        default: ${DH_REGISTRY_USERNAME}
+        description: Username of the private docker registry that `docker_image` is pulled from. Defaults to the env var DH_REGISTRY_USERNAME
+      private_registry_password:
+        type: string
+        default: ${DH_REGISTRY_PASSWORD}
+        description: Password of the private docker registry that `docker_image` is pulled from. Defaults to the env var DH_REGISTRY_PASSWORD
+    docker:
+      - image: cimg/base:current
+    steps:
+      - setup
+      - deploy:
+          app_name: << parameters.aptible_app_name >>
+          docker_image: << parameters.docker_image >>
+          private_registry_username: << parameters.private_registry_username >>
+          private_registry_password: << parameters.private_registry_password >>
+
+  ssh_command:
+    # ```yml
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - aptible/ssh_command:
+    #           aptible_app_name: my_app
+    #           command: bundle exec rake patients:cypress_delete_all
+    #           context:
+    #             - DH_REGISTRY
+    #             - APTIBLE_ROBOTS
+    # ```
+    description: |
+      Install `aptible-cli` and login to execute a command via SSH on an Aptible app.
+      Expects the following context: `APTIBLE_ROBOTS`
+    resource_class: small
+    parameters:
+      aptible_app_name:
+        type: string
+        description: Name of the Aptible app to deploy the docker image to
+      command:
+        type: string
+        description: The command to run in the Aptible app
+    docker:
+      - image: cimg/base:current
+    steps:
+      - setup
+      - ssh_command:
+          app_name: << parameters.aptible_app_name >>
+          command: << parameters.command >>

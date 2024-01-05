@@ -1,0 +1,41 @@
+{
+  "name": "shared-auth0-util",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/shared/auth0/util/src",
+  "projectType": "library",
+  "tags": ["type:util", "scope:shared"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/libs/shared/auth0/util/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../../coverage/ts/libs/shared/auth0/util"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/libs/shared/auth0/util"
+      }
+    }
+  }
+}

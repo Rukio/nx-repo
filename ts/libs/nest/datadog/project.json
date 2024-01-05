@@ -1,0 +1,41 @@
+{
+  "name": "nest-datadog",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/nest/datadog/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/libs/nest/datadog/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/ts/libs/nest/datadog"],
+      "options": {
+        "jestConfig": "ts/libs/nest/datadog/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/libs/nest/datadog"
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:nest"]
+}

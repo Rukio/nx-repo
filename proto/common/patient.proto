@@ -1,0 +1,96 @@
+syntax = "proto3";
+package common;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/common";
+
+import "common/date.proto";
+import "common/demographic.proto";
+import "google/protobuf/timestamp.proto";
+
+message Patient {
+  optional string id = 1;
+  optional PatientRecordIdentifier primary_identifier = 2;
+  repeated PatientRecordIdentifier additional_identifiers = 3;
+  optional common.Name name = 4;
+  optional ContactInfo contact_info = 5;
+  optional common.Date date_of_birth = 6;
+  optional common.Sex sex = 7;
+  optional common.BirthSex birth_sex = 19;
+  optional string social_security_number = 8;
+  optional Guarantor guarantor = 9;
+  optional MedicalPowerOfAttorney medical_power_of_attorney = 10;
+  optional PatientSafetyFlag patient_safety_flag = 11;
+  optional google.protobuf.Timestamp updated_at = 12;
+  optional bool voicemail_consent = 13;
+  BillingCity billing_city = 14;
+  optional int64 channel_item_id = 15;
+  optional string source_type = 16;
+  optional string partner_id = 17;
+  GenderIdentity gender_identity = 20;
+}
+
+enum RelationToPatient {
+  RELATION_TO_PATIENT_UNSPECIFIED = 0;
+  RELATION_TO_PATIENT_SELF = 1;
+  RELATION_TO_PATIENT_FACILITY_STAFF = 2;
+  RELATION_TO_PATIENT_FAMILY = 3;
+  RELATION_TO_PATIENT_CLINICIAN = 4;
+  RELATION_TO_PATIENT_FRIEND = 5;
+  RELATION_TO_PATIENT_HOME_HEALTH_TEAM = 6;
+  RELATION_TO_PATIENT_CASE_MANAGEMENT = 7;
+  RELATION_TO_PATIENT_OTHER = 8;
+}
+
+message PatientRelation {
+  RelationToPatient relation = 1;
+  optional string other_relation_text = 2;
+}
+
+message MedicalPowerOfAttorney {
+  optional common.Name name = 1;
+  optional ContactInfo contact_info = 2;
+  optional PatientRelation patient_relation = 3;
+  // Station POA primary ID
+  optional int64 id = 4;
+}
+
+message Guarantor {
+  optional common.Name name = 1;
+  optional common.Date date_of_birth = 2;
+  optional ContactInfo contact_info = 3;
+  optional string social_security_number = 4;
+  optional PatientRelation patient_relation = 5;
+}
+
+message ContactInfo {
+  optional common.PhoneNumber home_number = 1;
+  optional common.PhoneNumber mobile_number = 2;
+  optional common.PhoneNumber work_number = 3;
+  optional string email = 4;
+  optional common.Address address = 5;
+}
+
+message PatientSafetyFlag {
+  string flagger_user_id = 1;
+  enum FlagType {
+    FLAG_TYPE_UNSPECIFIED = 0;
+    FLAG_TYPE_TEMPORARY = 1;
+    FLAG_TYPE_PERMANENT = 2;
+  }
+  FlagType type = 2;
+  optional string reason = 3;
+}
+
+message PatientRecordIdentifier {
+  enum PatientRecordSource {
+    PATIENT_RECORD_SOURCE_UNSPECIFIED = 0;
+    PATIENT_RECORD_SOURCE_ATHENA = 1;
+  }
+
+  PatientRecordSource source = 1;
+  string record_id = 2;
+}
+
+message BillingCity {
+  string id = 1;
+}

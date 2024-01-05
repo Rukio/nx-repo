@@ -1,0 +1,41 @@
+{
+  "name": "shared-util-hooks",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/shared/util/hooks/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:util"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/libs/shared/util/hooks/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/ts/libs/shared/util/hooks"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../../coverage/ts/libs/shared/util/hooks"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/libs/shared/util/hooks"
+      }
+    }
+  }
+}

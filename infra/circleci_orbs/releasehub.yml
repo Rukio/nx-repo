@@ -1,0 +1,305 @@
+version: 2.1
+
+description: |
+  Releasehub jobs and commands
+
+  The following environment variables are expected to be set (use the RELEASEHUB_CREDS context):
+  - `RELEASE_LOGIN`
+  - `RELEASE_TOKEN`
+  - `RELEASE_ACCOUNT_ID`
+
+executors:
+  releasehub-executor:
+    resource_class: small
+    docker:
+      - image: public.ecr.aws/releasehub-com/release-cli
+
+commands:
+  login:
+    # ```yml
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - my_job:
+    #           executor: releasehub-executor
+    #           steps:
+    #             - releasehub/login
+    #           context:
+    #             - RELEASEHUB_CREDS
+    # ```
+    description: |
+      Login to Releasehub
+      Expects the following context: `RELEASEHUB_CREDS`
+    steps:
+      - run:
+          name: Login to Releasehub
+          command: |
+            release auth login \
+              --headless \
+              --login $RELEASE_LOGIN \
+              --token $RELEASE_TOKEN
+
+  fetch_environment:
+    # ```yml
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - my_job:
+    #           executor: releasehub-executor
+    #           steps:
+    #             - releasehub/fetch_environment:
+    #                 app_name: my-app
+    #                 branch_name: my-optional-branch-override
+    #           context:
+    #             - RELEASEHUB_CREDS
+    # ```
+    description: |
+      Fetch a list of current Releasehub environments for a given Releasehub app.
+      Parse the list and persist the current releasehub env in the `RH_OUTPUT_ENV` env var.
+      Expects the following context: `RELEASEHUB_CREDS`
+    parameters:
+      app_name:
+        type: string
+        description: Name of the Releasehub app
+      branch_name:
+        type: string
+        default: $CIRCLE_BRANCH
+        description: Name of the branch to use
+    steps:
+      - run:
+          name: Fetch Environment List
+          command: |
+            echo 'export RH_OUTPUT_ENV_LIST=$(release environments list \
+              --account "$RELEASE_ACCOUNT_ID" \
+              --app << parameters.app_name >> \
+              --output "json")' >> $BASH_ENV
+      - run:
+          name: Print Env List
+          command: echo "$RH_OUTPUT_ENV_LIST"
+      - run:
+          name: Parse Env List for Correct Environment
+          command: |
+            echo $'export RH_OUTPUT_ENV=$(jq -n "$RH_OUTPUT_ENV_LIST" | jq --arg cb << parameters.branch_name >> '\''.[] | select(.tracking_branch == $cb and (.state == "deployed" or .state == "deploying_setup" or .state == "waiting"))'\'')' >> $BASH_ENV
+      - run:
+          name: Print Env
+          command: echo "$RH_OUTPUT_ENV"
+
+  create_or_update_environment:
+    # ```yml
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - my_job:
+    #           executor: releasehub-executor
+    #           steps:
+    #             - releasehub/login
+    #             - releasehub/fetch_environment
+    #                 app_name: my-app
+    #                 branch_name: my-optional-branch-override
+    #             - releasehub/create_or_update_environment:
+    #                 app_name: my-app
+    #                 branch_name: my-optional-branch-override
+    #           context:
+    #             - RELEASEHUB_CREDS
+    # ```
+    description: |
+      Read persisted list of existing releasehub environments
+      Create a new release environment for the given circle branch if one doesn't currently exist
+      Additionally, if new environment, update env config with `auto-deploy=false` so all updates are handled only by the pipeline
+      After, deploy the latest changes to the existing environment
+      Persist the url of the releasehub environment in the `/persist/releasehub/env_url.txt` file
+      Expects the following context: `RELEASEHUB_CREDS`
+    parameters:
+      app_name:
+        type: string
+        description: Name of the Releasehub app
+      branch_name:
+        type: string
+        default: $CIRCLE_BRANCH
+        description: Name of the branch to use
+    steps:
+      - run:
+          name: Make Transfer Folder
+          command: mkdir -p /persist/releasehub
+      - run:
+          name: 'Create Environment If Not Exist'
+          command: |
+            if [[ -z "$RH_OUTPUT_ENV" ]]; then
+              release environments create \
+                --account "$RELEASE_ACCOUNT_ID" \
+                --app << parameters.app_name >> \
+                --branch << parameters.branch_name >> \
+                --output json \
+                --skip-deploy > /persist/releasehub/env.json
+
+              ENV_ID="$(jq .environment.id /persist/releasehub/env.json)"
+              echo "export RH_ENV_ID=${ENV_ID}" >> $BASH_ENV
+              release environments config-get \
+                --account "$RELEASE_ACCOUNT_ID" \
+                --app << parameters.app_name >> \
+                --environment "$ENV_ID" > /persist/releasehub/config.yaml
+
+              yq -i e '.auto_deploy = false' /persist/releasehub/config.yaml
+
+              release environments config-set \
+                --account "$RELEASE_ACCOUNT_ID" \
+                --app  << parameters.app_name >> \
+                --environment "$ENV_ID" < /persist/releasehub/config.yaml
+            else
+              echo "export RH_ENV_ID=$(echo "$RH_OUTPUT_ENV" | jq -r '.id')" >> $BASH_ENV
+            fi
+          no_output_timeout: 30m
+      - run:
+          name: Update Environment
+          command: |
+            release deploys create \
+              --account "$RELEASE_ACCOUNT_ID" \
+              --app << parameters.app_name >> \
+              --environment "$RH_ENV_ID" \
+              --output json \
+              --wait > /persist/releasehub/env.json
+          no_output_timeout: 1h
+      - run:
+          name: 'Save Env Url'
+          command: echo $(jq -r '.environment.hostnames[0].url' /persist/releasehub/env.json) > /persist/releasehub/env_url.txt
+      - persist_to_workspace:
+          root: /persist
+          paths:
+            - releasehub/*
+
+  delete_environment:
+    # ```yml
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - my_job:
+    #           executor: releasehub-executor
+    #           steps:
+    #             - releasehub/login
+    #             - releasehub/fetch_environment:
+    #                 app_name: my-app
+    #                 branch_name: my-optional-branch-override
+    #             - releasehub/delete_environment:
+    #                 app_name: my-app
+    #           context:
+    #             - RELEASEHUB_CREDS
+    # ```
+    description: |
+      Delete the releasehub environment of the corresponding branch
+      Expects the following context: `RELEASEHUB_CREDS`
+    parameters:
+      app_name:
+        type: string
+        description: Name of the Releasehub app
+    steps:
+      - run:
+          name: Delete Release Environment
+          command: |
+            if [[ -z "$RH_OUTPUT_ENV" ]]; then
+              echo "Couldn't find Releasehub Env - Unable to Delete"
+              exit 1
+            else
+              echo "Deleting Releasehub Env"
+              ENVIRONMENT_ID=$(jq -n "$RH_OUTPUT_ENV" | jq '.id')
+              release environments delete "$ENVIRONMENT_ID" \
+                --account "$RELEASE_ACCOUNT_ID" \
+                --app << parameters.app_name >>
+            fi
+          no_output_timeout: 30m
+
+jobs:
+  fetch_environment:
+    # ```yml
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - releasehub/fetch_environment:
+    #           app_name: my_app
+    #           branch_name: my-optional-branch-override
+    #           context:
+    #             - RELEASEHUB_CREDS
+    # ```
+    description: |
+      Fetch a list of current Releasehub environments for a given Releasehub app.
+      Parse the list and persist the current releasehub env in the `RH_OUTPUT_ENV` env var.
+      Expects the following context: `RELEASEHUB_CREDS`
+    parameters:
+      app_name:
+        type: string
+        description: Name of the Releasehub app
+      branch_name:
+        type: string
+        default: $CIRCLE_BRANCH
+        description: Name of the branch to use
+    executor: releasehub-executor
+    steps:
+      - login
+      - fetch_environment:
+          app_name: << parameters.app_name >>
+          branch_name: << parameters.branch_name >>
+
+  create_or_update_environment:
+    # ```yml
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - releasehub/create_or_update_environment:
+    #           app_name: my_app
+    #           branch_name: my-optional-branch-override
+    #           context:
+    #             - RELEASEHUB_CREDS
+    # ```
+    description: |
+      Read persisted list of existing releasehub environments
+      Create a new release environment for the given circle branch if one doesn't currently exist
+      Else, deploy the latest changes to the existing environment
+      Persist the url of the releasehub environment in the `/persist/releasehub/env_url.txt` file
+      Expects the following context: `RELEASEHUB_CREDS`
+    parameters:
+      app_name:
+        type: string
+        description: Name of the Releasehub app
+      branch_name:
+        type: string
+        default: $CIRCLE_BRANCH
+        description: Name of the branch to use
+    executor: releasehub-executor
+    steps:
+      - login
+      - fetch_environment:
+          app_name: << parameters.app_name >>
+          branch_name: << parameters.branch_name >>
+      - create_or_update_environment:
+          app_name: << parameters.app_name >>
+          branch_name: << parameters.branch_name >>
+
+  delete_environment:
+    # ```yml
+    # workflows:
+    #   my_workflow:
+    #     jobs:
+    #       - releasehub/delete_environment:
+    #           app_name: my_app
+    #           branch_name: my-optional-branch-override
+    #           context:
+    #             - RELEASEHUB_CREDS
+    # ```
+    description: |
+      Delete the releasehub environment of the corresponding branch
+      Expects the following context: `RELEASEHUB_CREDS`
+    parameters:
+      app_name:
+        type: string
+        description: Name of the Releasehub app
+      branch_name:
+        type: string
+        default: $CIRCLE_BRANCH
+        description: Name of the branch to use
+    executor: releasehub-executor
+    steps:
+      - login
+      - fetch_environment:
+          app_name: << parameters.app_name >>
+          branch_name: << parameters.branch_name >>
+      - delete_environment:
+          app_name: << parameters.app_name >>

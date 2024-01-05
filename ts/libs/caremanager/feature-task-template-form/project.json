@@ -1,0 +1,66 @@
+{
+  "name": "caremanager-feature-task-template-form",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/caremanager/feature-task-template-form/src",
+  "projectType": "library",
+  "tags": ["type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "ts/libs/caremanager/feature-task-template-form/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/ts/libs/caremanager/feature-task-template-form"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../coverage/ts/libs/caremanager/feature-task-template-form"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p cypress/tsconfig.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/libs/caremanager/feature-task-template-form"
+      }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "defaultConfiguration": "development",
+      "options": {
+        "cypressConfig": "ts/libs/caremanager/feature-task-template-form/cypress.config.ts",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "development": {
+          "devServerTarget": "caremanager:serve:development"
+        },
+        "production": {
+          "devServerTarget": "caremanager:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "caremanager:serve-static"
+        }
+      }
+    }
+  }
+}

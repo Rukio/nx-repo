@@ -1,0 +1,1278 @@
+syntax = "proto3";
+package caremanager;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/caremanager";
+option ruby_package = "CareManagerGRPC";
+
+import "common/logistics.proto";
+import "google/api/field_behavior.proto";
+
+message Episode {
+  // id
+  //
+  // id represents the unique identifier of the Episode.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // admitted_at
+  //
+  // admitted_at represents the date and time when Episode was admitted.
+  string admitted_at = 2 [(google.api.field_behavior) = REQUIRED];
+  // patient_summary
+  //
+  // patient_summary represents the patient's summary of the Episode.
+  string patient_summary = 3 [(google.api.field_behavior) = REQUIRED];
+  // service_line
+  //
+  // service_line represents an instance of the ServiceLine the Episode
+  // belongs to.
+  ServiceLine service_line = 4 [deprecated = true];
+  // care_phase
+  //
+  // care_phase represents an instance of the CarePhase the Episode
+  // belongs to.
+  CarePhase care_phase = 5 [deprecated = true];
+  // patient
+  //
+  // patient represents an instance of the Patient the Episode
+  // belongs to.
+  Patient patient = 6 [(google.api.field_behavior) = REQUIRED];
+  // user
+  //
+  // user represents an instance of the User the Episode belongs
+  // to.
+  User user = 7 [deprecated = true];
+  // market
+  //
+  // market represents an instance of the Market the Episode belongs
+  // to.
+  optional Market market = 8;
+  // market_tz_name
+  //
+  // market_tz_name represents the timezone name of the Market the
+  // Episode belongs to.
+  optional string market_tz_name = 9;
+  // care_day
+  //
+  // care_day represents the care day of the Episode.
+  optional int64 care_day = 10;
+  // discharged_at
+  //
+  // discharged_at represents the date and time when the Episode was
+  // discharged.
+  optional string discharged_at = 11;
+  // source
+  //
+  // source represents the source of the Episode.
+  optional string source = 12;
+  // primary_diagnosis
+  //
+  // primary_diagnosis represents the primary diagnosis of the Episode.
+  optional string primary_diagnosis = 13;
+  // payer
+  //
+  // payer represents the payer of the Episode.
+  optional string payer = 14;
+  // doctors_primary_care
+  //
+  // doctors_primary_care represents the doctor's primary care of the Episode.
+  optional string doctors_primary_care = 15;
+  // incomplete_tasks
+  //
+  // incomplete_tasks represents the counts of incomplete tasks of the
+  // Episode.
+  optional IncompleteTasks incomplete_tasks = 16;
+  // last_note
+  //
+  // last_note represents an instance of the most relevant Note of the
+  // episode. A Note's relevance is defined by a combination of its pinned
+  // status and the time it was created or updated. Deprecated in favor of
+  // `most_relevant_note`.
+  optional Note last_note = 17 [deprecated = true];
+  // created_at
+  //
+  // created_at represents the date and time when the Episode was created.
+  optional string created_at = 18;
+  // updated_at
+  //
+  // updated_at represents the date and time when the Episode was updated.
+  optional string updated_at = 19;
+  // notes
+  //
+  // notes represents a list of Note instances that belong to
+  // the Episode.
+  repeated Note notes = 20;
+  // tasks
+  //
+  // tasks represents a list of Task instances that belong to
+  // the Episode.
+  repeated Task tasks = 21;
+  // task_templates
+  //
+  // task_templates represents a list of TaskTemplates that
+  // belong to the Episode.
+  repeated TaskTemplate task_templates = 22;
+  // service_line_id
+  //
+  // service_line_id represents the unique identifier of the ServiceLine
+  // the Episode belongs to.
+  int64 service_line_id = 23 [(google.api.field_behavior) = REQUIRED];
+  // care_phase_id
+  //
+  // care_phase_id represents the unique identifier of the CarePhase the
+  // Episode belongs to.
+  int64 care_phase_id = 24 [(google.api.field_behavior) = REQUIRED];
+  // most_relevant_note
+  //
+  // most_relevant_note represents an instance of the most relevant Note of the
+  // episode. A Note's relevance is defined by a combination of its pinned
+  // status and the time it was created or updated.
+  optional Note most_relevant_note = 25;
+  // patient_id
+  //
+  // patient_id represents the id of the Patient associated to the retrieved
+  // Episode.
+  int64 patient_id = 26 [(google.api.field_behavior) = REQUIRED];
+  // is_waiver
+  //
+  // is_waiver represents if the Episode is marked as Waiver.
+  bool is_waiver = 27 [(google.api.field_behavior) = REQUIRED];
+  // market_id
+  //
+  // market_id represents the id of the Market associated to the retrieved
+  // Episode.
+  int64 market_id = 28 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CarePhase {
+  // id
+  //
+  // id represents the unique identifier of the Care Phase.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the Care Phase.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  // phase_type
+  //
+  // phase_type represents the type of the Care Phase, may be "active" or
+  // "inactive".
+  string phase_type = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ExternalCareProvider {
+  // id
+  //
+  // id represents the unique identifier of the ExternalCareProvider.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the ExternalCareProvider.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  // phone_number
+  //
+  // phone_number represents the phone number of the ExternalCareProvider.
+  optional string phone_number = 3;
+  // fax_number
+  //
+  // fax_number represents the fax number of the ExternalCareProvider.
+  optional string fax_number = 4;
+  // address
+  //
+  // address represents the full string representation of the
+  // ExternalCareProvider address.
+  optional string address = 5;
+  // provider_type_id
+  //
+  // provider_type_id represents the ID of the ProviderType that this
+  // ExternalCareProvider is assigned to.
+  int64 provider_type_id = 6 [(google.api.field_behavior) = REQUIRED];
+  // patient_id
+  //
+  // patient_id represents the id for the patient this ExternalCareProvider is
+  // associated with.
+  int64 patient_id = 7 [(google.api.field_behavior) = REQUIRED];
+}
+
+message IncompleteTasks {
+  // daily_and_onboarding
+  //
+  // daily_and_onboarding represents the number of incomplete daily and
+  // onboarding tasks.
+  int64 daily_and_onboarding = 1 [(google.api.field_behavior) = REQUIRED];
+  // nurse_navigator
+  //
+  // nurse_navigator represents the number of incomplete nurse navigator tasks.
+  int64 nurse_navigator = 2 [(google.api.field_behavior) = REQUIRED];
+  // t1
+  //
+  // t1 represents the number of incomplete T1 tasks.
+  int64 t1 = 3 [(google.api.field_behavior) = REQUIRED];
+  // t2
+  //
+  // t2 represents the number of incomplete T2 tasks.
+  int64 t2 = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+message Insurance {
+  // id
+  //
+  // id represents the unique identifier of the Insurance.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the Insurance.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  // member_id
+  //
+  // member_id represents the external member_id value of the Insurance, most
+  // likely managed by each insurance company.
+  optional string member_id = 3;
+  // priority
+  //
+  // priority represents priority value for the Insurance, this is helpful for
+  // knowing which insurance in the list is the primary one, secondary, etc.
+  int32 priority = 4 [(google.api.field_behavior) = REQUIRED];
+  // patient_id
+  //
+  // patient_id represents the id for the patient this Insurance is associated
+  // with.
+  int64 patient_id = 5 [(google.api.field_behavior) = REQUIRED];
+}
+
+message Market {
+  // id
+  //
+  // id represents the unique identifier of the Market.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the Market.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  // short_name
+  //
+  // short_name represents the short version of the name of the Market.
+  string short_name = 3 [(google.api.field_behavior) = REQUIRED];
+  // tz_name
+  //
+  // tz_name represents the IANA timezone name of the Market location.
+  string tz_name = 4 [(google.api.field_behavior) = REQUIRED];
+  // schedule_days
+  //
+  // schedule_days represents the open and close times for each day
+  // of the week.
+  repeated common.ScheduleDay schedule_days = 5
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+message MedicalDecisionMaker {
+  // id
+  //
+  // id represents the unique identifier of the MedicalDecisionMaker.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // first_name
+  //
+  // first_name represents the first name of the MedicalDecisionMaker.
+  string first_name = 2 [(google.api.field_behavior) = REQUIRED];
+  // last_name
+  //
+  // last_name represents the last name of the MedicalDecisionMaker.
+  string last_name = 3 [(google.api.field_behavior) = REQUIRED];
+  // phone_number
+  //
+  // phone_number represents the phone number of the MedicalDecisionMaker.
+  optional string phone_number = 4 [(google.api.field_behavior) = REQUIRED];
+  // address
+  //
+  // address represents the full string representation of the
+  // MedicalDecisionMaker address.
+  optional string address = 5;
+  // relationship
+  //
+  // relationship represents the relation the MedicalDecisionMaker has with the
+  // patient it is assigned to, like "parent", "tutor", etc.
+  optional string relationship = 6 [(google.api.field_behavior) = REQUIRED];
+  // patient_id
+  //
+  // patient_id represents the id for the patient this MedicalDecisionMaker is
+  // associated with.
+  int64 patient_id = 7 [(google.api.field_behavior) = REQUIRED];
+}
+
+message Note {
+  // id
+  //
+  // id represents the unique identifier of the Note.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // details
+  //
+  // details represents the description or the content of the Note.
+  string details = 2 [(google.api.field_behavior) = REQUIRED];
+  // note_kind
+  //
+  // note_kind represents the type of the note, whether it is a general note, a
+  // daily update, etc.
+  string note_kind = 3 [(google.api.field_behavior) = REQUIRED];
+  // noteable_id
+  //
+  // noteable_id represents the ID of the Episode this Note belongs to.
+  int64 noteable_id = 4
+      [(google.api.field_behavior) = REQUIRED, deprecated = true];
+
+  reserved "noteable_type";
+  reserved 5;
+
+  // pinned
+  //
+  // pinned represents the pinned state of the Note, whether it is pinned or
+  // not.
+  optional bool pinned = 6;
+  // created_by
+  //
+  // created_by represents an instance of the User that first created the Note.
+  User created_by = 7 [deprecated = true];
+  // last_updated_by
+  //
+  // last_updated_by represents an instance of the User that last updated the
+  // Note.
+  User last_updated_by = 8 [deprecated = true];
+  // pinned_by
+  //
+  // pinned_by represents an instance of the User that pinned the Note.
+  User pinned_by = 9 [deprecated = true];
+  // pinned_at
+  //
+  // pinned_at represents the date and time when the Task was last pinned.
+  optional string pinned_at = 10;
+  // created_at
+  //
+  // created_at represents the date and time when the Note was created.
+  optional string created_at = 11;
+  // updated_at
+  //
+  // updated_at represents the date and time when the Note was last updated.
+  optional string updated_at = 12;
+  // episode_id
+  //
+  // episode_id represents the ID of the Episode this Note belongs to.
+  int64 episode_id = 13 [(google.api.field_behavior) = REQUIRED];
+  // created_by_user_id
+  //
+  // created_by_user_id represents the ID of the User that first created the
+  // Note.
+  optional int64 created_by_user_id = 14;
+  // updated_by_user_id
+  //
+  // updated_by_user_id represents the ID of the User that last updated the
+  // Note.
+  optional int64 updated_by_user_id = 15;
+}
+
+message Patient {
+  // id
+  //
+  // id represents the unique identifier of the Patient.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // first_name
+  //
+  // first_name represents the first name of the Patient.
+  string first_name = 2 [(google.api.field_behavior) = REQUIRED];
+  // middle_name
+  //
+  // middle_name represents the middle name of the Patient.
+  optional string middle_name = 3;
+  // last_name
+  //
+  // last_name represents the last name of the Patient
+  string last_name = 4 [(google.api.field_behavior) = REQUIRED];
+  // date_of_birth
+  //
+  // date_of_birth represents the date of birth of the Patient
+  string date_of_birth = 5 [(google.api.field_behavior) = REQUIRED];
+  // sex
+  //
+  // sex represents the sex of the Patient, male, female, other or unspecified.
+  string sex = 6 [(google.api.field_behavior) = REQUIRED];
+  // phone_number
+  //
+  // phone_number represents the phone number of the Patient.
+  optional string phone_number = 7;
+  // athena_medical_record_number
+  //
+  // athena_medical_record_number represents the unique identifier of the
+  // Patient on the Athena db.
+  optional string athena_medical_record_number = 8 [deprecated = true];
+  // medical_power_of_attorney_details
+  //
+  // medical_power_of_attorney_details
+  optional string medical_power_of_attorney_details = 9;
+  // payer
+  //
+  // payer
+  optional string payer = 10;
+  // preferred_pharmacy_details
+  //
+  // preferred_pharmacy_details represents the prefered pharmacy of the Patient.
+  optional string preferred_pharmacy_details = 11;
+  // doctor_details
+  //
+  // doctor_details represents the details of the Patient´s doctor, like name,
+  // phone number or any other necessary details.
+  optional string doctor_details = 12;
+  // referrer
+  //
+  // referrer
+  optional string referrer = 13;
+  // address_street
+  //
+  // address_street represents the main street details of the main address of
+  // the Patient.
+  optional string address_street = 14;
+  // address_street_2
+  //
+  // address_street_2 represents the extra street details of the main address of
+  // the Patient.
+  optional string address_street_2 = 15;
+  // address_city
+  //
+  // address_city represents the name of the city of the main address of the
+  // Patient.
+  optional string address_city = 16;
+  // address_state
+  //
+  // address_state represents the name of the state of the main address of the
+  // Patient.
+  optional string address_state = 17;
+  // address_zipcode
+  //
+  // address_zipcode represents the zipcode number of the main address of the
+  // Patient.
+  optional string address_zipcode = 18;
+  // address_notes
+  //
+  // address_notes represents any extra note or comments related to the main
+  // address of the Patient.
+  optional string address_notes = 19;
+  // created_at
+  //
+  // created_at represents the date and time when the Patient was created.
+  optional string created_at = 20;
+  // updated_at
+  //
+  // updated_at represents the date and time when the Patient was last updated.
+  optional string updated_at = 21;
+  // athena_id
+  //
+  // athena_id represents the unique identifier of the
+  // Patient on the Athena db. This is the same as athena_medical_record_number.
+  // This field is just a domain translation for such number.
+  optional string athena_id = 22;
+}
+
+message Pharmacy {
+  // id
+  //
+  // id represents the unique identifier of the Pharmacy.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the Pharmacy.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  // phone_number
+  //
+  // phone_number represents the phone number of the Pharmacy.
+  optional string phone_number = 3;
+  // fax_number
+  //
+  // fax_number represents the fax number of the Pharmacy.
+  optional string fax_number = 4;
+  // address
+  //
+  // address represents the full string representation of the Pharmacy address.
+  optional string address = 5;
+  // patient_id
+  //
+  // patient_id represents the id for the patient this Pharmacy is associated
+  // with.
+  int64 patient_id = 6 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ProviderType {
+  // id
+  //
+  // id represents the unique identifier of the ProviderType.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the ProviderType.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ServiceLine {
+  // id
+  //
+  // id represents the unique identifier of the Service Line.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the Service Line.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  // short_name
+  //
+  // short_name represents the short version of the name of the Service Line.
+  string short_name = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message TaskTemplateTask {
+  // id
+  //
+  // id represents the unique identifier of the Task.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // task
+  //
+  // task  represents the text description or content of the Task.
+  string body = 2 [(google.api.field_behavior) = REQUIRED];
+  // task_type
+  //
+  // task_type represents the type of the Task, like Daily, Provider, etc.
+  TaskType type = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message TaskType {
+  // id
+  //
+  // id represents the unique identifier of the TaskType.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // slug
+  //
+  // slug represents the type of the Task, like Daily, Provider, etc.
+  string slug = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message Task {
+  // id
+  //
+  // id represents the unique identifier of the Task.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // task
+  //
+  // task  represents the text description or content of the Task.
+  string task = 2 [(google.api.field_behavior) = REQUIRED];
+  // task_type
+  //
+  // task_type represents the type of the Task, like Daily, Provider, etc.
+  string task_type = 3 [(google.api.field_behavior) = REQUIRED];
+  // taskable_type
+  //
+  // taskable_type represents the name of the model of the parent of the Task.
+  string taskable_type = 4 [(google.api.field_behavior) = REQUIRED];
+  // taskable_id
+  //
+  // taskable_id represents the id of the parent of the Task.
+  int64 taskable_id = 5 [(google.api.field_behavior) = REQUIRED];
+  // status
+  //
+  // status represents the state of the Task, whether it is completed or in any
+  // other state.
+  string status = 6 [(google.api.field_behavior) = REQUIRED];
+  // created_by
+  //
+  // created_by represents an instance of the User that first created the Task.
+  User created_by = 7 [deprecated = true];
+  // last_updated_by
+  //
+  // last_updated_by represents an instance of the User that last updated the
+  // Task.
+  User last_updated_by = 8 [deprecated = true];
+  // created_at
+  //
+  // created_at represents the date and time when the Task was created.
+  optional string created_at = 9;
+  // updated_at
+  //
+  // updated_at represents the date and time when the Task was last updated.
+  optional string updated_at = 10;
+  // completed_by_user_id
+  //
+  // completed_by_user_id represents the ID of the User that marked the task
+  // as completed.
+  optional int64 completed_by_user_id = 11;
+}
+
+message TaskTemplate {
+  // id
+  //
+  // id represents the unique identifier of the TaskTemplate.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // created_at
+  //
+  // created_at represents the date and time when the TaskTemplate was created.
+  string created_at = 2 [(google.api.field_behavior) = REQUIRED];
+  // updated_at
+  //
+  // updated_at represents the date and time when the TaskTemplate was last
+  // updated.
+  string updated_at = 3 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the TaskTemplate.
+  string name = 4 [(google.api.field_behavior) = REQUIRED];
+  // tasks_count
+  //
+  // tasks_count represents the number of
+  int64 tasks_count = 5 [(google.api.field_behavior) = REQUIRED];
+  // service_line
+  //
+  // service_line represents an instance of the ServiceLine the TaskTemplate
+  // belongs to.
+  ServiceLine service_line = 6 [deprecated = true];
+  // last_updated_by
+  //
+  // last_updated_by represents an instance of the User that last updated the
+  // TaskTemplate.
+  User last_updated_by = 7 [deprecated = true];
+  // summary
+  //
+  // summary represents the summary of the TaskTemplate.
+  optional string summary = 8;
+  // care_phase
+  //
+  // care_phase represents an instance of the CarePhase the TaskTemplate
+  // belongs to.
+  CarePhase care_phase = 9 [deprecated = true];
+  // tasks
+  //
+  // tasks represents a collection of Tasks owned by the Task Template.
+  repeated TaskTemplateTask tasks = 10;
+  // service_line_id
+  //
+  // service_line_id represents the unique identifier of the ServiceLine
+  // the TaskTemplate belongs to.
+  int64 service_line_id = 11 [(google.api.field_behavior) = REQUIRED];
+  // care_phase_id
+  //
+  // care_phase_id represents the unique identifier of the CarePhase the
+  // TaskTemplate belongs to.
+  optional int64 care_phase_id = 12;
+  // updated_by_user_id
+  //
+  // updated_by_user_id represents the ID of the User that last updated the
+  // TaskTemplate.
+  int64 updated_by_user_id = 13 [(google.api.field_behavior) = REQUIRED];
+}
+
+message User {
+  // id
+  //
+  // id represents the unique identifier of the User.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // first_name
+  //
+  // first_name represents the first name of the User.
+  string first_name = 2 [(google.api.field_behavior) = REQUIRED];
+  // last_name
+  //
+  // last_name represents the last name of the User.
+  string last_name = 3 [(google.api.field_behavior) = REQUIRED];
+  // email
+  //
+  // email represents the email address of the User.
+  string email = 4 [(google.api.field_behavior) = REQUIRED];
+  // job_title
+  //
+  // job_title represents the job title of the User.
+  optional string job_title = 5;
+  // avatar_url
+  //
+  // avatar_url represents the avatar url of the User.
+  optional string avatar_url = 6;
+  // phone_number
+  //
+  // phone_number represents the phone number of the User.
+  optional string phone_number = 7;
+}
+
+message VisitSummary {
+  // body
+  //
+  // body represents the written summary of the Visit.
+  string body = 1 [(google.api.field_behavior) = REQUIRED];
+  // created_at
+  //
+  // created_at represents the date and time when the VisitSummary was created.
+  string created_at = 2 [(google.api.field_behavior) = REQUIRED];
+  // updated_at
+  //
+  // updated_at represents the date and time when the VisitSummary was last
+  // updated.
+  string updated_at = 3 [(google.api.field_behavior) = REQUIRED];
+  // created_by_user_id
+  //
+  // created_by_user_id represents the ID of the User that created the Visit.
+  optional int64 created_by_user_id = 4;
+  // updated_by_user_id
+  //
+  // updated_by_user_id represents the ID of the User that last updated the
+  // Visit.
+  optional int64 updated_by_user_id = 5;
+  // visit_id
+  //
+  // visit_id represents the unique identifier of the Visit this VisitSummary
+  // belongs to.
+  int64 visit_id = 6 [(google.api.field_behavior) = REQUIRED];
+}
+
+enum VisitStatusGroup {
+  VISIT_STATUS_GROUP_UNSPECIFIED = 0;
+  VISIT_STATUS_GROUP_ACTIVE = 1;
+  VISIT_STATUS_GROUP_UPCOMING = 2;
+  VISIT_STATUS_GROUP_PAST = 3;
+}
+
+enum UnableToScheduleReason {
+  UNABLE_TO_SCHEDULE_REASON_UNSPECIFIED = 0;
+  UNABLE_TO_SCHEDULE_REASON_ADVANCED_CARE_UNAVAILABLE = 1;
+  UNABLE_TO_SCHEDULE_REASON_VISIT_TIME_SLOT_UNAVAILABLE = 2;
+}
+
+message Visit {
+  // id
+  //
+  // id represents the unique identifier of the Visit.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // episode_id
+  //
+  // episode_id represents the unique identifier of the Episode the Visit
+  // belongs to.
+  int64 episode_id = 2 [(google.api.field_behavior) = REQUIRED];
+  // status_group
+  //
+  // status_group represents the status group the Visit is in.
+  VisitStatusGroup status_group = 3 [(google.api.field_behavior) = REQUIRED];
+  // created_at
+  //
+  // created_at represents the date and time when the Visit was created.
+  string created_at = 5 [(google.api.field_behavior) = REQUIRED];
+  // updated_at
+  //
+  // updated_at represents the date and time when the Visit was last updated.
+  string updated_at = 6 [(google.api.field_behavior) = REQUIRED];
+  // status
+  //
+  // status represents the status of the Visit.
+  optional string status = 7;
+  // car_name
+  //
+  // car_name represents the name of the car that was assigned to the Care
+  // Request associated to the Visit.
+  optional string car_name = 8;
+  // provider_user_ids
+  //
+  // provider_user_ids represents an array of provider (User) ids that were
+  // assigned to the Care Request associated to the Visit.
+  repeated int64 provider_user_ids = 9;
+  // created_by_user_id
+  //
+  // created_by_user_id represents the ID of the User that created the Visit.
+  optional int64 created_by_user_id = 10;
+  // updated_by_user_id
+  //
+  // updated_by_user_id represents the ID of the User that last updated the
+  // Visit.
+  optional int64 updated_by_user_id = 11;
+  // address_id
+  //
+  // address_id represents the unique identifier of the Address the Visit
+  // belongs to.
+  optional int64 address_id = 12;
+  // patient_availability_start
+  //
+  // patient_availability_start represents the preferred Visit start time for
+  // the Patient.
+  optional string patient_availability_start = 13;
+  // patient_availability_end
+  //
+  // patient_availability_end represents the preferred Visit end time for the
+  // Patient.
+  optional string patient_availability_end = 14;
+  // summary
+  //
+  // summary represents a VisitSummary instance associated with the Visit.
+  VisitSummary summary = 15;
+  // type_id
+  //
+  // type_id represents the id of the VisitType that the Visit belongs to.
+  optional int64 type_id = 16;
+  // care_request_id
+  //
+  // care_request_id represents the id of the Care Request that the Visit
+  // originated from.
+  optional int64 care_request_id = 17;
+  // virtual_app_id
+  //
+  // virtual_app_id represents the ID of the User that is assigned to the Visit
+  // as Virtual APP.
+  optional int64 virtual_app_id = 18;
+  // car_id
+  //
+  // car_id represents the ID of the car that was assigned to the Visit.
+  optional int64 car_id = 19;
+
+  reserved 4;
+  reserved "type";
+}
+
+message VisitListElement {
+  // id
+  //
+  // id represents the unique identifier of the Visit.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // episode_id
+  //
+  // episode_id represents the unique identifier of the Episode the Visit
+  // belongs to.
+  int64 episode_id = 2 [(google.api.field_behavior) = REQUIRED];
+  // status_group
+  //
+  // status_group represents the status group the Visit is in.
+  VisitStatusGroup status_group = 3 [(google.api.field_behavior) = REQUIRED];
+  // created_at
+  //
+  // created_at represents the date and time when the Visit was created.
+  string created_at = 4 [(google.api.field_behavior) = REQUIRED];
+  // updated_at
+  //
+  // updated_at represents the date and time when the Visit was last updated.
+  string updated_at = 5 [(google.api.field_behavior) = REQUIRED];
+  // type
+  //
+  // type represents the type of the Visit, like "acute", "high_acuity", etc.
+  optional string type = 6 [deprecated = true];
+  // status
+  //
+  // status represents the status of the Care Request at the moment the Visit
+  // was created.
+  optional string status = 7;
+  // summary
+  //
+  // summary represents a summary of the Visit.
+  optional string summary = 8;
+  // car_name
+  //
+  // car_name represents the name of the car that was assigned to the Care
+  // Request associated to the Visit.
+  optional string car_name = 9;
+  // provider_user_ids
+  //
+  // provider_user_ids represents an array of provider (User) ids that were
+  // assigned to the Care Request associated to the Visit.
+  repeated int64 provider_user_ids = 10;
+  // type_id
+  //
+  // type_id represents the id of the VisitType that the Visit belongs to.
+  optional int64 type_id = 11;
+  // care_request_id
+  //
+  // care_request_id represents the id of the Care Request that the Visit
+  // originated from.
+  optional int64 care_request_id = 12;
+  // created_by_user_id
+  //
+  // created_by_user_id represents the ID of the User that created the Visit.
+  optional int64 created_by_user_id = 13;
+  // is_scheduling_in_process
+  //
+  // is_scheduling_in_process signals if a Visit is yet to be scheduled.
+  bool is_scheduling_in_process = 14;
+  // status_updated_at
+  //
+  //  status_updated_at represents the last date with time this Visits's Status
+  //  was updated.
+  optional string status_updated_at = 15;
+  // eta
+  //
+  // eta represents the estimated date with time of arrival for this Visit.
+  optional string eta = 16;
+}
+
+message VisitType {
+  // id
+  //
+  // id represents the unique identifier of the VisitType.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // name
+  //
+  // name represents the human readable name of the VisitType.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // is_call_type
+  //
+  // is_call_type represents a flag which states if the VisitType can be
+  // used in calls.
+  bool is_call_type = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message Address {
+  // id
+  //
+  // id represents the unique identifier of the Address.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // created_at
+  //
+  // created_at represents the timestamp at which the Address was created.
+  string created_at = 2 [(google.api.field_behavior) = REQUIRED];
+  // updated_at
+  //
+  // updated_at represents the timestamp at which the Address was last updated.
+  string updated_at = 3 [(google.api.field_behavior) = REQUIRED];
+  // street_address_1
+  //
+  // street_address_1 represents the main part of the street address like number
+  // and street name.
+  optional string street_address_1 = 4;
+  // street_address_2
+  //
+  // street_address_2 represents extra details for the street address.
+  optional string street_address_2 = 5;
+  // city
+  //
+  // city represents the city the Address is in.
+  optional string city = 6;
+  // state
+  //
+  // state represents the state the Address is in.
+  optional string state = 7;
+  // zipcode
+  //
+  // zipcode represents the zipcode of the Address.
+  optional string zipcode = 8;
+  // latitude
+  //
+  // latitude represents the latitude of the Address.
+  optional double latitude = 9;
+  // longitude
+  //
+  // longitude represents the longitude of the Address.
+  optional double longitude = 10;
+  // additional_details
+  //
+  // additional_details represents any additional details for the Address.
+  optional string additional_details = 11;
+}
+
+message DateAvailability {
+  // date
+  //
+  // date represents the specific date for fetching the availability
+  // in the format MM-DD-YYYY.
+  string date = 1;
+  // is_available
+  //
+  // is_available represents a binary result if for
+  // the given date there is an available slot or not
+  bool is_available = 2;
+  // reason
+  //
+  // reason holds the possible reason as to why the visit cannot be scheduled
+  // on this date. Only populated if is_available is false.
+  UnableToScheduleReason reason = 3;
+}
+
+message ServiceRequestStatus {
+  // id
+  //
+  // id represents the unique identifier of the ServiceRequest.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name is a string representation of the ServiceRequest.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  // is_active
+  //
+  // is_active is a flag stating if a ServceRequest is stll active.
+  bool is_active = 3 [(google.api.field_behavior) = REQUIRED];
+  // slug
+  //
+  // slug is a human and code friendly string representation of a
+  // ServiceRequestStatus.
+  string slug = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ServiceRequest {
+  // id
+  //
+  // id represents the unique identifier of the ServiceRequest.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // created_at
+  //
+  // created_at represents the date and time when the ServiceRequest was
+  // created.
+  string created_at = 2 [(google.api.field_behavior) = REQUIRED];
+  // updated_at
+  //
+  // updated_at represents the date and time when the ServiceRequest was last
+  // updated.
+  string updated_at = 3 [(google.api.field_behavior) = REQUIRED];
+  // market_id
+  //
+  // market_id represents the id of the Market the ServiceRequest is assigned
+  // to.
+  int64 market_id = 4 [(google.api.field_behavior) = REQUIRED];
+  // status_id
+  //
+  // status_id represents the id of the ServiceRequestStatus that the
+  // ServiceRequest has.
+  int64 status_id = 5 [(google.api.field_behavior) = REQUIRED];
+  // is_insurance_verified
+  //
+  // is_insurance_verified is a flag for knowing if a ServiceRequest insurance
+  // is verified.
+  bool is_insurance_verified = 6 [(google.api.field_behavior) = REQUIRED];
+  // assigned_user_id
+  //
+  // assigned_user_id is the id of the User that the ServiceRequest is assigned
+  // to.
+  optional int64 assigned_user_id = 7;
+  // updated_by_user_id
+  //
+  // updated_by_user_id represents the ID of the User that last updated the
+  // ServiceRequest.
+  optional int64 updated_by_user_id = 8;
+  // reject_reason
+  //
+  // reject_reason represents why the Service Request changed to Rejected status
+  optional string reject_reason = 9;
+  // rejected_at
+  //
+  // rejected_at represents the date and time when the ServiceRequest was
+  // rejected.
+  optional string rejected_at = 10;
+  // care_request_id
+  //
+  // care_request_id the care request id of the service request.
+  int64 care_request_id = 11;
+  // category_id
+  //
+  // category_id is the id of the category this service request belongs to.
+  int64 category_id = 12;
+  // cms_number
+  //
+  // cms_number represents the CMS affiliation number of the ServiceRequest.
+  optional string cms_number = 13;
+}
+
+message StationCareRequest {
+  // id
+  //
+  // id is the unique numeric identifier for a StationCareRequest.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // chief_complaint
+  //
+  // chief_complaint is a string describing the chief complaint of the
+  // StationCareRequest.
+  string chief_complaint = 2 [(google.api.field_behavior) = REQUIRED];
+  // car_name
+  //
+  // car_name is the string that represents the car assigned to the
+  // StationCareRequest.
+  optional string car_name = 3;
+  // provider_user_ids
+  //
+  // provider_user_ids represents an array of provider ids that were
+  // assigned to the StationCareRequest.
+  repeated int64 provider_user_ids = 4;
+  // risk_strat_score
+  //
+  // risk_strat_score represents the risk stratification score of the
+  // StationCareRequest.
+  optional double risk_strat_score = 5;
+  // secondary_screening_provider_id
+  //
+  // secondary_screening_provider_id represents the id of the provider assigned
+  // to the secondary screening.
+  optional int64 secondary_screening_provider_id = 6;
+  // secondary_screening_note
+  //
+  // secondary_screening_note represents a note for the secondary screening.
+  optional string secondary_screening_note = 7;
+  // requester_type
+  //
+  // requester_type represents the relationship that the requester has with the
+  // StationPatient.
+  optional string requester_type = 8;
+  // requester_name
+  //
+  // requester_name is a string representing the name of the requester.
+  optional string requester_name = 9;
+  // requester_organization_name
+  //
+  // requester_organization_name represents the name of the requester's
+  // organization.
+  optional string requester_organization_name = 10;
+  // requester_phone_number
+  //
+  // requester_phone_number represents the phone number of the requester.
+  optional string requester_phone_number = 11;
+}
+
+message StationPatient {
+  // id
+  //
+  // id is the unique numeric identifier for a StationPatient
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // first_name
+  //
+  // first_name is a string representing the first name of the StationPatient.
+  optional string first_name = 2;
+  // last_name
+  //
+  // last_name is a string representing the last name of the StationPatient.
+  optional string last_name = 3;
+  // ehr_id
+  //
+  // ehr_id represents the electronic health record associated with the
+  // StationPatient.
+  string ehr_id = 4 [(google.api.field_behavior) = REQUIRED];
+  // date_of_birth
+  //
+  // date_of_birth is the date the StationPatient was born at.
+  string date_of_birth = 5 [(google.api.field_behavior) = REQUIRED];
+  // sex
+  //
+  // sex represents the sex of the StationPatient.
+  optional string sex = 6;
+  // visits_in_past_90_days
+  //
+  // visits_in_past_90_days is the total number of visits that the
+  // StationPatient had in the past 90 days
+  int32 visits_in_past_90_days = 7 [(google.api.field_behavior) = REQUIRED];
+  // has_been_in_advanced_care
+  //
+  // has_been_in_advanced_care states if the StationPatient has been previously
+  // in advanced care.
+  bool has_been_in_advanced_care = 8 [(google.api.field_behavior) = REQUIRED];
+  // id
+  //
+  // id represents the unique numeric value of the insurance associated with the
+  // StationPatient.
+  optional int64 insurance_plan_id = 9;
+  // name
+  //
+  // name is a string representation of the name of the insurance plan
+  // associated with the StationPatient.
+  optional string insurance_plan_name = 10;
+  // network
+  //
+  // network represents the insurance network's name associated with the
+  // StationPatient.
+  optional string insurance_network_name = 11;
+  // member_id
+  //
+  // member_id represents the patient's member id for the insurance associated
+  // with the StationPatient.
+  optional string insurance_member_id = 12;
+  // phone_number
+  //
+  // phone_number represents the phone number of the StationPatient.
+  optional string phone_number = 13;
+}
+
+message ServiceRequestListElement {
+  // service_request
+  //
+  // service_request is a ServiceRequest entity.
+  ServiceRequest service_request = 1 [(google.api.field_behavior) = REQUIRED];
+  // station_patient
+  //
+  // station_patient represents the patient in station associated with the
+  // ServiceRequest.
+  StationPatientListElement station_patient = 2
+      [(google.api.field_behavior) = REQUIRED];
+  // station_care_request
+  //
+  // station_care_request represent the care request in station associated with
+  // the ServiceRequest.
+  StationCareRequestListElement station_care_request = 3
+      [(google.api.field_behavior) = REQUIRED];
+  // notes_count
+  //
+  // notes_count represents the total amount of notes that the ServiceRequest
+  // has.
+  int64 notes_count = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+message StationCareRequestListElement {
+  // id
+  //
+  // id is the unique numeric identifier for a StationCareRequest.
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // chief_complaint
+  //
+  // chief_complaint is a string describing the chief complaint of the
+  // StationCareRequest.
+  string chief_complaint = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message StationPatientListElement {
+  // id
+  //
+  // id is the unique numeric identifier for a Station's CareRequest
+  int64 id = 1 [(google.api.field_behavior) = REQUIRED];
+  // first_name
+  //
+  // first_name is a string representing the first name of the patient.
+  optional string first_name = 2;
+  // last_name
+  //
+  // last_name is a string representing the last name of the patient.
+  optional string last_name = 3;
+  // ehr_id
+  //
+  // ehr_id represents the electronic health record associated with the patient.
+  string ehr_id = 4 [(google.api.field_behavior) = REQUIRED];
+  // date_of_birth
+  //
+  // date_of_birth is the date the patient was born at.
+  string date_of_birth = 5 [(google.api.field_behavior) = REQUIRED];
+  // sex
+  //
+  // sex represents the sex of the patient.
+  optional string sex = 6;
+  // insurance_name
+  //
+  // insurance_name represents the name of the insurance that the patient has.
+  string insurance_name = 7 [(google.api.field_behavior) = REQUIRED];
+}
+
+message EHRAppointment {
+  // place_of_service
+  //
+  // place_of_service represents the athena appointment department.
+  string place_of_service = 1;
+  // appointment_type
+  //
+  // athena appointment type.
+  string appointment_type = 2;
+  // date
+  //
+  // appointment date. Expected format: 'm/d/Y'.
+  string date = 3;
+  // start_time
+  //
+  // appointment start time. Expected format: 'H:m'.
+  string start_time = 4;
+}
+
+message VirtualAPPVisit {
+  // visit
+  //
+  // visit represents the Visit.
+  Visit visit = 1;
+  // patient
+  //
+  // patient represents the Patient instance the Visit belongs to.
+  Patient patient = 2;
+  // episode
+  //
+  // episode represents the Episode instance the Visit belongs to.
+  Episode episode = 3;
+}

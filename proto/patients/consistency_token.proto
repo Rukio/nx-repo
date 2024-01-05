@@ -1,0 +1,11 @@
+syntax = "proto3";
+package patients;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/patients";
+option ruby_package = "PatientGRPC";
+
+import "google/protobuf/timestamp.proto";
+
+message PatientConsistencyToken {
+  optional google.protobuf.Timestamp updated_at = 1;
+}

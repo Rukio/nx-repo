@@ -1,0 +1,51 @@
+syntax = "proto3";
+package insurance_plan;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/insurance_plan";
+option ruby_package = "InsurancePlanGRPC";
+
+message InsurancePlan {
+  // represents the unique identifier of the InsurancePlan.
+  int64 id = 1;
+
+  // represents the name of the InsurancePlan.
+  string name = 2;
+
+  // represents the note of the InsurancePlan.
+  optional string note = 3;
+
+  // represents the Athena package ID associated to the InsurancePlan.
+  string package_id = 4;
+
+  // represents if the InsurancePlan is active.
+  bool active = 5;
+
+  // represents if InsurancePlan is eligible to be primary insurance for the
+  // insured party.
+  bool primary = 6;
+
+  // represents if InsurancePlan is eligible to be secondary insurance for the
+  // insured party.
+  bool secondary = 7;
+
+  // represents if InsurancePlan is eligible to be tertiary insurance for the
+  // insured party.
+  bool tertiary = 8;
+
+  // represents the InsuranceClassification ID associated to the InsurancePlan.
+  int64 insurance_classification_id = 9;
+
+  // represents the Payer Group associated to the InsurancePlan.
+  optional int64 payer_group_id = 10;
+}
+
+message InsurancePlanCreditCardPolicy {
+  // represents the unique identifier of the InsurancePlan CreditCard rule.
+  optional int64 id = 1;
+
+  // represents the unique identifier of the ServiceLine ID.
+  int64 service_line_id = 2;
+
+  // represents onboarding CreditCard policy rule.
+  string onboarding_cc_policy = 3;
+}

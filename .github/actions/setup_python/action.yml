@@ -1,0 +1,60 @@
+name: 'Setup Python env for test'
+description: |
+  Install Python and poetry for tests.
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Parse .tool-versions
+      uses: wistia/parse-tool-versions@v1.0
+      with:
+        uppercase: 'true'
+        postfix: '_tool_version'
+        filename: '.tool-versions'
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_TOOL_VERSION }}
+
+    - name: Cache Virtual Env
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pypoetry/virtualenvs
+        key: v1-venv-${{ hashFiles('poetry.lock') }}-${{ github.head_ref }}
+        restore-keys: |
+          v1-venv-${{ hashFiles('poetry.lock') }}-
+
+    - name: Install poetry
+      run: curl -sSL https://install.python-poetry.org | python3 - --version ${{ env.POETRY_TOOL_VERSION }}
+      shell: bash
+
+    - name: Proto grpc checks
+      run: make gen-proto-grpc-checks
+      shell: bash
+
+    - name: Cache Proto
+      uses: actions/cache@v3
+      with:
+        path: ./bin/protoc
+        key: v1-protoc-${{ hashFiles('proto.version') }}-${{ github.head_ref }}
+        restore-keys: |
+          v1-protoc-${{ hashFiles('proto.version') }}-
+
+    - name: Cache GRPC
+      uses: actions/cache@v3
+      with:
+        path: |
+          ./bin/grpc_python_plugin
+          ./bin/grpc_python_plugin.version
+        key: v1-grpc-${{ hashFiles('grpc.version') }}-${{ github.head_ref }}
+        restore-keys: |
+          v1-grpc-${{ hashFiles('grpc.version') }}-
+
+    - name: Set up Linux Python
+      run: make setup-linux-python
+      shell: bash
+
+    - name: Gen proto python
+      run: make gen-proto-python
+      shell: bash

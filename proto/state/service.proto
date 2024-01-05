@@ -1,0 +1,27 @@
+syntax = "proto3";
+package state;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/state";
+option ruby_package = "StateGRPC";
+
+import "state/entities.proto";
+import "common/auth/auth.proto";
+
+service StateService {
+  // Returns a collection of States matching a set of provided ids
+  rpc ListStates(ListStatesRequest) returns (ListStatesResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:states:all"
+    };
+  }
+}
+
+message ListStatesRequest {
+  // ids represents a group of ids of States
+  repeated int64 ids = 1;
+}
+
+message ListStatesResponse {
+  // represents a group of State data from station.
+  repeated State states = 1;
+}

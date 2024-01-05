@@ -1,0 +1,46 @@
+syntax = "proto3";
+package market;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/marketpb";
+option ruby_package = "MarketGRPC";
+
+import "common/auth/auth.proto";
+import "common/logistics.proto";
+
+service MarketService {
+  rpc GetMarket(GetMarketRequest) returns (GetMarketResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:markets:all"
+    };
+  }
+
+  rpc GetAuthenticatedUserMarkets(GetAuthenticatedUserMarketsRequest)
+      returns (GetAuthenticatedUserMarketsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:markets:all"
+    };
+  }
+}
+
+message GetMarketRequest {
+  int64 market_id = 1;
+}
+
+message GetMarketResponse {
+  optional Market market = 1;
+}
+
+message GetAuthenticatedUserMarketsRequest {}
+
+message GetAuthenticatedUserMarketsResponse {
+  repeated Market markets = 1;
+}
+
+message Market {
+  int64 id = 1;
+  optional bool enabled = 2;
+  repeated common.ScheduleDay schedule_days = 3;
+  optional string iana_time_zone_name = 4;
+  optional string name = 5;
+  optional string short_name = 6;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "widgets-request-care-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/widgets/request-care/ui/src",
+  "projectType": "library",
+  "tags": ["scope:widgets", "type:ui"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "ts/libs/widgets/request-care/ui/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ts/libs/widgets/request-care/ui/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

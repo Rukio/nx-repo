@@ -1,0 +1,31 @@
+syntax = "proto3";
+package state;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/state";
+option ruby_package = "StateGRPC";
+
+message BillingCity {
+  // id represents the unique identifier of the Billing City.
+  int64 id = 1;
+  // represents the name of the Billing city.
+  string name = 2;
+  // represents the state of the Billing City.
+  string state = 3;
+  // represents the short name of the Billing City.
+  string short_name = 4;
+  // represents if the billing city is active for the State.
+  bool enabled = 5;
+  // represents the market associated to the Billing City.
+  int64 market_id = 6;
+}
+
+message State {
+  // id represents the unique identifier of the State.
+  int64 id = 1;
+  // represents the name of the State.
+  string name = 2;
+  // abbreviation that represents the name of the State.
+  string abbreviation = 3;
+  // represents the billing cities of the State.
+  repeated BillingCity billing_cities = 4;
+}

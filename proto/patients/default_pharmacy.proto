@@ -1,0 +1,24 @@
+syntax = "proto3";
+package patients;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/patients";
+option ruby_package = "PatientGRPC";
+
+import "common/demographic.proto";
+
+message Pharmacy {
+  optional string clinical_provider_id = 1;
+  optional string clinical_provider_name = 2;
+  optional PharmacyType pharmacy_type = 3;
+  optional common.Address address = 4;
+  optional string receiver_type = 5;
+  optional bool accept_fax = 6;
+  optional common.PhoneNumber phone_number = 7;
+  optional string fax_number = 8;
+}
+
+enum PharmacyType {
+  PHARMACY_TYPE_UNSPECIFIED = 0;
+  PHARMACY_TYPE_RETAIL = 1;
+  PHARMACY_TYPE_MAILORDER = 2;
+}

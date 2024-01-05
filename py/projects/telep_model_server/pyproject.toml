@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "telep_model_server"
+version = "0.1.0"
+description = ""
+authors = ["Omar Ibañez <omar.ibanez@*company-data-covered*.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10.12 <3.11"
+proto = {path = "../../lib/proto", develop = true}
+auth = {path = "../../lib/auth", develop = true}
+monitoring = {path = "../../lib/monitoring", develop = true}
+telep = {path = "../../lib/telep", develop = true}
+normalized_protocol_names = {path = "../../lib/normalized_protocol_names", develop = true}
+python-decouple = "^3.6"
+ddtrace = "^1.7.3"
+python-json-logger = "^2.0.4"
+grpcio-health-checking = "1.47.2"
+# requests is imported by dependencies. we force the latest version for security
+requests = "^2.31.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+ipdb = "^0.13.9"
+pytest-asyncio = "^0.18.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^4.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"

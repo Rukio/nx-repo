@@ -1,0 +1,111 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "npmScope": "*company-data-covered*",
+  "affected": {
+    "defaultBase": "trunk"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook",
+          "typecheck",
+          "generate-types"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build",
+        {
+          "projects": "dependencies",
+          "target": "generate-types"
+        }
+      ],
+      "inputs": ["production", "^production"]
+    },
+    "e2e": {
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "generate-types"
+        }
+      ],
+      "inputs": ["default", "^production"]
+    },
+    "test": {
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "generate-types"
+        }
+      ],
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
+    },
+    "typecheck": {
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "generate-types"
+        }
+      ],
+      "inputs": ["default", "^production"]
+    },
+    "lint": {
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "generate-types"
+        }
+      ],
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+    }
+  },
+  "workspaceLayout": {
+    "appsDir": "ts/apps",
+    "libsDir": "ts/libs"
+  },
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "style": "none",
+        "linter": "eslint",
+        "bundler": "vite",
+        "unitTestRunner": "vitest",
+        "babel": true,
+        "e2eTestRunner": "none"
+      },
+      "component": {
+        "style": "none"
+      },
+      "library": {
+        "style": "none",
+        "linter": "eslint",
+        "unitTestRunner": "vitest"
+      }
+    },
+    "@nx/js": {
+      "library": {
+        "unitTestRunner": "vitest"
+      }
+    }
+  },
+  "defaultProject": "clinical-kpi",
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": ["{workspaceRoot}/babel.config.json"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.[jt]s"
+    ]
+  }
+}

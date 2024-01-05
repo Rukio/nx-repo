@@ -1,0 +1,195 @@
+syntax = "proto3";
+package tytocare;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/tytocarepb";
+option ruby_package = "TytoCareGRPC";
+
+import "common/auth/auth.proto";
+import "common/date.proto";
+import "common/demographic.proto";
+import "google/api/annotations.proto";
+
+service TytoCareService {
+  // Given the patient information, creates patient in TytoCare system.
+  rpc CreatePatient(CreatePatientRequest) returns (CreatePatientResponse) {
+    option (google.api.http) = {
+      post: "/v1/patients"
+      body: "*"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "create:tytocare_patients:all"
+    };
+  }
+
+  // Given the visit information, creates visit in TytoCare system.
+  // TODO: update req and res fields after merging VC-138 in station.
+  rpc CreateVisit(CreateVisitRequest) returns (CreateVisitResponse) {
+    option (google.api.http) = {
+      post: "/v1/visits"
+      body: "*"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "create:tytocare_visits:all"
+    };
+  }
+
+  // Activate visit in TytoCare system with virtual APP info.
+  rpc ActivateVisit(ActivateVisitRequest) returns (ActivateVisitResponse) {
+    option (google.api.http) = {
+      patch: "/v1/visits/{visit_id}/activate"
+      body: "*"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "update:tytocare_visits:all"
+    };
+  }
+
+  // Assign clinician to visit in TytoCare system.
+  rpc AssignClinicianToVisit(AssignClinicianToVisitRequest)
+      returns (AssignClinicianToVisitResponse) {
+    option (google.api.http) = {
+      patch: "/v1/visits/{visit_id}/clinician"
+      body: "*"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "update:tytocare_visits:all"
+    };
+  }
+
+  // Given an empty *company-data-covered* request, HealthCheck will return a status
+  // that indicates the health of the Tyto service. When the service is down
+  // the GRPC framework will return, by default, the UNAVAILABLE service status.
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {
+    option (google.api.http) = {
+      get: "/healthcheck"
+    };
+  }
+
+  // Generates deep link for visit using visit, patient and DHMT ids.
+  rpc GenerateDeepLink(GenerateDeepLinkRequest)
+      returns (GenerateDeepLinkResponse) {
+    option (google.api.http) = {
+      post: "/v1/deeplink"
+      body: "*"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "update:tytocare_visits:all"
+    };
+  }
+}
+
+message CreatePatientRequest {
+  // Patient external ID
+  string id = 1;
+
+  // Patient first name
+  string first_name = 2;
+
+  // Patient last name
+  string last_name = 3;
+
+  // Patient date of birth
+  common.Date date_of_birth = 4;
+
+  // Patient sex
+  common.Sex sex = 5;
+}
+
+message CreatePatientResponse {}
+
+message CreateVisitRequest {
+  // Visit external ID.
+  // TODO: remove and reserve id after merging VC-138 in station.
+  string care_request_id = 1;
+
+  // Patient external ID.
+  string patient_id = 2;
+
+  // DHMTs ID. Corresponding to TytoCare Nurse external ID.
+  string dhmt_id = 3;
+
+  // TytoCare Clinician external ID. Equivalent to Station Virtual APP ID.
+  string virtual_app_id = 4;
+
+  // Virtual APPs IP address
+  // The remote address is required field for Tyto API.
+  // If we have request from server it is required to have it in the body
+  // If we have request from client we do not need this parameter
+  // Parsing it from context.
+  string virtual_app_remote_address = 5;
+
+  // TytoCare Visit external ID.
+  string visit_id = 6;
+}
+
+message AssignClinicianToVisitRequest {
+  // TytoCare Clinician external ID. Equivalent to Station Virtual APP ID.
+  string virtual_app_id = 1;
+
+  // TytoCare Visit external ID.
+  string visit_id = 2;
+}
+
+message AssignClinicianToVisitResponse {}
+
+message CreateVisitResponse {
+  // Visit TytoCare ID.
+  // TODO: remove and reserve id after merging VC-138 in station.
+  string tyto_identifier = 1 [json_name = "tyto_identifier"];
+
+  // TytoCare Visit external ID.
+  string visit_id = 2 [json_name = "visit_id"];
+
+  // Visit TytoCare ID.
+  string tyto_care_id = 3 [json_name = "tyto_care_id"];
+}
+
+message ActivateVisitRequest {
+  // Visit external ID
+  // TODO: remove and reserve id after merging VC-138 in station.
+  string care_request_id = 1;
+
+  // TytoCare Clinician external ID. Equivalent to Station Virtual APP ID.
+  string virtual_app_id = 2;
+
+  // Virtual APPs IP address.
+  string virtual_app_remote_address = 3;
+
+  // TytoCare Visit external ID.
+  string visit_id = 4;
+}
+
+message ActivateVisitResponse {
+  // Visit TytoCare ID
+  // TODO: remove and reserve id after merging VC-138 in station.
+  string tyto_identifier = 1 [json_name = "tyto_identifier"];
+
+  // URL for Virtual APP to TytoCare Virtual room.
+  string clinician_url = 2 [json_name = "clinician_url"];
+
+  // Visit TytoCare ID.
+  string tyto_care_id = 3 [json_name = "tyto_care_id"];
+}
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+  // commit hash.
+  string version = 1;
+}
+
+message GenerateDeepLinkRequest {
+  // TytoCare Visit external ID.
+  string visit_id = 1;
+
+  // Patient external ID.
+  string patient_id = 2;
+
+  // TytoCare Nurse's external ID. Equivalent to Station DHMT ID.
+  string dhmt_id = 3;
+}
+
+message GenerateDeepLinkResponse {
+  // Deep link URL to open TytoCare application.
+  string deep_link = 1 [json_name = "deep_link"];
+}

@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot tests should render 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  gap: 4px;
+}
+
+.emotion-1 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.57;
+  letter-spacing: 0.00714em;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 8px;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 4px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2px;
+}
+
+.emotion-5 {
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background-color: #03a9f4;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.emotion-15 {
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background-color: #7b1fa2;
+}
+
+<div
+    class="MuiBox-root emotion-0"
+    data-testid="market-visits-average-section-test-id"
+  >
+    <h6
+      class="MuiTypography-root MuiTypography-subtitle2 emotion-1"
+    >
+      Your Visits vs. Market Average
+    </h6>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-2"
+    >
+      The Market Average was calculated using 8 hours worked.
+    </p>
+    <div
+      class="MuiBox-root emotion-3"
+    >
+      <div
+        class="MuiGrid-root emotion-4"
+      >
+        <div
+          class="MuiBox-root emotion-5"
+        />
+        <div
+          class="MuiBox-root emotion-5"
+        />
+        <div
+          class="MuiBox-root emotion-5"
+        />
+        <div
+          class="MuiBox-root emotion-5"
+        />
+        <div
+          class="MuiBox-root emotion-5"
+        />
+        <div
+          class="MuiBox-root emotion-5"
+        />
+        <div
+          class="MuiBox-root emotion-5"
+        />
+      </div>
+      <span
+        class="MuiTypography-root MuiTypography-caption emotion-12"
+      >
+        You cared for 7 patients
+      </span>
+    </div>
+    <div
+      class="MuiBox-root emotion-3"
+    >
+      <div
+        class="MuiGrid-root emotion-4"
+      >
+        <div
+          class="MuiBox-root emotion-15"
+        />
+        <div
+          class="MuiBox-root emotion-15"
+        />
+        <div
+          class="MuiBox-root emotion-15"
+        />
+        <div
+          class="MuiBox-root emotion-15"
+        />
+        <div
+          class="MuiBox-root emotion-15"
+        />
+      </div>
+      <span
+        class="MuiTypography-root MuiTypography-caption emotion-12"
+      >
+        The Market average was 5 patients
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;

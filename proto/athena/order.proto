@@ -1,0 +1,10 @@
+syntax = "proto3";
+package athena;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/athena";
+option ruby_package = "AthenaGRPC";
+
+message PatientOrder {
+  optional string order_id = 1;
+  optional string encounter_id = 2;
+}

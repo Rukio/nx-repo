@@ -1,0 +1,137 @@
+syntax = "proto3";
+package station_patients;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/station_patients";
+option ruby_package = "StationPatientGRPC";
+
+import "audit/audit.proto";
+import "station_patients/patient.proto";
+
+service StationPatientsService {
+  rpc GetPatient(GetPatientRequest) returns (GetPatientResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  rpc FindOrCreatePatient(FindOrCreatePatientRequest)
+      returns (FindOrCreatePatientResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  rpc UpdatePatient(UpdatePatientRequest) returns (UpdatePatientResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  rpc ListPatients(ListPatientsRequest) returns (ListPatientsResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  rpc GetDepartmentIDByBillingCityID(GetDepartmentIDByBillingCityIDRequest)
+      returns (GetDepartmentIDByBillingCityIDResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  rpc ListPatientsByID(ListPatientsByIDRequest)
+      returns (ListPatientsByIDResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  rpc SearchPatientsByName(SearchPatientsByNameRequest)
+      returns (SearchPatientsByNameResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  // Given patient IDs and unverified patient IDs, return a list of care request
+  // IDs associated with them.
+  rpc ListCareRequestIds(ListCareRequestIdsRequest)
+      returns (ListCareRequestIdsResponse) {
+    option (audit.rule) = {
+      event_data_type: "CareRequest"
+    };
+  }
+}
+
+message GetPatientRequest {
+  int64 patient_id = 1;
+}
+
+message GetPatientResponse {
+  optional Patient patient = 1;
+}
+
+message FindOrCreatePatientRequest {
+  optional Patient patient = 1;
+}
+
+message FindOrCreatePatientResponse {
+  int64 patient_id = 1;
+}
+
+message UpdatePatientRequest {
+  optional Patient patient = 1;
+}
+
+message UpdatePatientResponse {
+  int64 patient_id = 1;
+}
+
+message ListPatientsRequest {
+  repeated string ehr_ids = 1;
+  string partner_id = 2;
+  repeated int64 channel_item_ids = 3;
+}
+
+message ListPatientsResponse {
+  repeated Patient patients = 1;
+}
+
+message GetDepartmentIDByBillingCityIDRequest {
+  int64 billing_city_id = 1;
+}
+
+message GetDepartmentIDByBillingCityIDResponse {
+  string department_id = 1;
+}
+
+message ListPatientsByIDRequest {
+  repeated int64 patient_ids = 1;
+}
+
+message ListPatientsByIDResponse {
+  repeated Patient patients = 1;
+}
+
+message SearchPatientsByNameRequest {
+  string search_term = 1;
+}
+
+message SearchPatientsByNameResponse {
+  repeated SearchPatientsByNameResult results = 1;
+}
+
+message SearchPatientsByNameResult {
+  Patient patient = 1;
+}
+
+message ListCareRequestIdsRequest {
+  repeated int64 patient_ids = 1;
+  repeated int64 unverified_patient_ids = 2;
+}
+
+message ListCareRequestIdsResult {
+  oneof patient_id {
+    int64 verified_patient_id = 1;
+    int64 unverified_patient_id = 2;
+  }
+  int64 care_request_id = 3;
+}
+
+message ListCareRequestIdsResponse {
+  repeated ListCareRequestIdsResult results = 1;
+}

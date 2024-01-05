@@ -1,0 +1,33 @@
+syntax = "proto3";
+package athena;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/athena";
+option ruby_package = "AthenaGRPC";
+
+import "common/demographic.proto";
+
+message Pharmacy {
+  // type of pharmacy (retail, mailorder)
+  optional string pharmacy_type = 1;
+  // if flagged true, this is the default pharmacy for the patient
+  optional string default_pharmacy = 2;
+  // represents the address of a pharmacy
+  optional common.Address address = 3;
+  // receiver type
+  optional string receiver_type = 4;
+  // flag representing if the pharmacy accepts fax
+  optional string accept_fax = 5;
+  // represents the athenaNet clinical provider
+  optional ClinicalProvider clinical_provider = 6;
+  // represents phone number of the pharmacy
+  optional common.PhoneNumber phone_number = 7;
+  // fax number of the pharmacy
+  optional string fax_number = 8;
+}
+
+message ClinicalProvider {
+  // the athenaNet clinical provider ID
+  optional string id = 1;
+  // the pharmacy name
+  optional string name = 2;
+}

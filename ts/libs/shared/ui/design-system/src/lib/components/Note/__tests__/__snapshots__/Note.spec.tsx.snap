@@ -1,0 +1,2354 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Note snapshots should render featured note with initials 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  position: relative;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: rgba(151, 138, 181, 0.08);
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-1.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-1.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-1.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-1.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-2 {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+}
+
+.emotion-3 {
+  max-width: 100%;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  font-size: 0.8125rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  height: 24px;
+  color: #FFFFFF;
+  background-color: #978AB5;
+  border-radius: 16px;
+  white-space: nowrap;
+  -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  cursor: default;
+  outline: 0;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.emotion-3.Mui-disabled {
+  opacity: 0.26;
+  pointer-events: none;
+}
+
+.emotion-3 .MuiChip-avatar {
+  margin-left: 5px;
+  margin-right: -6px;
+  width: 24px;
+  height: 24px;
+  color: #3A5C74;
+  font-size: 0.75rem;
+}
+
+.emotion-3 .MuiChip-avatarColorPrimary {
+  color: #FFFFFF;
+  background-color: #0067A4;
+}
+
+.emotion-3 .MuiChip-avatarColorSecondary {
+  color: #FFFFFF;
+  background-color: #73639B;
+}
+
+.emotion-3 .MuiChip-avatarSmall {
+  margin-left: 4px;
+  margin-right: -4px;
+  width: 18px;
+  height: 18px;
+  font-size: 0.625rem;
+}
+
+.emotion-3 .MuiChip-icon {
+  margin-left: 4px;
+  margin-right: -4px;
+  font-size: 18px;
+  color: inherit;
+}
+
+.emotion-3 .MuiChip-deleteIcon {
+  -webkit-tap-highlight-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 5px 0 -6px;
+  margin-right: 4px;
+  margin-left: -4px;
+}
+
+.emotion-3 .MuiChip-deleteIcon:hover {
+  color: rgba(30, 41, 48, 0.4);
+}
+
+.emotion-3 .MuiChip-deleteIcon:hover,
+.emotion-3 .MuiChip-deleteIcon:active {
+  color: #FFFFFF;
+}
+
+.emotion-4 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+}
+
+.emotion-5 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 8px;
+  padding-right: 8px;
+  white-space: nowrap;
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-7 {
+  min-width: 56px;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  min-width: 32px;
+  margin-right: 8px;
+}
+
+.emotion-8 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #F9F9F9;
+  background-color: #90B1C8;
+  width: 32px;
+  height: 32px;
+}
+
+.emotion-9 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-11 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+  color: #5E696F;
+  font-family: Open Sans;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+}
+
+.emotion-13 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-14 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-14::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-14.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-14 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-14:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-14:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-14.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-15 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-16 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<li
+    class="MuiListItem-container emotion-0"
+  >
+    <div
+      class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-1"
+      data-testid="note-1"
+    >
+      <div
+        class="MuiBox-root emotion-2"
+      >
+        <div
+          class="MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorSecondary MuiChip-filledSecondary emotion-3"
+          data-testid="note-featured-note-chip"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-icon MuiChip-iconSmall MuiChip-iconColorSecondary emotion-4"
+            data-testid="StarIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+            />
+          </svg>
+          <span
+            class="MuiChip-label MuiChip-labelSmall emotion-5"
+          >
+            Featured Note
+          </span>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root emotion-6"
+      >
+        <div
+          class="MuiListItemAvatar-root emotion-7"
+        >
+          <div
+            class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault emotion-8"
+            data-testid="note-initials"
+          >
+            JD
+          </div>
+        </div>
+        <div
+          class="MuiListItemText-root MuiListItemText-multiline emotion-9"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 emotion-10"
+            data-testid="note-display-name"
+          >
+            John Dow, RN
+          </h6>
+          <span
+            class="MuiTypography-root MuiTypography-label emotion-11"
+            data-testid="note-secondary-label"
+          >
+            7/7/2020 at 06:00 PM MDT
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body2 emotion-12"
+            data-testid="note-text"
+          >
+            Lorem enim tempor ex nulla amet ullamco.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiListItemSecondaryAction-root emotion-13"
+      data-testid="note-action-1"
+    >
+      <div>
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-14"
+          data-testid="note-more-button"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-15"
+            data-testid="MoreHorizIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root emotion-16"
+          />
+        </button>
+      </div>
+    </div>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`Note snapshots should render featured note without initials 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  position: relative;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: rgba(151, 138, 181, 0.08);
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-1.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-1.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-1.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-1.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-2 {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+}
+
+.emotion-3 {
+  max-width: 100%;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  font-size: 0.8125rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  height: 24px;
+  color: #FFFFFF;
+  background-color: #978AB5;
+  border-radius: 16px;
+  white-space: nowrap;
+  -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  cursor: default;
+  outline: 0;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.emotion-3.Mui-disabled {
+  opacity: 0.26;
+  pointer-events: none;
+}
+
+.emotion-3 .MuiChip-avatar {
+  margin-left: 5px;
+  margin-right: -6px;
+  width: 24px;
+  height: 24px;
+  color: #3A5C74;
+  font-size: 0.75rem;
+}
+
+.emotion-3 .MuiChip-avatarColorPrimary {
+  color: #FFFFFF;
+  background-color: #0067A4;
+}
+
+.emotion-3 .MuiChip-avatarColorSecondary {
+  color: #FFFFFF;
+  background-color: #73639B;
+}
+
+.emotion-3 .MuiChip-avatarSmall {
+  margin-left: 4px;
+  margin-right: -4px;
+  width: 18px;
+  height: 18px;
+  font-size: 0.625rem;
+}
+
+.emotion-3 .MuiChip-icon {
+  margin-left: 4px;
+  margin-right: -4px;
+  font-size: 18px;
+  color: inherit;
+}
+
+.emotion-3 .MuiChip-deleteIcon {
+  -webkit-tap-highlight-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 5px 0 -6px;
+  margin-right: 4px;
+  margin-left: -4px;
+}
+
+.emotion-3 .MuiChip-deleteIcon:hover {
+  color: rgba(30, 41, 48, 0.4);
+}
+
+.emotion-3 .MuiChip-deleteIcon:hover,
+.emotion-3 .MuiChip-deleteIcon:active {
+  color: #FFFFFF;
+}
+
+.emotion-4 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+}
+
+.emotion-5 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 8px;
+  padding-right: 8px;
+  white-space: nowrap;
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-7 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-8 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-9 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+  color: #5E696F;
+  font-family: Open Sans;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+}
+
+.emotion-11 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-12 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-12::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-12.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-12 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-12:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-12:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-12.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-13 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-14 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<li
+    class="MuiListItem-container emotion-0"
+  >
+    <div
+      class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-1"
+      data-testid="note-1"
+    >
+      <div
+        class="MuiBox-root emotion-2"
+      >
+        <div
+          class="MuiChip-root MuiChip-filled MuiChip-sizeSmall MuiChip-colorSecondary MuiChip-filledSecondary emotion-3"
+          data-testid="note-featured-note-chip"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-icon MuiChip-iconSmall MuiChip-iconColorSecondary emotion-4"
+            data-testid="StarIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+            />
+          </svg>
+          <span
+            class="MuiChip-label MuiChip-labelSmall emotion-5"
+          >
+            Featured Note
+          </span>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root emotion-6"
+      >
+        <div
+          class="MuiListItemText-root MuiListItemText-multiline emotion-7"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 emotion-8"
+            data-testid="note-display-name"
+          >
+            John Dow, RN
+          </h6>
+          <span
+            class="MuiTypography-root MuiTypography-label emotion-9"
+            data-testid="note-secondary-label"
+          >
+            7/7/2020 at 06:00 PM MDT
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body2 emotion-10"
+            data-testid="note-text"
+          >
+            Lorem enim tempor ex nulla amet ullamco.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiListItemSecondaryAction-root emotion-11"
+      data-testid="note-action-1"
+    >
+      <div>
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-12"
+          data-testid="note-more-button"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-13"
+            data-testid="MoreHorizIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root emotion-14"
+          />
+        </button>
+      </div>
+    </div>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`Note snapshots should render note with initials 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  position: relative;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: unset;
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-1.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-1.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-1.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-1.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-3 {
+  min-width: 56px;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  min-width: 32px;
+  margin-right: 8px;
+}
+
+.emotion-4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #F9F9F9;
+  background-color: #90B1C8;
+  width: 32px;
+  height: 32px;
+}
+
+.emotion-5 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-6 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+  color: #5E696F;
+  font-family: Open Sans;
+}
+
+.emotion-8 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+}
+
+.emotion-9 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-10 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-10::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-10.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-10 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-10:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-10:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-10.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-11 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-12 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<li
+    class="MuiListItem-container emotion-0"
+  >
+    <div
+      class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-1"
+      data-testid="note-1"
+    >
+      <div
+        class="MuiBox-root emotion-2"
+      >
+        <div
+          class="MuiListItemAvatar-root emotion-3"
+        >
+          <div
+            class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault emotion-4"
+            data-testid="note-initials"
+          >
+            JD
+          </div>
+        </div>
+        <div
+          class="MuiListItemText-root MuiListItemText-multiline emotion-5"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 emotion-6"
+            data-testid="note-display-name"
+          >
+            John Dow, RN
+          </h6>
+          <span
+            class="MuiTypography-root MuiTypography-label emotion-7"
+            data-testid="note-secondary-label"
+          >
+            7/7/2020 at 06:00 PM MDT
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body2 emotion-8"
+            data-testid="note-text"
+          >
+            Lorem enim tempor ex nulla amet ullamco.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiListItemSecondaryAction-root emotion-9"
+      data-testid="note-action-1"
+    >
+      <div>
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-10"
+          data-testid="note-more-button"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-11"
+            data-testid="MoreHorizIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root emotion-12"
+          />
+        </button>
+      </div>
+    </div>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`Note snapshots should render note without initials 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  position: relative;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: unset;
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-1.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-1.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-1.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-1.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-3 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-5 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+  color: #5E696F;
+  font-family: Open Sans;
+}
+
+.emotion-6 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+}
+
+.emotion-7 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-8::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-8.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-8 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-8:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-8:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-8.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-9 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-10 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<li
+    class="MuiListItem-container emotion-0"
+  >
+    <div
+      class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-1"
+      data-testid="note-1"
+    >
+      <div
+        class="MuiBox-root emotion-2"
+      >
+        <div
+          class="MuiListItemText-root MuiListItemText-multiline emotion-3"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 emotion-4"
+            data-testid="note-display-name"
+          >
+            John Dow, RN
+          </h6>
+          <span
+            class="MuiTypography-root MuiTypography-label emotion-5"
+            data-testid="note-secondary-label"
+          >
+            7/7/2020 at 06:00 PM MDT
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body2 emotion-6"
+            data-testid="note-text"
+          >
+            Lorem enim tempor ex nulla amet ullamco.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiListItemSecondaryAction-root emotion-7"
+      data-testid="note-action-1"
+    >
+      <div>
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-8"
+          data-testid="note-more-button"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-9"
+            data-testid="MoreHorizIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root emotion-10"
+          />
+        </button>
+      </div>
+    </div>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`Note snapshots should render snapshot with read more button correctly 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  position: relative;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: unset;
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-1.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-1.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-1.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-1.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-3 {
+  min-width: 56px;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  min-width: 32px;
+  margin-right: 8px;
+}
+
+.emotion-4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #F9F9F9;
+  background-color: #90B1C8;
+  width: 32px;
+  height: 32px;
+}
+
+.emotion-5 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-6 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+  color: #5E696F;
+  font-family: Open Sans;
+}
+
+.emotion-8 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+}
+
+.emotion-9 {
+  margin-left: 4px;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  color: #0074B8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 116, 184, 0.4);
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.emotion-10:hover {
+  text-decoration-color: inherit;
+}
+
+.emotion-10::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-10.Mui-focusVisible {
+  outline: auto;
+}
+
+.emotion-11 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-12 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-12::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-12.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-12 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-12:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-12:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-12.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-13 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-14 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<li
+    class="MuiListItem-container emotion-0"
+  >
+    <div
+      class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-1"
+      data-testid="note-1"
+    >
+      <div
+        class="MuiBox-root emotion-2"
+      >
+        <div
+          class="MuiListItemAvatar-root emotion-3"
+        >
+          <div
+            class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault emotion-4"
+            data-testid="note-initials"
+          >
+            JD
+          </div>
+        </div>
+        <div
+          class="MuiListItemText-root MuiListItemText-multiline emotion-5"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 emotion-6"
+            data-testid="note-display-name"
+          >
+            John Dow, RN
+          </h6>
+          <span
+            class="MuiTypography-root MuiTypography-label emotion-7"
+            data-testid="note-secondary-label"
+          >
+            7/7/2020 at 06:00 PM MDT
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body2 emotion-8"
+            data-testid="note-text"
+          >
+            Dolore in irure eu eiusmod adi...
+            <span
+              class="MuiBox-root emotion-9"
+            >
+              <button
+                class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways MuiLink-button emotion-10"
+                data-testid="read-more-button"
+              >
+                read more
+              </button>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiListItemSecondaryAction-root emotion-11"
+      data-testid="note-action-1"
+    >
+      <div>
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-12"
+          data-testid="note-more-button"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-13"
+            data-testid="MoreHorizIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root emotion-14"
+          />
+        </button>
+      </div>
+    </div>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`Note snapshots should render snapshot without read more button correctly if text is empty 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  position: relative;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: unset;
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-1.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-1.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-1.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-1.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-3 {
+  min-width: 56px;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  min-width: 32px;
+  margin-right: 8px;
+}
+
+.emotion-4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #F9F9F9;
+  background-color: #90B1C8;
+  width: 32px;
+  height: 32px;
+}
+
+.emotion-5 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-6 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+  color: #5E696F;
+  font-family: Open Sans;
+}
+
+.emotion-8 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+}
+
+.emotion-9 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-10 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-10::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-10.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-10 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-10:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-10:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-10.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-11 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-12 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<li
+    class="MuiListItem-container emotion-0"
+  >
+    <div
+      class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-1"
+      data-testid="note-1"
+    >
+      <div
+        class="MuiBox-root emotion-2"
+      >
+        <div
+          class="MuiListItemAvatar-root emotion-3"
+        >
+          <div
+            class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault emotion-4"
+            data-testid="note-initials"
+          >
+            JD
+          </div>
+        </div>
+        <div
+          class="MuiListItemText-root MuiListItemText-multiline emotion-5"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-subtitle2 emotion-6"
+            data-testid="note-display-name"
+          >
+            John Dow, RN
+          </h6>
+          <span
+            class="MuiTypography-root MuiTypography-label emotion-7"
+            data-testid="note-secondary-label"
+          >
+            7/7/2020 at 06:00 PM MDT
+          </span>
+          <p
+            class="MuiTypography-root MuiTypography-body2 emotion-8"
+            data-testid="note-text"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiListItemSecondaryAction-root emotion-9"
+      data-testid="note-action-1"
+    >
+      <div>
+        <button
+          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-10"
+          data-testid="note-more-button"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-11"
+            data-testid="MoreHorizIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root emotion-12"
+          />
+        </button>
+      </div>
+    </div>
+  </li>
+</DocumentFragment>
+`;

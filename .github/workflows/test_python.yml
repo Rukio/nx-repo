@@ -1,0 +1,84 @@
+name: Test Python
+
+run-name: Test Python ${{ github.head_ref || github.ref }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    paths:
+      - py/**
+      - .flake8
+      - .tool-versions
+      - buf.gen.python.yaml
+      - buf.work.yaml
+      - .github/workflows/test_python.yml
+      - proto/**
+      - poetry.lock
+      - pyproject.toml
+      - scripts/**
+      - Makefile
+      - sonar.python.properties
+      - '!**/*.md'
+
+  push:
+    branches:
+      - trunk
+    paths:
+      - py/**
+      - .flake8
+      - .tool-versions
+      - Makefile
+      - buf.gen.python.yaml
+      - buf.work.yaml
+      - .github/workflows/test_python.yml
+      - proto/**
+      - poetry.lock
+      - pyproject.toml
+      - scripts/**
+      - sonar.python.properties
+      - '!**/*.md'
+
+jobs:
+  python-test:
+    timeout-minutes: 45
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of sonarcloud reporting
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: ./.github/actions/setup_python
+
+      - name: Run Test Python
+        run: make test-python
+
+      - name: Override Coverage Source Path for Sonar
+        run: sed -i "s/<source>\/home\/runner\/work\/services\/services<\/source>/<source>\/github\/workspace<\/source>/g" /home/runner/work/services/services/coverage.xml
+
+      - name: Verifies that all files are checked using git diff
+        run: git diff --exit-code
+
+      - name: Setup sonarcloud
+        run: mv sonar.python.properties sonar-project.properties
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure() && github.ref == 'refs/heads/trunk'
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *Trunk GitHub Action Job Failed*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}

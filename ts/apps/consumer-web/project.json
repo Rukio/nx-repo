@@ -1,0 +1,168 @@
+{
+  "name": "consumer-web",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/consumer-web/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/ts/apps/consumer-web",
+        "index": "ts/apps/consumer-web/src/index.html",
+        "baseHref": "/",
+        "main": "ts/apps/consumer-web/src/main.tsx",
+        "tsConfig": "ts/apps/consumer-web/tsconfig.app.json",
+        "assets": ["ts/apps/consumer-web/src/favicon.ico"],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nx/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "qa": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/consumer-web/src/environments/environment.ts",
+              "with": "ts/apps/consumer-web/src/environments/environment.qa.ts"
+            },
+            {
+              "replace": "ts/libs/shared/station/data-access/src/environments/environment.ts",
+              "with": "ts/libs/shared/station/data-access/src/environments/environment.qa.ts"
+            },
+            {
+              "replace": "ts/libs/consumer-web/online-self-scheduling/data-access/src/environments/environment.ts",
+              "with": "ts/libs/consumer-web/online-self-scheduling/data-access/src/environments/environment.qa.ts"
+            },
+            {
+              "replace": "ts/libs/consumer-web/web-request/feature/src/environments/environment.ts",
+              "with": "ts/libs/consumer-web/web-request/feature/src/environments/environment.qa.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "uat": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/consumer-web/src/environments/environment.ts",
+              "with": "ts/apps/consumer-web/src/environments/environment.uat.ts"
+            },
+            {
+              "replace": "ts/libs/shared/station/data-access/src/environments/environment.ts",
+              "with": "ts/libs/shared/station/data-access/src/environments/environment.uat.ts"
+            },
+            {
+              "replace": "ts/libs/consumer-web/online-self-scheduling/data-access/src/environments/environment.ts",
+              "with": "ts/libs/consumer-web/online-self-scheduling/data-access/src/environments/environment.uat.ts"
+            },
+            {
+              "replace": "ts/libs/consumer-web/web-request/feature/src/environments/environment.ts",
+              "with": "ts/libs/consumer-web/web-request/feature/src/environments/environment.uat.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/consumer-web/src/environments/environment.ts",
+              "with": "ts/apps/consumer-web/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "ts/libs/shared/station/data-access/src/environments/environment.ts",
+              "with": "ts/libs/shared/station/data-access/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "ts/libs/consumer-web/online-self-scheduling/data-access/src/environments/environment.ts",
+              "with": "ts/libs/consumer-web/online-self-scheduling/data-access/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "ts/libs/consumer-web/web-request/feature/src/environments/environment.ts",
+              "with": "ts/libs/consumer-web/web-request/feature/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "consumer-web:build",
+        "hmr": true,
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "consumer-web:build:development"
+        },
+        "production": {
+          "buildTarget": "consumer-web:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/consumer-web/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ts/apps/consumer-web/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.app.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/consumer-web"
+      }
+    }
+  },
+  "tags": ["scope:consumer-web", "type:app"]
+}

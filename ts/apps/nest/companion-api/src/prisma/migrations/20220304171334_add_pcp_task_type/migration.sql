@@ -1,0 +1,2 @@
+-- AlterEnum
+ALTER TYPE "CompanionTaskType" ADD VALUE 'PRIMARY_CARE_PROVIDER';

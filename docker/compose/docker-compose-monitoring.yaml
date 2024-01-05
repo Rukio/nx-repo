@@ -1,0 +1,28 @@
+services:
+  influxdb:
+    image: influxdb:1.8-alpine
+    restart: always
+    volumes:
+      - influxdb-storage:/.influxdb-storage
+    ports:
+      - 8086:8086
+    environment:
+      - INFLUXDB_DB=${INFLUXDB_DB-test}
+      - INFLUXDB_HTTP_AUTH_ENABLED=false
+    platform: linux/x86_64
+  grafana:
+    image: grafana/grafana:latest
+    restart: always
+    user: root
+    ports:
+      - 5001:3000
+    volumes:
+      - grafana-storage:/.grafana-storage
+    environment:
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+
+volumes:
+  influxdb-storage:
+  grafana-storage:

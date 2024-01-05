@@ -1,0 +1,13 @@
+{
+  "spaces": 2,
+  "generator-cli": {
+    "version": "6.6.0",
+    "generators": {
+      "caremanagerAPI": {
+        "generatorName": "typescript-fetch",
+        "glob": "ts/libs/caremanager/data-access-types/openapi/v1/**/*.{json,yaml}",
+        "output": "ts/libs/caremanager/data-access-types/src/lib/__generated__/openapi/v1"
+      }
+    }
+  }
+}

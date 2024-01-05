@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReadMore snapshots should render basic snapshot correctly 1`] = `
+<DocumentFragment>
+  Qui amet aliqua aliquip qui incididunt dolor. Incididunt amet ea id cillum consequat voluptate ea fugiat aute eiusmod occaecat ut. Sit elit duis irure pariatur minim dolor est voluptate do et tempor dolore voluptate. Est labore elit est voluptate est...
+  .emotion-0 {
+  margin-left: 4px;
+}
+
+.emotion-1 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  color: #0074B8;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 116, 184, 0.4);
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.emotion-1:hover {
+  text-decoration-color: inherit;
+}
+
+.emotion-1::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-1.Mui-focusVisible {
+  outline: auto;
+}
+
+<span
+    class="MuiBox-root emotion-0"
+  >
+    <button
+      class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways MuiLink-button emotion-1"
+      data-testid="read-more-button"
+    >
+      read more
+    </button>
+  </span>
+</DocumentFragment>
+`;

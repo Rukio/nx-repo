@@ -1,0 +1,120 @@
+{
+  "name": "risk-stratification-admin",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/risk-stratification-admin/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/ts/apps/risk-stratification-admin",
+        "index": "ts/apps/risk-stratification-admin/src/index.html",
+        "baseHref": "/",
+        "main": "ts/apps/risk-stratification-admin/src/main.tsx",
+        "polyfills": "ts/apps/risk-stratification-admin/src/polyfills.ts",
+        "tsConfig": "ts/apps/risk-stratification-admin/tsconfig.app.json",
+        "assets": [
+          "ts/apps/risk-stratification-admin/src/favicon.ico",
+          "ts/apps/risk-stratification-admin/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nx/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/risk-stratification-admin/src/environments/environment.ts",
+              "with": "ts/apps/risk-stratification-admin/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "risk-stratification-admin:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "risk-stratification-admin:build:development"
+        },
+        "production": {
+          "buildTarget": "risk-stratification-admin:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "ts/apps/risk-stratification-admin/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ts/apps/risk-stratification-admin/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.app.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/risk-stratification-admin"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.app.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/risk-stratification-admin"
+      }
+    }
+  },
+  "tags": ["scope:risk-stratification-admin", "type:app"]
+}

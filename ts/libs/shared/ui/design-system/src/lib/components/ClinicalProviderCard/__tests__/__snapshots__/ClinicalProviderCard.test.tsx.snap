@@ -1,0 +1,559 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClinicalProviderCard should render correctly horizontally with fax and test ids 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  width: 500px;
+}
+
+.emotion-1 {
+  background-color: #FEFEFE;
+  color: #1E2930;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 6px;
+  border: 1px solid #EFF4F7;
+  overflow: hidden;
+  width: 100%;
+  min-height: 132px;
+}
+
+.emotion-2 {
+  padding: 16px;
+  padding-bottom: 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.375;
+  letter-spacing: 0.01rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-5 {
+  margin-bottom: 8px;
+}
+
+.emotion-6 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  text-transform: capitalize;
+}
+
+.emotion-9 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  display: inline;
+  color: #5E696F;
+  margin-right: 8px;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  display: inline;
+}
+
+.emotion-14 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.714;
+  text-transform: none;
+  letter-spacing: 0.025rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  min-width: 64px;
+  padding: 7px 21px;
+  border-radius: 6px;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border: 1px solid rgba(0, 116, 184, 0.5);
+  color: #0074B8;
+  box-shadow: none;
+}
+
+.emotion-14::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-14.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-14 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-14:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color: rgba(0, 116, 184, 0.04);
+  border: 1px solid #0074B8;
+}
+
+@media (hover: none) {
+  .emotion-14:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-14.Mui-disabled {
+  color: rgba(17, 27, 34, 0.26);
+  border: 1px solid rgba(17, 27, 34, 0.12);
+}
+
+.emotion-14:hover {
+  box-shadow: none;
+}
+
+.emotion-14.Mui-focusVisible {
+  box-shadow: none;
+}
+
+.emotion-14:active {
+  box-shadow: none;
+}
+
+.emotion-14.Mui-disabled {
+  box-shadow: none;
+}
+
+.emotion-15 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<div
+    class="MuiBox-root emotion-0"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root emotion-1"
+      data-testid="test-clinical-provider-card-42"
+    >
+      <div
+        class="MuiBox-root emotion-2"
+      >
+        <div
+          class="MuiBox-root emotion-3"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-h6 emotion-4"
+            data-testid="test-provider-name"
+          >
+            THEODOR GEISEL
+          </h6>
+          <div
+            class="MuiBox-root emotion-5"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-6"
+              data-testid="test-provider-address-line1"
+            >
+              7301 encelia drive
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-6"
+              data-testid="test-provider-city-state"
+            >
+              la jolla, CA 92037
+            </p>
+          </div>
+          <div
+            class="MuiBox-root emotion-3"
+            data-testid="test-provider-phone-container"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-9"
+            >
+              Phone
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-10"
+              data-testid="test-provider-phone"
+            >
+              (999) 555-1212
+            </p>
+          </div>
+          <div
+            class="MuiBox-root emotion-3"
+            data-testid="test-provider-fax-container"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-9"
+            >
+              Fax
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-10"
+              data-testid="test-provider-fax"
+            >
+              (999) 555-1000
+            </p>
+          </div>
+        </div>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeLarge MuiButton-outlinedSizeLarge MuiButton-disableElevation MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeLarge MuiButton-outlinedSizeLarge MuiButton-disableElevation emotion-14"
+          data-testid="test-provider-select-button"
+          tabindex="0"
+          type="button"
+        >
+          Select
+          <span
+            class="MuiTouchRipple-root emotion-15"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ClinicalProviderCard should render correctly vertically 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  width: 300px;
+}
+
+.emotion-1 {
+  background-color: #FEFEFE;
+  color: #1E2930;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 6px;
+  border: 1px solid #EFF4F7;
+  overflow: hidden;
+  width: 100%;
+  min-height: 132px;
+}
+
+.emotion-2 {
+  padding: 16px;
+  padding-bottom: 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.375;
+  letter-spacing: 0.01rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-5 {
+  margin-bottom: 8px;
+}
+
+.emotion-6 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  text-transform: capitalize;
+}
+
+.emotion-9 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  display: inline;
+  color: #5E696F;
+  margin-right: 8px;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  display: inline;
+}
+
+.emotion-14 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.714;
+  text-transform: none;
+  letter-spacing: 0.025rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  min-width: 64px;
+  padding: 7px 21px;
+  border-radius: 6px;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border: 1px solid rgba(0, 116, 184, 0.5);
+  color: #0074B8;
+  box-shadow: none;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.emotion-14::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-14.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-14 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-14:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color: rgba(0, 116, 184, 0.04);
+  border: 1px solid #0074B8;
+}
+
+@media (hover: none) {
+  .emotion-14:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-14.Mui-disabled {
+  color: rgba(17, 27, 34, 0.26);
+  border: 1px solid rgba(17, 27, 34, 0.12);
+}
+
+.emotion-14:hover {
+  box-shadow: none;
+}
+
+.emotion-14.Mui-focusVisible {
+  box-shadow: none;
+}
+
+.emotion-14:active {
+  box-shadow: none;
+}
+
+.emotion-14.Mui-disabled {
+  box-shadow: none;
+}
+
+.emotion-15 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<div
+    class="MuiBox-root emotion-0"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root emotion-1"
+      data-testid="test-clinical-provider-card-42"
+    >
+      <div
+        class="MuiBox-root emotion-2"
+      >
+        <div
+          class="MuiBox-root emotion-3"
+        >
+          <h6
+            class="MuiTypography-root MuiTypography-h6 emotion-4"
+            data-testid="test-provider-name"
+          >
+            THEODOR GEISEL
+          </h6>
+          <div
+            class="MuiBox-root emotion-5"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-6"
+              data-testid="test-provider-address-line1"
+            >
+              7301 encelia drive
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-6"
+              data-testid="test-provider-city-state"
+            >
+              la jolla, CA 92037
+            </p>
+          </div>
+          <div
+            class="MuiBox-root emotion-3"
+            data-testid="test-provider-phone-container"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-9"
+            >
+              Phone
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-10"
+              data-testid="test-provider-phone"
+            >
+              (999) 555-1212
+            </p>
+          </div>
+          <div
+            class="MuiBox-root emotion-3"
+            data-testid="test-provider-fax-container"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-9"
+            >
+              Fax
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body2 emotion-10"
+              data-testid="test-provider-fax"
+            >
+              (999) 555-1000
+            </p>
+          </div>
+        </div>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeLarge MuiButton-outlinedSizeLarge MuiButton-disableElevation MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeLarge MuiButton-outlinedSizeLarge MuiButton-disableElevation emotion-14"
+          data-testid="test-provider-select-button"
+          tabindex="0"
+          type="button"
+        >
+          Select
+          <span
+            class="MuiTouchRipple-root emotion-15"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

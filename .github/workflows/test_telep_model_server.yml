@@ -1,0 +1,58 @@
+name: Test Telep Model Server
+
+run-name: Test Telep model server ${{ github.head_ref || github.ref }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    paths:
+      - py/lib/telep/**
+      - py/projects/telep_model_server/**
+      - proto/ml_models/telep/**
+      - .github/workflows/test_telep_model_server.yml
+      - '!**/*.md'
+
+  push:
+    branches:
+      - trunk
+    paths:
+      - py/lib/telep/**
+      - py/projects/telep_model_server/**
+      - proto/ml_models/telep/**
+      - .github/workflows/test_telep_model_server.yml
+      - '!**/*.md'
+
+jobs:
+  telep-model-integration-test:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of sonarcloud reporting
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: ./.github/actions/setup_python
+
+      - name: Run integration test
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.TELEP_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.TELEP_AWS_SECRET_ACCESS_KEY }}
+          STATSIG_SERVER_SECRET_KEY: ${{ secrets.TELEP_STATSIG_SERVER_SECRET_KEY }}
+        run: make test-telep-model-server
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure() && github.ref == 'refs/heads/trunk'
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *Trunk GitHub Action Job Failed*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}

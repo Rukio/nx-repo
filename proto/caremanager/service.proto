@@ -1,0 +1,3148 @@
+syntax = "proto3";
+package caremanager;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/caremanager";
+option ruby_package = "CareManagerGRPC";
+
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "audit/audit.proto";
+import "caremanager/entities.proto";
+import "common/auth/auth.proto";
+import "common/shift_team.proto";
+
+service CareManagerService {
+  // GetConfig provides user-enabled markets, service lines and care phases
+  // values for UI components in the Caremanager Frontend App.
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {
+    option (google.api.http) = {
+      get: "/v1/config",
+    };
+    option (audit.rule) = {
+      event_data_type: "Config"
+    };
+  }
+
+  // CreateEpisode creates new Episodes.
+  rpc CreateEpisode(CreateEpisodeRequest) returns (CreateEpisodeResponse) {
+    option (google.api.http) = {
+      post: "/v1/episodes",
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "Episode"
+    };
+  }
+
+  // GetEpisode retrieves an instance of Episode for the provided episode_id
+  rpc GetEpisode(GetEpisodeRequest) returns (GetEpisodeResponse) {
+    option (google.api.http) = {
+      get: "/v1/episodes/{episode_id}",
+    };
+    option (audit.rule) = {
+      event_data_type: "Episode"
+    };
+  }
+
+  // GetEpisodes retrieves a list of Episodes with pagination info.
+  rpc GetEpisodes(GetEpisodesRequest) returns (GetEpisodesResponse) {
+    option (google.api.http) = {
+      get: "/v1/episodes",
+    };
+    option (audit.rule) = {
+      event_data_type: "Episode"
+    };
+  }
+
+  // UpdateEpisode updates an existing Episode.
+  rpc UpdateEpisode(UpdateEpisodeRequest) returns (UpdateEpisodeResponse) {
+    option (google.api.http) = {
+      patch: "/v1/episodes/{episode_id}",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Episode"
+    };
+  }
+
+  // CreateEpisodeTasks creates new Episode Tasks.
+  rpc CreateEpisodeTasks(CreateEpisodeTasksRequest)
+      returns (CreateEpisodeTasksResponse) {
+    option (google.api.http) = {
+      post: "/v1/episodes/{episode_id}/tasks",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Task"
+    };
+  }
+
+  // CreateEpisodeNote creates a new Note assigned to an episode.
+  rpc CreateEpisodeNote(CreateEpisodeNoteRequest)
+      returns (CreateEpisodeNoteResponse) {
+    option (google.api.http) = {
+      post: "/v1/episodes/{episode_id}/notes"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Note"
+    };
+  }
+
+  // UpdateTask updates an existing Task.
+  rpc UpdateTask(UpdateTaskRequest) returns (UpdateTaskResponse) {
+    option (google.api.http) = {
+      patch: "/v1/tasks/{task_id}",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Task"
+    };
+  }
+
+  // DeleteTask deletes an existing Task.
+  rpc DeleteTask(DeleteTaskRequest) returns (DeleteTaskResponse) {
+    option (google.api.http) = {
+      delete: "/v1/tasks/{task_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Task"
+    };
+  }
+
+  // UpdateNote updates an existing Note.
+  rpc UpdateNote(UpdateNoteRequest) returns (UpdateNoteResponse) {
+    option (google.api.http) = {
+      patch: "/v1/notes/{note_id}",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Note"
+    };
+  }
+
+  // DeleteNote deletes an existing Note.
+  rpc DeleteNote(DeleteNoteRequest) returns (DeleteNoteResponse) {
+    option (google.api.http) = {
+      delete: "/v1/notes/{note_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Note"
+    };
+  }
+
+  // PinNote sets the pinned state of a note to true.
+  rpc PinNote(PinNoteRequest) returns (PinNoteResponse) {
+    option (google.api.http) = {
+      patch: "/v1/notes/{note_id}/pin",
+    };
+    option (audit.rule) = {
+      event_data_type: "Note"
+    };
+  }
+
+  // UnpinNote sets the pinned state of a note to false.
+  rpc UnpinNote(UnpinNoteRequest) returns (UnpinNoteResponse) {
+    option (google.api.http) = {
+      patch: "/v1/notes/{note_id}/unpin",
+    };
+    option (audit.rule) = {
+      event_data_type: "Note"
+    };
+  }
+
+  // CreatePatient creates a new Patient.
+  rpc CreatePatient(CreatePatientRequest) returns (CreatePatientResponse) {
+    option (google.api.http) = {
+      post: "/v1/patients",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // GetPatient retrieves an instance of a Patient for the provided patient_id
+  rpc GetPatient(GetPatientRequest) returns (GetPatientResponse) {
+    option (google.api.http) = {
+      get: "/v1/patients/{patient_id}",
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // GetPatients retrieves a list of Patients with pagination info.
+  rpc GetPatients(GetPatientsRequest) returns (GetPatientsResponse) {
+    option (google.api.http) = {
+      get: "/v1/patients",
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // GetActivePatients retrieves a list of Patients with at least one episode
+  // with an active phase.
+  rpc GetActivePatients(GetActivePatientsRequest)
+      returns (GetActivePatientsResponse) {
+    option (google.api.http) = {
+      get: "/v1/patients/active",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:patients:active"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // UpdatePatient updates an existing Patient.
+  rpc UpdatePatient(UpdatePatientRequest) returns (UpdatePatientResponse) {
+    option (google.api.http) = {
+      patch: "/v1/patients/{patient_id}",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // UpdateTaskTemplate updates an existing TaskTemplate.
+  rpc UpdateTaskTemplate(UpdateTaskTemplateRequest)
+      returns (UpdateTaskTemplateResponse) {
+    option (google.api.http) = {
+      patch: "/v1/task_templates/{template_id}",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "TaskTemplate"
+    };
+  }
+
+  // DeleteTaskTemplate deletes an existing TaskTemplate.
+  rpc DeleteTaskTemplate(DeleteTaskTemplateRequest)
+      returns (DeleteTaskTemplateResponse) {
+    option (google.api.http) = {
+      delete: "/v1/task_templates/{template_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "TaskTemplate"
+    };
+  }
+
+  // CreateTaskTemplate creates a new TaskTemplate.
+  rpc CreateTaskTemplate(CreateTaskTemplateRequest)
+      returns (CreateTaskTemplateResponse) {
+    option (google.api.http) = {
+      post: "/v1/task_templates",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "TaskTemplate"
+    };
+  }
+
+  // GetTaskTemplate gets an existing Task Template given a task_template_id
+  rpc GetTaskTemplate(GetTaskTemplateRequest)
+      returns (GetTaskTemplateResponse) {
+    option (google.api.http) = {
+      get: "/v1/task_templates/{task_template_id}",
+    };
+    option (audit.rule) = {
+      event_data_type: "TaskTemplate"
+    };
+  }
+
+  // GetTaskTemplates retrieves a list of TaskTemplates with pagination info.
+  rpc GetTaskTemplates(GetTaskTemplatesRequest)
+      returns (GetTaskTemplatesResponse) {
+    option (google.api.http) = {
+      get: "/v1/task_templates",
+    };
+    option (audit.rule) = {
+      event_data_type: "TaskTemplate"
+    };
+  }
+
+  // GetUsersByID retrieves a list of users by a list of IDs.
+  rpc GetUsersByID(GetUsersByIDRequest) returns (GetUsersByIDResponse) {
+    option (google.api.http) = {
+      get: "/v1/users/by-id"
+    };
+    option (audit.rule) = {
+      event_data_type: "User"
+    };
+  }
+
+  // DuplicateEpisodeLatestVisit duplicates the latest visit
+  // in the given Episode.
+  rpc DuplicateEpisodeLatestVisit(DuplicateEpisodeLatestVisitRequest)
+      returns (DuplicateEpisodeLatestVisitResponse) {
+    option (google.api.http) = {
+      post: "/v1/episodes/{episode_id}/duplicate-latest-visit",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // CancelVisit cancels the visit given a Care Request ID.
+  rpc CancelVisit(CancelVisitRequest) returns (CancelVisitResponse) {
+    option (google.api.http) = {
+      patch: "/v1/cancel-visit",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // GetEpisodeVisits retrieves the list of Visits that belongs to the
+  // specified Episode.
+  rpc GetEpisodeVisits(GetEpisodeVisitsRequest)
+      returns (GetEpisodeVisitsResponse) {
+    option (google.api.http) = {
+      get: "/v1/episodes/{episode_id}/visits"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // GetVisitAvailability returns a list of dates along
+  // with their corresponding availability based on the requested dates.
+  rpc GetVisitAvailability(GetVisitAvailabilityRequest)
+      returns (GetVisitAvailabilityResponse) {
+    option (google.api.http) = {
+      post: "/v1/visit-availability"
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // CreateCallVisit creates a call Visit with Summary details.
+  rpc CreateCallVisit(CreateCallVisitRequest)
+      returns (CreateCallVisitResponse) {
+    option (google.api.http) = {
+      post: "/v1/visits/call",
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // UpdateCallVisit updates a call Visit with Summary details.
+  rpc UpdateCallVisit(UpdateCallVisitRequest)
+      returns (UpdateCallVisitResponse) {
+    option (google.api.http) = {
+      patch: "/v1/visits/call/{visit_id}",
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // UpdateVisitFromStationCR updates an existing Visit, using a Care Request
+  // ID from station to locate the Visit to update.
+  rpc UpdateVisitFromStationCR(UpdateVisitFromStationCRRequest)
+      returns (UpdateVisitFromStationCRResponse) {
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "update:visit_from_care_request:all"
+    };
+  }
+
+  // GetVisit retrieves a visit with summary data in the payload using
+  // the id provided in the request.
+  rpc GetVisit(GetVisitRequest) returns (GetVisitResponse) {
+    option (google.api.http) = {
+      get: "/v1/visits/{visit_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // ScheduleVisit is responsible for scheduling a visit based on
+  // the provided Care Request ID and the selected availability time window
+  // chosen by the patient
+  rpc ScheduleVisit(ScheduleVisitRequest) returns (ScheduleVisitResponse) {
+    option (google.api.http) = {
+      post: "/v1/schedule-visit"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // CanScheduleVisit returns whether we can schedule a visit or not, given
+  // the interval of time specified by the user.
+  rpc CanScheduleVisit(CanScheduleVisitRequest)
+      returns (CanScheduleVisitResponse) {
+    option (google.api.http) = {
+      post: "/v1/can-schedule-visit"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // GetVisitTypes retrieves the list of all VisitTypes
+  rpc GetVisitTypes(GetVisitTypesRequest) returns (GetVisitTypesResponse) {
+    option (google.api.http) = {
+      get: "/v1/visit_types"
+    };
+    option (audit.rule) = {
+      event_data_type: "VisitType"
+    };
+  }
+
+  // GetAddressesByID retrieves a list of Addresses by a list of IDs.
+  rpc GetAddressesByID(GetAddressesByIDRequest)
+      returns (GetAddressesByIDResponse) {
+    option (google.api.http) = {
+      get: "/v1/addresses/by-id"
+    };
+    option (audit.rule) = {
+      event_data_type: "Address"
+    };
+  }
+
+  // GetProviderTypes retrieves a list of ProviderTypes.
+  rpc GetProviderTypes(GetProviderTypesRequest)
+      returns (GetProviderTypesResponse) {
+    option (google.api.http) = {
+      get: "/v1/provider-types"
+    };
+    option (audit.rule) = {
+      event_data_type: "ProviderType"
+    };
+  }
+
+  // CreateVisitFromStationCR always creates a visit. It will also create an
+  // episode and patient if none are found.
+  rpc CreateVisitFromStationCR(CreateVisitFromStationCRRequest)
+      returns (CreateVisitFromStationCRResponse) {
+    option (google.api.http) = {
+      post: "/v1/visits/from-station-care-request"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "PatientEpisodeVisit"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "create:visit_from_care_request:all"
+    };
+  }
+
+  // CreateVisitSummary creates a new VisitSummary for the given Visit ID.
+  // The operation will error if the Visit already has a VisitSummary.
+  rpc CreateVisitSummary(CreateVisitSummaryRequest)
+      returns (CreateVisitSummaryResponse) {
+    option (google.api.http) = {
+      post: "/v1/visits/{visit_id}/summary"
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "VisitSummary"
+    };
+  }
+
+  // UpdateVisitSummary updates an existing VisitSummary.
+  rpc UpdateVisitSummary(UpdateVisitSummaryRequest)
+      returns (UpdateVisitSummaryResponse) {
+    option (google.api.http) = {
+      patch: "/v1/visits/{visit_id}/summary",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "VisitSummary"
+    };
+  }
+
+  // UpdateVisitStatus updates the status of an existing Visit.
+  rpc UpdateVisitStatus(UpdateVisitStatusRequest)
+      returns (UpdateVisitStatusResponse) {
+    option (google.api.http) = {
+      patch: "/v1/visits/{visit_id}/status",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // UpdateVisit updates an existing Visit.
+  rpc UpdateVisit(UpdateVisitRequest) returns (UpdateVisitResponse) {
+    option (google.api.http) = {
+      patch: "/v1/visits/{visit_id}",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // UpdateVisitEpisode updates the Episode instance the Visit belongs to.
+  rpc UpdateVisitEpisode(UpdateVisitEpisodeRequest)
+      returns (UpdateVisitEpisodeResponse) {
+    option (google.api.http) = {
+      patch: "/v1/visits/{visit_id}/episode",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // CreateInsurance creates an Insurance for an existing Patient.
+  rpc CreateInsurance(CreateInsuranceRequest)
+      returns (CreateInsuranceResponse) {
+    option (google.api.http) = {
+      post: "/v1/insurances"
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "Insurance"
+    };
+  }
+
+  // UpdateInsurance updates an Insurance for an specific insurance id.
+  rpc UpdateInsurance(UpdateInsuranceRequest)
+      returns (UpdateInsuranceResponse) {
+    option (google.api.http) = {
+      patch: "/v1/insurances/{insurance_id}"
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "Insurance"
+    };
+  }
+
+  // DeleteInsurance deletes an existing Insurance.
+  rpc DeleteInsurance(DeleteInsuranceRequest)
+      returns (DeleteInsuranceResponse) {
+    option (google.api.http) = {
+      delete: "/v1/insurances/{insurance_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Insurance"
+    };
+  }
+
+  // CreateMedicalDecisionMaker creates a MedicalDecisionMaker for an existing
+  // Patient.
+  rpc CreateMedicalDecisionMaker(CreateMedicalDecisionMakerRequest)
+      returns (CreateMedicalDecisionMakerResponse) {
+    option (google.api.http) = {
+      post: "/v1/medical-decision-makers"
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "MedicalDecisionMaker"
+    };
+  }
+
+  // UpdateMedicalDecisionMaker updates an existing MedicalDecisionMaker.
+  rpc UpdateMedicalDecisionMaker(UpdateMedicalDecisionMakerRequest)
+      returns (UpdateMedicalDecisionMakerResponse) {
+    option (google.api.http) = {
+      patch: "/v1/medical-decision-makers/{medical_decision_maker_id}"
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "MedicalDecisionMaker"
+    };
+  }
+
+  // CreatePharmacy creates a Pharmacy for an existing Patient.
+  rpc CreatePharmacy(CreatePharmacyRequest) returns (CreatePharmacyResponse) {
+    option (google.api.http) = {
+      post: "/v1/pharmacies"
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+
+  // UpdatePharmacy an existing Pharmacy.
+  rpc UpdatePharmacy(UpdatePharmacyRequest) returns (UpdatePharmacyResponse) {
+    option (google.api.http) = {
+      patch: "/v1/pharmacies/{pharmacy_id}"
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+
+  // CreateExternalCareProvider creates an ExternalCareProvider for an existing
+  // Patient.
+  rpc CreateExternalCareProvider(CreateExternalCareProviderRequest)
+      returns (CreateExternalCareProviderResponse) {
+    option (google.api.http) = {
+      post: "/v1/external-care-providers"
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "ExternalCareProvider"
+    };
+  }
+
+  // UpdateExternalCareProvider updates an ExternalCareProvider.
+  rpc UpdateExternalCareProvider(UpdateExternalCareProviderRequest)
+      returns (UpdateExternalCareProviderResponse) {
+    option (google.api.http) = {
+      patch: "/v1/external-care-providers/{external_care_provider_id}"
+      body: "*",
+    };
+    option (audit.rule) = {
+      event_data_type: "ExternalCareProvider"
+    };
+  }
+
+  //  DeleteExternalCareProvider deletes an existing ExternalCareProvider.
+  rpc DeleteExternalCareProvider(DeleteExternalCareProviderRequest)
+      returns (DeleteExternalCareProviderResponse) {
+    option (google.api.http) = {
+      delete: "/v1/external-care-providers/{external_care_provider_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Insurance"
+    };
+  }
+
+  // GetServiceRequests retrieves a list of ServiceRequestListElements
+  rpc GetServiceRequests(GetServiceRequestsRequest)
+      returns (GetServiceRequestsResponse) {
+    option (google.api.http) = {
+      get: "/v1/service-requests"
+    };
+    option (audit.rule) = {
+      event_data_type: "ServiceRequest"
+    };
+  }
+
+  // GetServiceRequest retrieves a single ServiceRequest by id
+  rpc GetServiceRequest(GetServiceRequestRequest)
+      returns (GetServiceRequestResponse) {
+    option (google.api.http) = {
+      get: "/v1/service-requests/{service_request_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "ServiceRequest"
+    };
+  }
+
+  // UpdateServiceRequest updates a ServiceRequest by id.
+  rpc UpdateServiceRequest(UpdateServiceRequestRequest)
+      returns (UpdateServiceRequestResponse) {
+    option (google.api.http) = {
+      patch: "/v1/service-requests/{service_request_id}"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "ServiceRequest"
+    };
+  }
+
+  // RejectServiceRequest sets rejected status to a ServiceRequest and adds a
+  // reason.
+  rpc RejectServiceRequest(RejectServiceRequestRequest)
+      returns (RejectServiceRequestResponse) {
+    option (google.api.http) = {
+      post: "/v1/service-requests/{service_request_id}/reject"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "ServiceRequest"
+    };
+  }
+
+  // DuplicateCareRequestInServiceRequest duplicates the Care Request of a
+  // Service Request.
+  rpc DuplicateCareRequestInServiceRequest(
+      DuplicateCareRequestInServiceRequestRequest)
+      returns (DuplicateCareRequestInServiceRequestResponse) {
+    option (google.api.http) = {
+      post: "/v1/service-requests/{service_request_id}/duplicate-care-request",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "CareRequest"
+    };
+  }
+
+  // ScheduleServiceRequest marks a Service Request as resolved and schedules
+  // the associated Care Request in Station.
+  rpc ScheduleServiceRequest(ScheduleServiceRequestRequest)
+      returns (ScheduleServiceRequestResponse) {
+    option (google.api.http) = {
+      post: "/v1/service-requests/{service_request_id}/schedule"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "ServiceRequest"
+    };
+  }
+
+  // GetServiceRequestStatus retrieves a list of ServiceRequestStatus.
+  rpc GetServiceRequestStatus(GetServiceRequestStatusRequest)
+      returns (GetServiceRequestStatusResponse) {
+    option (google.api.http) = {
+      get: "/v1/service-request-status"
+    };
+    option (audit.rule) = {
+      event_data_type: "ServiceRequest"
+    };
+  }
+
+  // GetServiceRequestNotes retrieves the list of Note entities related to a
+  // ServiceRequest.
+  rpc GetServiceRequestNotes(GetServiceRequestNotesRequest)
+      returns (GetServiceRequestNotesResponse) {
+    option (google.api.http) = {
+      get: "/v1/service-requests/{service_request_id}/notes"
+    };
+    option (audit.rule) = {
+      event_data_type: "ServiceRequest"
+    };
+  }
+
+  // CreateServiceRequestNote creates a Note for a ServiceRequest.
+  rpc CreateServiceRequestNote(CreateServiceRequestNoteRequest)
+      returns (CreateServiceRequestNoteResponse) {
+    option (google.api.http) = {
+      post: "/v1/service-requests/{service_request_id}/notes"
+    };
+    option (audit.rule) = {
+      event_data_type: "ServiceRequest"
+    };
+  }
+
+  // UnassignOwnerFromServiceRequest unassigns a Owner from a ServiceRequest.
+  rpc UnassignOwnerFromServiceRequest(UnassignOwnerFromServiceRequestRequest)
+      returns (UnassignOwnerFromServiceRequestResponse) {
+    option (google.api.http) = {
+      patch: "/v1/service-requests/{service_request_id}/unassign-owner"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "ServiceRequest"
+    };
+  }
+
+  // SearchUsers returns a list of users that match with the given input.
+  rpc SearchUsers(SearchUsersRequest) returns (SearchUsersResponse) {
+    option (google.api.http) = {
+      post: "/v1/users/search",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "User"
+    };
+  }
+
+  // AssignVirtualAPP assigns the calling Virtual APP to the specified Visit.
+  rpc AssignVirtualAPP(AssignVirtualAPPRequest)
+      returns (AssignVirtualAPPResponse) {
+    option (google.api.http) = {
+      post: "/v1/visits/{visit_id}/virtual-app/assign"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // AssignVirtualAPP unassigns the calling Virtual APP from the specified
+  // Visit.
+  rpc UnassignVirtualAPP(UnassignVirtualAPPRequest)
+      returns (UnassignVirtualAPPResponse) {
+    option (google.api.http) = {
+      post: "/v1/visits/{visit_id}/virtual-app/unassign"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // CreateEHRAppointment creates appointment for specified Visit.
+  rpc CreateEHRAppointment(CreateEHRAppointmentRequest)
+      returns (CreateEHRAppointmentResponse) {
+    option (google.api.http) = {
+      post: "/v1/visits/{visit_id}/ehr-appointment"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "EHRAppointment"
+    };
+  }
+
+  // UpdateEHRAppointment updates appointment of specified Visit.
+  rpc UpdateEHRAppointment(UpdateEHRAppointmentRequest)
+      returns (UpdateEHRAppointmentResponse) {
+    option (google.api.http) = {
+      put: "/v1/visits/{visit_id}/ehr-appointment"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "EHRAppointment"
+    };
+  }
+
+  // CreateVisitNote creates a Note in Station for the specified Visit.
+  rpc CreateVisitNote(CreateVisitNoteRequest)
+      returns (CreateVisitNoteResponse) {
+    option (google.api.http) = {
+      post: "/v1/visits/{visit_id}/notes"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Note"
+    };
+  }
+
+  // UpdateVisitNote updates a Note for the specified Visit by ID.
+  rpc UpdateVisitNote(UpdateVisitNoteRequest)
+      returns (UpdateVisitNoteResponse) {
+    option (google.api.http) = {
+      patch: "/v1/visits/{visit_id}/notes/{note_id}"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Note"
+    };
+  }
+
+  // DeleteVisitNote deletes a Note by ID for the specified Visit.
+  rpc DeleteVisitNote(DeleteVisitNoteRequest)
+      returns (DeleteVisitNoteResponse) {
+    option (google.api.http) = {
+      delete: "/v1/visits/{visit_id}/notes/{note_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Note"
+    };
+  }
+
+  // CreateServiceRequestFromStationCR creates a Service Request in CareManager
+  // from a Station Care Request. This endpoint is meant to be consumed by
+  // Station.
+  rpc CreateServiceRequestFromStationCR(
+      CreateServiceRequestFromStationCRRequest)
+      returns (CreateServiceRequestFromStationCRResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "create:service_requests:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "ServiceRequest"
+    };
+  };
+
+  // GetVirtualAPPVisitsQueue retrieves all Visits for Virtual APP's Queue
+  rpc GetVirtualAPPVisitsQueue(GetVirtualAPPVisitsQueueRequest)
+      returns (GetVirtualAPPVisitsQueueResponse) {
+    option (google.api.http) = {
+      get: "/v1/visits/virtual-app-queue"
+    };
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+  }
+
+  // ListCarsByIDs retrieves Cars by IDs
+  rpc ListCarsByIDs(ListCarsByIDsRequest) returns (ListCarsByIDsResponse) {
+    option (google.api.http) = {
+      get: "/v1/cars"
+    };
+    option (audit.rule) = {
+      event_data_type: "Car"
+    };
+  }
+}
+
+message GetTaskTemplatesRequest {
+  // page
+  //
+  // page represents the page number that the request should retrieve, starting
+  // from page 1, if empty, the first page is retrieved.
+  optional int64 page = 1;
+  // page_size
+  //
+  // page_size represents the maximum amount of elements that the request
+  // should retrieve per page, if empty, default is 5.
+  optional int64 page_size = 2;
+  // name
+  //
+  // name represents the name of the task template requested
+  optional string name = 3;
+  // service_line_id
+  //
+  // service_line_id represents a filter for Episodes that belong to a set of
+  // Service Line IDs.
+  repeated int64 service_line_id = 4;
+  // care_phase_id
+  //
+  // care_phase_id represents a filter for Episodes that belong to a set of
+  // Care Phase IDs.
+  repeated int64 care_phase_id = 5;
+  // sort_by
+  //
+  // sort_by represents the sort by of the task template request
+  optional string sort_by = 6;
+  // sort_direction
+  //
+  // sort_direction represents the sort direction of the task templates list
+  // requested being 'ASC' or 'DESC'
+  optional string sort_direction = 7;
+}
+
+message GetTaskTemplatesResponse {
+  // task_templates
+  //
+  // task_templates represents the task templates elements retrieved.
+  repeated TaskTemplate task_templates = 1
+      [(google.api.field_behavior) = REQUIRED];
+  // meta
+  //
+  // meta represents the information or metadata of the page requested.
+  PageInfo meta = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateTaskTemplateResponse {
+  // task_template
+  //
+  // tasks_template represents the Updated Task Template.
+  TaskTemplate task_template = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateTaskTemplateRequest {
+  message UpdateTaskTemplateTask {
+    // body
+    //
+    // body is the description of the task in the template
+    optional string body = 1;
+    // task_type_id
+    //
+    // task_type_id is the type of the task in the template.
+    optional int64 task_type_id = 2;
+    // id
+    //
+    // id represents the unique identifier of the Task.
+    optional int64 id = 3;
+    // destroy
+    //
+    // destroy represents if the Task should be deleted.
+    optional bool destroy = 4;
+  }
+  // name
+  //
+  // name of the task template
+  optional string name = 1;
+  // summary
+  //
+  // summary is a text that describes the intended usage of the task template
+  optional string summary = 2;
+  // service_line_id
+  //
+  // service_line_id represents the ServiceLine ID the Template belongs to.
+  optional int64 service_line_id = 3;
+  // care_phase_id
+  //
+  // care_phase_id represents the CarePhase ID the Template belongs to.
+  optional int64 care_phase_id = 4;
+  // tasks
+  //
+  // tasks represents a collection of new Tasks to be created.
+  repeated UpdateTaskTemplateTask tasks = 5
+      [(google.api.field_behavior) = REQUIRED];
+  // body
+  //
+  // body is the description of the task in the template
+  optional string body = 6;
+  // template_id
+  //
+  // Required. template_id represents the unique identifier of the Task
+  // Template.
+  int64 template_id = 7 [(google.api.field_behavior) = REQUIRED];
+}
+
+message PageInfo {
+  // page_size
+  //
+  // page_size represents the amount of elements retrieved in the current page.
+  int64 page_size = 1 [(google.api.field_behavior) = REQUIRED];
+  // total_results
+  //
+  // total_results represents the total amount of elements of the current list.
+  int64 total_results = 2 [(google.api.field_behavior) = REQUIRED];
+  // total_pages
+  //
+  // total_pages represents the total amount of pages for the current list
+  // (total_results / page_size).
+  int64 total_pages = 3 [(google.api.field_behavior) = REQUIRED];
+  // current_page
+  //
+  // current_page represents number of the current page.
+  int64 current_page = 4 [(google.api.field_behavior) = REQUIRED];
+  // first_page
+  //
+  // first_page represents a flag that indicates if the current page is the
+  // first page.
+  optional bool first_page = 5;
+  // last_page
+  //
+  // last_page represents a flag that indicates if the current page is the
+  // last page.
+  optional bool last_page = 6;
+  // previous_page
+  //
+  // previous_page represents the number of the previous page, empty if the
+  // current page is the first page.
+  optional int64 previous_page = 7;
+  // next_page
+  //
+  // next_page represents the number of the next page, empty if the current page
+  // is the last page
+  optional int64 next_page = 8;
+}
+
+message GetConfigRequest {}
+
+message GetConfigResponse {
+  // markets
+  //
+  // markets represents the collection of Markets that the authenticated User
+  // has permissions to see, create and update resources.
+  repeated Market markets = 1 [(google.api.field_behavior) = REQUIRED];
+  // service_lines
+  //
+  // service_lines represents the collection of Service Lines that exist on the
+  // platform.
+  repeated ServiceLine service_lines = 2
+      [(google.api.field_behavior) = REQUIRED];
+  // care_phases
+  //
+  // care_phases represents the collection of Care Phases that exist on the
+  // platform.
+  repeated CarePhase care_phases = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateEpisodeRequest {
+  // patient_summary
+  //
+  // Required. patient_summary represent patient's summary.
+  string patient_summary = 1 [(google.api.field_behavior) = REQUIRED];
+  // service_line_id
+  //
+  // Required. service_line_id represents the Service Line the new
+  // episode will belong to.
+  int64 service_line_id = 2 [(google.api.field_behavior) = REQUIRED];
+  // care_phase_id
+  //
+  // Required. care_phase_id represents the Care Phase the new Episode
+  // will belong to.
+  int64 care_phase_id = 3 [(google.api.field_behavior) = REQUIRED];
+  // market_id
+  //
+  // Required. market_id represents the Market the new Episode will
+  // belong to.
+  int64 market_id = 4 [(google.api.field_behavior) = REQUIRED];
+  // patient_id
+  //
+  // Required. patient_id represents the Patient the new Episode
+  // will belong to.
+  int64 patient_id = 5 [(google.api.field_behavior) = REQUIRED];
+  // care_day
+  //
+  // care_day represents the care day of the Episode.
+  optional int64 care_day = 6;
+  // source
+  //
+  // source represents the source of the Episode.
+  optional string source = 7;
+  // primary_diagnosis
+  //
+  // primary_diagnosis represents the primary diagnosis of the Episode.
+  optional string primary_diagnosis = 8;
+  // payer
+  //
+  // payer represents the payer of the Episode.
+  optional string payer = 9;
+  // doctors_primary_care
+  //
+  // doctors_primary_care represents the doctor's primary care of the Episode.
+  optional string doctors_primary_care = 10;
+  // apply_template_ids
+  //
+  // apply_template_ids represents an array of TaskTemplate ids that has been
+  // applied to the episode to keep track of which tasks have already been
+  // added to the Episode.
+  repeated int64 apply_template_ids = 11;
+}
+
+message CreateEpisodeResponse {
+  // episode
+  //
+  // episode represents an instance of the created Episode.
+  Episode episode = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetEpisodeRequest {
+  // episode_id
+  //
+  // Required. episode_id represents the ID of the Episode instance to
+  // retrieve.
+  int64 episode_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetEpisodeResponse {
+  // episode
+  //
+  // Represents an instance of the retrieved Episode.
+  Episode episode = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetVisitAvailabilityRequest {
+  // care_request_id
+  //
+  // Required. care_request_id represents the ID of the Care Request instance
+  // to get its availability.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // requested_dates
+  //
+  // requested_dates is the list of dates to get the availability.
+  // in the format MM-DD-YYYY.
+  repeated string requested_dates = 2;
+}
+
+message GetVisitAvailabilityResponse {
+  // availability
+  //
+  // availability represents a list of dates along with
+  // their corresponding availability.
+  repeated DateAvailability availability = 1;
+}
+
+message GetEpisodesRequest {
+  // incomplete_task
+  //
+  // incomplete_task represents a filter for Episodes with incomplete tasks.
+  optional bool incomplete_task = 1;
+  // market_id
+  //
+  // market_id represents a filter for Episodes that belong to a set of Market
+  // IDs.
+  repeated int64 market_id = 2;
+  // patient_name
+  //
+  // patient_name represents a filter for Episodes with matching Patient names.
+  optional string patient_name = 3;
+  // page
+  //
+  // page represents the page number that the request should retrieve, starting
+  // from page 1, if empty, the first page is retrieved.
+  optional int64 page = 4;
+  // page_size
+  //
+  // page_size represents the maximum amount of elements that the request
+  // should retrieve per page, if empty, default is 5.
+  optional int64 page_size = 5;
+  // service_line_id
+  //
+  // service_line_id represents a filter for Episodes that belong to a set of
+  // Service Line IDs.
+  repeated int64 service_line_id = 6;
+  // care_phase_id
+  //
+  // care_phase_id represents a filter for Episodes that belong to a set of
+  // Care Phase IDs.
+  repeated int64 care_phase_id = 7;
+}
+
+message GetEpisodesResponse {
+  // episodes
+  //
+  // episodes represents the collection of Episodes corresponding to the page
+  // and filters requested.
+  repeated Episode episodes = 1 [(google.api.field_behavior) = REQUIRED];
+  // meta
+  //
+  // meta represents the information or metadata of the page requested.
+  PageInfo meta = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateEpisodeRequest {
+  // episode_id
+  //
+  // Required. episode_id represents the ID of the Episode to be updated.
+  int64 episode_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // patient_summary
+  //
+  // patient_summary represents the patient's summary of the Episode.
+  optional string patient_summary = 2;
+  // service_line_id
+  //
+  // service_lint_id represents the ServiceLine ID the Episode belongs to.
+  optional int64 service_line_id = 3;
+  // care_phase_id
+  //
+  // care_phase_id represents the CarePhase ID the Episode belongs to.
+  optional int64 care_phase_id = 4;
+  // market_id
+  //
+  // market_id represents the Market ID the Episode belongs to.
+  optional int64 market_id = 5;
+  // admitted_at
+  //
+  // admitted_at represents the the date and time when Episode was admitted.
+  optional string admitted_at = 6;
+  // apply_template_ids
+  //
+  // apply_template_ids represents an array of TaskTemplate IDs to be applied
+  // to the Episode.
+  repeated int64 apply_template_ids = 7;
+  // is_waiver
+  //
+  // is_waiver represents if the Episode is marked as Waiver.
+  optional bool is_waiver = 8;
+}
+
+message UpdateEpisodeResponse {
+  // episode
+  //
+  // Represents an instance of the updated Episode.
+  Episode episode = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateEpisodeTasksRequest {
+  message CreateEpisodeTask {
+    // task_type
+    //
+    // Required. task_type represents the type of Task to be created.
+    string task_type = 1 [(google.api.field_behavior) = REQUIRED];
+    // task
+    //
+    // Required. task represents the description or the content of the
+    // task.
+    string task = 2 [(google.api.field_behavior) = REQUIRED];
+    // status
+    //
+    // status represents the initial status of the Task, if empty, the default
+    // is "TASK_STATUS_PENDING".
+    optional string status = 3;
+  }
+
+  // episode_id
+  //
+  // episode_id represents the id of the episode that the new Task is going to
+  // be associated with.
+  int64 episode_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // tasks
+  //
+  // tasks represents a collection of new Tasks to be created.
+  repeated CreateEpisodeTask tasks = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateEpisodeTasksResponse {
+  // tasks
+  //
+  // tasks represents the collection of Tasks created and assigned to the
+  // Episode.
+  repeated Task tasks = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateEpisodeNoteRequest {
+  message CreateEpisodeNote {
+    // details
+    //
+    // Required. details represents the description or the content of the
+    // Note.
+    string details = 1 [(google.api.field_behavior) = REQUIRED];
+    // note_kind
+    //
+    // Required. note_kind represents the type of the note, whether it is a
+    // general note, a daily update, etc.
+    string note_kind = 2 [(google.api.field_behavior) = REQUIRED];
+  }
+
+  // episode_id
+  //
+  // Required. episode_id represents the id of the episode that the new Note is
+  // going to be associated with.
+  int64 episode_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // note
+  //
+  // note represents the Note to be created and attached to the Episode.
+  CreateEpisodeNote note = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateEpisodeNoteResponse {
+  // note
+  //
+  // note represents the new Note created and assigned to the Episode.
+  Note note = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateTaskRequest {
+  // task_id
+  //
+  // Required. task_id represents the unique identifier of the Task to be
+  // updated.
+  int64 task_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // task_type
+  //
+  // Required. task_type represents the type of Task to be updated.
+  string task_type = 2 [(google.api.field_behavior) = REQUIRED];
+  // task
+  //
+  // Required. task represents the description or the content of the
+  // task.
+  string task = 3 [(google.api.field_behavior) = REQUIRED];
+  // status
+  //
+  // Required. status represents the status of the Task.
+  string status = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateTaskResponse {
+  // task
+  //
+  // task represents an instance of the updated Task, along with its updated
+  // values.
+  Task task = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateNoteRequest {
+  // note_id
+  //
+  // Required. note_id represents the unique identifier of the Note to be
+  // updated.
+  int64 note_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // details
+  //
+  // details represents the description or the content of the Note.
+  optional string details = 2;
+  // note_kind
+  //
+  // note_kind represents the type of the note, whether it is a general note, a
+  // daily update, etc.
+  optional string note_kind = 3;
+}
+
+message UpdateNoteResponse {
+  // note
+  //
+  // note represents an instance of the updated Note, along with its updated
+  // values.
+  Note note = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteTaskRequest {
+  // task_id
+  //
+  // Required. task_id represents the unique identifier of the Task to be
+  // deleted.
+  int64 task_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteTaskResponse {}
+
+message DeleteTaskTemplateRequest {
+  // template_id
+  //
+  // Required. template_id represents the unique identifier of the Task to be
+  // deleted.
+  int64 template_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteTaskTemplateResponse {}
+
+message DeleteNoteRequest {
+  // note_id
+  //
+  // Required. note_id represents the unique identifier of the Note to be
+  // deleted.
+  int64 note_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteNoteResponse {}
+
+message PinNoteRequest {
+  // note_id
+  //
+  // Required. note_id represents the unique identifier of the Note to be
+  // pinned.
+  int64 note_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message PinNoteResponse {
+  // note
+  //
+  // note represents an instance of the pinned Note, along with its updated
+  // pin state.
+  Note note = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UnpinNoteRequest {
+  // note_id
+  //
+  // Required. note_id represents the unique identifier of the Note to be
+  // unpinned.
+  int64 note_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UnpinNoteResponse {
+  // note
+  //
+  // note represents an instance of the pinned Note, along with its updated
+  // pin state.
+  Note note = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreatePatientRequest {
+  // first_name
+  //
+  // Required. first_name represents the first name of the Patient.
+  string first_name = 1 [(google.api.field_behavior) = REQUIRED];
+  // middle_name
+  //
+  // middle_name represents the middle name of the Patient.
+  optional string middle_name = 2;
+  // last_name
+  //
+  // Required. last_name represents the last name of the Patient
+  string last_name = 3 [(google.api.field_behavior) = REQUIRED];
+  // date_of_birth
+  //
+  // Required. date_of_birth represents the date of birth of the Patient
+  string date_of_birth = 4 [(google.api.field_behavior) = REQUIRED];
+  // sex
+  //
+  // Required. sex represents the sex of the Patient, male, female, other or
+  // unspecified.
+  string sex = 5 [(google.api.field_behavior) = REQUIRED];
+  // phone_number
+  //
+  // phone_number represents the phone number of the Patient.
+  optional string phone_number = 6;
+  // athena_medical_record_number
+  //
+  // athena_medical_record_number represents the unique identifier of the
+  // Patient on Athena.
+  optional string athena_medical_record_number = 7;
+  // medical_power_of_attorney_details
+  //
+  // medical_power_of_attorney_details
+  optional string medical_power_of_attorney_details = 8;
+  // payer
+  //
+  // payer
+  optional string payer = 9;
+  // preferred_pharmacy_details
+  //
+  // preferred_pharmacy_details represents the preferred pharmacy of the
+  // Patient.
+  optional string preferred_pharmacy_details = 10;
+  // doctor_details
+  //
+  // doctor_details represents the details of the Patient´s doctor, like name,
+  // phone number or any other necessary details.
+  optional string doctor_details = 11;
+  // referrer
+  //
+  // referrer
+  optional string referrer = 12;
+  // address_street
+  //
+  // address_street represents the main street details of the main address of
+  // the Patient.
+  optional string address_street = 13;
+  // address_street_2
+  //
+  // address_street_2 represents the extra street details of the main address of
+  // the Patient.
+  optional string address_street_2 = 14;
+  // address_city
+  //
+  // address_city represents the name of the city of the main address of the
+  // Patient.
+  optional string address_city = 15;
+  // address_state
+  //
+  // address_state represents the name of the state of the main address of the
+  // Patient.
+  optional string address_state = 16;
+  // address_zipcode
+  //
+  // address_zipcode represents the zipcode number of the main address of the
+  // Patient.
+  optional string address_zipcode = 17;
+  // address_notes
+  //
+  // address_notes represents any extra note or comments related to the main
+  // address of the Patient.
+  optional string address_notes = 18;
+}
+
+message CreatePatientResponse {
+  // patient
+  //
+  // patient represents the new Patient instance.
+  Patient patient = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetPatientRequest {
+  // patient_id
+  //
+  // Required. patient_id represents the ID of the Patient instance to
+  // retrieve.
+  int64 patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetPatientResponse {
+  // patient
+  //
+  // patient represents an instance of the retrieved Patient.
+  Patient patient = 1 [(google.api.field_behavior) = REQUIRED];
+  // medical_decision_makers
+  //
+  // medical_decision_makers represent a list of MedicalDecisionMakers that
+  // are associated with the retrieved Patient.
+  repeated MedicalDecisionMaker medical_decision_makers = 2;
+  // insurances
+  //
+  // insurances represent a list of Insurances that are associated with the
+  // retrieved Patient.
+  repeated Insurance insurances = 3;
+  // pharmacies
+  //
+  // pharmacies represent a list of Pharmacy instances that are associated
+  // with the retrieved Patient.
+  repeated Pharmacy pharmacies = 4;
+  // external_care_providers
+  //
+  // external_care_providers represent a list of ExternalCareProviders that
+  // are associated with the retrieved Patient.
+  repeated ExternalCareProvider external_care_providers = 5;
+}
+
+message GetPatientsRequest {
+  // name
+  //
+  // Required. name represents how the Patient list is going to be filtered by,
+  // name can be the Patient's first, middle or last name.
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+  // page
+  //
+  // page represents the page number that the request should retrieve, starting
+  // from page 1, if empty, the first page is retrieved.
+  optional int64 page = 2;
+  // page_size
+  //
+  // page_size represents the maximum amount of elements that the request
+  // should retrieve per page, if empty, default is 5.
+  optional int64 page_size = 3;
+}
+
+message GetPatientsResponse {
+  // patients
+  //
+  // patients represents the collection of Patients corresponding to the page
+  // and filters requested.
+  repeated Patient patients = 1 [(google.api.field_behavior) = REQUIRED];
+  // meta
+  //
+  // meta represents the information or metadata of the page requested.
+  PageInfo meta = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdatePatientRequest {
+  // patient_id
+  //
+  // Required. patient_id represents the unique identifier of the Patient.
+  int64 patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // first_name
+  //
+  // first_name represents the first name of the Patient.
+  string first_name = 2 [(google.api.field_behavior) = REQUIRED];
+  // middle_name
+  //
+  // middle_name represents the middle name of the Patient.
+  optional string middle_name = 3;
+  // last_name
+  //
+  // Required. last_name represents the last name of the Patient
+  string last_name = 4 [(google.api.field_behavior) = REQUIRED];
+  // date_of_birth
+  //
+  // Required. date_of_birth represents the date of birth of the Patient
+  string date_of_birth = 5 [(google.api.field_behavior) = REQUIRED];
+  // sex
+  //
+  // Required. sex represents the sex of the Patient, male, female, other or
+  // unspecified.
+  string sex = 6 [(google.api.field_behavior) = REQUIRED];
+  // phone_number
+  //
+  // phone_number represents the phone number of the Patient.
+  optional string phone_number = 7;
+  // athena_medical_record_number
+  //
+  // athena_medical_record_number represents the unique identifier of the
+  // Patient on the Athena db.
+  optional string athena_medical_record_number = 8;
+  // medical_power_of_attorney_details
+  //
+  // medical_power_of_attorney_details
+  optional string medical_power_of_attorney_details = 9;
+  // payer
+  //
+  // payer
+  optional string payer = 10;
+  // preferred_pharmacy_details
+  //
+  // preferred_pharmacy_details represents the preferred pharmacy of the
+  // Patient.
+  optional string preferred_pharmacy_details = 11;
+  // doctor_details
+  //
+  // doctor_details represents the details of the Patient´s doctor, like name,
+  // phone number or any other necessary details.
+  optional string doctor_details = 12;
+  // referrer
+  //
+  // referrer
+  optional string referrer = 13;
+  // address_street
+  //
+  // address_street represents the main street details of the main address of
+  // the Patient.
+  optional string address_street = 14;
+  // address_street_2
+  //
+  // address_street_2 represents the extra street details of the main address of
+  // the Patient.
+  optional string address_street_2 = 15;
+  // address_city
+  //
+  // address_city represents the name of the city of the main address of the
+  // Patient.
+  optional string address_city = 16;
+  // address_state
+  //
+  // address_state represents the name of the state of the main address of the
+  // Patient.
+  optional string address_state = 17;
+  // address_zipcode
+  //
+  // address_zipcode represents the zipcode number of the main address of the
+  // Patient.
+  optional string address_zipcode = 18;
+  // address_notes
+  //
+  // address_notes represents any extra note or comments related to the main
+  // address of the Patient.
+  optional string address_notes = 19;
+}
+
+message UpdatePatientResponse {
+  // patient
+  //
+  // patient represents an instance of the updated Patient, along with its
+  // updated values.
+  Patient patient = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateTemplateTask {
+  // body
+  //
+  // body is the description of the task in the template
+  string body = 1 [(google.api.field_behavior) = REQUIRED];
+  // task_type_id
+  //
+  // task_type_id is the type of the task in the template.
+  int64 task_type_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateTaskTemplateRequest {
+  // name
+  //
+  // name of the task template
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+  // summary
+  //
+  // summary is a text that describes the intended usage of the task template
+  string summary = 2 [(google.api.field_behavior) = REQUIRED];
+  // service_line_id
+  //
+  // service_line_id represents the ServiceLine ID the Template belongs to.
+  int64 service_line_id = 3 [(google.api.field_behavior) = REQUIRED];
+  // care_phase_id
+  //
+  // Optional. care_phase_id represents the CarePhase ID the Template belongs
+  // to.
+  optional int64 care_phase_id = 4;
+  // tasks
+  //
+  // tasks is an array that contains the tasks to be added in the template.
+  repeated CreateTemplateTask tasks = 5;
+}
+
+message CreateTaskTemplateResponse {
+  // task_template
+  //
+  // task_template represents the task template created in the service response.
+  TaskTemplate task_template = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetTaskTemplateRequest {
+  // task_template_id
+  //
+  // Required. template_id represents the unique identifier of the template to
+  // be deleted.
+  int64 task_template_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetTaskTemplateResponse {
+  // task_template
+  //
+  // task_template represents the task template created in the service response.
+  TaskTemplate task_template = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetUsersByIDRequest {
+  // user_ids
+  //
+  // Required. user_ids represents an array of user IDs to filter the result by.
+  repeated int64 user_ids = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetUsersByIDResponse {
+  // users
+  //
+  // users represents the list of instances of the requested Users.
+  repeated User users = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetActivePatientsRequest {
+  // athena_ids
+  //
+  // athena_ids is used to filter the response by this specific athena number in
+  // the patient row.
+  repeated string athena_ids = 1;
+  // page
+  //
+  // page represents the page number that the request should retrieve, starting
+  // from page 1, if empty, the first page is retrieved.
+  optional int64 page = 2;
+  // page_size
+  //
+  // page_size represents the maximum amount of elements that the request
+  // should retrieve per page, if empty, default is 5.
+  optional int64 page_size = 3;
+}
+
+message GetActivePatientsResponse {
+  // patients
+  //
+  // patients represents the collection of Active Patients corresponding to the
+  // page and filters requested.
+  repeated Patient patients = 1 [(google.api.field_behavior) = REQUIRED];
+  // meta
+  //
+  // meta represents the information or metadata of the page requested.
+  PageInfo meta = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetEpisodeVisitsRequest {
+  // episode_id
+  //
+  // Required. episode_id represents the ID of the Episode instance to
+  // retrieve Visits.
+  int64 episode_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetEpisodeVisitsResponse {
+  // visits
+  //
+  // visits represents the list of Visits associated to the given Episode ID.
+  repeated VisitListElement visits = 1;
+}
+
+message GetVisitRequest {
+  // visit_id
+  //
+  // Required. visit_id represents the ID of the Visit to be retrieved.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetVisitResponse {
+  // visit
+  //
+  // visit represents the visit entity that is searched by id.
+  Visit visit = 1;
+  // summary
+  //
+  // summary represents the summary that is associated with the visit
+  // searched by id.
+  VisitSummary summary = 2;
+}
+
+message GetVisitTypesRequest {}
+
+message GetVisitTypesResponse {
+  // visit_types
+  //
+  // visit_types represents the list of all VisitTypes.
+  repeated VisitType visit_types = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetAddressesByIDRequest {
+  // address_ids
+  //
+  // Required. address_ids represents an array of address IDs to filter the
+  // result by.
+  repeated int64 address_ids = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetAddressesByIDResponse {
+  // users
+  //
+  // users represents the list of Address instances.
+  repeated Address addresses = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateVisitFromStationCRRequest {
+  // patient
+  //
+  // patient represents an instance of the updated Patient, along with its
+  // updated values.
+  CreatePatientFromStationCRRequest patient = 1
+      [(google.api.field_behavior) = REQUIRED];
+  // care_request_id
+  //
+  // Required. care_request_id the unique identifier of the mapped care_request
+  // in station.
+  int64 care_request_id = 2 [(google.api.field_behavior) = REQUIRED];
+  // service_line_id
+  //
+  // service_line_id represents the ServiceLine ID the Episode belongs to.
+  int64 service_line_id = 3 [(google.api.field_behavior) = REQUIRED];
+  // market_id
+  //
+  // Required. market_id represents the Market the new Episode will
+  // belong to.
+  int64 market_id = 4 [(google.api.field_behavior) = REQUIRED];
+  // patient_summary
+  //
+  // patient_summary represents the patient's summary of the Episode.
+  optional string patient_summary = 5;
+  // payer
+  //
+  // payer represents the payer of the Episode or Visit.
+  optional string payer = 6;
+  // source
+  //
+  // source represents the source of the Episode.
+  optional string source = 7;
+  // source_care_request_id
+  //
+  // source represents the source Care Request from which this one
+  // is duplicated.
+  optional int64 source_care_request_id = 8;
+  // created_by_user_id
+  //
+  // created_by_user_id represents the user that created the care request.
+  optional int64 created_by_user_id = 9;
+  // status
+  //
+  // status represents the current status of the care request. Most likely
+  // "requested".
+  string status = 10 [(google.api.field_behavior) = REQUIRED];
+  // status_updated_at
+  //
+  // status_updated_at represents the last datetime when the status was updated.
+  string status_updated_at = 11 [(google.api.field_behavior) = REQUIRED];
+  // address_id
+  //
+  // address_id represents the address id of the care request.
+  int64 address_id = 12 [(google.api.field_behavior) = REQUIRED];
+  // patient_availability_start
+  //
+  // patient_availability_start represents the datetime the patient can start
+  // receiving the care request team.
+  string patient_availability_start = 13
+      [(google.api.field_behavior) = REQUIRED];
+  // patient_availability_end
+  //
+  // patient_availability_end represents the datetime the patient can end
+  // receiving the care request team.
+  string patient_availability_end = 14 [(google.api.field_behavior) = REQUIRED];
+  // car_name
+  //
+  // car_name represents the name of the car assigned to the care request
+  string car_name = 15 [(google.api.field_behavior) = REQUIRED];
+  // provider_user_ids
+  //
+  // provider_user_ids represents the ids of the shift team assigned to the care
+  // request
+  repeated int64 provider_user_ids = 16
+      [(google.api.field_behavior) = REQUIRED];
+  ;
+  // original_care_request_id
+  //
+  // original_care_request_id represents the original Care Request from which
+  // this one was created.
+  int64 original_care_request_id = 17;
+  // car_id
+  //
+  // car_id represents the ID of the car assigned to the Visit.
+  optional int64 car_id = 18;
+}
+
+message CreatePatientFromStationCRRequest {
+  message CreateInsuranceFromStationCR {
+    // name
+    //
+    // name refers to the name of the insurance
+    string name = 1 [(google.api.field_behavior) = REQUIRED];
+    // member_id
+    //
+    // member_id represents id that the patient has with their insurance
+    optional string member_id = 2;
+    // priority
+    //
+    // priority represents which priority the insurance will follow 1 being the
+    // primary
+    optional int32 priority = 3;
+  }
+
+  message CreateMedicalDecisionMakerFromStationCR {
+    // first_name
+    //
+    // Required. first_name represents the first name of the Medical Decision
+    // Maker.
+    string first_name = 1 [(google.api.field_behavior) = REQUIRED];
+    // last_name
+    //
+    // last_name represents the last name of the Medical Decision Maker.
+    optional string last_name = 2;
+    // phone_number
+    //
+    // phone_number represents the phone number of the Medical Decision Maker.
+    optional string phone_number = 3;
+    // address
+    //
+    // address represents the full address Medical Decision Maker.
+    optional string address = 4;
+    // relationship
+    //
+    // relationship represents the relationship of the Medical Decision Maker to
+    // the patient.
+    optional string relationship = 5;
+  }
+
+  // first_name
+  //
+  // Required. first_name represents the first name of the Patient.
+  string first_name = 1 [(google.api.field_behavior) = REQUIRED];
+  // middle_name
+  //
+  // middle_name represents the middle name of the Patient.
+  optional string middle_name = 2;
+  // last_name
+  //
+  // Required. last_name represents the last name of the Patient
+  string last_name = 3 [(google.api.field_behavior) = REQUIRED];
+  // date_of_birth
+  //
+  // Required. date_of_birth represents the date of birth of the Patient
+  string date_of_birth = 4 [(google.api.field_behavior) = REQUIRED];
+  // sex
+  //
+  // Required. sex represents the sex of the Patient, male, female, other or
+  // unspecified.
+  string sex = 5 [(google.api.field_behavior) = REQUIRED];
+  // phone_number
+  //
+  // phone_number represents the phone number of the Patient.
+  string phone_number = 6 [(google.api.field_behavior) = REQUIRED];
+  // athena_medical_record_number
+  //
+  // athena_medical_record_number represents the unique identifier of the
+  // Patient on the Athena db.
+  string athena_medical_record_number = 7
+      [(google.api.field_behavior) = REQUIRED];
+  // medical_decision_maker
+  //
+  // medical_decision_maker who's responsible for the patient
+  CreateMedicalDecisionMakerFromStationCR medical_decision_maker = 8
+      [(google.api.field_behavior) = REQUIRED];
+  // insurance
+  //
+  // insurance represents the insurance object for the patient
+  repeated CreateInsuranceFromStationCR insurances = 9
+      [(google.api.field_behavior) = REQUIRED];
+  // address_street
+  //
+  // address_street represents the main street details of the main address of
+  // the Patient.
+  optional string address_street = 10;
+  // address_street_2
+  //
+  // address_street_2 represents the extra street details of the main address of
+  // the Patient.
+  optional string address_street_2 = 11;
+  // address_city
+  //
+  // address_city represents the name of the city of the main address of the
+  // Patient.
+  optional string address_city = 12;
+  // address_state
+  //
+  // address_state represents the name of the state of the main address of the
+  // Patient.
+  optional string address_state = 13;
+  // address_zipcode
+  //
+  // address_zipcode represents the zipcode number of the main address of the
+  // Patient.
+  optional string address_zipcode = 14;
+  // address_id
+  //
+  // address_id represents station's address id for the patient. This is
+  // typically tied to the last care request in station.
+  optional int64 address_id = 15;
+}
+
+message CreateVisitFromStationCRResponse {
+  // visit
+  //
+  // visit represents the visit created in the service response.
+  Visit visit = 1;
+  // patient
+  //
+  // patient represents the patient created in the service response, returns
+  // null when no patient was created
+  Patient patient = 2;
+  // episode
+  //
+  // episode represents the episode created in the service response, returns
+  // null when no episode was created
+  Episode episode = 3;
+}
+
+message CreateCallVisitRequest {
+  // episode_id
+  //
+  // Required. episode_id represents the unique identifier of the Episode the
+  // Visit belongs to.
+  int64 episode_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // visit_type_id
+  //
+  // Required. visit_type_id is the id to the visit_type entry associated with
+  // this Visit.
+  int64 visit_type_id = 2 [(google.api.field_behavior) = REQUIRED];
+  // summary
+  //
+  // Required. summary represents the summary body that is going to be created
+  // and associated to the visit.
+  string summary = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateCallVisitRequest {
+  // visit_id
+  //
+  // Required. visit_id represents the unique identifier of the Visit that is
+  // going to be updated.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // visit_type_id
+  //
+  // visit_type_id is the id of the VisitType entry associated with
+  // this Visit.
+  optional int64 visit_type_id = 2;
+  // summary
+  //
+  // summary represents the summary body associated to this visit that is going
+  // to be updated.
+  optional string summary = 3;
+}
+
+message UpdateCallVisitResponse {
+  // visit
+  //
+  // visit represents an instance of the recently updated Visit.
+  Visit visit = 1;
+  // summary
+  //
+  // summary represents an instance of the Summary associated with the updated
+  // Visit.
+  VisitSummary summary = 2;
+}
+
+message CreateCallVisitResponse {
+  // visit
+  //
+  // visit represents an instance of the recently created Visit.
+  Visit visit = 1;
+  // summary
+  //
+  // summary represents an instance of the recently created Summary.
+  VisitSummary summary = 2;
+}
+
+message UpdateVisitFromStationCRRequest {
+  // care_request_id
+  //
+  // Required. care_request_id represents the ID of the CareRequest in station
+  // associated with the Visit that is intended to be updated, this is only used
+  // to locate the Visit to update.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // updated_by_user_id
+  //
+  // Required. updated_by_user_id represent the ID of the user that triggered
+  // the update to the Visit.
+  optional int64 updated_by_user_id = 2;
+  // service_line_id
+  //
+  // service_line_id represents the ServiceLine ID the Visit's Episode belongs
+  // to.
+  optional int64 service_line_id = 3;
+  // status
+  //
+  // status represents the status of the Visit.
+  optional string status = 4;
+  // status_updated_at
+  //
+  // status_updated_at represents the date when the Visit status was last
+  // updated.
+  optional string status_updated_at = 5;
+  // patient_availability_start
+  //
+  // patient_availability_start represents the datetime the patient can start
+  // receiving the care team.
+  optional string patient_availability_start = 6;
+  // patient_availability_end
+  //
+  // patient_availability_end represents the datetime the patient is not
+  // available to receive the care team.
+  optional string patient_availability_end = 7;
+  // car_name
+  //
+  // car_name represents the name of the car assigned to the Visit.
+  optional string car_name = 8;
+  // provider_user_ids
+  //
+  // provider_user_ids represents the user ids of the providers in the care team
+  // assigned to the Visit.
+  repeated int64 provider_user_ids = 9;
+  // address_id
+  //
+  // address_id represents the address id of the Visit.
+  optional int64 address_id = 10;
+  // original_care_request_id
+  //
+  // original_care_request_id represents the original Care Request from which
+  // this one was created.
+  optional int64 original_care_request_id = 11;
+  // virtual_app_id
+  //
+  // virtual_app_id represents the ID of the User that is assigned to the Visit
+  // as Virtual APP.
+  optional int64 virtual_app_id = 12;
+  // car_id
+  //
+  // car_id represents the ID of the car assigned to the Visit.
+  optional int64 car_id = 13;
+}
+
+message UpdateVisitFromStationCRResponse {
+  // visit
+  //
+  // visit represents an instance of the updated Visit.
+  Visit visit = 1;
+}
+
+message GetProviderTypesRequest {}
+
+message GetProviderTypesResponse {
+  // provider_types
+  //
+  // provider_types represents the list of all ProviderTypes in the catalog.
+  repeated ProviderType provider_types = 1;
+}
+
+message CreateVisitSummaryRequest {
+  // visit_id
+  //
+  // Required. visit_id represents the ID of the Visit for which the
+  // VisitSummary will be created.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // body
+  //
+  // Required. body represents the VisitSummary content.
+  string body = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateVisitSummaryResponse {
+  // summary
+  //
+  // summary represents an instance of the newly created VisitSummary.
+  VisitSummary summary = 1;
+}
+
+message UpdateVisitSummaryRequest {
+  // visit_id
+  //
+  // Required. visit_id represents the ID of the Visit for which the
+  // VisitSummary will be updated.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // body
+  //
+  // Required. body represents the new VisitSummary content.
+  string body = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateVisitSummaryResponse {
+  // summary
+  //
+  // summary represents an instance of the recently updated VisitSummary.
+  VisitSummary summary = 1;
+}
+
+message UpdateVisitStatusRequest {
+  enum UpdateVisitStatusOption {
+    UPDATE_VISIT_STATUS_OPTION_UNSPECIFIED = 0;
+    UPDATE_VISIT_STATUS_OPTION_ON_ROUTE = 1;
+    UPDATE_VISIT_STATUS_OPTION_ON_SCENE = 2;
+    UPDATE_VISIT_STATUS_OPTION_COMPLETE = 3;
+    UPDATE_VISIT_STATUS_OPTION_COMMITTED = 4;
+    UPDATE_VISIT_STATUS_OPTION_ARCHIVED = 5;
+  }
+
+  // visit_id
+  //
+  // Required. visit_id represents the ID of the Visit wto be updated.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // status
+  //
+  // status represents the new Visit status.
+  UpdateVisitStatusOption status = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateVisitStatusResponse {
+  // visit
+  //
+  // Represents an instance of the updated Visit.
+  Visit visit = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateVisitRequest {
+  // visit_id
+  //
+  // Required. visit_id represents the ID of the Visit to be updated.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // visit_type_id
+  //
+  // visit_type_id is the ID to the visit_type entry that
+  // is going to be updated for the Visit.
+  optional int64 visit_type_id = 2;
+}
+
+message UpdateVisitResponse {
+  // visit
+  //
+  // Represents an instance of the updated Visit.
+  Visit visit = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateVisitEpisodeRequest {
+  // visit_id
+  //
+  // Required. visit_id represents the ID of the Visit to be updated.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // episode_id
+  //
+  // Required. episode_id represents the ID of the Episode the Visit will
+  // be assigned to.
+  int64 episode_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateVisitEpisodeResponse {
+  // visit
+  //
+  // Represents an instance of the updated Visit.
+  Visit visit = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateInsuranceRequest {
+  // patient_id
+  //
+  // patient_id is the id of the patient for which this insurance is going to be
+  // associated with.
+  int64 patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the Insurance.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  // member_id
+  //
+  // member_id represents the external member_id value of the Insurance, most
+  // likely managed by each insurance company.
+  optional string member_id = 3;
+}
+
+message CreateInsuranceResponse {
+  // insurance
+  //
+  // insurance is the instance of the created Insurance entity.
+  Insurance insurance = 1 [(google.api.field_behavior) = REQUIRED];
+  // patient_insurances
+  //
+  // patient_insurances is the list of Insurances associated to the Patient
+  // whose Insurance was just created. It is sorted by priority.
+  repeated Insurance patient_insurances = 2;
+}
+
+message UpdateInsuranceRequest {
+  // insurance_id
+  //
+  // insurance_id represents the id of Insurance to update.
+  int64 insurance_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the Insurance.
+  optional string name = 2;
+  // member_id
+  //
+  // member_id represents the external member_id value of the Insurance, most
+  // likely managed by each insurance company.
+  optional string member_id = 3;
+}
+
+message UpdateInsuranceResponse {
+  // insurance
+  //
+  // insurance is the instance of the updated Insurance entity.
+  Insurance insurance = 1 [(google.api.field_behavior) = REQUIRED];
+  // patient_insurances
+  //
+  // patient_insurances is the list of Insurances associated to the Patient
+  // whose Insurance was just updated. It is sorted by priority.
+  repeated Insurance patient_insurances = 2;
+}
+
+message DeleteInsuranceRequest {
+  // insurance_id
+  //
+  // insurance_id is the id for the Insurance to delete.
+  int64 insurance_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteInsuranceResponse {
+  // patient_insurances
+  //
+  // patient_insurances is the list of Insurances associated to the Patient
+  // whose Insurance was just deleted. It is sorted by priority.
+  repeated Insurance patient_insurances = 1;
+}
+
+message CreateMedicalDecisionMakerRequest {
+  // patient_id
+  //
+  // patient_id is the id of the Patient for which this MedicalDecisionMaker.
+  // is going to be associated with.
+  int64 patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // first_name
+  //
+  // first_name represents the first name of the MedicalDecisionMaker.
+  string first_name = 2 [(google.api.field_behavior) = REQUIRED];
+  // last_name
+  //
+  // last_name represents the last name of the MedicalDecisionMaker.
+  string last_name = 3 [(google.api.field_behavior) = REQUIRED];
+  // phone_number
+  //
+  // phone_number represents the phone number of the MedicalDecisionMaker.
+  optional string phone_number = 4;
+  // address
+  //
+  // address represents the full string representation of the
+  // MedicalDecisionMaker address.
+  optional string address = 5;
+  // relationship
+  //
+  // relationship represents the relation the MedicalDecisionMaker has with the
+  // patient it is assigned to, like "parent", "tutor", etc.
+  optional string relationship = 6;
+}
+
+message CreateMedicalDecisionMakerResponse {
+  // medical_decision_maker
+  //
+  // An instance of the created MedicalDecisionMaker entity.
+  MedicalDecisionMaker medical_decision_maker = 1
+      [(google.api.field_behavior) = REQUIRED];
+  // patient_medical_decision_makers
+  //
+  // patient_medical_decision_makers is the list of all entities
+  // associated with the Patient whose MedicalDecisionMaker was created.
+  repeated MedicalDecisionMaker patient_medical_decision_makers = 2;
+}
+
+message UpdateMedicalDecisionMakerRequest {
+  // medical_decision_maker_id
+  //
+  // medical_decision_maker_id of the MedicalDecisionMaker entity to update.
+  int64 medical_decision_maker_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // first_name
+  //
+  // first_name represents the first name of the MedicalDecisionMaker.
+  optional string first_name = 2;
+  // last_name
+  //
+  // last_name represents the last name of the MedicalDecisionMaker.
+  optional string last_name = 3;
+  // phone_number
+  //
+  // phone_number represents the phone number of the MedicalDecisionMaker.
+  optional string phone_number = 4;
+  // address
+  //
+  // address represents the full string representation of the
+  // MedicalDecisionMaker address.
+  optional string address = 5;
+  // relationship
+  //
+  // relationship represents the relation the MedicalDecisionMaker has with the
+  // patient it is assigned to, like "parent", "tutor", etc.
+  optional string relationship = 6;
+}
+
+message UpdateMedicalDecisionMakerResponse {
+  // medical_decision_maker
+  //
+  // an instance of the updated MedicalDecisionMaker entity.
+  MedicalDecisionMaker medical_decision_maker = 1
+      [(google.api.field_behavior) = REQUIRED];
+  // patient_medical_decision_makers
+  //
+  // patient_medical_decision_makers is the list of all entities
+  // associated with the Patient whose MedicalDecisionMaker was updated.
+  repeated MedicalDecisionMaker patient_medical_decision_makers = 2;
+  ;
+}
+
+message CreatePharmacyRequest {
+  // patient_id
+  //
+  // patient_id is the id of the Patient for which this Pharmacy.
+  // is going to be associated with.
+  int64 patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the Pharmacy.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  // phone_number
+  //
+  // phone_number represents the phone number of the Pharmacy.
+  optional string phone_number = 3;
+  // fax_number
+  //
+  // fax_number represents the fax number of the Pharmacy.
+  optional string fax_number = 4;
+  // address
+  //
+  // address represents the full string representation of the Pharmacy address.
+  optional string address = 5;
+}
+
+message CreatePharmacyResponse {
+  // pharmacy
+  //
+  // an instance of the created Pharmacy entity.
+  Pharmacy pharmacy = 1 [(google.api.field_behavior) = REQUIRED];
+  // patient_pharmacies
+  //
+  // patient_pharmacies is the list of all pharmacies associated with the
+  // patient whose pharmacy was created.
+  repeated Pharmacy patient_pharmacies = 2;
+}
+
+message UpdatePharmacyRequest {
+  // pharmacy_id
+  //
+  // id represents the unique identifier of the Pharmacy to update.
+  int64 pharmacy_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the Pharmacy.
+  optional string name = 2;
+  // phone_number
+  //
+  // phone_number represents the phone number of the Pharmacy.
+  optional string phone_number = 3;
+  // fax_number
+  //
+  // fax_number represents the fax number of the Pharmacy.
+  optional string fax_number = 4;
+  // address
+  //
+  // address represents the full string representation of the Pharmacy address.
+  optional string address = 5;
+}
+
+message UpdatePharmacyResponse {
+  // pharmacy
+  //
+  // an instance of the updated Pharmacy entity.
+  Pharmacy pharmacy = 1 [(google.api.field_behavior) = REQUIRED];
+  // patient_pharmacies
+  //
+  // patient_pharmacies is the list of all Pharmacies associated with the
+  // Patient whose Pharmacy was updated.
+  repeated Pharmacy patient_pharmacies = 2;
+  ;
+}
+
+message CreateExternalCareProviderRequest {
+  // patient_id
+  //
+  // patient_id is the id of the patient for which this provider
+  // is going to be associated with.
+  int64 patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the ExternalCareProvider.
+  string name = 2 [(google.api.field_behavior) = REQUIRED];
+  // phone_number
+  //
+  // phone_number represents the phone number of the ExternalCareProvider.
+  optional string phone_number = 3;
+  // fax_number
+  //
+  // fax_number represents the fax number of the ExternalCareProvider.
+  optional string fax_number = 4;
+  // address
+  //
+  // address represents the full string representation of the
+  // ExternalCareProvider address.
+  optional string address = 5;
+  // provider_type_id
+  //
+  // provider_type_id represents the ID of the ProviderType that this
+  // ExternalCareProvider is assigned to.
+  int64 provider_type_id = 6 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateExternalCareProviderResponse {
+  // external_care_provider
+  //
+  // an instance of the created ExternalCareProvider entity.
+  ExternalCareProvider external_care_provider = 1
+      [(google.api.field_behavior) = REQUIRED];
+  // patient_external_care_providers
+  //
+  // patient_external_care_providers is the list of providers associated
+  // with patient whose ExternalCareProvider was just created.
+  repeated ExternalCareProvider patient_external_care_providers = 2;
+}
+
+message UpdateExternalCareProviderRequest {
+  // external_care_provider_id
+  //
+  // external_care_provider_id represents the unique identifier of the
+  // ExternalCareProvider to update.
+  int64 external_care_provider_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // name
+  //
+  // name represents the name of the ExternalCareProvider.
+  optional string name = 2;
+  // phone_number
+  //
+  // phone_number represents the phone number of the ExternalCareProvider.
+  optional string phone_number = 3;
+  // fax_number
+  //
+  // fax_number represents the fax number of the ExternalCareProvider.
+  optional string fax_number = 4;
+  // address
+  //
+  // address represents the full string representation of the
+  // ExternalCareProvider address.
+  optional string address = 5;
+  // provider_type_id
+  //
+  // provider_type_id represents the ID of the ProviderType that this
+  // ExternalCareProvider is assigned to.
+  optional int64 provider_type_id = 6;
+}
+
+message UpdateExternalCareProviderResponse {
+  // external_care_provider
+  //
+  // an instance of the updated ExternalCareProvider entity.
+  ExternalCareProvider external_care_provider = 1
+      [(google.api.field_behavior) = REQUIRED];
+  // patient_external_care_providers
+  //
+  // patient_external_care_providers is the list of providers associated
+  // with patient whose ExternalCareProvider was just updated.
+  repeated ExternalCareProvider patient_external_care_providers = 2;
+}
+
+message DeleteExternalCareProviderRequest {
+  // external_care_provider_id
+  //
+  // external_care_provider_id represents the unique identifier of the
+  // ExternalCareProvider to delete.
+  int64 external_care_provider_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteExternalCareProviderResponse {
+  // patient_external_care_providers
+  //
+  // patient_external_care_providers is the list of providers associated
+  // with patient whose ExternalCareProvider was just deleted.
+  repeated ExternalCareProvider patient_external_care_providers = 1;
+}
+
+message DuplicateEpisodeLatestVisitRequest {
+  // episode_id
+  //
+  // Required. episode_id represents the ID of the Episode instance to
+  // retrieve Visits.
+  int64 episode_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DuplicateEpisodeLatestVisitResponse {
+  // care_request_id
+  //
+  // care_request_id represents the ID of the duplicated Care Request.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DuplicateCareRequestInServiceRequestRequest {
+  // service_request_id
+  //
+  // Required. service_request_id represents the ID of the Service Request
+  // instance to retrieve the Care Request to be duplicated.
+  int64 service_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DuplicateCareRequestInServiceRequestResponse {
+  // care_request_id
+  //
+  // care_request_id represents the ID of the duplicated Care Request.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ScheduleVisitRequest {
+  // care_request_id
+  //
+  // care_request_id represents the ID of the Care Request to be scheduled.
+  int64 care_request_id = 1;
+  // patient_availability_start_time
+  //
+  // patient_availability_start_time represents the start time of the patient's
+  // availability in Unix format
+  int64 patient_availability_start_time = 2;
+  // patient_availability_end_time
+  //
+  // patient_availability_end_time represents the end time of the patient's
+  // availability in Unix format
+  int64 patient_availability_end_time = 3;
+  // episode_id
+  //
+  // episode_id represents the id of the Episode where the Visit should be saved
+  // upon scheduling.
+  int64 episode_id = 4;
+}
+
+message ScheduleVisitResponse {
+  // visit
+  //
+  // visit is the Visit for which the scheduling was performed.
+  Visit visit = 1;
+}
+
+message CanScheduleVisitRequest {
+  // care_request_id
+  //
+  // care_request_id represents the ID of the Care Request to be checked.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // patient_availability_start_time
+  //
+  // patient_availability_start_time represents the start time of the patient's
+  // availability in Unix format.
+  int64 patient_availability_start_time = 2
+      [(google.api.field_behavior) = REQUIRED];
+  // patient_availability_end_time
+  //
+  // patient_availability_end_time represents the end time of the patient's
+  // availability in Unix format.
+  int64 patient_availability_end_time = 3
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+message CanScheduleVisitResponse {
+  // can_schedule_visit
+  //
+  // can_schedule_visit signals if the visit can be scheduled.
+  bool can_schedule_visit = 1 [(google.api.field_behavior) = REQUIRED];
+  // reason
+  //
+  // reason holds the  reason as to why the visit cannot be scheduled.
+  // Only populated if can_schedule_visit is false.
+  caremanager.UnableToScheduleReason reason = 2;
+}
+
+message CancelVisitRequest {
+  // care_request_id
+  //
+  // care_request_id represents the ID of the Care Request to be canceled.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CancelVisitResponse {}
+
+message GetServiceRequestsRequest {
+  // status_ids
+  //
+  // status_ids isa set of possible status for ServiceRequest resource.
+  repeated int64 status_ids = 1;
+  // search_term
+  //
+  // search_term is a string by which the ServiceRequest will be filtered, based
+  // on a match with the patient's name or the chief complaint
+  optional string search_term = 2;
+  // page
+  //
+  // page represents the page number that the request should retrieve, starting
+  // from page 1, if empty, the first page is retrieved.
+  optional int64 page = 3;
+  // page_size
+  //
+  // page_size represents the maximum amount of elements that the request
+  // should retrieve per page, if empty, default is 5.
+  optional int64 page_size = 4;
+  // market_ids
+  //
+  // market_ids is a list of market ids to which the service request belongs.
+  repeated int64 market_ids = 5;
+}
+
+message GetServiceRequestsResponse {
+  // service_requests
+  //
+  // service_requests represents the collection of ServiceRequestListElement
+  // corresponding to the requested page and filters.
+  repeated ServiceRequestListElement service_requests = 1
+      [(google.api.field_behavior) = REQUIRED];
+  // meta
+  //
+  // meta represents the information or metadata of the page requested.
+  PageInfo meta = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetServiceRequestRequest {
+  // service_request_id
+  //
+  // Required. service_request_id represents the ID of the ServiceRequest to be
+  // retrieved.
+  int64 service_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetServiceRequestResponse {
+  // service_request
+  //
+  // service_request is the ServiceRequest entity that matched the provided id.
+  ServiceRequest service_request = 1 [(google.api.field_behavior) = REQUIRED];
+  // station_patient
+  //
+  // station_patient represents the patient in station associated with the
+  // ServiceRequest.
+  StationPatient station_patient = 2 [(google.api.field_behavior) = REQUIRED];
+  // station_care_request
+  //
+  // station_care_request represent the care request in station associated with
+  // the ServiceRequest.
+  StationCareRequest station_care_request = 3
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateServiceRequestRequest {
+  // service_request_id
+  //
+  // service_request_id is the numeric identifier for the ServiceRequest.
+  int64 service_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // assigned_user_id
+  //
+  // assigned_user_id represents the id of a User that will be assigned to the
+  // ServiceRequest.
+  optional int64 assigned_user_id = 2;
+
+  // status_id
+  //
+  // status_id represents the ServiceRequestStatus id that the ServiceRequest
+  // has.
+  optional int64 status_id = 3;
+
+  // cms_number
+  //
+  // cms_number represents the CMS affiliation number for the ServiceRequest.
+  optional string cms_number = 4;
+
+  // is_insurance_verified
+  //
+  // is_insurance_verified is a flag stating if a ServiceRequest's insurance has
+  // been verified.
+  optional bool is_insurance_verified = 5;
+}
+
+message UpdateServiceRequestResponse {
+  // service_request
+  //
+  // service_request represents the updated ServiceRequest entity.
+  ServiceRequest service_request = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ScheduleServiceRequestRequest {
+  // service_request_id
+  //
+  // service_request_id represents the ID of the Service Request to be
+  // scheduled.
+  int64 service_request_id = 1;
+  // patient_availability_start_time_sec
+  //
+  // patient_availability_start_time_sec represents the start time of the
+  // patient's availability in Unix format
+  int64 patient_availability_start_time_sec = 2;
+  // patient_availability_end_time
+  //
+  // patient_availability_end_time represents the end time of the patient's
+  // availability in Unix format
+  int64 patient_availability_end_time_sec = 3;
+  // care_request_id
+  //
+  // care_request_id represents the ID of the Care Request to be scheduled.
+  int64 care_request_id = 4;
+}
+
+message ScheduleServiceRequestResponse {
+  // service_request
+  //
+  // service_request represents the updated ServiceRequest entity.
+  ServiceRequest service_request = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message RejectServiceRequestRequest {
+  // service_request_id
+  //
+  // service_request_id is the numeric identifier for the ServiceRequest.
+  int64 service_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // reject_reason
+  //
+  // reject_reason is a string representing a reason for the rejection of a
+  // ServiceRequest.
+  string reject_reason = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message RejectServiceRequestResponse {
+  // service_request
+  //
+  // service_request represents the rejected ServiceRequest entity.
+  ServiceRequest service_request = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetServiceRequestStatusRequest {}
+
+message GetServiceRequestStatusResponse {
+  // service_request_status
+  //
+  // service_request_status represents a collection of ServiceRequestStatus.
+  repeated ServiceRequestStatus service_request_status = 1
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetServiceRequestNotesRequest {
+  // service_request_id
+  //
+  // service_request_id is the numeric identifier for the ServiceRequest.
+  int64 service_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetServiceRequestNotesResponse {
+  // notes
+  //
+  // notes is a collection of Note entities.
+  repeated Note notes = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateServiceRequestNoteRequest {
+  // service_request_id
+  //
+  // service_request_id is the numeric identifier for the ServiceRequest.
+  int64 service_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // details
+  //
+  // details is the string that represents the body of the Note.
+  string details = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateServiceRequestNoteResponse {
+  // note
+  //
+  // note represents the just created Note.
+  Note note = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UnassignOwnerFromServiceRequestRequest {
+  // service_request_id
+  //
+  // service_request_id is the numeric identifier for the ServiceRequest.
+  int64 service_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UnassignOwnerFromServiceRequestResponse {
+  // service_request
+  //
+  // service_request represents the updated ServiceRequest entity.
+  ServiceRequest service_request = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message SearchUsersRequest {
+  // search_term
+  //
+  // search_term represents the text used to match with the user's information.
+  // the supported fields to match so far are: email, first_name, and last_name.
+  string search_term = 1 [(google.api.field_behavior) = REQUIRED];
+  // page
+  //
+  // page represents the current page to paginate the response.
+  optional int64 page = 2;
+  // page_size
+  //
+  // page_size represents the desired number of users we want to include in the
+  // response.
+  optional int64 page_size = 3;
+}
+
+message SearchUsersResponse {
+  // users
+  //
+  // users represents a list of users that match the given input.
+  repeated User users = 1;
+  // meta
+  //
+  // meta represents the metadata to manage pagination.
+  PageInfo meta = 2;
+}
+
+message AssignVirtualAPPRequest {
+  // visit_id
+  //
+  // ID of the Visit that will be assigned to the Virtual APP.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message AssignVirtualAPPResponse {}
+
+message UnassignVirtualAPPRequest {
+  // visit_id
+  //
+  // ID of the Visit that will be unassigned from the Virtual APP.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UnassignVirtualAPPResponse {}
+
+message CreateEHRAppointmentRequest {
+  // visit_id
+  //
+  // ID of the visit the appointment will be created for.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // appointment
+  //
+  // appointment payload.
+  EHRAppointment appointment = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateEHRAppointmentResponse {
+  // appointment_id
+  //
+  // ID of created appointment for the specified visit.
+  optional string appointment_id = 1;
+}
+
+message UpdateEHRAppointmentRequest {
+  // visit_id
+  //
+  // ID of the visit the appointment will be updated for.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // appointment
+  //
+  // appointment payload.
+  EHRAppointment appointment = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateEHRAppointmentResponse {
+  // appointment_id
+  //
+  // ID of created appointment for the specified visit.
+  optional string appointment_id = 1;
+}
+
+message CreateVisitNoteRequest {
+  // visit_id
+  //
+  // visit_id is the numeric identifier for the Visit.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // details
+  //
+  // details is the string that represents the body of the Note.
+  string details = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateVisitNoteResponse {
+  // note
+  //
+  // note represents the just created Note.
+  Note note = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateVisitNoteRequest {
+  // visit_id
+  //
+  // visit_id is the numeric identifier for the Visit.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // note_id
+  //
+  // note_id is the numeric identifier for the Note.
+  int64 note_id = 2 [(google.api.field_behavior) = REQUIRED];
+  // details
+  //
+  // details is the string that represents the body of the Note.
+  optional string details = 3;
+  // pinned
+  //
+  // pinned represents the state of the Note, whether it is featured or
+  // not.
+  optional bool pinned = 4;
+}
+
+message UpdateVisitNoteResponse {
+  // note
+  //
+  // note represents the just created Note.
+  Note note = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteVisitNoteRequest {
+  // visit_id
+  //
+  // visit_id is the numeric identifier for the Visit.
+  int64 visit_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // note_id
+  //
+  // note_id is the numeric identifier for the Note.
+  int64 note_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteVisitNoteResponse {}
+
+enum ServiceRequestCategory {
+  SERVICE_REQUEST_CATEGORY_UNSPECIFIED = 0;
+  SERVICE_REQUEST_CATEGORY_ADVANCED_CARE = 1;
+}
+
+message CreateServiceRequestFromStationCRRequest {
+  // care_request_id
+  //
+  // care_request_id represents the id of the CareRequest the ServiceRequest
+  // belongs to.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // market_id
+  //
+  // market_id represents the id of the Market the ServiceRequest is assigned
+  // to.
+  int64 market_id = 2 [(google.api.field_behavior) = REQUIRED];
+  // category
+  //
+  // category defines which services line this service request
+  // should be created with.
+  ServiceRequestCategory category = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateServiceRequestFromStationCRResponse {
+  // service_request
+  //
+  // service_request holds the information of the created
+  // ServiceRequest.
+  ServiceRequest service_request = 1;
+}
+
+message GetVirtualAPPVisitsQueueRequest {
+  // shift_team_id
+  //
+  // Required. shift_team_id is the ID of current Virtual APP shift team.
+  int64 shift_team_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // market_ids
+  //
+  // Required. market_ids is the list of markets the list of Visits will be
+  // returned for.
+  repeated int64 market_ids = 2 [(google.api.field_behavior) = REQUIRED];
+  // user_id
+  //
+  // Required. user_id is the ID of current Virtual APP.
+  int64 user_id = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetVirtualAPPVisitsQueueResponse {
+  // scheduled
+  //
+  // scheduled is the list of Visits that are scheduled for solo DHMT shift
+  // teams by Logistics.
+  repeated VirtualAPPVisit scheduled = 1;
+  // available
+  //
+  // available is the list of Visits that can be assigned to the current Virtual
+  // APP.
+  repeated VirtualAPPVisit available = 2;
+  // assigned
+  //
+  // assigned is the list of Visits that are already assigned to the current
+  // Virtual APP.
+  repeated VirtualAPPVisit assigned = 3;
+}
+
+message ListCarsByIDsRequest {
+  // car_ids
+  //
+  // car_ids represents IDs of Cars to list.
+  repeated int64 car_ids = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ListCarsByIDsResponse {
+  // cars
+  //
+  // cars represents the list of Cars.
+  repeated common.Car cars = 1 [(google.api.field_behavior) = REQUIRED];
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+package example;
+
+import "audit/audit.proto";
+import "common/auth/auth.proto";
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/example";
+option ruby_package = "ExampleGRPC";
+
+service ExampleService {
+  // Return the current version of the example service.
+  rpc GetVersion(GetVersionRequest) returns (GetVersionResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:version:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Version"
+    };
+  }
+}
+
+message GetVersionRequest {}
+
+message GetVersionResponse {
+  optional string version = 1;
+}

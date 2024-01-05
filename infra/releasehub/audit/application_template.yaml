@@ -1,0 +1,80 @@
+# Note: There is no deployment method for this configuration.
+# ReleaseHub is the source of truth.
+---
+app: audit
+auto_deploy: true
+context: *company-data-covered*-release-us-east-1
+domain: audit-service.release.*company-data-covered*.com
+repo_name: *company-data-covered*/services
+hostnames:
+  - audit-service: audit-service-${env_id}-${domain}
+environment_templates:
+  - name: ephemeral
+  - name: permanent
+resources:
+  cpu:
+    limits: 1000m
+    requests: 100m
+  memory:
+    limits: 1Gi
+    requests: 100Mi
+  replicas: 1
+services:
+  - name: postgres
+    image: postgres:14.4-alpine
+    has_repo: false
+    ports:
+      - type: container_port
+        port: '5432'
+  - name: audit-service
+    image: *company-data-covered*/services/audit-service
+    command:
+      - '/busybox/sh'
+      - '/entrypoint.sh'
+    build:
+      dockerfile: './docker/go.Dockerfile'
+      args:
+        - DOCKER_PORT=8080 8081
+        - BUILD_TARGET=audit-service
+    has_repo: true
+    static: false
+    ports:
+      - type: node_port
+        target_port: '8080'
+        port: '8080'
+      - type: node_port
+        target_port: '8081'
+        port: '8081'
+  - name: db-migrations
+    image: *company-data-covered*/services/db-migrations
+    build:
+      dockerfile: './docker/releasehub-tooling.Dockerfile'
+      args:
+        - DATABASE_NAME=audit
+    has_repo: true
+    static: false
+jobs:
+  - name: ensure-db
+    command:
+      - sh
+      - '-c'
+      - echo "SELECT 'CREATE DATABASE $DATABASE_NAME' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '$DATABASE_NAME')\gexec" | psql $DATABASE_URL
+    from_services: postgres
+  - name: db-migrations
+    from_services: db-migrations
+workflows:
+  - name: setup
+    order_from:
+      - services.postgres
+      - jobs.ensure-db
+      - jobs.db-migrations
+      - services.audit-service
+  - name: teardown
+    parallelize:
+      - step: remove_environment
+        tasks:
+          - release.remove_environment
+  - name: patch
+    order_from:
+      - jobs.db-migrations
+      - services.audit-service

@@ -1,0 +1,44 @@
+{
+  "name": "protos",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/shared/protos/src",
+  "projectType": "library",
+  "targets": {
+    "generate-types": {
+      "executor": "nx:run-commands",
+      "inputs": [
+        "production",
+        "^production",
+        "{workspaceRoot}/proto/**",
+        "{workspaceRoot}/package.json",
+        "{workspaceRoot}/buf.gen.ts.yaml"
+      ],
+      "outputs": ["{projectRoot}/src"],
+      "dependsOn": ["setup-common-gen"],
+      "options": {
+        "command": "make generate-ts"
+      }
+    },
+    "setup-common-gen": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "make setup-common-gen"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/libs/shared/protos"
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:util"]
+}

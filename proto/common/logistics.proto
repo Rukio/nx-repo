@@ -1,0 +1,50 @@
+syntax = "proto3";
+package common;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/common";
+
+import "common/date.proto";
+
+message TimeWindow {
+  optional common.DateTime start_datetime = 1;
+  optional common.DateTime end_datetime = 2;
+}
+
+message Attribute {
+  string name = 1;
+}
+
+message Location {
+  int32 latitude_e6 = 1;
+  int32 longitude_e6 = 2;
+}
+
+// Represents a day of the week, along with open and close times.
+// Usually used to represent a Market open and close times.
+message ScheduleDay {
+  // Day of week
+  // Sunday = 0, Monday = 1 ...
+  int32 day_of_week = 1;
+  common.TimeOfDay open_time = 2;
+  common.TimeOfDay close_time = 3;
+}
+
+enum ClinicalUrgencyLevel {
+  // Default Urgency
+  CLINICAL_URGENCY_LEVEL_UNSPECIFIED = 0;
+
+  // Clinical Urgency by Manual override
+  // this Urgency takes precedence over any automated level
+  CLINICAL_URGENCY_LEVEL_HIGH_MANUAL_OVERRIDE = 1;
+
+  // If a care request has this we prioritize
+  // to see within 2 hours.
+  CLINICAL_URGENCY_LEVEL_HIGH = 2;
+
+  // If a care request has this we prioritize
+  // to see within 4 hours.
+  CLINICAL_URGENCY_LEVEL_NORMAL = 3;
+
+  // This clinical urgency is the most preferable to push.
+  CLINICAL_URGENCY_LEVEL_LOW = 4;
+}

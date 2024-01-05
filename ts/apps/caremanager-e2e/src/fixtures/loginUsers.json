@@ -1,0 +1,16 @@
+{
+  "admin": {
+    "username": "qa-automation-admin@*company-data-covered*.com",
+    "password": "Fod61142",
+    "fullName": "qa-admin automation",
+    "firstName": "qa-admin",
+    "lastName": "automation"
+  },
+  "user": {
+    "username": "qa-automation-user@*company-data-covered*.com",
+    "password": "Fod61143",
+    "fullName": "qa-user automation",
+    "firstName": "qa-user",
+    "lastName": "automation"
+  }
+}

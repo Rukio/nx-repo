@@ -1,0 +1,41 @@
+{
+  "address_id": "1",
+  "car_name": "COL01",
+  "created_by_user_id": "1",
+  "market_id": "198",
+  "patient": {
+    "first_name": "John",
+    "last_name": "Wick",
+    "date_of_birth": "1964-09-02",
+    "sex": "male",
+    "phone_number": "(303) 500-1518",
+    "address_id": "1",
+    "address_street": "213 East Street",
+    "address_city": "Columbus",
+    "address_state": "Ohio",
+    "address_zipcode": "43211",
+    "athena_medical_record_number": "928",
+    "insurances": [
+      {
+        "priority": 1,
+        "member_id": "91283",
+        "name": "Humana"
+      }
+    ],
+    "medical_decision_maker": {
+      "first_name": "Helen",
+      "last_name": "Wick",
+      "address": "213 East Street, Columbus, OH",
+      "phone_number": "(303) 500-1518",
+      "relationship": "Wife"
+    }
+  },
+  "patient_summary": "High risk patient",
+  "payer": "Humana",
+  "provider_user_ids": ["115334"],
+  "service_line_id": "1",
+  "source": "station",
+  "status_updated_at": "2023-05-03T00:38:56.080Z",
+  "patient_availability_start": "2023-05-03T10:00:00.000Z",
+  "patient_availability_end": "2023-05-03T18:00:00.000Z"
+}

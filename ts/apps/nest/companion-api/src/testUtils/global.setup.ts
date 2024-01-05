@@ -1,0 +1,25 @@
+module.exports = async () => {
+  process.env.AUTH0_DOMAIN = 'test.us.auth0.com';
+  process.env.AUTH0_ISSUER_URL = 'issuer.auth.example.com';
+  process.env.CARAVAN_URL = 'http://localhost';
+  process.env.COMPANION_LINK_TTL_SECONDS = '2592000';
+  process.env.COMPANION_URL = 'http://localhost';
+  process.env.COMPANION_API_AUTH0_CLIENT_ID = 'abc123clientID';
+  process.env.COMPANION_API_AUTH0_CLIENT_SECRET = 'def456clientSecret';
+  process.env.AUTH0_STATION_AUDIENCE = 'localhost';
+  process.env.AUTH0_CARAVAN_CONSENTS_AUDIENCE = 'localhost';
+  process.env.STATION_URL = 'http://localhost';
+  process.env.COMPANION_API_DATABASE_URL = 'postgresql://localhost';
+  process.env.REDIS_URL = 'redis://localhost:6380';
+  process.env.COMPANION_SESSION_COOKIE_SECRET = 'keyboard_cat';
+  process.env.SEGMENT_SDK_SOURCE_WRITE_KEY = 'Qw3rTyD1sPA7chH34l7He45yAs123abc';
+  process.env.SESSION_MAX_AGE_MS = '3600000';
+  process.env.STATSIG_SDK_SERVER_SECRET_KEY = 'secret-12345678';
+  process.env.THROTTLE_LIMIT = '100';
+  process.env.THROTTLE_TTL = '60';
+  process.env.TWILIO_ACCOUNT_SID = 'ACabc123abc123abc123abc123';
+  process.env.TWILIO_AUTH_TOKEN = '7fa123test';
+  process.env.TWILIO_COMPANION_FLOW_SID = 'abc123';
+  process.env.TWILIO_FROM_NUMBER = '17204493513';
+  process.env.TWILIO_VERIFY_SID = 'VA123test';
+};

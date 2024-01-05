@@ -1,0 +1,20 @@
+bin/
+**/generated/
+.local/
+**/node_modules
+**/public/mockServiceWorker.js
+**/caremanager/**/openapi/
+
+# Vendored files, need to keep formatting for possible patching in future.
+infra/modules/cloudfront-s3-lambda/lambda/index.js
+infra/modules/cloudwatch2elasticsearch/resources/index.js
+
+# Templated build file
+# TODO: investigate whether this file can be renamed
+infra/environments/terraform-aws-production/modules/code-pipeline/resources/buildspec.yml
+
+# Code coverage file
+go-code-coverage-report.json
+
+/dist
+/coverage

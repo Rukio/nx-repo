@@ -1,0 +1,14 @@
+{
+  "visit_types": [
+    { "id": "1", "name": "Acute Care", "is_call_type": false },
+    { "id": "2", "name": "Bridge Care Plus", "is_call_type": false },
+    { "id": "3", "name": "Daily Update", "is_call_type": false },
+    { "id": "4", "name": "Discharge", "is_call_type": false },
+    { "id": "5", "name": "Evaluation", "is_call_type": false },
+    { "id": "6", "name": "Extended Care", "is_call_type": false },
+    { "id": "7", "name": "High Acuity", "is_call_type": false },
+    { "id": "8", "name": "Remote Evaluation", "is_call_type": true },
+    { "id": "9", "name": "Transition Call", "is_call_type": true },
+    { "id": "10", "name": "Tuck-in Call", "is_call_type": true }
+  ]
+}

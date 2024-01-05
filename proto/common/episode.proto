@@ -1,0 +1,295 @@
+syntax = "proto3";
+package common;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/common";
+
+import "common/logistics.proto";
+import "common/patient.proto";
+import "common/date.proto";
+import "insurance_plan/entities.proto";
+
+message CareRequestInfo {
+  int64 id = 1;
+
+  optional int64 market_id = 2;
+
+  optional common.Location location = 3;
+
+  optional common.TimeWindow arrival_time_window = 4;
+
+  optional int64 service_duration_sec = 5;
+
+  repeated common.Attribute required_attributes = 6;
+  repeated common.Attribute forbidden_attributes = 7;
+  repeated common.Attribute preferred_attributes = 9;
+  repeated common.Attribute unwanted_attributes = 12;
+
+  // The latest care request status
+  CareRequestStatus request_status = 8;
+
+  // The latest virtual app care request status
+  // Optional.
+  VirtualAPPCareRequestStatus virtual_app_care_request_status = 14;
+
+  // True if the care request is manually overridden.
+  bool is_manual_override = 10;
+
+  // The latest Acuity Info
+  AcuityInfo acuity = 11;
+
+  // Data surrounding the prioritization of a care request, to be set
+  // when prioritized.
+  CareRequestPriority priority = 13;
+
+  // How valuable a care request is to us.
+  CareRequestValue value = 15;
+
+  // Contains the source of the visit
+  Partner partner = 16;
+
+  // Patient data is only included if include_patient is true in the request
+  optional Patient patient = 17;
+
+  // The unix timestamp when the care request was created, in seconds.
+  optional int64 created_at_timestamp_sec = 18;
+
+  // The chief complaint associated with the CareRequest.
+  optional string chief_complaint = 19;
+
+  // ShiftTeam data is only included if include_shift_team
+  // is true in the request.
+  ShiftTeam shift_team = 20;
+
+  // SecondaryScreening data is only included if include_secondary_screening
+  // is true in the request.
+  SecondaryScreening secondary_screening = 21;
+
+  // Caller data is only included if include_caller
+  // is true in the request.
+  Caller caller = 22;
+
+  // Insurance data is only included if include_insurance
+  // is true in the request.
+  Insurance insurance = 23;
+
+  // Visits count is only included if include_visits_in_last_90_days
+  // is true in the request.
+  optional int64 visits_in_last_90_days = 24;
+}
+
+message CareRequestPriority {
+  // The timestamp at which the prioritization was accepted by the server.
+  optional int64 requested_timestamp_sec = 1;
+
+  // The user ID that requested the prioritization.
+  optional int64 requested_by_user_id = 2;
+
+  // A note describing why the prioritization was requested.
+  optional string note = 3;
+}
+
+message CareRequestValue {
+  // Number of 1/100 points for completing the care request.
+  optional int64 completion_value_cents = 1;
+
+  // Score given to prioritize a partner visit.
+  optional int64 partner_priority_score = 2;
+
+  // The calculated number of 1/100 points for completing a care request using
+  // partner priority score
+  optional int64 partner_influenced_completion_value_cents = 3;
+}
+
+message CareRequestStatus {
+  // Name of the care request status; e.g. "accepted".
+  optional string name = 1;
+
+  // The user ID associated with the care request status change.
+  optional int64 user_id = 2;
+
+  // TODO: deprecate this enum in favor of StatusSourceType
+  enum SourceType {
+    SOURCE_TYPE_UNSPECIFIED = 0;
+    // The change of status comes from the manual optimizer.
+    SOURCE_TYPE_MANUAL_OPTIMIZER = 1;
+    // The change of status comes from the Shift Team taking this Care Request.
+    SOURCE_TYPE_PROVIDER = 2;
+    // The change of status comes from logistics/elixir.
+    SOURCE_TYPE_LOGISTICS_ELIXIR_AUTO_ASSIGNMENT = 3;
+    // The change of status comes from another workflow without dedicated logic
+    // to resolve the type by the Episode Service.
+    //
+    // This is needed so that SOURCE_TYPE_UNSPECIFIED does not communicate
+    // semantic meaning, while still not breaking integrations with Logistics
+    // for new workflows to create care request statuses.
+    SOURCE_TYPE_OTHER = 4;
+  }
+  optional SourceType source_type = 4;
+
+  // The source from where this status change comes from.
+  optional StatusSourceType status_source_type = 6;
+
+  // ID of shift team assigned to care_request_id.
+  // Required for committed, on_route, on_scene, and completed statuses.
+  optional int64 shift_team_id = 5;
+
+  // The unix timestamp when the status was created.
+  optional int64 created_at_sec = 3;
+
+  // ID of the CareRequestStatus.
+  optional int64 id = 7;
+}
+
+// StatusSourceType is the source of a CareRequestStatus or
+// VirtualAPPCareRequestStatus.
+enum StatusSourceType {
+  STATUS_SOURCE_TYPE_UNSPECIFIED = 0;
+  // The change of status comes from the manual optimizer.
+  STATUS_SOURCE_TYPE_MANUAL_OPTIMIZER = 1;
+  // The change of status comes from the Shift Team taking this Care Request.
+  STATUS_SOURCE_TYPE_PROVIDER = 2;
+  // The change of status comes from logistics/elixir.
+  STATUS_SOURCE_TYPE_LOGISTICS_ELIXIR_AUTO_ASSIGNMENT = 3;
+  // The change of status comes from another workflow without dedicated logic
+  // to resolve the type by the Episode Service.
+  //
+  // This is needed so that STATUS_SOURCE_TYPE_UNSPECIFIED does not communicate
+  // semantic meaning, while still not breaking integrations with Logistics
+  // for new workflows to create care request statuses.
+  STATUS_SOURCE_TYPE_OTHER = 4;
+}
+
+message VirtualAPPCareRequestStatus {
+  // StatusName is the name for the status of a VirtualAppCareRequestStatus.
+  enum Status {
+    STATUS_NAME_UNSPECIFIED = 0;
+
+    // The Status Name is 'assigned'
+    STATUS_NAME_ASSIGNED = 1;
+
+    // The Status Name is 'unassigned'
+    STATUS_NAME_UNASSIGNED = 2;
+  }
+  Status status = 1;
+
+  // The user ID associated with the virtual APP status change.
+  optional int64 user_id = 2;
+
+  // The source from where this virtual APP status comes.
+  StatusSourceType source_type = 3;
+
+  // The shift team ID which is assigned on this virtual APP status
+  // only required when ths status is "assigned".
+  optional int64 shift_team_id = 4;
+
+  // The unix timestamp when the status was created.
+  int64 created_at_sec = 5;
+}
+
+message AcuityInfo {
+  // the patient age of the care request.
+  optional int32 patient_age = 1;
+
+  // the protocol name from the risk strat record.
+  optional string current_chief_complaint = 2;
+
+  reserved 3;
+
+  // The clinical urgency level.
+  optional common.ClinicalUrgencyLevel level = 5;
+
+  // the error message from the acuity GRPC request
+  // in case of this request has failed.
+  optional string request_error = 4;
+}
+
+message Partner {
+  // Channel item which is the source of the visit.
+  optional int64 channel_item_id = 1;
+}
+
+message ShiftTeam {
+  // ID of the assigned ShiftTeam.
+  int64 id = 1;
+
+  // ID of the market where the ShiftTeam covers.
+  optional int64 market_id = 2;
+
+  // Base location where the ShiftTeam has operations.
+  optional BaseLocation base_location = 3;
+
+  // Current location of the ShiftTeam.
+  optional common.Location current_location = 8;
+
+  // Time window for working hours of the ShiftTeam.
+  optional common.TimeWindow shift_time_window = 4;
+
+  // Attributes of the ShiftTeam.
+  repeated common.Attribute shift_team_attributes = 5;
+
+  // Count of advanced practice providers.
+  optional int32 advanced_practice_provider_count = 6;
+
+  // Count of DH medical technician providers.
+  optional int32 dispatch_health_medical_technician_count = 7;
+
+  // If the shift team is deleted, this field stores the
+  // date time of when that change occurred.
+  optional common.DateTime deleted_at = 9;
+
+  // List of user IDs belonging to ShiftTeam members within Station.
+  repeated int64 member_ids = 10;
+}
+
+message SecondaryScreening {
+  // Approval status of the SecondaryScreen.
+  string approval_status = 1;
+
+  // ID of the Station Provider who performed the SecondaryScreen.
+  int64 provider_id = 2;
+
+  // Note made by the Provider in the SecondaryScreen event.
+  string note = 3;
+}
+
+message Caller {
+  // First name of the caller
+  string first_name = 1;
+
+  // Last name of the caller
+  string last_name = 2;
+
+  // Name of the Caller's organization
+  string organization_name = 3;
+
+  // Phone of the Caller.
+  string origin_phone = 4;
+
+  // Relationship that the Caller has with the Patient.
+  string relationship_to_patient = 5;
+}
+
+message Insurance {
+  // ID of the insurance.
+  int64 id = 1;
+
+  // ID of the Patient in the Insurance company.
+  int64 member_id = 2;
+
+  // InsurancePlan that Patient belongs to.
+  insurance_plan.InsurancePlan insurance_plan = 3;
+
+  // Name of the network of the insurance plan
+  string network_name = 4;
+}
+
+message BaseLocation {
+  // Name of the ShiftTeam's Car.
+  string name = 1;
+
+  // Latitude in micros of the ShiftTeam.
+  int64 latitude_e6 = 2;
+
+  // Longitude in micros of the ShiftTeam.
+  int64 longitude_e6 = 3;
+}

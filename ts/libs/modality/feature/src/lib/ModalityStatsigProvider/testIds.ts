@@ -1,0 +1,3 @@
+export const MODALITY_STATSIG_PROVIDER_TEST_IDS = {
+  LOADING_CONTAINER_PREFIX: 'modality-statsig',
+};

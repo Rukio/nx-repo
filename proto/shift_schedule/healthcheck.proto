@@ -1,0 +1,35 @@
+syntax = "proto3";
+package shift_schedule;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/shift_schedule";
+option ruby_package = "ShiftScheduleGRPC";
+
+import "google/api/annotations.proto";
+import "common/auth/auth.proto";
+
+enum ServingStatus {
+  SERVING_STATUS_UNSPECIFIED = 0;
+  SERVING_STATUS_SERVING = 1;
+  SERVING_STATUS_NOT_SERVING = 2;
+}
+
+service ShiftScheduleHealthService {
+  rpc Check(CheckRequest) returns (CheckResponse) {
+    option (common.auth.public) = true;
+    option (google.api.http) = {
+      get: "/healthcheck",
+    };
+  };
+}
+
+message CheckRequest {}
+
+message ServiceStatus {
+  string service = 1;
+  ServingStatus status = 2;
+}
+
+message CheckResponse {
+  repeated ServiceStatus status = 1;
+  string version = 2;
+}

@@ -1,0 +1,209 @@
+########################################################################################################################
+# Manually deploy service to aptible
+# ----------------------------------------------------------------------------------------------------------------------
+# This workflow can be used to manually deploy a service that was built and pushed to the DH docker registry.
+# If the selected branch/sha combo does not exist in the registry and has not been built via build workflow, this workflow
+# will run the build workflow for the selected branch/sha combination and wait for completion before deploying
+#
+# REQUIREMENTS
+# ------------
+#   1. If migrations need to be performed,
+#     a. sql/${{ inputs.service_name but without -service }}/migrations exists
+#     b. The following make commands are available if migrations need to be performed:
+#       i. make db-status-${{ inputs.service_name }}-db-${{ inputs.environment }}
+#       ii. make db-migrate-${{ inputs.service_name }}-db-${{ inputs.environment }}
+#   2. The aptible app name follows the structure ${{ inputs.service_name }}-${{ inputs.environment }}
+#   3. The aptible db name follows the structure ${{ inputs.service_name but without -service }}-db-${{ inputs.environment }}
+#
+#
+# It can only be run manually through github
+# Optionally, you can use the github cli to run the workflow:
+# >  gh workflow run manual_deploy_service_to_aptible.yml -f service_name="<my_service>" -f environment=qa
+#
+# REFERENCES
+# ----------
+# See the github docs for more info:
+# https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
+########################################################################################################################
+
+name: Deploy Service To Aptible
+
+run-name: (${{ inputs.environment }}) ${{ inputs.service_name }}:${{ inputs.tag || github.sha }}
+
+on:
+  workflow_call:
+    inputs:
+      service_name:
+        description: Name of the service to deploy
+        type: string
+        required: true
+        default: ''
+      environment:
+        description: Environment to deploy to
+        type: string
+        required: true
+        default: ''
+      tag:
+        description: The sha to to deploy. If left blank, HEAD of the branch selected is used
+        type: string
+        required: false
+        default: ''
+      build_if_not_found:
+        description: Trigger build if image or build run not found?
+        type: boolean
+        default: false
+  workflow_dispatch:
+    inputs:
+      service_name:
+        description: Name of the service to deploy
+        type: choice
+        required: true
+        default: ''
+        options:
+          - ''
+          - acuity-model-server
+          - athena-listener-service
+          - athena-service
+          - audit-service
+          - caremanager-service
+          - clinicalkpi-service
+          - companion-api
+          - insurance-service
+          - logistics-optimizer
+          - logistics-service
+          - modality-service
+          - notifications-service
+          - on-scene-model-service
+          - onboarding-api
+          - partner-service
+          - patients-service
+          - patientaccounts-service
+          - policy-service
+          - pophealth-service
+          - riskstratification-service
+          - shiftschedule-service
+          - telep-model-server
+          - tytocare-service
+          # add other services here
+      environment:
+        description: Environment to deploy to
+        type: choice
+        required: true
+        default: ''
+        options:
+          - ''
+          - qa
+          - uat
+          - prod
+      tag:
+        description: The sha to to deploy. If left blank, HEAD of the branch selected is used
+        type: string
+        required: false
+        default: ''
+      build_if_not_found:
+        description: Trigger build if image or build run not found?
+        type: boolean
+        default: false
+
+jobs:
+  deploy:
+    name: (${{ inputs.environment }}) ${{ inputs.service_name }}
+    timeout-minutes: 30
+    concurrency:
+      group: ${{ github.workflow }}-${{ inputs.service_name }}-${{ inputs.environment }}
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.service_name }}-${{ inputs.environment }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        id: setup
+        run: |
+          sha=${{ inputs.tag || github.sha }}
+          echo "GIT_SHA=$sha" >> $GITHUB_OUTPUT
+
+          if ! git merge-base --is-ancestor $sha ${{ github.ref_name }}; then
+            echo "::error::SHA provided does not exist on the branch selected"
+            exit 1
+          fi
+
+          case "${{ inputs.environment }}" in
+            prod)
+              if ! { [[ "${{ github.ref_name }}" == "trunk" ]] || [[ "${{ github.ref_name }}" =~ ^release/* ]]; }; then
+                echo "::error::Cannot deploy non-trunk or non-release branch to production" >&2
+                exit 1
+              fi
+              echo "APTIBLE_ENVIRONMENT=dispatch-health" >> $GITHUB_OUTPUT
+              ;;
+            qa)
+              echo "APTIBLE_ENVIRONMENT=staging1" >> $GITHUB_OUTPUT
+              ;;
+            uat)
+              echo "APTIBLE_ENVIRONMENT=integration" >> $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "::error ::Unexpected input environment - ${{ inputs.environment }}"
+              exit 1
+              ;;
+          esac
+
+      - name: Check image exists in registry
+        id: should_build
+        run: |
+          res=$(curl -s -u ${{ secrets.DH_DOCKER_REGISTRY_PUSH_USERNAME }}:${{ secrets.DH_DOCKER_REGISTRY_PASSWORD }} https://${{ secrets.DH_DOCKER_REGISTRY_URL }}/v2/${{ inputs.service_name }}/tags/list)
+          if [[ "$res" == *"NAME_UNKNOWN"* ]]; then
+            echo "::notice:: docker image ${{ inputs.service_name }} has not been pushed to the registry yet"
+            echo "BUILD=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          tagExistsInRegistry=$(echo "$res" | jq --arg tag "${{ steps.setup.outputs.GIT_SHA }}" '.tags | any( . == $tag)')
+          if ! $tagExistsInRegistry; then
+            echo "::notice:: ${{ inputs.service_name }}:${{ steps.setup.outputs.GIT_SHA }} has not been built. Workflow will run build workflow and wait for image to be built"
+            echo "BUILD=true" >> $GITHUB_OUTPUT
+          else
+            echo "Image exists, skipping build"
+            echo "BUILD=false"
+          fi
+
+      - name: Build image
+        if: steps.should_build.outputs.BUILD == 'true'
+        run: |
+          build_flag=""
+          if ${{ inputs.build_if_not_found }}; then
+            build_flag="--build"
+          fi
+
+          ./scripts/build_container_and_wait.sh \
+            --service-name ${{ inputs.service_name }} \
+            --branch ${{ github.ref_name }} \
+            --sha ${{ steps.setup.outputs.GIT_SHA }} \
+            $build_flag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy App (and run migrations if they exist)
+        uses: ./.github/actions/deploy_service_to_aptible
+        with:
+          aptible_username: ${{ secrets.APTIBLE_USERNAME }}
+          aptible_password: ${{ secrets.APTIBLE_PASSWORD }}
+          docker_image: ${{ secrets.DH_DOCKER_REGISTRY_URL }}/${{ inputs.service_name }}:${{ steps.setup.outputs.GIT_SHA }}
+          docker_registry_username: ${{ secrets.DH_DOCKER_REGISTRY_PUSH_USERNAME }}
+          docker_registry_password: ${{ secrets.DH_DOCKER_REGISTRY_PASSWORD }}
+          service_name: ${{ inputs.service_name }}
+          environment: ${{ inputs.environment }}
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure() && github.ref == 'refs/heads/trunk'
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *Failed to deploy trunk to ${{ inputs.service_name }}-${{ inputs.environment }}*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}

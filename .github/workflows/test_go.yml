@@ -1,0 +1,185 @@
+name: Test Go
+
+run-name: Test Go - ${{ github.head_ref || github.ref }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - trunk
+    paths:
+      - go.mod
+      - go.sum
+      - go/**
+      - proto/**
+      - sql/**
+      - Makefile
+      - .github/workflows/test_go.yml
+      - .tool-versions
+      - sonar.go.properties
+      - buf.gen.go.yaml
+      - buf.work.yaml
+      - .golangci.yaml
+      - '!**/*.md'
+  pull_request:
+    paths:
+      - go.mod
+      - go.sum
+      - go/**
+      - proto/**
+      - sql/**
+      - Makefile
+      - .github/workflows/test_go.yml
+      - .tool-versions
+      - sonar.go.properties
+      - buf.gen.go.yaml
+      - buf.work.yaml
+      - .golangci.yaml
+      - '!**/*.md'
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PGPASSWORD: postgres
+  DB_POSTGRESQL_PORT: 5432
+  BASE_DATABASE_URL: postgres://postgres@localhost:5432/?sslmode=disable
+
+jobs:
+  go-test:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14.4
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of sonarcloud reporting
+          fetch-depth: 0
+
+      - name: Parse .tool-versions
+        uses: wistia/parse-tool-versions@v1.0
+        with:
+          uppercase: 'true'
+          postfix: '_tool_version'
+          filename: '.tool-versions'
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ env.GOLANG_TOOL_VERSION }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'npm'
+
+      - name: Get tool versions from Makefile
+        id: tools
+        run: |
+          sha=$(awk '/ TOOL_VERSIONS/{f=1} / END_TOOL_VERSIONS/{f=0;print} f' Makefile | sha1sum | awk '{print $1}')
+          echo "BIN_CACHE_SHA=$sha" >> $GITHUB_OUTPUT
+
+      - name: Cache Go cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+            ./bin
+          key: v1-go-${{ hashFiles('.tool-versions') }}-${{ hashFiles('**/go.sum') }}-${{ steps.tools.outputs.BIN_CACHE_SHA }}-${{ github.head_ref }}
+          restore-keys: |
+            v1-go-${{ hashFiles('.tool-versions') }}-${{ hashFiles('**/go.sum') }}-${{ steps.tools.outputs.BIN_CACHE_SHA }}-
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: v1-node_modules-${{ hashFiles('package-lock.json') }}-${{ github.head_ref }}
+          restore-keys: |
+            v1-node_modules-${{ hashFiles('package-lock.json') }}-
+
+      - name: Setup common install
+        run: |
+          make setup-common-install
+          (git diff --exit-code package-lock.json && git diff --exit-code package.json) || echo \
+            "::error::There was a dependency updated during installation. Install locally and commit changes"
+
+      - name: Setup common gen
+        run: make setup-common-gen
+
+      - name: Setup linux lint
+        run: make setup-linux-lint
+
+      - name: Generate
+        run: make generate
+
+      - name: Ensure Test DB
+        run: make ensure-test-db
+
+      - name: Lint SQL and Protos
+        run: |
+          make lint-sql
+          make lint-proto
+
+      - name: Get golangci-lint version
+        id: golangci_lint_version
+        run: |
+          version=$(grep '^GOLANGCI_LINT_VERSION :=' Makefile | awk '{ print $3 }')
+          echo "GOLANGCI_LINT_VERSION=$version" >> $GITHUB_OUTPUT
+
+      - name: Lint Go
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: ${{ steps.golangci_lint_version.outputs.GOLANGCI_LINT_VERSION }}
+          working-directory: go
+          skip-pkg-cache: true
+          skip-build-cache: true
+          args: --build-tags="db_test"
+
+      - name: Run all tests including DB
+        run: make test-db-go
+
+      - name: Run all tests second time to check for unclean database tests
+        run: make test-db-go
+
+      - name: Run all downgrade and upgrade database migrations
+        run: |
+          make reset-test-db
+          make ensure-test-db
+
+      - name: Verifies that all files are checked using git diff
+        run: git diff --exit-code
+
+      - name: Setup Sonarcloud
+        run: mv sonar.go.properties sonar-project.properties
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure() && github.ref == 'refs/heads/trunk'
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *Trunk GitHub Action Job Failed*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}

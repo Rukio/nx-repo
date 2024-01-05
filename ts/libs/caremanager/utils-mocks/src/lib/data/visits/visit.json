@@ -1,0 +1,25 @@
+{
+  "visit": {
+    "id": "221",
+    "episode_id": "545",
+    "care_request_id": "2345678",
+    "status_group": "VISIT_STATUS_GROUP_PAST",
+    "type": "Bridge Care Plus",
+    "type_id": "2",
+    "created_at": "2023-01-26T20:09:15.881Z",
+    "updated_at": "2023-01-26T20:09:15.881Z",
+    "provider_user_ids": ["3", "4", "5"],
+    "status": "committed",
+    "car_name": "DEN004",
+    "created_by_user_id": "15242",
+    "updated_by_user_id": "15243",
+    "address_id": "381",
+    "patient_availability_start": "2023-01-26T20:09:15.881Z",
+    "patient_availability_end": "2023-01-26T22:09:15.881Z"
+  },
+  "summary": {
+    "body": "Doing well, no concerns except GYN which she expressed to team earlier. Will see team for possible T1 tomorrow.",
+    "created_at": "2023-01-26T20:09:25.522Z",
+    "updated_at": "2023-01-26T20:09:25.522Z"
+  }
+}

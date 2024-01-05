@@ -1,0 +1,11 @@
+# Configuration file for generating proto definitions with `buf generate`.
+# Documentation at https://docs.buf.build/configuration/v1/buf-gen-yaml
+version: v1
+plugins:
+  - name: python
+    opt:
+      - pyi_out=py/lib/proto/proto
+    out: py/lib/proto/proto
+  - name: python-grpc
+    out: py/lib/proto/proto
+    path: grpc_python_plugin

@@ -1,0 +1,18 @@
+{
+  "insurance[member_id]": "123",
+  "insurance[priority]": "1",
+  "insurance[package_id]": 982,
+  "insurance[company_name]": "United Healthcare New (UHC)",
+  "insurance[insurance_plan_id]": 9862,
+  "insurance[primary_insurance_holder_toggle]": "patient",
+  "insurance[insured_same_as_patient]": true,
+  "insurance[patient_relation_to_subscriber]": "patient",
+  "insurance[patient_relationship_to_insured]": "self",
+  "insurance[first_name]": "Complete",
+  "insurance[last_name]": "Automation",
+  "insurance[gender]": "Male",
+  "insurance[primary_insurance_holder_attributes][first_name]": "Complete",
+  "insurance[primary_insurance_holder_attributes][last_name]": "Automation",
+  "insurance[primary_insurance_holder_attributes][gender]": "male",
+  "insurance[primary_insurance_holder_attributes][patient_relationship_to_insured]": "self"
+}

@@ -1,0 +1,43 @@
+digraph G {
+  compound=true;
+  graph [ranksep="2"];
+  node [shape=box style=rounded];
+
+  caremanager [label="CareManager"]
+  onboarding [label="Onboarding"]
+  express [label="Express"]
+  pophealth_service [label="PopHealth Service"]
+  pophealth_db [label="PopHealth ElasticSearch DB"]
+  station [label="Station"]
+
+  subgraph cluster_patients {
+    label = "Patients Service"
+    patients_service [label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR>
+          <TD PORT="listpatients">ListPatients</TD>
+          <TD PORT="searchpatients">SearchPatients</TD>
+        </TR>
+      </TABLE>>]
+  }
+
+  subgraph cluster_athena {
+    label = "Athena Service"
+    athena_service [label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+        <TR>
+          <TD PORT="enhancedbestmatch">EnhancedBestMatch</TD>
+          <TD PORT="searchpatients">Patient Search</TD>
+        </TR>
+      </TABLE>>]
+  }
+
+  caremanager -> patients_service:listpatients
+  onboarding -> patients_service:listpatients
+  express -> patients_service:searchpatients
+  express -> pophealth_service
+  patients_service:listpatients -> athena_service:enhancedbestmatch
+  patients_service:searchpatients -> athena_service:searchpatients
+  patients_service -> station
+  pophealth_service -> pophealth_db
+}

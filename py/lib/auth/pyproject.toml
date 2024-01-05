@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "auth"
+version = "0.1.0"
+description = ""
+authors = ["Favio Manriquez <favio.manriquez@*company-data-covered*.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10.12 <3.11"
+proto = {path = "../proto", develop = true}
+PyJWT = "^2.4.0"
+# Required by PyJWT when validating RS256 encrypted tokens
+cryptography = "^41.0.2"
+grpcio-health-checking = "1.47.2"
+# requests is imported by dependencies. we force the latest version for security
+requests = "^2.31.0"
+
+[tool.poetry.dev-dependencies]
+ipython = "^8.4.0"
+pytest = "^7.1.2"
+pytest-asyncio = "^0.18.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^4.0.0"
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

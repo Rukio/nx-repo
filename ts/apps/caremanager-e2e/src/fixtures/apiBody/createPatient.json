@@ -1,0 +1,29 @@
+{
+  "patient": {
+    "dob": "1963-02-02",
+    "first_name": "Care Manager",
+    "last_name": "Automation",
+    "gender": "Male",
+    "mobile_number": "+13035001518",
+    "patient_email": "caremanager.automation@*company-data-covered*.com",
+    "ssn": "111-22-3333",
+    "suffix": "Suffix 123",
+    "voicemail_consent": true,
+    "pcp_name": "Automation",
+    "power_of_attorney": {
+      "name": "Mpoa Automation",
+      "phone": "+13035001518",
+      "relationship": "patient"
+    },
+    "power_of_attorney_attributes": {
+      "name": "Mpoa Automation",
+      "phone": "+13035001518",
+      "relationship": "patient"
+    },
+    "test_dob": {
+      "year": "1963",
+      "month": "02",
+      "day": "02"
+    }
+  }
+}

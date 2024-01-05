@@ -1,0 +1,420 @@
+{
+  "meta": {
+    "current_page": 2,
+    "page_size": 25,
+    "total_pages": 3,
+    "total_results": 51
+  },
+  "episodes": [
+    {
+      "id": "6",
+      "care_day": "4",
+      "admitted_at": "2022-02-28T05:39:37.632Z",
+      "discharged_at": "2022-02-28T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": "Suspected Primary Dx: LLE Cellulitis w failure of outpatient tx. Brief PMH and reason for admission: 89 F HTN, GERD, vision probs. Other stuff as well so check out more.",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Advance Care"
+      },
+      "care_phase": {
+        "id": "3",
+        "name": "Transition - High"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "6",
+        "first_name": "Stephanie",
+        "middle_name": "",
+        "last_name": "Cervantez",
+        "date_of_birth": "1934-04-03",
+        "sex": "female",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "44 Derek St.",
+        "address_city": "Denver",
+        "address_state": "CO",
+        "address_zipcode": "04350",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "0",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th), cont pred 60 (last day tomorrow, will...",
+        "note_kind": "daily_update",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "1",
+        "nurse_navigator": "2",
+        "t1": "3",
+        "t2": "4"
+      }
+    },
+    {
+      "id": "7",
+      "care_day": "4",
+      "admitted_at": "2022-02-26T05:39:37.632Z",
+      "discharged_at": "2022-02-26T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": "Suspected Primary Dx: LLE Cellulitis w failure of outpatient tx. Brief PMH and reason for admission: 89 F HTN, GERD, vision probs. Other stuff as well so check out more.",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Advance Care"
+      },
+      "care_phase": {
+        "id": "3",
+        "name": "Transition - High"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "7",
+        "first_name": "Lucy",
+        "middle_name": "",
+        "last_name": "Johnson",
+        "date_of_birth": "1934-04-03",
+        "sex": "female",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "44 Derek St.",
+        "address_city": "Denver",
+        "address_state": "CO",
+        "address_zipcode": "04350",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "0",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th), cont pred 60 (last day tomorrow, will...",
+        "note_kind": "daily_update",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "1",
+        "nurse_navigator": "2",
+        "t1": "3",
+        "t2": "4"
+      }
+    },
+    {
+      "id": "8",
+      "care_day": "4",
+      "admitted_at": "2022-02-24T05:39:37.632Z",
+      "discharged_at": "2022-02-24T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": "Suspected Primary Dx: LLE Cellulitis w failure of outpatient tx. Brief PMH and reason for admission: 89 F HTN, GERD, vision probs. Other stuff as well so check out more.",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Advance Care"
+      },
+      "care_phase": {
+        "id": "3",
+        "name": "Transition - High"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "8",
+        "first_name": "Roy",
+        "middle_name": "",
+        "last_name": "Kent",
+        "date_of_birth": "1934-04-03",
+        "sex": "female",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "44 Derek St.",
+        "address_city": "Denver",
+        "address_state": "CO",
+        "address_zipcode": "04350",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "0",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th), cont pred 60 (last day tomorrow, will...",
+        "note_kind": "daily_update",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "1",
+        "nurse_navigator": "2",
+        "t1": "3",
+        "t2": "4"
+      }
+    },
+    {
+      "id": "9",
+      "care_day": "4",
+      "admitted_at": "2022-02-24T05:39:37.632Z",
+      "discharged_at": "2022-02-24T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": "Suspected Primary Dx: LLE Cellulitis w failure of outpatient tx. Brief PMH and reason for admission: 89 F HTN, GERD, vision probs. Other stuff as well so check out more.",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Advance Care"
+      },
+      "care_phase": {
+        "id": "3",
+        "name": "Transition - High"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "9",
+        "first_name": "Keeley",
+        "middle_name": "",
+        "last_name": "Jones",
+        "date_of_birth": "1934-04-03",
+        "sex": "female",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "44 Derek St.",
+        "address_city": "Denver",
+        "address_state": "CO",
+        "address_zipcode": "04350",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "9",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th), cont pred 60 (last day tomorrow, will...",
+        "note_kind": "daily_update",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "1",
+        "nurse_navigator": "2",
+        "t1": "3",
+        "t2": "4"
+      }
+    },
+    {
+      "id": "10",
+      "care_day": "4",
+      "admitted_at": "2022-02-24T05:39:37.632Z",
+      "discharged_at": "2022-02-24T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": "Suspected Primary Dx: LLE Cellulitis w failure of outpatient tx. Brief PMH and reason for admission: 89 F HTN, GERD, vision probs. Other stuff as well so check out more.",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Advance Care"
+      },
+      "care_phase": {
+        "id": "3",
+        "name": "Transition - High"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "5",
+        "first_name": "Jason",
+        "middle_name": "",
+        "last_name": "Sudeikis",
+        "date_of_birth": "1934-04-03",
+        "sex": "male",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "44 Derek St.",
+        "address_city": "Denver",
+        "address_state": "CO",
+        "address_zipcode": "04350",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "10",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th), cont pred 60 (last day tomorrow, will...",
+        "note_kind": "daily_update",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "1",
+        "nurse_navigator": "2",
+        "t1": "3",
+        "t2": "4"
+      }
+    }
+  ]
+}

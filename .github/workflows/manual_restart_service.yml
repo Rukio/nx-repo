@@ -1,0 +1,55 @@
+name: Restart Service
+
+run-name: Restart ${{ inputs.service_name }} ${{ inputs.environment }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      service_name:
+        description: Name of the service to restart
+        type: choice
+        required: true
+        default: ''
+        options:
+          - ''
+          - acuity-model-server
+          - athena-service
+          - audit-service
+          - caremanager-service
+          - clinicalkpi-service
+          - insurance-service
+          - logistics-optimizer
+          - logistics-service
+          - modality-service
+          - notifications-service
+          - partner-service
+          - patients-service
+          - pophealth-service
+          - riskstratification-service
+          - shiftschedule-service
+          - telep-model-server
+          - tytocare-service
+          # add other services here
+      environment:
+        description: Environment to restart
+        type: choice
+        required: true
+        default: qa
+        options:
+          - qa
+          - uat
+
+jobs:
+  restart_service:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout # Required for actions on relative paths
+        uses: actions/checkout@v3
+      - name: Setup Aptible CLI
+        uses: ./.github/actions/setup_aptible
+        with:
+          username: ${{ secrets.APTIBLE_USERNAME }}
+          password: ${{ secrets.APTIBLE_PASSWORD }}
+      - name: Restart Service
+        run: aptible restart --app ${{ inputs.service_name }}-${{ inputs.environment }}

@@ -1,0 +1,16 @@
+{
+  "name": "@*company-data-covered*/design-system",
+  "version": "4.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/*company-data-covered*/services.git",
+    "directory": "ts/libs/shared/ui/design-system"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "sideEffects": false
+}

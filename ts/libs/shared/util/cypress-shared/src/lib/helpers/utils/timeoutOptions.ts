@@ -1,0 +1,13 @@
+const timeoutOptions = {
+  VERY_TINY_MS: 1000,
+  TINY_MS: 2500,
+  VERY_SHORT_MS: 5000,
+  SHORT_MS: 10000,
+  MEDIUM_MS: 15000,
+  LONG_MS: 20000,
+  VERY_LONG_MS: 30000,
+  INSURANCE_ONLY_LONG_MS: 60000,
+  ASSIGNMENT_ONLY_LONG_MS: 90000,
+};
+
+export default timeoutOptions;

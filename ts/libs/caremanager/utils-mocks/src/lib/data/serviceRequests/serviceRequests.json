@@ -1,0 +1,163 @@
+{
+  "service_requests": [
+    {
+      "service_request": {
+        "id": "1",
+        "created_at": "2023-07-14T17:57:14.581Z",
+        "updated_at": "2023-07-14T17:57:14.581Z",
+        "market_id": "159",
+        "status_id": "1",
+        "is_insurance_verified": false,
+        "assigned_user_id": "1",
+        "updated_by_user_id": "2"
+      },
+      "station_patient": {
+        "id": "77853",
+        "first_name": "William",
+        "last_name": "Patton",
+        "ehr_id": "33667",
+        "date_of_birth": "1938-11-09",
+        "sex": "male",
+        "insurance_name": "Humana Ltd",
+        "phone_number": "555-555-5555",
+        "visits_in_past_90_days": 2,
+        "has_been_in_advanced_care": false,
+        "insurance_plan_id": "123456789",
+        "insurance_plan_name": "Humana Gold Plus HMO",
+        "insurance_network_name": "Humana",
+        "insurance_member_id": "123456789"
+      },
+      "station_care_request": {
+        "id": "819283",
+        "chief_complaint": "Sore throat",
+        "risk_strat_score": 10.345345,
+        "secondary_screening_note": "a note",
+        "secondary_screening_provider_id": "1",
+        "requester_type": "Partner",
+        "requester_name": "Larry David",
+        "requester_organization_name": "Inter Valley",
+        "requester_phone_number": "111-111-1111",
+        "car_name": "DENN005",
+        "provider_user_ids": ["1", "2"]
+      },
+      "notes_count": 1
+    },
+    {
+      "service_request": {
+        "id": "2",
+        "created_at": "2023-07-08T17:57:08.581Z",
+        "updated_at": "2023-07-08T17:57:08.581Z",
+        "market_id": "177",
+        "status_id": "4",
+        "is_insurance_verified": true,
+        "cms_number": "5345",
+        "assigned_user_id": "1",
+        "updated_by_user_id": "2",
+        "reject_reason": "Invalid insurance"
+      },
+      "station_patient": {
+        "id": "5280",
+        "first_name": "Doris",
+        "last_name": "Farrell",
+        "ehr_id": "1130",
+        "date_of_birth": "1985-05-13",
+        "sex": "female",
+        "insurance_name": "Medicare"
+      },
+      "station_care_request": {
+        "id": "552156",
+        "chief_complaint": "Rash",
+        "secondary_screening_note": "Patient has a history of heart disease and is a smoker. He is also a diabetic. He is currently taking Metformin and Lisinopril."
+      },
+      "notes_count": 5
+    },
+    {
+      "service_request": {
+        "id": "3",
+        "created_at": "2023-07-21T17:57:14.581Z",
+        "updated_at": "2023-07-21T17:57:14.581Z",
+        "market_id": "160",
+        "status_id": "2",
+        "is_insurance_verified": false,
+        "assigned_user_id": null,
+        "updated_by_user_id": "4"
+      },
+      "station_patient": {
+        "id": "9580",
+        "first_name": "Robyn",
+        "last_name": "Feder",
+        "ehr_id": "9330",
+        "date_of_birth": "1955-05-06",
+        "sex": "female",
+        "insurance_name": "Seguros Monterrey"
+      },
+      "station_care_request": {
+        "id": "83653",
+        "chief_complaint": "Blurry vision"
+      },
+      "notes_count": 3
+    },
+    {
+      "service_request": {
+        "id": "4",
+        "created_at": "2023-07-24T17:57:14.581Z",
+        "updated_at": "2023-07-24T17:57:14.581Z",
+        "market_id": "162",
+        "status_id": "3",
+        "is_insurance_verified": true,
+        "assigned_user_id": "9",
+        "updated_by_user_id": "7"
+      },
+      "station_patient": {
+        "id": "9050",
+        "first_name": "Audrey",
+        "last_name": "Linder",
+        "ehr_id": "4993",
+        "date_of_birth": "1973-04-26",
+        "sex": "female",
+        "insurance_name": "Cigna Healthcare"
+      },
+      "station_care_request": {
+        "id": "911204",
+        "chief_complaint": "Headache"
+      },
+      "notes_count": 2
+    },
+    {
+      "service_request": {
+        "id": "5",
+        "created_at": "2023-07-04T17:57:14.581Z",
+        "updated_at": "2023-07-04T17:57:14.581Z",
+        "market_id": "173",
+        "status_id": "1",
+        "is_insurance_verified": true,
+        "assigned_user_id": null,
+        "updated_by_user_id": "7"
+      },
+      "station_patient": {
+        "id": "3581",
+        "first_name": "Eugene",
+        "last_name": "Oldham",
+        "ehr_id": "572",
+        "date_of_birth": "1989-03-05",
+        "sex": "male",
+        "insurance_name": "Kaiser Permanente"
+      },
+      "station_care_request": {
+        "id": "17713",
+        "chief_complaint": "Abdominal pain"
+      },
+      "notes_count": 0
+    }
+  ],
+  "meta": {
+    "page_size": 1,
+    "total_results": 5,
+    "total_pages": 1,
+    "current_page": 1,
+    "first_page": true,
+    "last_page": true,
+    "previous_page": 0,
+    "next_page": 0
+  }
+}

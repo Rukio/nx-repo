@@ -1,0 +1,136 @@
+syntax = "proto3";
+package audit;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/audit";
+option ruby_package = "AuditGRPC";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+service AuditService {
+  rpc CreateAuditEvent(CreateAuditEventRequest)
+      returns (CreateAuditEventResponse) {}
+}
+
+message CreateAuditEventRequest {
+  // The source system (i.e. service, application) generating the audit event
+  // Required
+  // Example: "Logistics"
+  optional string source = 1;
+
+  // The user or account initiating the audit event
+  // Required
+  // Example: "user.x@*company-data-covered*.com"
+  optional string agent = 2;
+
+  // The name of the action or event generating the audit event data
+  // Required
+  // Example: "CREATE"
+  optional string event_type = 3;
+
+  // The logical entity being mutated or accessed
+  // Required
+  // Example: "Patient"
+  optional string event_data_type = 4;
+
+  // The timestamp of the audited event
+  // Required
+  // Example:
+  // {
+  //     "nanos": 1389723974,
+  //     "seconds": "9316"
+  // }
+  optional google.protobuf.Timestamp event_timestamp = 5;
+
+  // Notes on the google.protobuf.Struct data type used by `event_data` and
+  // `context_metadata`
+  //  - The google.protobuf.Struct data format represents a structured data
+  //    value, consisting of fields which map to dynamically typed values.
+  //    As such it can be mapped to a Map of arbitrary values and can be used to
+  //    represent a JSON object
+  //  - The data fields are represented as a map of key to google.protobuf.Value
+  //    objects under the `fields` key
+  //    - Any other data type specified for `fields` key will cause an invalid
+  //      message format error
+  //  - Any keys other than the `fields` key will be ignored by the protobuf
+  //    Struct
+  //  - Each entry within the `fields` fields consists of:
+  //    - a `key` field specifying the name of the field as a string.  This
+  //      field maps to a key in a Map
+  //    - a `value` object which specifies the value corresponding to the key
+  //      using a google.protobuf.Value
+  //      - valid value specifiers are (null_value, string_value, bool_value,
+  //        number_value, struct_value, list_value)
+  //      - an invalid value type specifier will result in a null value for that
+  //        key
+  //    - any other fields specified in the object besides `key` or `value` will
+  //      be ignored
+  //    - duplicate keys will result in a last specified wins scenario
+  //
+  // Any data related to the audited event and its data type itself which may
+  // also include PHI
+  // Optional
+  // Example:
+  // {
+  //     "fields": [
+  //         {
+  //             "key": "id",
+  //             "value": {
+  //                 "string_value": "1123"
+  //             }
+  //         },
+  //         {
+  //             "key": "name",
+  //             "value": {
+  //                 "string_value": "Test Person"
+  //             }
+  //         },
+  //         {
+  //             "key": "email",
+  //             "value": {
+  //                 "string_value": "test.persons@gmail.com"
+  //             }
+  //         },
+  //         {
+  //             "key": "address",
+  //             "value": {
+  //                 "string_value": "1234 Test Lane, Denver Colorado 80123"
+  //             }
+  //         }
+  //     ]
+  // }
+  optional google.protobuf.Struct event_data = 6;
+
+  // Any data related to the system context in which the audited event occurred
+  // Optional
+  // Example:
+  // {
+  //     "fields": [
+  //         {
+  //             "key": "correlation_id",
+  //             "value": {
+  //                 "string_value": "4F934F02-CDF0-435B-AF4A-A51BEE4D18DB"
+  //             }
+  //         }
+  //     ]
+  // }
+  optional google.protobuf.Struct context_metadata = 7;
+}
+
+message CreateAuditEventResponse {
+  // Audit Event Identifier
+  // System Generated
+  optional int64 id = 1;
+
+  optional string source = 2;
+  optional string agent = 3;
+  optional string event_type = 4;
+  optional string event_data_type = 5;
+  optional google.protobuf.Timestamp event_timestamp = 6;
+  optional google.protobuf.Struct event_data = 7;
+  optional google.protobuf.Struct context_metadata = 8;
+
+  // The creation timestamp of the audit event record
+  // System Generated
+  optional google.protobuf.Timestamp created_at = 9;
+}

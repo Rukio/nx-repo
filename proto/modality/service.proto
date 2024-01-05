@@ -1,0 +1,319 @@
+syntax = "proto3";
+package modality;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/modality";
+option ruby_package = "ModalityGRPC";
+
+import "common/auth/auth.proto";
+import "google/api/annotations.proto";
+
+service ModalityService {
+  // Returns all modalities.
+  rpc GetModalities(GetModalitiesRequest) returns (GetModalitiesResponse) {
+    option (google.api.http) = {
+      get: "/v1/modalities"
+    };
+  }
+
+  // Returns modality configs based on input parameters.
+  rpc GetModalityConfigs(GetModalityConfigsRequest)
+      returns (GetModalityConfigsResponse) {
+    option (google.api.http) = {
+      get: "/v1/configs"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:modality_configs:all"
+    };
+  }
+
+  // Returns market modality configs based on input parameters.
+  rpc GetMarketModalityConfigs(GetMarketModalityConfigsRequest)
+      returns (GetMarketModalityConfigsResponse) {
+    option (google.api.http) = {
+      get: "/v1/market-configs"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:modality_configs:all"
+    };
+  }
+
+  // Returns insurance network modality configs based on input parameters.
+  rpc GetNetworkModalityConfigs(GetNetworkModalityConfigsRequest)
+      returns (GetNetworkModalityConfigsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:modality_configs:all"
+    };
+  }
+
+  // Returns a list of modalities based on input parameters.
+  rpc CalculateModalities(CalculateModalitiesRequest)
+      returns (CalculateModalitiesResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:modality_configs:all"
+    };
+  }
+
+  // Updates modality configs for specific service line
+  rpc UpdateModalityConfigs(UpdateModalityConfigsRequest)
+      returns (UpdateModalityConfigsResponse) {
+    option (google.api.http) = {
+      patch: "/v1/configs"
+      body: "*"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "update:modality_configs:all"
+    };
+  }
+
+  // Updates market modality configs for the specific service line.
+  // It will overwrite market configs for the given service line.
+  rpc UpdateMarketModalityConfigs(UpdateMarketModalityConfigsRequest)
+      returns (UpdateMarketModalityConfigsResponse) {
+    option (google.api.http) = {
+      patch: "/v1/market-configs"
+      body: "*"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "update:modality_configs:all"
+    };
+  }
+
+  // Updates modality configs for the specific insurance network.
+  // It will overwrite modality configs for the given insurance network.
+  rpc UpdateNetworkModalityConfigs(UpdateNetworkModalityConfigsRequest)
+      returns (UpdateNetworkModalityConfigsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:modality_configs:all"
+    };
+  }
+
+  // Returns eligible markets for specific modality
+  rpc GetEligibleMarketsByModality(GetEligibleMarketsByModalityRequest)
+      returns (GetEligibleMarketsByModalityResponse) {}
+
+  // Returns service line ids for given insurance network.
+  rpc GetNetworkServiceLines(GetNetworkServiceLinesRequest)
+      returns (GetNetworkServiceLinesResponse) {}
+
+  // Returns a list of modalities based on input parameters.
+  rpc ListCareRequestEligibleModalities(
+      ListCareRequestEligibleModalitiesRequest)
+      returns (ListCareRequestEligibleModalitiesResponse) {}
+
+  // Returns list of Insurance network IDs
+  // by given params.
+  rpc ListEligibleNetworks(ListEligibleNetworksRequest)
+      returns (ListEligibleNetworksResponse) {}
+}
+
+// Modality defines all possible types of care that can be provided.
+message Modality {
+  // Modality id
+  int64 id = 1;
+
+  // Name of modality for FE.
+  string display_name = 2;
+
+  // Modality value (virtual, in_person etc.)
+  string type = 3;
+}
+
+// ModalityConfig defines a specific modality by a given set of params.
+message ModalityConfig {
+  // Modality config id
+  int64 id = 1;
+
+  // Modality id
+  int64 modality_id = 2;
+
+  // Market id
+  int64 market_id = 3;
+
+  // Service line id
+  int64 service_line_id = 4;
+
+  // Insurance plan id
+  int64 insurance_plan_id = 5;
+}
+
+// MarketModalityConfig defines a specific modality for market by a given
+// set of params.
+message MarketModalityConfig {
+  // Market modality config id
+  int64 id = 1;
+
+  // Modality id
+  int64 modality_id = 2;
+
+  // Market id
+  int64 market_id = 3;
+
+  // Service line id
+  int64 service_line_id = 4;
+}
+
+// NetworkModalityConfig defines a specific modality for insurance network
+// by a given set of params.
+message NetworkModalityConfig {
+  // Insurance network modality config ID.
+  // ID is not required for newly added modality configurations,
+  // so it can be skipped in request.
+  optional int64 id = 1;
+
+  // Insurance network ID
+  int64 network_id = 2;
+
+  // Billing city ID
+  int64 billing_city_id = 3;
+
+  // Modality ID
+  int64 modality_id = 4;
+
+  // Service line ID
+  int64 service_line_id = 5;
+}
+
+message GetModalitiesRequest {}
+
+message GetModalitiesResponse {
+  // Array of modalities
+  repeated Modality modalities = 1;
+}
+
+message GetModalityConfigsRequest {
+  // Service line id
+  int64 service_line_id = 1;
+}
+
+message GetModalityConfigsResponse {
+  // Array of modality configs
+  repeated ModalityConfig configs = 1;
+}
+
+message GetMarketModalityConfigsRequest {
+  // Service line id
+  int64 service_line_id = 1;
+}
+
+message GetMarketModalityConfigsResponse {
+  // Array of market modality configs
+  repeated MarketModalityConfig configs = 1;
+}
+
+message GetNetworkModalityConfigsRequest {
+  // Insurance network ID
+  optional int64 network_id = 1;
+
+  // Service line ID
+  optional int64 service_line_id = 2;
+}
+
+message GetNetworkModalityConfigsResponse {
+  // Array of insurance network modality configs
+  repeated NetworkModalityConfig configs = 1;
+}
+
+message CalculateModalitiesRequest {
+  // Market id
+  int64 market_id = 1;
+
+  // Service line id
+  int64 service_line_id = 2;
+
+  // Insurance plan id
+  int64 insurance_plan_id = 3;
+}
+
+message CalculateModalitiesResponse {
+  // Array of calculated modalities
+  repeated Modality modalities = 1;
+}
+
+message UpdateModalityConfigsRequest {
+  // Service line modality configs are updated for
+  int64 service_line_id = 1;
+  // List of new modality configs
+  repeated ModalityConfig configs = 2;
+}
+
+message UpdateModalityConfigsResponse {
+  // List of modality configs after update
+  repeated ModalityConfig configs = 1;
+}
+
+message UpdateMarketModalityConfigsRequest {
+  // Service line modality configs are updated for
+  int64 service_line_id = 1;
+  // List of new market modality configs
+  repeated MarketModalityConfig configs = 2;
+}
+
+message UpdateMarketModalityConfigsResponse {
+  // List of market modality configs after update
+  repeated MarketModalityConfig configs = 1;
+}
+
+message UpdateNetworkModalityConfigsRequest {
+  // Insurance network ID
+  int64 network_id = 1;
+
+  // List of new insurance network modality configs
+  repeated NetworkModalityConfig configs = 2;
+}
+
+message UpdateNetworkModalityConfigsResponse {
+  // List of insurance network modality configs after update
+  repeated NetworkModalityConfig configs = 1;
+}
+
+message GetEligibleMarketsByModalityRequest {
+  // Modality type
+  string modality_type = 1;
+}
+
+message GetEligibleMarketsByModalityResponse {
+  // Markets ids which eligible for specific modalities
+  repeated int64 market_ids = 1;
+}
+
+message GetNetworkServiceLinesRequest {
+  // Insurance network ID.
+  int64 network_id = 1;
+}
+
+message GetNetworkServiceLinesResponse {
+  // Service line ids related to given insurance network.
+  repeated int64 service_line_ids = 1;
+}
+
+message ListCareRequestEligibleModalitiesRequest {
+  // Market ID.
+  int64 market_id = 1;
+
+  // Insurance network ID.
+  int64 network_id = 2;
+
+  // Service line ID.
+  int64 service_line_id = 3;
+
+  // Billing city ID.
+  int64 billing_city_id = 4;
+}
+
+message ListCareRequestEligibleModalitiesResponse {
+  // Array of care request eligible modalities.
+  repeated Modality modalities = 1;
+}
+
+message ListEligibleNetworksRequest {
+  // Billing city ID.
+  optional int64 billing_city_id = 1;
+
+  // Service line ID.
+  optional int64 service_line_id = 2;
+}
+
+message ListEligibleNetworksResponse {
+  // List of insurance network IDs.
+  repeated int64 network_ids = 1;
+}

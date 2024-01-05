@@ -1,0 +1,31 @@
+{
+  "name": "modality-dashboard-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/modality-dashboard-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "ts/apps/modality-dashboard-e2e/cypress.config.ts",
+        "devServerTarget": "modality-dashboard:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "ci": {
+          "devServerTarget": "modality-dashboard:storybook:ci"
+        }
+      }
+    },
+
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/modality-dashboard-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": ["scope:modality-dashboard", "type:e2e"],
+  "implicitDependencies": ["modality-dashboard"]
+}

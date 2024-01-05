@@ -1,0 +1,335 @@
+{
+  "episode": {
+    "id": "1",
+    "care_day": "0",
+    "admitted_at": "2022-03-17T02:53:21.641Z",
+    "discharged_at": "2022-04-02T02:53:21.641Z",
+    "source": "string",
+    "patient_summary": "Payor: CMS Waiver/ AH\nPrimary Dx: cellulitis\n(WA Waiver Hosp Admit Date:) 7/13/22\nHA Admit Date: 7/18/22Anticipated T1 date: 7/29/22\nActual T1 date:T2 date:\n\nClinical Summary:\nHollie L Moors is a 55-year-old female with underlying poorly controlled type 2 diabetes mellitus who has been off insulin  for more than a year and has been non adherent with her medications, presented to the hospital with a right foot toenail injury.  An MRI of the foot was obtained and showed right foot concerning for osteomyelitis and right distal phalanx.  Podiatry was consulted and performed a deep bedside debridement of the right distal digit.  He recommended IV antibiotics for at least 2 weeks.  Infectious disease was consulted and found that wound cultures are growing group B strep.  ID ultimately recommended doing IV antibiotics for 2 to 4 weeks. Over the course of the next several  days, patient had to have her insulin adjusted.  Podiatry consulted and is in agreement for Advanced Care to continue with IV Ceftraxione and oral Linzolid. \n\nBarriers to T1\nuncontrolled diabetes\nfood insecurity, difficulty paying rent\nunhygienic environment\n\nAppointments:\nPCP- after the 29th\nPodiatry appointment f/u with either Ha Nguyen  DPM or Rebecca Brickman DPM - had requested patient see within one week\nPossible PT for deconditioning, right cervical strain\nMammogram\nDiabetic Eye Evaluation\nDentist - not sure what is covered by her insurance but definitely needs teeth extraction\nTransition Plan and Goals:\n\nBarriers to safe T2",
+    "primary_diagnosis": "Some diagnosis",
+    "payer": "string",
+    "doctors_primary_care": "string",
+    "created_at": "2022-03-17T02:53:21.641Z",
+    "updated_at": "2022-03-17T02:53:21.641Z",
+    "service_line_id": 1,
+    "care_phase": {
+      "id": "2",
+      "name": "High Acuity"
+    },
+    "market": {
+      "id": "159",
+      "name": "Denver",
+      "tz_name": "America/Los_Angeles",
+      "short_name": "DEN",
+      "schedule_days": []
+    },
+    "user": {
+      "id": "0",
+      "first_name": "string",
+      "last_name": "string",
+      "email": "user@example.com",
+      "job_title": "string"
+    },
+    "patient_id": "1",
+    "patient": {
+      "id": "1",
+      "first_name": "Jane",
+      "middle_name": "",
+      "last_name": "Goodall",
+      "date_of_birth": "1934-04-03",
+      "sex": "female",
+      "phone_number": "324-533-3333",
+      "athena_medical_record_number": "123456789",
+      "medical_power_of_attorney_details": "",
+      "payer": "Medicare",
+      "preferred_pharmacy_details": "",
+      "primary_care_provider_details": "",
+      "address_street": "44 Derek St.",
+      "address_city": "Denver",
+      "address_state": "CO",
+      "address_zipcode": "04350",
+      "address_notes": ""
+    },
+    "is_waiver": false,
+    "notes": [
+      {
+        "id": "1",
+        "details": "Adding a new note.\nChecking for the next line.\nI need to see paragraphs if needed.",
+        "note_kind": "daily_update",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-19T02:53:21.641Z",
+        "pinned": true,
+        "created_by_user_id": "1",
+        "updated_by_user_id": "2",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "2",
+          "first_name": "Mr",
+          "last_name": "Notes",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      {
+        "id": "2",
+        "details": "Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.Adding a new note.",
+        "note_kind": "daily_update",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      {
+        "id": "3",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th).",
+        "note_kind": "daily_update",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      {
+        "id": "4",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th).",
+        "note_kind": "daily_update",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      {
+        "id": "5",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th).",
+        "note_kind": "daily_update",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      {
+        "id": "6",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse. Cont CTX 1g (day 3), cont doxy (last day the 17th).",
+        "note_kind": "navigator",
+        "noteable_id": "0",
+        "noteable_type": "string",
+        "created_at": "2022-03-17T02:53:21.641Z",
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "id": "1",
+        "task": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "task_type": "daily_and_onboarding",
+        "taskable_type": "string",
+        "taskable_id": "1",
+        "status": "pending",
+        "completed_by_user_id": "1",
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_at": "2022-03-17T02:53:21.641Z"
+      },
+      {
+        "id": "2",
+        "task": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "task_type": "daily_and_onboarding",
+        "taskable_type": "string",
+        "taskable_id": "1",
+        "status": "pending",
+        "completed_by_user_id": "1",
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_at": "2022-03-17T02:53:21.641Z"
+      },
+      {
+        "id": "3",
+        "task": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "task_type": "daily_and_onboarding",
+        "taskable_type": "string",
+        "taskable_id": "1",
+        "status": "completed",
+        "completed_by_user_id": "1",
+        "last_updated_by": {
+          "id": "1",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "updated_at": "2022-03-17T02:53:21.641Z",
+        "created_at": "2022-03-17T02:53:21.641Z"
+      }
+    ],
+    "task_templates": [
+      {
+        "id": "1",
+        "created_at": "2022-07-25T05:39:37.632Z",
+        "updated_at": "2022-07-25T05:39:37.632Z",
+        "name": "Special Cases",
+        "summary": "Lorem ipsum ex magna commodo exercitation ut commodo officia tempor veniam.",
+        "tasks_count": "7",
+        "service_line": {
+          "id": "1",
+          "name": "Advanced Care"
+        },
+        "care_phase": {
+          "id": "2",
+          "name": "High Acuity"
+        },
+        "updated_by_user_id": "441",
+        "last_updated_by": {
+          "id": "441",
+          "first_name": "John",
+          "last_name": "Woo",
+          "email": "john@woo.com"
+        }
+      },
+      {
+        "id": "2",
+        "created_at": "2022-07-25T05:39:37.632Z",
+        "updated_at": "2022-07-25T05:39:37.632Z",
+        "name": "Providers Only",
+        "summary": "Lorem ipsum ex magna commodo exercitation ut commodo officia tempor veniam.",
+        "tasks_count": "7",
+        "service_line": {
+          "id": "1",
+          "name": "Advanced Care"
+        },
+        "care_phase": {
+          "id": "2",
+          "name": "High Acuity"
+        },
+        "updated_by_user_id": "441",
+        "last_updated_by": {
+          "id": "441",
+          "first_name": "John",
+          "last_name": "Woo",
+          "email": "john@woo.com"
+        }
+      },
+      {
+        "id": "4",
+        "created_at": "2022-07-25T05:39:37.632Z",
+        "updated_at": "2022-07-25T05:39:37.632Z",
+        "name": "Preoperatory Requirements",
+        "summary": "Lorem ipsum reprehenderit proident nostrud exercitation dolore excepteur consequat sit tempor id adipisicing.",
+        "tasks_count": "9",
+        "service_line": {
+          "id": "1",
+          "name": "Advanced Care"
+        },
+        "care_phase": {
+          "id": "2",
+          "name": "High Acuity"
+        },
+        "updated_by_user_id": "255",
+        "last_updated_by": {
+          "id": "255",
+          "first_name": "Chavela",
+          "last_name": "Vargas",
+          "email": "lalala@gmail.com"
+        }
+      }
+    ]
+  }
+}

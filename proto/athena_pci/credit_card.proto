@@ -1,0 +1,37 @@
+syntax = "proto3";
+package athena_pci;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/athena_pci";
+option ruby_package = "AthenaPCIGRPC";
+
+message CreditCard {
+  // ID of a stored credit card.
+  string id = 1;
+
+  // Current status of credit card.
+  string status = 2;
+
+  // The type of this credit card.
+  string card_type = 3;
+
+  // Billing zip.
+  string billing_zip = 4;
+
+  // Billing city.
+  string billing_city = 5;
+
+  // Billing state.
+  string billing_state = 6;
+
+  // Indicates if this card is marked as preferred.
+  string is_preferred_card = 7;
+
+  // Billing address.
+  string billing_address = 8;
+
+  // Expiration month and year.
+  string expiration_month_year = 9;
+
+  // Last four digits of credit card number.
+  string number_last_four_digits = 10;
+}

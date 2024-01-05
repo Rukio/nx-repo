@@ -1,0 +1,195 @@
+syntax = "proto3";
+package episode;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/episode";
+option ruby_package = "EpisodeGRPC";
+
+import "common/auth/auth.proto";
+import "common/episode.proto";
+import "common/logistics.proto";
+
+service EpisodeService {
+  rpc GetVisit(GetVisitRequest) returns (GetVisitResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:visits:all"
+    };
+  }
+
+  rpc ListVisits(ListVisitsRequest) returns (ListVisitsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:visits:all"
+    };
+  }
+
+  rpc SearchVisits(SearchVisitsRequest) returns (SearchVisitsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:visits:all"
+    };
+  }
+
+  rpc DuplicateVisit(DuplicateVisitRequest) returns (DuplicateVisitResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "create:visits:all"
+    };
+  }
+
+  rpc GetVisitPossibleServiceLines(GetVisitPossibleServiceLinesRequest)
+      returns (GetVisitPossibleServiceLinesResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:visits:all"
+    };
+  }
+
+  rpc UpsertVisitETARange(UpsertVisitETARangeRequest)
+      returns (UpsertVisitETARangeResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "create:visits:all"
+    };
+  }
+
+  // AssignVirtualAPPFromVisit assigns the VirtualAPP to a given Care Request.
+  rpc AssignVirtualAPPToVisit(AssignVirtualAPPToVisitRequest)
+      returns (AssignVirtualAPPToVisitResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:visits:all"
+    };
+  }
+
+  // UnassignVirtualAPPFromVisit unassigns the VirtualAPP from
+  // a given Care Request.
+  rpc UnassignVirtualAPPFromVisit(UnassignVirtualAPPFromVisitRequest)
+      returns (UnassignVirtualAPPFromVisitResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:visits:all"
+    };
+  }
+}
+
+message DuplicateVisitRequest {
+  // ID of the Care Request to be duplicated.
+  int64 care_request_id = 1;
+}
+
+message DuplicateVisitResponse {
+  // The new duplicated CareRequest.
+  common.CareRequestInfo care_request = 1;
+}
+
+message GetVisitPossibleServiceLinesRequest {
+  // care_request_id is the id for the CareRequest whose possible service
+  // lines will be requested.
+  int64 care_request_id = 1;
+}
+
+message GetVisitPossibleServiceLinesResponse {
+  // Holds the data for the ServiceLines that are available for the CareRequest.
+  repeated ServiceLine service_lines = 1;
+}
+
+message GetVisitRequest {
+  int64 care_request_id = 1;
+
+  // Set to true to to include patient information
+  optional bool include_patient = 2;
+
+  // Set to true to to include shift team information
+  optional bool include_shift_team = 3;
+
+  // Set to true to to include secondary_screening information
+  optional bool include_secondary_screening = 4;
+
+  // Set to true to to include caller information
+  optional bool include_caller = 5;
+
+  // Set to true to to include insurance information
+  optional bool include_insurance = 6;
+
+  // Set to true to include visits_in_last_90_days
+  optional bool include_visits_in_last_90_days = 7;
+}
+
+message GetVisitResponse {
+  optional common.CareRequestInfo care_request = 1;
+}
+
+message ListVisitsRequest {
+  // All visits in the response will have a created_at date within this
+  // time_window
+  common.TimeWindow created_at_time_window = 1;
+
+  // Up to max_visits visits are included in the response
+  int32 max_visits = 2;
+
+  // Set to true to to include patient information
+  optional bool include_patient = 3;
+
+  // Set to true to to include shift team information
+  optional bool include_shift_team = 4;
+
+  // Set to true to to include secondary_screening information
+  optional bool include_secondary_screening = 5;
+
+  // Set to true to to include caller information
+  optional bool include_caller = 6;
+
+  // TODO(CO-1658): Create VisitOptions to encapsulate multiple optional fields.
+  // Set to true to to include insurance information
+  optional bool include_insurance = 7;
+
+  enum SortOrder {
+    SORT_ORDER_UNSPECIFIED = 0;
+    SORT_ORDER_CREATED_AT = 1;
+  }
+  // Defines the order the results are sorted in
+  optional SortOrder sort_order = 8;
+}
+
+message ListVisitsResponse {
+  // Care requests are sorted by sort_order.
+  repeated common.CareRequestInfo care_requests = 1;
+}
+
+message UpsertVisitETARangeRequest {
+  // CareRequest to upsert the ETA range to.
+  int64 care_request_id = 1;
+  // CareRequestStatus to associate the upserted ETA range to.
+  int64 care_request_status_id = 2;
+  // Patient's availability window.
+  common.TimeWindow arrival_time_window = 3;
+}
+
+message UpsertVisitETARangeResponse {}
+
+message AssignVirtualAPPToVisitRequest {
+  // ID of the Care Request the Virtual APP will be assigned to.
+  int64 care_request_id = 1;
+}
+
+message AssignVirtualAPPToVisitResponse {}
+
+message UnassignVirtualAPPFromVisitRequest {
+  // ID of the Care Request whose Virtual APP will be unassigned.
+  int64 care_request_id = 1;
+}
+
+message UnassignVirtualAPPFromVisitResponse {}
+
+message ServiceLine {
+  // Id is the identifier for this ServiceLine in Station database.
+  int64 id = 1;
+  // Name of the service line.
+  string name = 2;
+}
+
+message SearchVisitsRequest {
+  // A collection of IDs to match the provided search term.
+  repeated int64 care_request_ids = 1;
+  // Text used to match either the Patient's name or
+  // the chief complaint of a CareRequest.
+  string search_term = 2;
+}
+
+message SearchVisitsResponse {
+  // List of search results for visits.
+  repeated common.CareRequestInfo care_requests = 1;
+}

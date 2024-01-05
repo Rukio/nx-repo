@@ -1,0 +1,160 @@
+syntax = "proto3";
+package athena_pci;
+
+import "google/api/field_behavior.proto";
+import "google/api/annotations.proto";
+import "athena_pci/credit_card.proto";
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/athena_pci";
+option ruby_package = "AthenaPCIGRPC";
+
+service AthenaPCIService {
+  // Returns a list of patient credit cards that stored in Athena.
+  rpc GetPatientCreditCards(GetPatientCreditCardsRequest)
+      returns (GetPatientCreditCardsResponse) {
+    option (google.api.http) = {
+      get: "/v1/patients/{athena_patient_id}/credit-cards"
+    };
+  }
+
+  // Uploads patient credit card to Athena.
+  rpc CreatePatientCreditCard(CreatePatientCreditCardRequest)
+      returns (CreatePatientCreditCardResponse) {
+    option (google.api.http) = {
+      post: "/v1/patients/{athena_patient_id}/credit-card"
+      body: "*"
+    };
+  }
+
+  // Deletes patient credit card that is stored in Athena.
+  rpc DeletePatientCreditCard(DeletePatientCreditCardRequest)
+      returns (DeletePatientCreditCardResponse) {
+    option (google.api.http) = {
+      delete: "/v1/patients/{athena_patient_id}/credit-card/{credit_card_id}"
+    };
+  }
+
+  // Creates patient payment in Athena.
+  rpc CreatePatientPayment(CreatePatientPaymentRequest)
+      returns (CreatePatientPaymentResponse) {
+    option (google.api.http) = {
+      post: "/v1/patients/{athena_patient_id}/payment"
+      body: "*"
+    };
+  }
+}
+
+message GetPatientCreditCardsRequest {
+  // Athena patient ID.
+  string athena_patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Represents the department to which credit cards are linked.
+  string department_id = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetPatientCreditCardsResponse {
+  // List of patient credit cards.
+  repeated CreditCard credit_cards = 1;
+}
+
+message CreatePatientCreditCardRequest {
+  // Athena patient ID.
+  string athena_patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Represents the department to which credit card is linked.
+  optional int64 department_id = 2;
+
+  // Represents credit card number.
+  optional string account_number = 3;
+
+  // Billing address.
+  optional string billing_address = 4;
+
+  // Billing zip.
+  optional string billing_zip = 5;
+
+  // Card security code.
+  optional int64 cvv = 6;
+
+  // Month when credit card will expire.
+  optional int64 expiration_month = 7;
+
+  // Year when credit card will expire.
+  optional int64 expiration_year = 8;
+
+  // Cardholder name on the credit card.
+  optional string name_on_card = 9;
+}
+
+message CreatePatientCreditCardResponse {
+  // ID of the uploaded credit card.
+  optional string stored_card_id = 1;
+
+  // Detailed error message.
+  optional string error_text = 2;
+
+  // Indicates if the upload was successful.
+  optional string success = 3;
+
+  // ID of the payment.
+  optional string payment_id = 4;
+}
+
+message DeletePatientCreditCardRequest {
+  // Athena patient ID.
+  string athena_patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // ID of the credit card.
+  string credit_card_id = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // ID of the department to which credit card is linked.
+  string department_id = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeletePatientCreditCardResponse {
+  // Indicates if the delete was successful.
+  optional string success = 1;
+}
+
+message CreatePatientPaymentRequest {
+  // Athena patient ID.
+  string athena_patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Represents credit card number.
+  optional string account_number = 2;
+
+  // Billing address.
+  optional string billing_address = 3;
+
+  // Billing zip.
+  optional string billing_zip = 4;
+
+  // Card security code.
+  optional int64 cvv = 5;
+
+  // Month when credit card will expire.
+  optional int64 expiration_month = 6;
+
+  // Year when credit card will expire.
+  optional int64 expiration_year = 7;
+
+  // Cardholder name on the credit card.
+  optional string name_on_card = 8;
+
+  // Amount of the payment to collect.
+  optional string amount = 9;
+
+  // ID of the department to which payment is linked.
+  optional int64 department_id = 10;
+}
+
+message CreatePatientPaymentResponse {
+  // ID of the payment.
+  optional string payment_id = 1;
+
+  // Detailed error message.
+  optional string error_text = 2;
+
+  // Indicates if the payment was successful.
+  optional string success = 3;
+}

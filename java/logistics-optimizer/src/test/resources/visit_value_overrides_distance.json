@@ -1,0 +1,330 @@
+{
+  "problem": {
+    "description": {
+      "shift_teams": [
+        {
+          "id": 1,
+          "depot_location_id": 0,
+          "available_time_window": {
+            "start_timestamp_sec": 0,
+            "end_timestamp_sec": 10000
+          },
+          "attributes": [
+            {
+              "id": "skill:1"
+            }
+          ],
+          "route_history": {},
+          "upcoming_commitments": {}
+        }
+      ],
+      "visits": [
+        {
+          "id": 6,
+          "location_id": 6,
+          "arrival_time_window": {
+            "start_timestamp_sec": 0,
+            "end_timestamp_sec": 10000
+          },
+          "acuity": {
+            "level": 2
+          },
+          "service_duration_sec": 5000,
+          "required_attributes": [
+            {
+              "id": "skill:1"
+            }
+          ],
+          "forbidden_attributes": [],
+          "value": {
+            "completion_value_cents": 10000
+          }
+        },
+        {
+          "id": 7,
+          "location_id": 7,
+          "arrival_time_window": {
+            "start_timestamp_sec": 0,
+            "end_timestamp_sec": 10000
+          },
+          "acuity": {
+            "level": 2
+          },
+          "service_duration_sec": 5000,
+          "required_attributes": [
+            {
+              "id": "skill:1"
+            }
+          ],
+          "forbidden_attributes": [],
+          "value": {
+            "completion_value_cents": 10000
+          }
+        },
+        {
+          "id": 10,
+          "location_id": 10,
+          "arrival_time_window": {
+            "start_timestamp_sec": 0,
+            "end_timestamp_sec": 10000
+          },
+          "acuity": {
+            "level": 2
+          },
+          "service_duration_sec": 5000,
+          "required_attributes": [
+            {
+              "id": "skill:1"
+            }
+          ],
+          "forbidden_attributes": [],
+          "value": {
+            "completion_value_cents": 10000
+          }
+        },
+        {
+          "id": 11,
+          "location_id": 11,
+          "arrival_time_window": {
+            "start_timestamp_sec": 0,
+            "end_timestamp_sec": 10000
+          },
+          "acuity": {
+            "level": 2
+          },
+          "service_duration_sec": 5000,
+          "required_attributes": [
+            {
+              "id": "skill:1"
+            }
+          ],
+          "forbidden_attributes": [],
+          "value": {
+            "completion_value_cents": 100000
+          }
+        }
+      ],
+      "locations": [
+        {
+          "id": 0,
+          "latitude_e6": 36250490,
+          "longitude_e6": -115193890
+        },
+        {
+          "id": 6,
+          "latitude_e6": 36254370,
+          "longitude_e6": -115197920
+        },
+        {
+          "id": 7,
+          "latitude_e6": 36254040,
+          "longitude_e6": -115188970
+        },
+        {
+          "id": 10,
+          "latitude_e6": 36246930,
+          "longitude_e6": -115198520
+        },
+        {
+          "id": 11,
+          "latitude_e6": 36247040,
+          "longitude_e6": -115189150
+        }
+      ],
+      "distance_matrix": {
+        "distances": [
+          {
+            "from_location_id": 0,
+            "to_location_id": 0,
+            "length_meters": 0,
+            "duration_sec": 0
+          },
+          {
+            "from_location_id": 0,
+            "to_location_id": 6,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 0,
+            "to_location_id": 7,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 0,
+            "to_location_id": 10,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 0,
+            "to_location_id": 11,
+            "length_meters": 125,
+            "duration_sec": 1250
+          },
+          {
+            "from_location_id": 6,
+            "to_location_id": 0,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 6,
+            "to_location_id": 6,
+            "length_meters": 0,
+            "duration_sec": 0
+          },
+          {
+            "from_location_id": 6,
+            "to_location_id": 7,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 6,
+            "to_location_id": 10,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 6,
+            "to_location_id": 11,
+            "length_meters": 200,
+            "duration_sec": 2000
+          },
+          {
+            "from_location_id": 7,
+            "to_location_id": 0,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 7,
+            "to_location_id": 6,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 7,
+            "to_location_id": 7,
+            "length_meters": 0,
+            "duration_sec": 0
+          },
+          {
+            "from_location_id": 7,
+            "to_location_id": 10,
+            "length_meters": 200,
+            "duration_sec": 2000
+          },
+          {
+            "from_location_id": 7,
+            "to_location_id": 11,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 10,
+            "to_location_id": 0,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 10,
+            "to_location_id": 6,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 10,
+            "to_location_id": 7,
+            "length_meters": 200,
+            "duration_sec": 2000
+          },
+          {
+            "from_location_id": 10,
+            "to_location_id": 10,
+            "length_meters": 0,
+            "duration_sec": 0
+          },
+          {
+            "from_location_id": 10,
+            "to_location_id": 11,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 11,
+            "to_location_id": 0,
+            "length_meters": 125,
+            "duration_sec": 1250
+          },
+          {
+            "from_location_id": 11,
+            "to_location_id": 6,
+            "length_meters": 200,
+            "duration_sec": 2000
+          },
+          {
+            "from_location_id": 11,
+            "to_location_id": 7,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 11,
+            "to_location_id": 10,
+            "length_meters": 100,
+            "duration_sec": 1000
+          },
+          {
+            "from_location_id": 11,
+            "to_location_id": 11,
+            "length_meters": 0,
+            "duration_sec": 0
+          }
+        ]
+      }
+    }
+  },
+  "config": {
+    "termination_duration_ms": 1000,
+    "termination_type": "TERMINATION_TYPE_BEST_FOR_TIME",
+    "include_intermediate_solutions": false,
+    "include_intermediate_infeasible_solutions": false,
+    "include_distance_matrix": false,
+    "app_hourly_cost_usd_cents": 7200,
+    "dhmt_hourly_cost_usd_cents": 3600,
+    "random_seed": 0,
+    "constraint_config": {
+      "work_distribution": {
+        "exponential_policy": {
+          "base_numerator": 2,
+          "base_denominator": 1,
+          "full_queue_value_limit_usd_mills": 250000
+        }
+      },
+      "late_arrival": {
+        "linear_offset_policy": {
+          "lateness_cost_usd_mills_per_ms": 0.0,
+          "offset_prior_to_time_window_end_ms": 0
+        },
+        "hard_lateness_threshold_ms": 1800000
+      },
+      "clinical_urgency": {
+        "linear_offset_policy": {
+          "lateness_cost_usd_mills_per_ms": 0.0833,
+          "offset_prior_to_urgency_window_end_ms": "3600000"
+        },
+        "higher_level_value_wins": true
+      },
+      "depot_late_arrival": {
+        "linear_offset_policy": {
+          "lateness_cost_usd_mills_per_ms": 0.0833,
+          "offset_prior_to_depot_due_time_ms": "3600000"
+        },
+        "hard_lateness_threshold_ms": "1800000"
+      }
+    }
+  }
+}

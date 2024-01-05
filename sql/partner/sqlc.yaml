@@ -1,0 +1,22 @@
+version: 2
+sql:
+  - schema: 'migrations/'
+    queries: 'queries/'
+    engine: 'postgresql'
+    gen:
+      go:
+        package: 'partnersql'
+        out: '../../go/pkg/generated/sql/partner'
+        sql_package: 'pgx/v4'
+        emit_result_struct_pointers: true
+        emit_exported_queries: true
+  # Compile supported adhoc queries, but not for server production use.
+  - schema: 'migrations/'
+    queries: 'adhoc_queries/'
+    engine: 'postgresql'
+    gen:
+      go:
+        out: '../../go/pkg/generated/sql/partner/DO_NOT_USE'
+        sql_package: 'pgx/v4'
+        emit_result_struct_pointers: true
+        emit_exported_queries: true

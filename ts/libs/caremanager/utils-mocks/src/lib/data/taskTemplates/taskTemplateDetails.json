@@ -1,0 +1,56 @@
+{
+  "task_template": {
+    "id": "1",
+    "created_at": "2022-07-25T05:39:37.632Z",
+    "updated_at": "2022-07-25T05:39:37.632Z",
+    "name": "Advanced Care Tasks - Special Cases",
+    "summary": "Lorem ipsum ex magna commodo exercitation ut commodo officia tempor veniam.",
+    "service_line": {
+      "id": "1",
+      "name": "Advanced Care"
+    },
+    "care_phase": {
+      "id": "2",
+      "name": "High Acuity"
+    },
+    "updated_by_user_id": "1",
+    "last_updated_by": {
+      "id": "441",
+      "first_name": "John",
+      "last_name": "Woo",
+      "email": "john@woo.com"
+    },
+    "tasks": [
+      {
+        "id": "425",
+        "created_at": "2022-07-25T05:39:37.632Z",
+        "updated_at": "2022-07-25T07:39:37.632Z",
+        "body": "Upload photos from SC (ACC), let teams know in SC that the photos have been uploaded",
+        "type": {
+          "id": "0",
+          "slug": "daily_and_onboarding"
+        }
+      },
+      {
+        "id": "512",
+        "created_at": "2022-07-25T08:39:37.632Z",
+        "updated_at": "2022-07-25T09:39:37.632Z",
+        "body": "Fax orders to Pharmacy, close loop communication back to ordering provider",
+        "type": {
+          "id": "1",
+          "slug": "nurse_navigator"
+        }
+      },
+      {
+        "id": "777",
+        "created_at": "2022-07-25T11:39:37.632Z",
+        "updated_at": "2022-07-25T13:39:37.632Z",
+        "body": "Review goals of care and MOST/POLST/similar-upload into SC",
+        "type": {
+          "id": "3",
+          "slug": "t1"
+        }
+      }
+    ]
+  }
+}

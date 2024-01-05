@@ -1,0 +1,115 @@
+name: 'Build and push docker container'
+description: Build and push a docker container
+
+inputs:
+  image_name:
+    description: |
+      Name of the docker container to build and push.
+      This should be the same as the name of the project to be built
+    required: true
+  docker_port:
+    description: 'Port(s) to expose in docker container'
+    required: true
+  extra_tags:
+    description: |
+      newline separated list of extra tags to build the image with. Example:
+        latest
+        my_tag
+        another_tag
+    required: false
+  dockerfile:
+    description: 'Dockerfile to build'
+    required: true
+  extra_build_args:
+    description: |
+      newline separated list of extra build args to build the image with. Example:
+        MY_ARG=some_value
+        MY_OTHER_ARG=another_value
+    required: false
+    default: ''
+  docker_registry_url:
+    description: 'The URL of the docker registry. Use the secret DH_DOCKER_REGISTRY_URL'
+    required: true
+  docker_registry_username:
+    description: 'The Username to the docker registry. Use the secret DH_DOCKER_REGISTRY_PUSH_USERNAME'
+    required: true
+  docker_registry_password:
+    description: 'The Password to the docker registry. Use the secret DH_DOCKER_REGISTRY_PASSWORD'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ inputs.docker_registry_url }}
+        username: ${{ inputs.docker_registry_username }}
+        password: ${{ inputs.docker_registry_password }}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Parse tags
+      shell: bash
+      id: tags
+      run: |
+        image="${{ inputs.docker_registry_url }}/${{ inputs.image_name }}"
+        extra_tags="${{ inputs.extra_tags }}"
+        sha=$(git log -1 --format='%H')
+        echo "SHA=$sha" >> $GITHUB_OUTPUT
+        tags=( ${extra_tags//$'\n'/ } "$sha" )
+
+        echo "::group::Docker Tags"
+
+        echo "TAGS<<EOF" >> $GITHUB_OUTPUT
+        for tag in "${tags[@]}"; do
+          echo "$image:$tag"
+          echo "$image:$tag" >> $GITHUB_OUTPUT
+        done
+
+        echo "::endgroup::"
+        echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Santize branch name
+      shell: bash
+      id: branch_name
+      run: echo "BRANCH_NAME=$(echo "${{ github.head_ref || github.ref_name }}" | sed 's/[^a-zA-Z0-9]/-/g')" >> $GITHUB_OUTPUT
+
+    - name: Get image cache ref
+      id: image_cache_ref
+      shell: bash
+      run: |
+        cache_ref="${{ steps.branch_name.outputs.BRANCH_NAME }}-${{ inputs.image_name }}-buildcache"
+        echo "CACHE_TO=$cache_ref" >> $GITHUB_OUTPUT
+
+        res=$(curl -s -u ${{ inputs.docker_registry_username }}:${{ inputs.docker_registry_password }} https://${{ inputs.docker_registry_url}}/v2/${{ inputs.image_name }}/tags/list)
+        if [[ "$res" == *"errors"* ]]; then
+          cache_ref="trunk-${{ inputs.image_name }}-buildcache"
+        else
+          cur_branch_cache_exists=$(echo "$res" | jq ".tags | any( . == \"$cache_ref\")")
+          if ! $cur_branch_cache_exists; then
+            cache_ref="trunk-${{ inputs.image_name }}-buildcache"
+          fi
+        fi
+
+        echo "CACHE_FROM=$cache_ref" >> $GITHUB_OUTPUT
+
+    - name: Docker Build and Push
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        push: true
+        cache-from: type=registry,ref=${{ inputs.docker_registry_url }}/${{ inputs.image_name }}:${{ steps.image_cache_ref.outputs.CACHE_FROM }}
+        cache-to: type=registry,ref=${{ inputs.docker_registry_url }}/${{ inputs.image_name }}:${{ steps.image_cache_ref.outputs.CACHE_TO }},mode=max
+        file: ${{ inputs.dockerfile }}
+        tags: ${{ steps.tags.outputs.TAGS }}
+        build-args: |
+          DOCKER_PORT=${{ inputs.docker_port }}
+          BUILD_TARGET=${{ inputs.image_name }}
+          VERSION=${{ steps.tags.outputs.SHA }}
+          ${{ inputs.extra_build_args }}
+
+    - name: Log Builds
+      shell: bash
+      run: echo "::notice ::Built ${{ steps.tags.outputs.TAGS }}"

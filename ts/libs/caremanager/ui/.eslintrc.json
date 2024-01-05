@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "plugin:promise/recommended",
+    "plugin:vitest/recommended",
+    "../../../../.eslintrc.react.json"
+  ],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "parserOptions": {
+        "project": ["ts/libs/caremanager/ui/tsconfig.*?.json"]
+      },
+      "rules": {
+        "@typescript-eslint/no-floating-promises": "error",
+        "testing-library/no-node-access": [
+          "error",
+          { "allowContainerFirstChild": true }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}

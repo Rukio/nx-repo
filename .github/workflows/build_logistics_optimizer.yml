@@ -1,0 +1,75 @@
+name: Build Logistics Optimizer
+
+run-name: ${{ github.head_ref || github.ref_name }} (${{ inputs.ref || github.sha }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: The sha to build, otherwise builds HEAD of branch
+        type: string
+        required: false
+  push:
+    branches:
+      - trunk
+
+env:
+  IMAGE_NAME: logistics-optimizer
+
+jobs:
+  build-optimizer-container:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Parse .tool-versions
+        uses: wistia/parse-tool-versions@v1.0
+        with:
+          uppercase: 'true'
+          postfix: '_tool_version'
+          filename: '.tool-versions'
+
+      - name: Set Java version
+        # Cut `temurin-17.0.5+8` to `17.0.5+8` for java setup
+        run: echo "JAVA_TOOL_VERSION=${JAVA_TOOL_VERSION:8}" >> $GITHUB_ENV
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ env.JAVA_TOOL_VERSION }}
+          distribution: 'temurin'
+          java-package: 'jdk'
+          cache: 'gradle'
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: ${{ env.GRADLE_TOOL_VERSION }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.DH_DOCKER_REGISTRY_URL }}
+          username: ${{ secrets.DH_DOCKER_REGISTRY_PUSH_USERNAME }}
+          password: ${{ secrets.DH_DOCKER_REGISTRY_PASSWORD }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Setup
+        id: setup
+        run: echo "SHA=$(git log -1 --format='%H')" >> $GITHUB_OUTPUT
+
+      - name: Build Container
+        run: make docker-build-java-${{ env.IMAGE_NAME }}
+        env:
+          DOCKER_PORT: 0 # specified in build.gradle
+          DOCKER_IMAGE_TAG: ${{ secrets.DH_DOCKER_REGISTRY_URL }}/${{ env.IMAGE_NAME }}:${{ steps.setup.outputs.SHA }}
+          VERSION: ${{ steps.setup.outputs.SHA }}
+
+      - name: Push Container
+        run: docker push ${{ secrets.DH_DOCKER_REGISTRY_URL }}/${{ env.IMAGE_NAME }}:${{ steps.setup.outputs.SHA }}

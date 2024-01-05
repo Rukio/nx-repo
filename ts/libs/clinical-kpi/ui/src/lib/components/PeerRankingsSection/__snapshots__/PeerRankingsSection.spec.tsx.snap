@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PeerRankingsSection should render correctly 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  font-weight: 600;
+}
+
+<p
+    class="MuiTypography-root MuiTypography-body2 emotion-0"
+    data-testid="peer-rankings-section-title"
+  >
+    Title
+  </p>
+  .emotion-0 {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  margin-top: 16px;
+}
+
+<div
+    class="MuiBox-root emotion-0"
+  >
+    <div
+      data-testid="fakeChild"
+    >
+      fakeChild
+    </div>
+  </div>
+</DocumentFragment>
+`;

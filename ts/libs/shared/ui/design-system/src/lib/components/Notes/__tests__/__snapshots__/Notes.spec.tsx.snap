@@ -1,0 +1,4348 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Notes snapshots should render empty notes component 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #FEFEFE;
+  color: #1E2930;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: none;
+  height: 100%;
+  padding: 0px;
+}
+
+.emotion-1 {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.emotion-4 {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.031rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  color: #1E2930;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4px 0 5px;
+  padding-top: 1px;
+  width: 100%;
+  position: relative;
+  border-radius: 6px;
+  padding: 8.5px 14px;
+}
+
+.emotion-4.Mui-disabled {
+  color: #9AA3A9;
+  cursor: default;
+}
+
+.emotion-4:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #1E2930;
+}
+
+@media (hover: none) {
+  .emotion-4:hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23);
+  }
+}
+
+.emotion-4.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #0074B8;
+  border-width: 2px;
+}
+
+.emotion-4.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #D52C00;
+}
+
+.emotion-4.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-5 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 0;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: auto;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding-top: 0;
+  resize: none;
+  padding: 0;
+}
+
+.emotion-5::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:focus {
+  outline: 0;
+}
+
+.emotion-5:invalid {
+  box-shadow: none;
+}
+
+.emotion-5::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-webkit-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-moz-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+.emotion-5.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: #9AA3A9;
+}
+
+.emotion-5:-webkit-autofill {
+  -webkit-animation-duration: 5000s;
+  animation-duration: 5000s;
+  -webkit-animation-name: mui-auto-fill;
+  animation-name: mui-auto-fill;
+}
+
+.emotion-5:-webkit-autofill {
+  border-radius: inherit;
+}
+
+.emotion-7 {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px;
+  left: 0;
+  margin: 0;
+  padding: 0 8px;
+  pointer-events: none;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  min-width: 0%;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.emotion-8 {
+  float: unset;
+  width: auto;
+  overflow: hidden;
+  padding: 0;
+  line-height: 11px;
+  -webkit-transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.emotion-9 {
+  margin-top: 24px;
+}
+
+.emotion-10 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: -8px;
+  width: calc(100% + 8px);
+  margin-left: -8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-top: 8px;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-left: 8px;
+}
+
+.emotion-11 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 60%;
+}
+
+.emotion-13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: #5E696F;
+}
+
+.emotion-14 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+}
+
+.emotion-15 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 8px;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <div>
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+        >
+          Compose
+        </h6>
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root emotion-3"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-multiline emotion-4"
+          >
+            <textarea
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              data-testid="notes-compose-input"
+              id=":r0:"
+              placeholder="Add a note for the team"
+              style="height: 0px; overflow: hidden;"
+            />
+            <textarea
+              aria-hidden="true"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              readonly=""
+              style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+              tabindex="-1"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline emotion-7"
+            >
+              <legend
+                class="emotion-8"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root emotion-9"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 emotion-10"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item emotion-11"
+          />
+        </div>
+        <div
+          class="MuiBox-root emotion-9"
+        >
+          <div
+            class="MuiBox-root emotion-13"
+            data-testid="notes-empty-message"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-14"
+              data-testid="StickyNote2Icon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H4.99C3.89 3 3 3.9 3 5l.01 14c0 1.1.89 2 1.99 2h10l6-6V5c0-1.1-.9-2-2-2zM7 8h10v2H7V8zm5 6H7v-2h5v2zm2 5.5V14h5.5L14 19.5z"
+              />
+            </svg>
+            <h6
+              class="MuiTypography-root MuiTypography-subtitle2 emotion-15"
+            >
+              No notes have been added
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Notes snapshots should render empty notes component with padding 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #FEFEFE;
+  color: #1E2930;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: none;
+  height: 100%;
+  padding: 24px;
+}
+
+.emotion-1 {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.emotion-4 {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.031rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  color: #1E2930;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4px 0 5px;
+  padding-top: 1px;
+  width: 100%;
+  position: relative;
+  border-radius: 6px;
+  padding: 8.5px 14px;
+}
+
+.emotion-4.Mui-disabled {
+  color: #9AA3A9;
+  cursor: default;
+}
+
+.emotion-4:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #1E2930;
+}
+
+@media (hover: none) {
+  .emotion-4:hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23);
+  }
+}
+
+.emotion-4.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #0074B8;
+  border-width: 2px;
+}
+
+.emotion-4.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #D52C00;
+}
+
+.emotion-4.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-5 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 0;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: auto;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding-top: 0;
+  resize: none;
+  padding: 0;
+}
+
+.emotion-5::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:focus {
+  outline: 0;
+}
+
+.emotion-5:invalid {
+  box-shadow: none;
+}
+
+.emotion-5::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-webkit-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-moz-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+.emotion-5.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: #9AA3A9;
+}
+
+.emotion-5:-webkit-autofill {
+  -webkit-animation-duration: 5000s;
+  animation-duration: 5000s;
+  -webkit-animation-name: mui-auto-fill;
+  animation-name: mui-auto-fill;
+}
+
+.emotion-5:-webkit-autofill {
+  border-radius: inherit;
+}
+
+.emotion-7 {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px;
+  left: 0;
+  margin: 0;
+  padding: 0 8px;
+  pointer-events: none;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  min-width: 0%;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.emotion-8 {
+  float: unset;
+  width: auto;
+  overflow: hidden;
+  padding: 0;
+  line-height: 11px;
+  -webkit-transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.emotion-9 {
+  margin-top: 24px;
+}
+
+.emotion-10 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: -8px;
+  width: calc(100% + 8px);
+  margin-left: -8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-top: 8px;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-left: 8px;
+}
+
+.emotion-11 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 60%;
+}
+
+.emotion-13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: #5E696F;
+}
+
+.emotion-14 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+}
+
+.emotion-15 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 8px;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <div>
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+        >
+          Compose
+        </h6>
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root emotion-3"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-multiline emotion-4"
+          >
+            <textarea
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              data-testid="notes-compose-input"
+              id=":r1:"
+              placeholder="Add a note for the team"
+              style="height: 0px; overflow: hidden;"
+            />
+            <textarea
+              aria-hidden="true"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              readonly=""
+              style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+              tabindex="-1"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline emotion-7"
+            >
+              <legend
+                class="emotion-8"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root emotion-9"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 emotion-10"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item emotion-11"
+          />
+        </div>
+        <div
+          class="MuiBox-root emotion-9"
+        >
+          <div
+            class="MuiBox-root emotion-13"
+            data-testid="notes-empty-message"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-14"
+              data-testid="StickyNote2Icon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 3H4.99C3.89 3 3 3.9 3 5l.01 14c0 1.1.89 2 1.99 2h10l6-6V5c0-1.1-.9-2-2-2zM7 8h10v2H7V8zm5 6H7v-2h5v2zm2 5.5V14h5.5L14 19.5z"
+              />
+            </svg>
+            <h6
+              class="MuiTypography-root MuiTypography-subtitle2 emotion-15"
+            >
+              No notes have been added
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Notes snapshots should render notes with note list 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #FEFEFE;
+  color: #1E2930;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: none;
+  height: 100%;
+  padding: 0px;
+}
+
+.emotion-1 {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.emotion-4 {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.031rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  color: #1E2930;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4px 0 5px;
+  padding-top: 1px;
+  width: 100%;
+  position: relative;
+  border-radius: 6px;
+  padding: 8.5px 14px;
+}
+
+.emotion-4.Mui-disabled {
+  color: #9AA3A9;
+  cursor: default;
+}
+
+.emotion-4:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #1E2930;
+}
+
+@media (hover: none) {
+  .emotion-4:hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23);
+  }
+}
+
+.emotion-4.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #0074B8;
+  border-width: 2px;
+}
+
+.emotion-4.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #D52C00;
+}
+
+.emotion-4.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-5 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 0;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: auto;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding-top: 0;
+  resize: none;
+  padding: 0;
+}
+
+.emotion-5::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:focus {
+  outline: 0;
+}
+
+.emotion-5:invalid {
+  box-shadow: none;
+}
+
+.emotion-5::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-webkit-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-moz-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+.emotion-5.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: #9AA3A9;
+}
+
+.emotion-5:-webkit-autofill {
+  -webkit-animation-duration: 5000s;
+  animation-duration: 5000s;
+  -webkit-animation-name: mui-auto-fill;
+  animation-name: mui-auto-fill;
+}
+
+.emotion-5:-webkit-autofill {
+  border-radius: inherit;
+}
+
+.emotion-7 {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px;
+  left: 0;
+  margin: 0;
+  padding: 0 8px;
+  pointer-events: none;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  min-width: 0%;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.emotion-8 {
+  float: unset;
+  width: auto;
+  overflow: hidden;
+  padding: 0;
+  line-height: 11px;
+  -webkit-transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.emotion-9 {
+  margin-top: 24px;
+}
+
+.emotion-10 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: -8px;
+  width: calc(100% + 8px);
+  margin-left: -8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-top: 8px;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-left: 8px;
+}
+
+.emotion-11 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 60%;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.375;
+  letter-spacing: 0.01rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-13 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.emotion-14 {
+  position: relative;
+}
+
+.emotion-15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: unset;
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-15.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-15.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-15.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-15.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-17 {
+  min-width: 56px;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  min-width: 32px;
+  margin-right: 8px;
+}
+
+.emotion-18 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #F9F9F9;
+  background-color: #90B1C8;
+  width: 32px;
+  height: 32px;
+}
+
+.emotion-19 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-21 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+  color: #5E696F;
+  font-family: Open Sans;
+}
+
+.emotion-22 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+}
+
+.emotion-23 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-24 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-24::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-24.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-24 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-24:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-24:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-24.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-25 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-26 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <div>
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+        >
+          Compose
+        </h6>
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root emotion-3"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-multiline emotion-4"
+          >
+            <textarea
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              data-testid="notes-compose-input"
+              id=":r2:"
+              placeholder="Add a note for the team"
+              style="height: 0px; overflow: hidden;"
+            />
+            <textarea
+              aria-hidden="true"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              readonly=""
+              style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+              tabindex="-1"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline emotion-7"
+            >
+              <legend
+                class="emotion-8"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root emotion-9"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 emotion-10"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item emotion-11"
+          >
+            <h6
+              class="MuiTypography-root MuiTypography-h6 emotion-12"
+              data-testid="notes-list-label"
+            >
+              Notes
+            </h6>
+          </div>
+        </div>
+        <ul
+          class="MuiList-root MuiList-padding emotion-13"
+          data-testid="notes-list"
+        >
+          <li
+            class="MuiListItem-container emotion-14"
+          >
+            <div
+              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-15"
+              data-testid="note-1"
+            >
+              <div
+                class="MuiBox-root emotion-16"
+              >
+                <div
+                  class="MuiListItemAvatar-root emotion-17"
+                >
+                  <div
+                    class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault emotion-18"
+                    data-testid="note-initials"
+                  >
+                    JD
+                  </div>
+                </div>
+                <div
+                  class="MuiListItemText-root MuiListItemText-multiline emotion-19"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+                    data-testid="note-display-name"
+                  >
+                    John Dow, RN
+                  </h6>
+                  <span
+                    class="MuiTypography-root MuiTypography-label emotion-21"
+                    data-testid="note-secondary-label"
+                  >
+                    7/7/2020 at 06:00 PM MDT
+                  </span>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-22"
+                    data-testid="note-text"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mauris eleifend, cursus metus sit amet, tincidunt diam. Donec et orci ex.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiListItemSecondaryAction-root emotion-23"
+              data-testid="note-action-1"
+            >
+              <div>
+                <button
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-24"
+                  data-testid="note-more-button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-25"
+                    data-testid="MoreHorizIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root emotion-26"
+                  />
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Notes snapshots should render notes with note list without any user info data 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #FEFEFE;
+  color: #1E2930;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: none;
+  height: 100%;
+  padding: 0px;
+}
+
+.emotion-1 {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.emotion-4 {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.031rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  color: #1E2930;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4px 0 5px;
+  padding-top: 1px;
+  width: 100%;
+  position: relative;
+  border-radius: 6px;
+  padding: 8.5px 14px;
+}
+
+.emotion-4.Mui-disabled {
+  color: #9AA3A9;
+  cursor: default;
+}
+
+.emotion-4:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #1E2930;
+}
+
+@media (hover: none) {
+  .emotion-4:hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23);
+  }
+}
+
+.emotion-4.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #0074B8;
+  border-width: 2px;
+}
+
+.emotion-4.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #D52C00;
+}
+
+.emotion-4.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-5 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 0;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: auto;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding-top: 0;
+  resize: none;
+  padding: 0;
+}
+
+.emotion-5::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:focus {
+  outline: 0;
+}
+
+.emotion-5:invalid {
+  box-shadow: none;
+}
+
+.emotion-5::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-webkit-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-moz-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+.emotion-5.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: #9AA3A9;
+}
+
+.emotion-5:-webkit-autofill {
+  -webkit-animation-duration: 5000s;
+  animation-duration: 5000s;
+  -webkit-animation-name: mui-auto-fill;
+  animation-name: mui-auto-fill;
+}
+
+.emotion-5:-webkit-autofill {
+  border-radius: inherit;
+}
+
+.emotion-7 {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px;
+  left: 0;
+  margin: 0;
+  padding: 0 8px;
+  pointer-events: none;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  min-width: 0%;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.emotion-8 {
+  float: unset;
+  width: auto;
+  overflow: hidden;
+  padding: 0;
+  line-height: 11px;
+  -webkit-transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.emotion-9 {
+  margin-top: 24px;
+}
+
+.emotion-10 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: -8px;
+  width: calc(100% + 8px);
+  margin-left: -8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-top: 8px;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-left: 8px;
+}
+
+.emotion-11 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 60%;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.375;
+  letter-spacing: 0.01rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-13 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.emotion-14 {
+  position: relative;
+}
+
+.emotion-15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: unset;
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-15.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-15.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-15.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-15.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-17 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-19 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+  padding-right: 32px;
+}
+
+.emotion-20 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-21 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-21::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-21.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-21 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-21:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-21:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-21.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-22 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-23 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <div>
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+        >
+          Compose
+        </h6>
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root emotion-3"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-multiline emotion-4"
+          >
+            <textarea
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              data-testid="notes-compose-input"
+              id=":r6:"
+              placeholder="Add a note for the team"
+              style="height: 0px; overflow: hidden;"
+            />
+            <textarea
+              aria-hidden="true"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              readonly=""
+              style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+              tabindex="-1"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline emotion-7"
+            >
+              <legend
+                class="emotion-8"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root emotion-9"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 emotion-10"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item emotion-11"
+          >
+            <h6
+              class="MuiTypography-root MuiTypography-h6 emotion-12"
+              data-testid="notes-list-label"
+            >
+              Notes
+            </h6>
+          </div>
+        </div>
+        <ul
+          class="MuiList-root MuiList-padding emotion-13"
+          data-testid="notes-list"
+        >
+          <li
+            class="MuiListItem-container emotion-14"
+          >
+            <div
+              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-15"
+              data-testid="note-1"
+            >
+              <div
+                class="MuiBox-root emotion-16"
+              >
+                <div
+                  class="MuiListItemText-root MuiListItemText-multiline emotion-17"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+                    data-testid="note-display-name"
+                  >
+                     
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-19"
+                    data-testid="note-text"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mauris eleifend, cursus metus sit amet, tincidunt diam. Donec et orci ex.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiListItemSecondaryAction-root emotion-20"
+              data-testid="note-action-1"
+            >
+              <div>
+                <button
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-21"
+                  data-testid="note-more-button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-22"
+                    data-testid="MoreHorizIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root emotion-23"
+                  />
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Notes snapshots should render notes with note list without dispayDate 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #FEFEFE;
+  color: #1E2930;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: none;
+  height: 100%;
+  padding: 0px;
+}
+
+.emotion-1 {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.emotion-4 {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.031rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  color: #1E2930;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4px 0 5px;
+  padding-top: 1px;
+  width: 100%;
+  position: relative;
+  border-radius: 6px;
+  padding: 8.5px 14px;
+}
+
+.emotion-4.Mui-disabled {
+  color: #9AA3A9;
+  cursor: default;
+}
+
+.emotion-4:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #1E2930;
+}
+
+@media (hover: none) {
+  .emotion-4:hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23);
+  }
+}
+
+.emotion-4.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #0074B8;
+  border-width: 2px;
+}
+
+.emotion-4.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #D52C00;
+}
+
+.emotion-4.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-5 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 0;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: auto;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding-top: 0;
+  resize: none;
+  padding: 0;
+}
+
+.emotion-5::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:focus {
+  outline: 0;
+}
+
+.emotion-5:invalid {
+  box-shadow: none;
+}
+
+.emotion-5::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-webkit-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-moz-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+.emotion-5.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: #9AA3A9;
+}
+
+.emotion-5:-webkit-autofill {
+  -webkit-animation-duration: 5000s;
+  animation-duration: 5000s;
+  -webkit-animation-name: mui-auto-fill;
+  animation-name: mui-auto-fill;
+}
+
+.emotion-5:-webkit-autofill {
+  border-radius: inherit;
+}
+
+.emotion-7 {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px;
+  left: 0;
+  margin: 0;
+  padding: 0 8px;
+  pointer-events: none;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  min-width: 0%;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.emotion-8 {
+  float: unset;
+  width: auto;
+  overflow: hidden;
+  padding: 0;
+  line-height: 11px;
+  -webkit-transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.emotion-9 {
+  margin-top: 24px;
+}
+
+.emotion-10 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: -8px;
+  width: calc(100% + 8px);
+  margin-left: -8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-top: 8px;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-left: 8px;
+}
+
+.emotion-11 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 60%;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.375;
+  letter-spacing: 0.01rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-13 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.emotion-14 {
+  position: relative;
+}
+
+.emotion-15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: unset;
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-15.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-15.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-15.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-15.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-17 {
+  min-width: 56px;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  min-width: 32px;
+  margin-right: 8px;
+}
+
+.emotion-18 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #F9F9F9;
+  background-color: #90B1C8;
+  width: 32px;
+  height: 32px;
+}
+
+.emotion-19 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-21 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+}
+
+.emotion-22 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-23 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-23::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-23.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-23 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-23:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-23:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-23.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-24 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-25 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <div>
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+        >
+          Compose
+        </h6>
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root emotion-3"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-multiline emotion-4"
+          >
+            <textarea
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              data-testid="notes-compose-input"
+              id=":r3:"
+              placeholder="Add a note for the team"
+              style="height: 0px; overflow: hidden;"
+            />
+            <textarea
+              aria-hidden="true"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              readonly=""
+              style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+              tabindex="-1"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline emotion-7"
+            >
+              <legend
+                class="emotion-8"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root emotion-9"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 emotion-10"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item emotion-11"
+          >
+            <h6
+              class="MuiTypography-root MuiTypography-h6 emotion-12"
+              data-testid="notes-list-label"
+            >
+              Notes
+            </h6>
+          </div>
+        </div>
+        <ul
+          class="MuiList-root MuiList-padding emotion-13"
+          data-testid="notes-list"
+        >
+          <li
+            class="MuiListItem-container emotion-14"
+          >
+            <div
+              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-15"
+              data-testid="note-1"
+            >
+              <div
+                class="MuiBox-root emotion-16"
+              >
+                <div
+                  class="MuiListItemAvatar-root emotion-17"
+                >
+                  <div
+                    class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault emotion-18"
+                    data-testid="note-initials"
+                  >
+                    JD
+                  </div>
+                </div>
+                <div
+                  class="MuiListItemText-root MuiListItemText-multiline emotion-19"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+                    data-testid="note-display-name"
+                  >
+                    John Dow, RN
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-21"
+                    data-testid="note-text"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mauris eleifend, cursus metus sit amet, tincidunt diam. Donec et orci ex.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiListItemSecondaryAction-root emotion-22"
+              data-testid="note-action-1"
+            >
+              <div>
+                <button
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-23"
+                  data-testid="note-more-button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-24"
+                    data-testid="MoreHorizIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root emotion-25"
+                  />
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Notes snapshots should render notes with note list without firstName and lastName 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #FEFEFE;
+  color: #1E2930;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: none;
+  height: 100%;
+  padding: 0px;
+}
+
+.emotion-1 {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.emotion-4 {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.031rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  color: #1E2930;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4px 0 5px;
+  padding-top: 1px;
+  width: 100%;
+  position: relative;
+  border-radius: 6px;
+  padding: 8.5px 14px;
+}
+
+.emotion-4.Mui-disabled {
+  color: #9AA3A9;
+  cursor: default;
+}
+
+.emotion-4:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #1E2930;
+}
+
+@media (hover: none) {
+  .emotion-4:hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23);
+  }
+}
+
+.emotion-4.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #0074B8;
+  border-width: 2px;
+}
+
+.emotion-4.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #D52C00;
+}
+
+.emotion-4.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-5 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 0;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: auto;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding-top: 0;
+  resize: none;
+  padding: 0;
+}
+
+.emotion-5::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:focus {
+  outline: 0;
+}
+
+.emotion-5:invalid {
+  box-shadow: none;
+}
+
+.emotion-5::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-webkit-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-moz-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+.emotion-5.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: #9AA3A9;
+}
+
+.emotion-5:-webkit-autofill {
+  -webkit-animation-duration: 5000s;
+  animation-duration: 5000s;
+  -webkit-animation-name: mui-auto-fill;
+  animation-name: mui-auto-fill;
+}
+
+.emotion-5:-webkit-autofill {
+  border-radius: inherit;
+}
+
+.emotion-7 {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px;
+  left: 0;
+  margin: 0;
+  padding: 0 8px;
+  pointer-events: none;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  min-width: 0%;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.emotion-8 {
+  float: unset;
+  width: auto;
+  overflow: hidden;
+  padding: 0;
+  line-height: 11px;
+  -webkit-transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.emotion-9 {
+  margin-top: 24px;
+}
+
+.emotion-10 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: -8px;
+  width: calc(100% + 8px);
+  margin-left: -8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-top: 8px;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-left: 8px;
+}
+
+.emotion-11 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 60%;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.375;
+  letter-spacing: 0.01rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-13 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.emotion-14 {
+  position: relative;
+}
+
+.emotion-15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: unset;
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-15.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-15.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-15.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-15.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-17 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-19 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+  color: #5E696F;
+  font-family: Open Sans;
+}
+
+.emotion-20 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+}
+
+.emotion-21 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-22 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-22::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-22.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-22 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-22:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-22:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-22.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-23 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-24 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <div>
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+        >
+          Compose
+        </h6>
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root emotion-3"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-multiline emotion-4"
+          >
+            <textarea
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              data-testid="notes-compose-input"
+              id=":r4:"
+              placeholder="Add a note for the team"
+              style="height: 0px; overflow: hidden;"
+            />
+            <textarea
+              aria-hidden="true"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              readonly=""
+              style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+              tabindex="-1"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline emotion-7"
+            >
+              <legend
+                class="emotion-8"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root emotion-9"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 emotion-10"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item emotion-11"
+          >
+            <h6
+              class="MuiTypography-root MuiTypography-h6 emotion-12"
+              data-testid="notes-list-label"
+            >
+              Notes
+            </h6>
+          </div>
+        </div>
+        <ul
+          class="MuiList-root MuiList-padding emotion-13"
+          data-testid="notes-list"
+        >
+          <li
+            class="MuiListItem-container emotion-14"
+          >
+            <div
+              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-15"
+              data-testid="note-1"
+            >
+              <div
+                class="MuiBox-root emotion-16"
+              >
+                <div
+                  class="MuiListItemText-root MuiListItemText-multiline emotion-17"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+                    data-testid="note-display-name"
+                  >
+                     , RN
+                  </h6>
+                  <span
+                    class="MuiTypography-root MuiTypography-label emotion-19"
+                    data-testid="note-secondary-label"
+                  >
+                    7/7/2020 at 06:00 PM MDT
+                  </span>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-20"
+                    data-testid="note-text"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mauris eleifend, cursus metus sit amet, tincidunt diam. Donec et orci ex.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiListItemSecondaryAction-root emotion-21"
+              data-testid="note-action-1"
+            >
+              <div>
+                <button
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-22"
+                  data-testid="note-more-button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-23"
+                    data-testid="MoreHorizIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root emotion-24"
+                  />
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Notes snapshots should render notes with note list without jobTitle 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #FEFEFE;
+  color: #1E2930;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: none;
+  height: 100%;
+  padding: 0px;
+}
+
+.emotion-1 {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.428;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.emotion-4 {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.031rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  color: #1E2930;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 4px 0 5px;
+  padding-top: 1px;
+  width: 100%;
+  position: relative;
+  border-radius: 6px;
+  padding: 8.5px 14px;
+}
+
+.emotion-4.Mui-disabled {
+  color: #9AA3A9;
+  cursor: default;
+}
+
+.emotion-4:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #1E2930;
+}
+
+@media (hover: none) {
+  .emotion-4:hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23);
+  }
+}
+
+.emotion-4.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #0074B8;
+  border-width: 2px;
+}
+
+.emotion-4.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #D52C00;
+}
+
+.emotion-4.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-5 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 0;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: auto;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding-top: 0;
+  resize: none;
+  padding: 0;
+}
+
+.emotion-5::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-5:focus {
+  outline: 0;
+}
+
+.emotion-5:invalid {
+  box-shadow: none;
+}
+
+.emotion-5::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-webkit-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-moz-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5::-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-5:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+.emotion-5.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: #9AA3A9;
+}
+
+.emotion-5:-webkit-autofill {
+  -webkit-animation-duration: 5000s;
+  animation-duration: 5000s;
+  -webkit-animation-name: mui-auto-fill;
+  animation-name: mui-auto-fill;
+}
+
+.emotion-5:-webkit-autofill {
+  border-radius: inherit;
+}
+
+.emotion-7 {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px;
+  left: 0;
+  margin: 0;
+  padding: 0 8px;
+  pointer-events: none;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  min-width: 0%;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.emotion-8 {
+  float: unset;
+  width: auto;
+  overflow: hidden;
+  padding: 0;
+  line-height: 11px;
+  -webkit-transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.emotion-9 {
+  margin-top: 24px;
+}
+
+.emotion-10 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-top: -8px;
+  width: calc(100% + 8px);
+  margin-left: -8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-top: 8px;
+}
+
+.emotion-10>.MuiGrid-item {
+  padding-left: 8px;
+}
+
+.emotion-11 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-right: 60%;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.375;
+  letter-spacing: 0.01rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-13 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.emotion-14 {
+  position: relative;
+}
+
+.emotion-15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 48px;
+  padding: 8px;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+  position: relative;
+  background-color: unset;
+  border-radius: 8px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-15.Mui-focusVisible {
+  background-color: rgba(17, 27, 34, 0.12);
+}
+
+.emotion-15.Mui-selected {
+  background-color: rgba(0, 116, 184, 0.08);
+}
+
+.emotion-15.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 116, 184, 0.2);
+}
+
+.emotion-15.Mui-disabled {
+  opacity: 0.26;
+}
+
+.emotion-16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-17 {
+  min-width: 56px;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  min-width: 32px;
+  margin-right: 8px;
+}
+
+.emotion-18 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #F9F9F9;
+  background-color: #90B1C8;
+  width: 32px;
+  height: 32px;
+}
+
+.emotion-19 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin: 0px;
+}
+
+.emotion-21 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+  color: #5E696F;
+  font-family: Open Sans;
+}
+
+.emotion-22 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+  margin-top: 4px;
+  color: #1D1D1D;
+  overflow-wrap: anywhere;
+}
+
+.emotion-23 {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 8px;
+  right: 8px;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.emotion-24 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: 50%;
+  overflow: visible;
+  color: rgba(17, 27, 34, 0.54);
+  -webkit-transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  padding: 5px;
+  font-size: 1.125rem;
+}
+
+.emotion-24::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-24.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-24 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-24:hover {
+  background-color: rgba(17, 27, 34, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-24:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-24.Mui-disabled {
+  background-color: transparent;
+  color: rgba(17, 27, 34, 0.26);
+}
+
+.emotion-25 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.25rem;
+}
+
+.emotion-26 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <div>
+        <h6
+          class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+        >
+          Compose
+        </h6>
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root emotion-3"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-multiline emotion-4"
+          >
+            <textarea
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              data-testid="notes-compose-input"
+              id=":r5:"
+              placeholder="Add a note for the team"
+              style="height: 0px; overflow: hidden;"
+            />
+            <textarea
+              aria-hidden="true"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall emotion-5"
+              readonly=""
+              style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
+              tabindex="-1"
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline emotion-7"
+            >
+              <legend
+                class="emotion-8"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root emotion-9"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 emotion-10"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item emotion-11"
+          >
+            <h6
+              class="MuiTypography-root MuiTypography-h6 emotion-12"
+              data-testid="notes-list-label"
+            >
+              Notes
+            </h6>
+          </div>
+        </div>
+        <ul
+          class="MuiList-root MuiList-padding emotion-13"
+          data-testid="notes-list"
+        >
+          <li
+            class="MuiListItem-container emotion-14"
+          >
+            <div
+              class="MuiListItem-root MuiListItem-gutters MuiListItem-padding MuiListItem-secondaryAction emotion-15"
+              data-testid="note-1"
+            >
+              <div
+                class="MuiBox-root emotion-16"
+              >
+                <div
+                  class="MuiListItemAvatar-root emotion-17"
+                >
+                  <div
+                    class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault emotion-18"
+                    data-testid="note-initials"
+                  >
+                    JD
+                  </div>
+                </div>
+                <div
+                  class="MuiListItemText-root MuiListItemText-multiline emotion-19"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 emotion-2"
+                    data-testid="note-display-name"
+                  >
+                    John Dow
+                  </h6>
+                  <span
+                    class="MuiTypography-root MuiTypography-label emotion-21"
+                    data-testid="note-secondary-label"
+                  >
+                    7/7/2020 at 06:00 PM MDT
+                  </span>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-22"
+                    data-testid="note-text"
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mauris eleifend, cursus metus sit amet, tincidunt diam. Donec et orci ex.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiListItemSecondaryAction-root emotion-23"
+              data-testid="note-action-1"
+            >
+              <div>
+                <button
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall emotion-24"
+                  data-testid="note-more-button"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall emotion-25"
+                    data-testid="MoreHorizIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root emotion-26"
+                  />
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

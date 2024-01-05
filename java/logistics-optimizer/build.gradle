@@ -1,0 +1,236 @@
+plugins {
+    id "java"
+    id "application"
+    id 'com.google.protobuf' version '0.8.18'
+    id 'com.google.cloud.tools.jib' version '3.3.1'
+    id 'com.diffplug.spotless' version '6.9.0'
+    id 'com.ryandens.javaagent-jib' version '0.4.2'
+    id 'jacoco'
+    id 'jvm-test-suite'
+}
+
+def optaplannerVersion = '9.42.0.Final'
+def protobufVersion = '3.21.12'
+def logbackVersion = '1.4.4'
+def logstashVersion = '7.3'
+def grpcVersion = '1.54.1'
+def junitJupiterVersion = '5.8.2'
+def jacksonVersion = '2.14.2'
+def assertjVersion = '3.11.1'
+def mockitoVersion = '4.3.1'
+def googleJavaFormatVersion = '1.15.0'
+def apacheCommonsCLIVersion = '1.5.0'
+def influxdbVersion = '2.23'
+def datadogVersion = '1.8.3'
+def guavaVersion = '31.1-jre'
+
+group = "com.*company-data-covered*"
+
+version = findProperty('gitVersion')
+
+// https://www.optaplanner.org/blog/2021/01/26/HowMuchFasterIsJava15.html
+def defaultJvmFlags = ['-XX:+UseParallelGC', '-XX:+PrintCommandLineFlags']
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+// Owners: toliver.jue, josh.jones, jordan.rule
+dependencies {
+    implementation platform("org.optaplanner:optaplanner-bom:${optaplannerVersion}")
+    implementation("org.optaplanner:optaplanner-core") {
+        exclude group: "org.optaplanner", module: "optaplanner-constraint-drl"
+        exclude group: "org.optaplanner", module: "optaplanner-constraint-streams-drools"
+    }
+
+    implementation "com.google.guava:guava:${guavaVersion}"
+    implementation "commons-cli:commons-cli:${apacheCommonsCLIVersion}"
+    implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
+    implementation "io.grpc:grpc-protobuf:${grpcVersion}"
+    implementation "io.grpc:grpc-services:${grpcVersion}"
+    implementation "io.grpc:grpc-stub:${grpcVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "org.influxdb:influxdb-java:${influxdbVersion}"
+    implementation "ch.qos.logback:logback-classic:${logbackVersion}"
+    implementation "net.logstash.logback:logstash-logback-encoder:${logstashVersion}"
+
+    compileOnly 'org.apache.tomcat:annotations-api:6.0.53' // necessary for Java 9+
+
+    runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
+    javaagent "com.datadoghq:dd-java-agent:${datadogVersion}"
+
+    testImplementation("org.optaplanner:optaplanner-test") {
+        exclude group: "org.optaplanner", module: "optaplanner-constraint-drl"
+        exclude group: "org.optaplanner", module: "optaplanner-constraint-streams-drools"
+    }
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+}
+
+processResources {
+    filesMatching("**/application.properties") {
+        expand(project.properties)
+    }
+}
+
+tasks.processResources.outputs.upToDateWhen { false }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.compilerArgs << "-parameters"
+    options.compilerArgs << "-Xlint:unchecked"
+}
+
+compileTestJava {
+    options.encoding = "UTF-8"
+    options.compilerArgs << "-Xlint:unchecked"
+}
+
+application {
+    mainClass = 'com.*company-data-covered*.logistics.App'
+    applicationDefaultJvmArgs = defaultJvmFlags
+}
+
+// Ref: https://github.com/GoogleContainerTools/jib
+jib {
+    def arch = findProperty('dockerArch') ? dockerArch.split('/')[1] : ''
+
+    from {
+        // Ref: https://github.com/GoogleContainerTools/jib/blob/master/docs/faq.md#how-do-i-specify-a-platform-in-the-manifest-list-or-oci-index-of-a-base-image
+        platforms {
+            platform {
+                architecture = arch
+                os = 'linux'
+            }
+        }
+
+        image = "gcr.io/distroless/java17-debian11:debug-nonroot"
+    }
+
+    container {
+        ports = ['8081', '8181']
+
+        jvmFlags = defaultJvmFlags
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+// Test suites
+testing {
+    suites {
+        benchmarkTest(JvmTestSuite) {
+            dependencies {
+                implementation project()
+
+                implementation platform("org.optaplanner:optaplanner-bom:${optaplannerVersion}")
+                implementation "org.optaplanner:optaplanner-benchmark"
+
+                implementation "org.junit.jupiter:junit-jupiter:${junitJupiterVersion}"
+                implementation "com.google.guava:guava:${guavaVersion}"
+            }
+
+            sources {
+                java {
+                    srcDirs = ['src/benchmark-test/java']
+                }
+            }
+        }
+    }
+}
+
+test {
+    // Log the test execution results.
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    jvmArgs = defaultJvmFlags
+
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+benchmarkTest {
+    testLogging {
+        showStandardStreams = true
+    }
+
+    jvmArgs = defaultJvmFlags
+
+    outputs.upToDateWhen {
+        false
+    }
+}
+
+tasks.register('benchmark') {
+    dependsOn(testing.suites.benchmarkTest)
+}
+
+protobuf {
+    protoc {
+        // The artifact spec for the Protobuf Compiler
+        artifact = "com.google.protobuf:protoc:${protobufVersion}"
+    }
+    plugins {
+        // Optional: an artifact spec for a protoc plugin, with "grpc" as
+        // the identifier, which can be referred to in the "plugins"
+        // container of the "generateProtoTasks" closure.
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+
+    generateProtoTasks.generatedFilesBaseDir = 'generated'
+
+    generateProtoTasks {
+        ofSourceSet('main')*.plugins {
+            // Apply the "grpc" plugin whose spec is defined above, without
+            // options.  Note the braces cannot be omitted, otherwise the
+            // plugin will not be added. This is because of the implicit way
+            // NamedDomainObjectContainer binds the methods.
+            grpc {}
+        }
+    }
+}
+
+sourceSets {
+    main {
+        proto {
+            srcDir '../../proto'
+        }
+        java {
+            srcDirs 'src/main/java', 'generated/main/java', 'generated/main/grpc'
+        }
+    }
+}
+
+clean {
+    delete protobuf.generatedFilesBaseDir
+}
+
+spotless {
+    enforceCheck false
+
+    java {
+        importOrder()
+        removeUnusedImports()
+
+        target project.fileTree(project.rootDir) {
+            include '**/*.java'
+            exclude 'generated/**/*.*'
+        }
+        googleJavaFormat(googleJavaFormatVersion)
+    }
+}

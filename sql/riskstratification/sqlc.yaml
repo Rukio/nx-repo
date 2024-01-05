@@ -1,0 +1,12 @@
+version: 2
+sql:
+  - schema: 'migrations/'
+    queries: 'queries/'
+    engine: 'postgresql'
+    gen:
+      go:
+        package: 'riskstratificationsql'
+        out: '../../go/pkg/generated/sql/riskstratification'
+        sql_package: 'pgx/v4'
+        emit_result_struct_pointers: true
+        emit_exported_queries: true

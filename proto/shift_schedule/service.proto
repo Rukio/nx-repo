@@ -1,0 +1,33 @@
+syntax = "proto3";
+package shift_schedule;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/shift_schedule";
+option ruby_package = "ShiftScheduleGRPC";
+
+import "common/auth/auth.proto";
+import "common/date.proto";
+
+service ShiftScheduleService {
+  // Sync station on call shifts from ShiftAdmin scheduled shifts for tomorrow
+  // date or for selected interval if defined in request params
+  rpc SyncStationOnCallShiftsFromShiftAdmin(
+      SyncStationOnCallShiftsFromShiftAdminRequest)
+      returns (SyncStationOnCallShiftsFromShiftAdminResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "create:on_call_shift_teams:all"
+    };
+  }
+}
+
+message SyncStationOnCallShiftsFromShiftAdminRequest {
+  // If set with end_date then will be used to sync shift admin scheduled shifts
+  // by interval, if not set then tomorrow date will be used to sync scheduled
+  // shifts
+  optional common.Date start_date = 1;
+  // If set with start_date then will be used to sync shift admin scheduled
+  // shifts by interval, if not set then tomorrow date will be used to sync
+  // scheduled shifts
+  optional common.Date end_date = 2;
+}
+
+message SyncStationOnCallShiftsFromShiftAdminResponse {}

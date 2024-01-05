@@ -1,0 +1,29 @@
+syntax = "proto3";
+package modality;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/modality";
+option ruby_package = "ModalityGRPC";
+
+import "google/api/annotations.proto";
+import "common/auth/auth.proto";
+
+service HealthService {
+  // Given an empty *company-data-covered* request, HealthCheck will return a status
+  // that indicates the health of the Modality service. When the service is down
+  // the GRPC framework will return, by default, the UNAVAILABLE service status.
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {
+    option (common.auth.public) = true;
+    option (google.api.http) = {
+      get: "/healthcheck"
+    };
+  }
+}
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+  // commit hash
+  string version = 1;
+  string service_status = 2;
+  string db_status = 3;
+}

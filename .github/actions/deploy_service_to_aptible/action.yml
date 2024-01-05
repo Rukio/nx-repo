@@ -1,0 +1,114 @@
+name: 'Deploy a service to Aptible'
+description: |
+  Perform a migration in aptible over a db tunnel
+
+inputs:
+  aptible_username:
+    description: |
+      Username to login to aptible with. Should be the github secret APTIBLE_USERNAME
+    required: true
+  aptible_password:
+    description: |
+      Password to login to aptible with. Should be the github secret APTIBLE_PASSWORD
+    required: true
+  docker_image:
+    description: The docker image to deploy
+    required: true
+  docker_registry_username:
+    description: |
+      Username for the docker registry. Should be the github secret DH_DOCKER_REGISTRY_PUSH_USERNAME
+    required: true
+  docker_registry_password:
+    description: |
+      Password for the docker registry. Should be the github secret DH_DOCKER_REGISTRY_PASSWORD
+    required: true
+  service_name:
+    description: |
+      Name of the service to deploy.
+      This should be the same as the name of the project that was built
+      Example: audit-service
+    required: true
+  environment:
+    description: |
+      Environment to deploy to. Must be one of qa, uat, or trunk
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup
+      id: setup
+      shell: bash
+      run: |
+        SERVICE_NAME_STRIPPED="$(echo ${{ inputs.service_name }} | sed 's/-service//g')"
+        image=${{ inputs.docker_image }}
+        COMMIT=$(echo "${image##*:}")
+        echo "SERVICE_NAME_STRIPPED=$SERVICE_NAME_STRIPPED" >> $GITHUB_OUTPUT
+        echo "COMMIT=$COMMIT" >> $GITHUB_OUTPUT
+
+        case "${{ inputs.environment }}" in
+          prod)
+            if ! { [[ "${{ github.ref_name }}" == "trunk" ]] || [[ "${{ github.ref_name }}" =~ ^release/* ]]; }; then
+              echo "::error::Cannot deploy non-trunk or non-release branch to production" >&2
+              exit 1
+            fi
+            echo "APTIBLE_ENVIRONMENT=dispatch-health" >> $GITHUB_OUTPUT
+            ;;
+          qa)
+            echo "APTIBLE_ENVIRONMENT=staging1" >> $GITHUB_OUTPUT
+            ;;
+          uat)
+            echo "APTIBLE_ENVIRONMENT=integration" >> $GITHUB_OUTPUT
+            ;;
+          *)
+            echo "::error ::Unexpected input environment - ${{ inputs.environment }}"
+            exit 1
+            ;;
+        esac
+
+        if [[ -d "sql/${SERVICE_NAME_STRIPPED}/migrations" ]]; then
+          echo "::notice ::${{ inputs.service_name }} has migrations at sql/${SERVICE_NAME_STRIPPED}/migrations"
+          echo "RUN_MIGRATIONS=true" >> $GITHUB_OUTPUT
+        else
+          echo "::notice ::${{ inputs.service_name }} does not have migrations at sql/${SERVICE_NAME_STRIPPED}/migrations"
+          echo "RUN_MIGRATIONS=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Deploy to Aptible
+      uses: aptible/aptible-deploy-action@v1
+      with:
+        username: ${{ inputs.aptible_username }}
+        password: ${{ inputs.aptible_password }}
+        environment: ${{ steps.setup.outputs.APTIBLE_ENVIRONMENT }}
+        app: ${{ inputs.service_name }}-${{ inputs.environment }}
+        docker_img: ${{ inputs.docker_image }}
+        private_registry_username: ${{ inputs.docker_registry_username }}
+        private_registry_password: ${{ inputs.docker_registry_password }}
+
+    - uses: ./.github/actions/setup_aptible
+      if: steps.setup.outputs.RUN_MIGRATIONS == 'true'
+      with:
+        username: ${{ inputs.aptible_username }}
+        password: ${{ inputs.aptible_password }}
+
+    - name: Checkout
+      if: steps.setup.outputs.RUN_MIGRATIONS == 'true'
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ steps.setup.outputs.COMMIT }}
+
+    - name: Get version to migrate to
+      if: steps.setup.outputs.RUN_MIGRATIONS == 'true'
+      id: migrate_to
+      shell: bash
+      run: |
+        version=$(ls sql/${{ steps.setup.outputs.SERVICE_NAME_STRIPPED }}/migrations | tail -n 1 | cut -d '_' -f 1)
+        echo "VERSION=$version" >> $GITHUB_OUTPUT
+
+    - name: Run Migrations
+      uses: ./.github/actions/aptible_migration
+      if: steps.setup.outputs.RUN_MIGRATIONS == 'true'
+      with:
+        schema: ${{ steps.setup.outputs.SERVICE_NAME_STRIPPED }}
+        db_handle: ${{ inputs.service_name }}-db-${{ inputs.environment }}
+        version: ${{ steps.migrate_to.outputs.VERSION }}

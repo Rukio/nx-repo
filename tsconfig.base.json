@@ -1,0 +1,266 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2021", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@*company-data-covered*/athena-credit-card-form/data-access": [
+        "ts/libs/athena-credit-card-form/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/athena-credit-card-form/feature": [
+        "ts/libs/athena-credit-card-form/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/athena-credit-card-form/ui": [
+        "ts/libs/athena-credit-card-form/ui/src/index.ts"
+      ],
+      "@*company-data-covered*/athena-credit-card-form/util": [
+        "ts/libs/athena-credit-card-form/util/src/index.ts"
+      ],
+      "@*company-data-covered*/auth0/data-access": [
+        "ts/libs/shared/auth0/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/auth0/feature": [
+        "ts/libs/shared/auth0/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/auth0/util": [
+        "ts/libs/shared/auth0/util/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/data-access": [
+        "ts/libs/caremanager/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/data-access-types": [
+        "ts/libs/caremanager/data-access-types/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-create-episode": [
+        "ts/libs/caremanager/feature-create-episode/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-episode": [
+        "ts/libs/caremanager/feature-episode/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-episode-list": [
+        "ts/libs/caremanager/feature-episode-list/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-patient": [
+        "ts/libs/caremanager/feature-patient/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-request-manager": [
+        "ts/libs/caremanager/feature-request-manager/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-scheduling-modal": [
+        "ts/libs/caremanager/feature-scheduling-modal/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-service-requests": [
+        "ts/libs/caremanager/feature-service-requests/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-settings": [
+        "ts/libs/caremanager/feature-settings/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-status-pages": [
+        "ts/libs/caremanager/feature-status-pages/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-task-template-form": [
+        "ts/libs/caremanager/feature-task-template-form/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-virtual-app": [
+        "ts/libs/caremanager/feature-virtual-app/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/feature-visit": [
+        "ts/libs/caremanager/feature-visit/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/ui": [
+        "ts/libs/caremanager/ui/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/utils": [
+        "ts/libs/caremanager/utils/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/utils-e2e": [
+        "ts/libs/caremanager/utils-e2e/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/utils-e2e/commands": [
+        "ts/libs/caremanager/utils-e2e/src/lib/commands.ts"
+      ],
+      "@*company-data-covered*/caremanager/utils-e2e/cypress-config": [
+        "ts/libs/caremanager/utils-e2e/src/lib/baseCypressConfig.ts"
+      ],
+      "@*company-data-covered*/caremanager/utils-e2e/statsig": [
+        "ts/libs/caremanager/utils-e2e/src/lib/statsig/statsigHelper.ts"
+      ],
+      "@*company-data-covered*/caremanager/utils-mocks": [
+        "ts/libs/caremanager/utils-mocks/src/index.ts"
+      ],
+      "@*company-data-covered*/caremanager/utils-react": [
+        "ts/libs/caremanager/utils-react/src/index.ts"
+      ],
+      "@*company-data-covered*/clinical-kpi-design": [
+        "ts/libs/shared/ui/clinical-kpi-design/src/index.ts"
+      ],
+      "@*company-data-covered*/clinical-kpi/data-access": [
+        "ts/libs/clinical-kpi/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/clinical-kpi/feature": [
+        "ts/libs/clinical-kpi/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/clinical-kpi/ui": [
+        "ts/libs/clinical-kpi/ui/src/index.ts"
+      ],
+      "@*company-data-covered*/companion/data-access": [
+        "ts/libs/companion/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/companion/feature": [
+        "ts/libs/companion/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/companion/ui": [
+        "ts/libs/companion/ui/src/index.ts"
+      ],
+      "@*company-data-covered*/consumer-web-types": [
+        "ts/libs/shared/consumer-web/types/src/index.ts"
+      ],
+      "@*company-data-covered*/consumer-web/online-self-scheduling/data-access": [
+        "ts/libs/consumer-web/online-self-scheduling/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/consumer-web/online-self-scheduling/feature": [
+        "ts/libs/consumer-web/online-self-scheduling/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/consumer-web/online-self-scheduling/ui": [
+        "ts/libs/consumer-web/online-self-scheduling/ui/src/index.ts"
+      ],
+      "@*company-data-covered*/consumer-web/web-request/data-access": [
+        "ts/libs/consumer-web/web-request/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/consumer-web/web-request/feature": [
+        "ts/libs/consumer-web/web-request/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/consumer-web/web-request/ui": [
+        "ts/libs/consumer-web/web-request/ui/src/index.ts"
+      ],
+      "@*company-data-covered*/cypress-shared": [
+        "ts/libs/shared/util/cypress-shared/src/index.ts"
+      ],
+      "@*company-data-covered*/design-system": [
+        "ts/libs/shared/ui/design-system/src/index.ts"
+      ],
+      "@*company-data-covered*/insurance/data-access": [
+        "ts/libs/insurance-dashboard/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/insurance/feature": [
+        "ts/libs/insurance-dashboard/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/insurance/ui": [
+        "ts/libs/insurance-dashboard/ui/src/index.ts"
+      ],
+      "@*company-data-covered*/modality/data-access": [
+        "ts/libs/modality/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/modality/feature": [
+        "ts/libs/modality/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/modality/ui": [
+        "ts/libs/modality/ui/src/index.ts"
+      ],
+      "@*company-data-covered*/nest-datadog": [
+        "ts/libs/nest/datadog/src/index.ts"
+      ],
+      "@*company-data-covered*/nest-segment": [
+        "ts/libs/nest/segment/src/index.ts"
+      ],
+      "@*company-data-covered*/nest-statsig": [
+        "ts/libs/nest/statsig/src/index.ts"
+      ],
+      "@*company-data-covered*/nest/auth": ["ts/libs/nest/auth/src/index.ts"],
+      "@*company-data-covered*/nest/policy": [
+        "ts/libs/nest/policy/src/index.ts"
+      ],
+      "@*company-data-covered*/nest/redis": ["ts/libs/nest/redis/src/index.ts"],
+      "@*company-data-covered*/nx-plugin-core": [
+        "ts/libs/plugins/core/src/index.ts"
+      ],
+      "@*company-data-covered*/notifications/data-access": [
+        "ts/libs/shared/notifications/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/notifications/feature": [
+        "ts/libs/shared/notifications/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/patient-portal/data-access": [
+        "ts/libs/patient-portal/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/patient-portal/feature": [
+        "ts/libs/patient-portal/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/patient-portal/ui": [
+        "ts/libs/patient-portal/ui/src/index.ts"
+      ],
+      "@*company-data-covered*/protos/*": ["ts/libs/shared/protos/src/*"],
+      "@*company-data-covered*/risk-stratification-admin/data-access": [
+        "ts/libs/risk-stratification-admin/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/risk-stratification-admin/feature": [
+        "ts/libs/risk-stratification-admin/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/risk-stratification-admin/ui": [
+        "ts/libs/risk-stratification-admin/ui/src/index.ts"
+      ],
+      "@*company-data-covered*/segment/feature": [
+        "ts/libs/shared/segment/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/shared/datadog/util": [
+        "ts/libs/shared/datadog/util/src/index.ts"
+      ],
+      "@*company-data-covered*/shared/testing/react": [
+        "ts/libs/shared/util/testing/src/react/index.ts"
+      ],
+      "@*company-data-covered*/shared/testing/react/*": [
+        "ts/libs/shared/util/testing/src/react/lib/*"
+      ],
+      "@*company-data-covered*/shared/testing/rtk": [
+        "ts/libs/shared/util/testing/src/rtk/index.ts"
+      ],
+      "@*company-data-covered*/shared/testing/rtk/*": [
+        "ts/libs/shared/util/testing/src/rtk/lib/*"
+      ],
+      "@*company-data-covered*/shared/ui/forms": [
+        "ts/libs/shared/ui/forms/src/index.ts"
+      ],
+      "@*company-data-covered*/shared/ui/storybook-host": [
+        "ts/libs/shared/ui/storybook-host/src/index.ts"
+      ],
+      "@*company-data-covered*/shared/util/google": [
+        "ts/libs/shared/util/google/src/index.ts"
+      ],
+      "@*company-data-covered*/shared/util/hooks": [
+        "ts/libs/shared/util/hooks/src/index.ts"
+      ],
+      "@*company-data-covered*/shared/util/rtk": [
+        "ts/libs/shared/util/rtk/src/index.ts"
+      ],
+      "@*company-data-covered*/shared/util/types": [
+        "ts/libs/shared/util/types/src/index.ts"
+      ],
+      "@*company-data-covered*/station/data-access": [
+        "ts/libs/shared/station/data-access/src/index.ts"
+      ],
+      "@*company-data-covered*/statsig/feature": [
+        "ts/libs/shared/statsig/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/storybook/global/preview": [
+        ".storybook/preview.tsx"
+      ],
+      "@*company-data-covered*/widgets/request-care/feature": [
+        "ts/libs/widgets/request-care/feature/src/index.ts"
+      ],
+      "@*company-data-covered*/widgets/request-care/ui": [
+        "ts/libs/widgets/request-care/ui/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

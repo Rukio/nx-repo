@@ -1,0 +1,75 @@
+syntax = "proto3";
+package patients;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/patients";
+option ruby_package = "PatientGRPC";
+
+import "common/demographic.proto";
+import "common/date.proto";
+import "google/protobuf/timestamp.proto";
+import "insurance_eligibility/insurance_eligibility.proto";
+
+message InsuranceRecord {
+  optional string id = 1;
+  optional string patient_id = 2;
+  InsurancePriority priority = 3;
+  optional string member_id = 4;
+  optional string group_id = 5;
+  optional PrimaryInsuranceHolder primary_insurance_holder = 6;
+  insurance_eligibility.EligibilityStatus eligibility_status = 7;
+  optional string eligibility_message = 8;
+  // This is a map of InsuranceImageType to InsuranceImage.
+  map<int32, InsuranceImage> images = 9;
+  optional google.protobuf.Timestamp updated_at = 10;
+  optional string company_name = 11;
+  optional string package_id = 12;
+  optional int64 insurance_plan_id = 13;
+}
+
+message PrimaryInsuranceHolder {
+  optional common.Name name = 1;
+  optional common.Sex sex = 2;
+  optional PatientRelationToSubscriber patient_relation_to_subscriber = 4;
+
+  reserved 3;
+  reserved "patient_relation";
+}
+
+message InsuranceImage {
+  optional string image_url = 1;
+  optional InsuranceImageType image_type = 2;
+  bool verified = 3;
+}
+
+enum InsuranceImageType {
+  INSURANCE_IMAGE_TYPE_UNSPECIFIED = 0;
+  INSURANCE_IMAGE_TYPE_FRONT = 1;
+  INSURANCE_IMAGE_TYPE_BACK = 2;
+}
+
+enum InsurancePriority {
+  INSURANCE_PRIORITY_UNSPECIFIED = 0;
+  INSURANCE_PRIORITY_PRIMARY = 1;
+  INSURANCE_PRIORITY_SECONDARY = 2;
+  INSURANCE_PRIORITY_TERTIARY = 3;
+}
+
+message InsuranceBenefitDetails {
+  // Eligibility and Benefit Response (271 response) from the payer
+  string eligibility_data = 1;
+  // Date on which eligibility was checked
+  common.Date date_of_service = 2;
+  // The last date we did an eligibility check for this patient
+  common.Date last_check_date = 3;
+}
+
+enum PatientRelationToSubscriber {
+  PATIENT_RELATION_TO_SUBSCRIBER_UNSPECIFIED = 0;
+  PATIENT_RELATION_TO_SUBSCRIBER_PATIENT = 1;
+  PATIENT_RELATION_TO_SUBSCRIBER_MOTHER = 2;
+  PATIENT_RELATION_TO_SUBSCRIBER_FATHER = 3;
+  PATIENT_RELATION_TO_SUBSCRIBER_CHILD = 4;
+  PATIENT_RELATION_TO_SUBSCRIBER_SPOUSE = 5;
+  PATIENT_RELATION_TO_SUBSCRIBER_FRIEND = 6;
+  PATIENT_RELATION_TO_SUBSCRIBER_OTHER = 7;
+}

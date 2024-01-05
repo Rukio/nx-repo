@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "plugin:promise/recommended",
+    "plugin:vitest/recommended",
+    "plugin:vitest/recommended",
+    "../../../../.eslintrc.react.json"
+  ],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "sensitive": ["Cancer", "Stroke", "Heart Attack"],
+  "restricted_states": ["Colorado", "Nevada"]
+}

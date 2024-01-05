@@ -1,0 +1,2559 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProviderVisits /> should render correctly active chip after click 1`] = `
+@keyframes animation-0 {
+  0% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    opacity: 0.1;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes animation-1 {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes animation-2 {
+  0% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  50% {
+    -webkit-transform: scale(0.92);
+    -moz-transform: scale(0.92);
+    -ms-transform: scale(0.92);
+    transform: scale(0.92);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.emotion-0 {
+  width: 100%;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width:1200px) {
+  .emotion-0 {
+    max-width: 1200px;
+  }
+}
+
+.emotion-1 {
+  margin-top: 24px;
+  background-color: #fff;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 24px;
+}
+
+.emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: top;
+  background-color: #f5f5f5;
+  padding: 12px;
+}
+
+.emotion-4 fieldset {
+  border: none;
+}
+
+.emotion-5 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  border-radius: 4px;
+  padding-left: 14px;
+}
+
+.emotion-5.Mui-disabled {
+  color: rgba(0, 0, 0, 0.38);
+  cursor: default;
+}
+
+.emotion-5:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.87);
+}
+
+@media (hover: none) {
+  .emotion-5:hover .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(0, 0, 0, 0.23);
+  }
+}
+
+.emotion-5.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #1976d2;
+  border-width: 2px;
+}
+
+.emotion-5.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #d32f2f;
+}
+
+.emotion-5.Mui-disabled .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-6 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.emotion-7 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0;
+  width: 100%;
+  -webkit-animation-name: mui-auto-fill-cancel;
+  animation-name: mui-auto-fill-cancel;
+  -webkit-animation-duration: 10ms;
+  animation-duration: 10ms;
+  padding: 16.5px 14px;
+  padding-left: 0;
+}
+
+.emotion-7::-webkit-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-7::-moz-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-7:-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-7::-ms-input-placeholder {
+  color: currentColor;
+  opacity: 0.42;
+  -webkit-transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-7:focus {
+  outline: 0;
+}
+
+.emotion-7:invalid {
+  box-shadow: none;
+}
+
+.emotion-7::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-7::-webkit-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-7::-moz-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-7:-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-7::-ms-input-placeholder {
+  opacity: 0!important;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-7:focus::-webkit-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-7:focus::-moz-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-7:focus:-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+label[data-shrink=false]+.MuiInputBase-formControl .emotion-7:focus::-ms-input-placeholder {
+  opacity: 0.42;
+}
+
+.emotion-7.Mui-disabled {
+  opacity: 1;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.38);
+}
+
+.emotion-7:-webkit-autofill {
+  -webkit-animation-duration: 5000s;
+  animation-duration: 5000s;
+  -webkit-animation-name: mui-auto-fill;
+  animation-name: mui-auto-fill;
+}
+
+.emotion-7:-webkit-autofill {
+  border-radius: inherit;
+}
+
+.emotion-8 {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px;
+  left: 0;
+  margin: 0;
+  padding: 0 8px;
+  pointer-events: none;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  min-width: 0%;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.emotion-9 {
+  float: unset;
+  width: auto;
+  overflow: hidden;
+  padding: 0;
+  line-height: 11px;
+  -webkit-transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  transition: width 150ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+}
+
+.emotion-10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 16px;
+  gap: 16px;
+}
+
+.emotion-11 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+}
+
+.emotion-12 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  max-width: 100%;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 0.8125rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  white-space: nowrap;
+  -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  cursor: default;
+  outline: 0;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  border: 1px solid;
+  border-color: #f5f5f5;
+  background-color: #fff;
+  background-color: #f5f5f5;
+}
+
+.emotion-12::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-12.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-12 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-12.Mui-disabled {
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.emotion-12 .MuiChip-avatar {
+  margin-left: 5px;
+  margin-right: -6px;
+  width: 24px;
+  height: 24px;
+  color: #616161;
+  font-size: 0.75rem;
+}
+
+.emotion-12 .MuiChip-avatarColorPrimary {
+  color: #fff;
+  background-color: #1565c0;
+}
+
+.emotion-12 .MuiChip-avatarColorSecondary {
+  color: #fff;
+  background-color: #7b1fa2;
+}
+
+.emotion-12 .MuiChip-avatarSmall {
+  margin-left: 4px;
+  margin-right: -4px;
+  width: 18px;
+  height: 18px;
+  font-size: 0.625rem;
+}
+
+.emotion-12 .MuiChip-icon {
+  margin-left: 5px;
+  margin-right: -6px;
+  color: #616161;
+}
+
+.emotion-12 .MuiChip-deleteIcon {
+  -webkit-tap-highlight-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
+  font-size: 22px;
+  cursor: pointer;
+  margin: 0 5px 0 -6px;
+}
+
+.emotion-12 .MuiChip-deleteIcon:hover {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.emotion-12:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.emotion-12.Mui-focusVisible {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.emotion-12:active {
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
+.emotion-13 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 12px;
+  padding-right: 12px;
+  white-space: nowrap;
+}
+
+.emotion-14 {
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+.emotion-15 {
+  opacity: 0;
+  position: absolute;
+}
+
+.emotion-15.MuiTouchRipple-rippleVisible {
+  opacity: 0.3;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-animation-name: animation-0;
+  animation-name: animation-0;
+  -webkit-animation-duration: 550ms;
+  animation-duration: 550ms;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.emotion-15.MuiTouchRipple-ripplePulsate {
+  -webkit-animation-duration: 200ms;
+  animation-duration: 200ms;
+}
+
+.emotion-15 .MuiTouchRipple-child {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.emotion-15 .MuiTouchRipple-childLeaving {
+  opacity: 0;
+  -webkit-animation-name: animation-1;
+  animation-name: animation-1;
+  -webkit-animation-duration: 550ms;
+  animation-duration: 550ms;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.emotion-15 .MuiTouchRipple-childPulsate {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  -webkit-animation-name: animation-2;
+  animation-name: animation-2;
+  -webkit-animation-duration: 2500ms;
+  animation-duration: 2500ms;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-delay: 200ms;
+  animation-delay: 200ms;
+}
+
+.emotion-20 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-width: 64px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: #1976d2;
+}
+
+.emotion-20::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-20.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-20 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-20:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  background-color: rgba(25, 118, 210, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-20:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-20.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-22 {
+  margin-top: 24px;
+}
+
+.emotion-23 {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.emotion-24 {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.emotion-24 caption {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: left;
+  caption-side: bottom;
+}
+
+.emotion-25 {
+  display: table-header-group;
+  background-color: #f5f5f5;
+}
+
+.emotion-26 {
+  color: inherit;
+  display: table-row;
+  vertical-align: middle;
+  outline: 0;
+}
+
+.emotion-26.MuiTableRow-hover:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.emotion-26.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.emotion-26.Mui-selected:hover {
+  background-color: rgba(25, 118, 210, 0.12);
+}
+
+.emotion-27 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  width: 200px;
+}
+
+.emotion-28 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  width: 100px;
+}
+
+.emotion-29 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  width: 250px;
+}
+
+.emotion-30 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.emotion-33 {
+  display: table-row-group;
+}
+
+.emotion-33 .MuiTableCell-body {
+  border-bottom: 1px solid;
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+}
+
+.emotion-35 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  padding-top: 16px;
+}
+
+.emotion-37 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.emotion-38 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.emotion-42 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  max-width: 100%;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 0.8125rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  white-space: nowrap;
+  -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  cursor: default;
+  outline: 0;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: #fff;
+  background-color: #0288d1;
+}
+
+.emotion-42::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-42.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-42 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-42.Mui-disabled {
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.emotion-42 .MuiChip-avatar {
+  margin-left: 5px;
+  margin-right: -6px;
+  width: 24px;
+  height: 24px;
+  color: #616161;
+  font-size: 0.75rem;
+}
+
+.emotion-42 .MuiChip-avatarColorPrimary {
+  color: #fff;
+  background-color: #1565c0;
+}
+
+.emotion-42 .MuiChip-avatarColorSecondary {
+  color: #fff;
+  background-color: #7b1fa2;
+}
+
+.emotion-42 .MuiChip-avatarSmall {
+  margin-left: 4px;
+  margin-right: -4px;
+  width: 18px;
+  height: 18px;
+  font-size: 0.625rem;
+}
+
+.emotion-42 .MuiChip-icon {
+  margin-left: 5px;
+  margin-right: -6px;
+  color: #616161;
+}
+
+.emotion-42 .MuiChip-deleteIcon {
+  -webkit-tap-highlight-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
+  font-size: 22px;
+  cursor: pointer;
+  margin: 0 5px 0 -6px;
+}
+
+.emotion-42 .MuiChip-deleteIcon:hover {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.emotion-42.Mui-focusVisible {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.emotion-42:hover {
+  cursor: pointer;
+}
+
+.emotion-44 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+  color: #fff!important;
+  opacity: 0.7;
+}
+
+.emotion-46 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  max-width: 100%;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 0.8125rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  white-space: nowrap;
+  -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  cursor: default;
+  outline: 0;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: #fff;
+  background-color: #d32f2f;
+}
+
+.emotion-46::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-46.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-46 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-46.Mui-disabled {
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.emotion-46 .MuiChip-avatar {
+  margin-left: 5px;
+  margin-right: -6px;
+  width: 24px;
+  height: 24px;
+  color: #616161;
+  font-size: 0.75rem;
+}
+
+.emotion-46 .MuiChip-avatarColorPrimary {
+  color: #fff;
+  background-color: #1565c0;
+}
+
+.emotion-46 .MuiChip-avatarColorSecondary {
+  color: #fff;
+  background-color: #7b1fa2;
+}
+
+.emotion-46 .MuiChip-avatarSmall {
+  margin-left: 4px;
+  margin-right: -4px;
+  width: 18px;
+  height: 18px;
+  font-size: 0.625rem;
+}
+
+.emotion-46 .MuiChip-icon {
+  margin-left: 5px;
+  margin-right: -6px;
+  color: #616161;
+}
+
+.emotion-46 .MuiChip-deleteIcon {
+  -webkit-tap-highlight-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
+  font-size: 22px;
+  cursor: pointer;
+  margin: 0 5px 0 -6px;
+}
+
+.emotion-46 .MuiChip-deleteIcon:hover {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.emotion-46.Mui-focusVisible {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.emotion-46:hover {
+  cursor: pointer;
+}
+
+.emotion-57 {
+  max-width: 100%;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 0.8125rem;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  white-space: nowrap;
+  -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  cursor: default;
+  outline: 0;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  vertical-align: middle;
+  box-sizing: border-box;
+  color: #000;
+  background-color: #f0ecec;
+}
+
+.emotion-57.Mui-disabled {
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.emotion-57 .MuiChip-avatar {
+  margin-left: 5px;
+  margin-right: -6px;
+  width: 24px;
+  height: 24px;
+  color: #616161;
+  font-size: 0.75rem;
+}
+
+.emotion-57 .MuiChip-avatarColorPrimary {
+  color: #fff;
+  background-color: #1565c0;
+}
+
+.emotion-57 .MuiChip-avatarColorSecondary {
+  color: #fff;
+  background-color: #7b1fa2;
+}
+
+.emotion-57 .MuiChip-avatarSmall {
+  margin-left: 4px;
+  margin-right: -4px;
+  width: 18px;
+  height: 18px;
+  font-size: 0.625rem;
+}
+
+.emotion-57 .MuiChip-icon {
+  margin-left: 5px;
+  margin-right: -6px;
+  color: #616161;
+}
+
+.emotion-57 .MuiChip-deleteIcon {
+  -webkit-tap-highlight-color: transparent;
+  color: rgba(0, 0, 0, 0.26);
+  font-size: 22px;
+  cursor: pointer;
+  margin: 0 5px 0 -6px;
+}
+
+.emotion-57 .MuiChip-deleteIcon:hover {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.emotion-57:hover {
+  cursor: default;
+}
+
+.emotion-174 {
+  margin: 8px 0 0 auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.emotion-174 .MuiPaginationItem-previousNext {
+  color: #1976d2;
+}
+
+.emotion-174 .Mui-disabled {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.emotion-175 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.emotion-176 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  border-radius: 16px;
+  text-align: center;
+  box-sizing: border-box;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 6px;
+  margin: 0 3px;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.emotion-176::-moz-focus-inner {
+  border-style: none;
+}
+
+.emotion-176.Mui-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+@media print {
+  .emotion-176 {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}
+
+.emotion-176.Mui-focusVisible {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.emotion-176.Mui-disabled {
+  opacity: 0.38;
+}
+
+.emotion-176:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+@media (hover: none) {
+  .emotion-176:hover {
+    background-color: transparent;
+  }
+}
+
+.emotion-176.Mui-selected {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.emotion-176.Mui-selected:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+@media (hover: none) {
+  .emotion-176.Mui-selected:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+}
+
+.emotion-176.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.emotion-176.Mui-selected.Mui-disabled {
+  opacity: 1;
+  color: rgba(0, 0, 0, 0.26);
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.emotion-176.Mui-selected.Mui-disabled {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.emotion-177 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+  font-size: 1.25rem;
+  margin: 0 -8px;
+}
+
+<div>
+  <div
+    class="MuiContainer-root MuiContainer-maxWidthLg emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body1 emotion-2"
+        data-testid="provider-visits-header"
+      >
+        Latest Visits
+      </p>
+      <div
+        class="MuiBox-root emotion-3"
+      >
+        <div
+          class="MuiFormControl-root MuiTextField-root emotion-4"
+          data-testid="search-field-root"
+        >
+          <div
+            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedStart emotion-5"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-6"
+              data-testid="SearchIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+              />
+            </svg>
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart emotion-7"
+              data-testid="search-field-input"
+              id=":rl:"
+              placeholder="Search"
+              style="padding: 0px; margin-left: 8px;"
+              type="text"
+              value=""
+            />
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline emotion-8"
+            >
+              <legend
+                class="emotion-9"
+              >
+                <span
+                  class="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root emotion-10"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body2 emotion-11"
+          >
+            Filter by
+          </p>
+          <div
+            class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-filledDefault emotion-12"
+            data-testid="provider-visits-filter-abx"
+            role="button"
+            tabindex="0"
+          >
+            <span
+              class="MuiChip-label MuiChip-labelMedium emotion-13"
+            >
+              ABX
+            </span>
+            <span
+              class="MuiTouchRipple-root emotion-14"
+            >
+              <span
+                class="emotion-15 MuiTouchRipple-ripple MuiTouchRipple-rippleVisible"
+                style="width: 2.8284271247461903px; height: 2.8284271247461903px; top: -1.4142135623730951px; left: -1.4142135623730951px;"
+              >
+                <span
+                  class="MuiTouchRipple-child MuiTouchRipple-childLeaving"
+                />
+              </span>
+            </span>
+          </div>
+          <div
+            class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-filledDefault emotion-12"
+            data-testid="provider-visits-filter-escalated"
+            role="button"
+            tabindex="0"
+          >
+            <span
+              class="MuiChip-label MuiChip-labelMedium emotion-13"
+            >
+              Escalated
+            </span>
+            <span
+              class="MuiTouchRipple-root emotion-14"
+            >
+              <span
+                class="emotion-15 MuiTouchRipple-ripple MuiTouchRipple-rippleVisible"
+                style="width: 2.8284271247461903px; height: 2.8284271247461903px; top: -1.4142135623730951px; left: -1.4142135623730951px;"
+              >
+                <span
+                  class="MuiTouchRipple-child MuiTouchRipple-childLeaving"
+                />
+              </span>
+            </span>
+          </div>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium emotion-20"
+            tabindex="0"
+            type="button"
+          >
+            Clear All
+            <span
+              class="MuiTouchRipple-root emotion-14"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        class="MuiBox-root emotion-22"
+      >
+        <div
+          class="MuiTableContainer-root emotion-23"
+        >
+          <table
+            class="MuiTable-root emotion-24"
+            data-testid="provider-visits-table"
+          >
+            <thead
+              class="MuiTableHead-root emotion-25"
+            >
+              <tr
+                class="MuiTableRow-root MuiTableRow-head emotion-26"
+              >
+                <th
+                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-27"
+                  data-testid="provider-visits-table-header-patient"
+                  scope="col"
+                >
+                  Patient
+                </th>
+                <th
+                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-28"
+                  data-testid="provider-visits-table-header-date"
+                  scope="col"
+                >
+                  Date
+                </th>
+                <th
+                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-29"
+                  data-testid="provider-visits-table-header-chief-complaint"
+                  scope="col"
+                >
+                  Chief Complaint
+                </th>
+                <th
+                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-30"
+                  data-testid="provider-visits-table-header-diagnosis"
+                  scope="col"
+                >
+                  Diagnosis
+                </th>
+                <th
+                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-28"
+                  data-testid="provider-visits-table-header-abx"
+                  scope="col"
+                >
+                  ABX
+                </th>
+                <th
+                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-28"
+                  data-testid="provider-visits-table-header-escalated"
+                  scope="col"
+                >
+                  Escalated
+                </th>
+              </tr>
+            </thead>
+            <tbody
+              class="MuiTableBody-root emotion-33"
+            >
+              <tr
+                class="MuiTableRow-root emotion-26"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-11"
+                    data-testid="provider-visits-table-patient-name-0"
+                  >
+                    Patient0
+                     
+                    Name0
+                  </p>
+                  <span
+                    class="MuiTypography-root MuiTypography-caption emotion-37"
+                    data-testid="provider-visits-table-athena-id-0"
+                  >
+                    ID: 
+                    00
+                  </span>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-date-0"
+                >
+                  7
+                  /
+                  2
+                  /
+                  2023
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-chief-complaint-0"
+                >
+                  Skin infection (cellulitis) 0
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-diagnosis-0"
+                >
+                  LLE Cellulitis w failure of outpatient tx 0.
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some abx details 0"
+                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault emotion-42"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-abx-0"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      Yes
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault emotion-44"
+                      data-testid="InfoIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some escalation reason 0"
+                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault emotion-46"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-escalated-0"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      Yes
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault emotion-44"
+                      data-testid="InfoIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="MuiTableRow-root emotion-26"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-11"
+                    data-testid="provider-visits-table-patient-name-1"
+                  >
+                    Patient1
+                     
+                    Name1
+                  </p>
+                  <span
+                    class="MuiTypography-root MuiTypography-caption emotion-37"
+                    data-testid="provider-visits-table-athena-id-1"
+                  >
+                    ID: 
+                    10
+                  </span>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-date-1"
+                >
+                  7
+                  /
+                  2
+                  /
+                  2023
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-chief-complaint-1"
+                >
+                  Skin infection (cellulitis) 1
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-diagnosis-1"
+                >
+                  LLE Cellulitis w failure of outpatient tx 1.
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some abx details 1"
+                    class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault emotion-57"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-abx-1"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      No
+                    </span>
+                  </div>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some escalation reason 1"
+                    class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault emotion-57"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-escalated-1"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      No
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="MuiTableRow-root emotion-26"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-11"
+                    data-testid="provider-visits-table-patient-name-2"
+                  >
+                    Patient2
+                     
+                    Name2
+                  </p>
+                  <span
+                    class="MuiTypography-root MuiTypography-caption emotion-37"
+                    data-testid="provider-visits-table-athena-id-2"
+                  >
+                    ID: 
+                    20
+                  </span>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-date-2"
+                >
+                  7
+                  /
+                  2
+                  /
+                  2023
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-chief-complaint-2"
+                >
+                  Skin infection (cellulitis) 2
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-diagnosis-2"
+                >
+                  LLE Cellulitis w failure of outpatient tx 2.
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some abx details 2"
+                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault emotion-42"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-abx-2"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      Yes
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault emotion-44"
+                      data-testid="InfoIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some escalation reason 2"
+                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault emotion-46"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-escalated-2"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      Yes
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault emotion-44"
+                      data-testid="InfoIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="MuiTableRow-root emotion-26"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-11"
+                    data-testid="provider-visits-table-patient-name-3"
+                  >
+                    Patient3
+                     
+                    Name3
+                  </p>
+                  <span
+                    class="MuiTypography-root MuiTypography-caption emotion-37"
+                    data-testid="provider-visits-table-athena-id-3"
+                  >
+                    ID: 
+                    30
+                  </span>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-date-3"
+                >
+                  7
+                  /
+                  2
+                  /
+                  2023
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-chief-complaint-3"
+                >
+                  Skin infection (cellulitis) 3
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-diagnosis-3"
+                >
+                  LLE Cellulitis w failure of outpatient tx 3.
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some abx details 3"
+                    class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault emotion-57"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-abx-3"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      No
+                    </span>
+                  </div>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some escalation reason 3"
+                    class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault emotion-57"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-escalated-3"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      No
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="MuiTableRow-root emotion-26"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-11"
+                    data-testid="provider-visits-table-patient-name-4"
+                  >
+                    Patient4
+                     
+                    Name4
+                  </p>
+                  <span
+                    class="MuiTypography-root MuiTypography-caption emotion-37"
+                    data-testid="provider-visits-table-athena-id-4"
+                  >
+                    ID: 
+                    40
+                  </span>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-date-4"
+                >
+                  7
+                  /
+                  2
+                  /
+                  2023
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-chief-complaint-4"
+                >
+                  Skin infection (cellulitis) 4
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-diagnosis-4"
+                >
+                  LLE Cellulitis w failure of outpatient tx 4.
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some abx details 4"
+                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault emotion-42"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-abx-4"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      Yes
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault emotion-44"
+                      data-testid="InfoIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some escalation reason 4"
+                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault emotion-46"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-escalated-4"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      Yes
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault emotion-44"
+                      data-testid="InfoIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="MuiTableRow-root emotion-26"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-11"
+                    data-testid="provider-visits-table-patient-name-5"
+                  >
+                    Patient5
+                     
+                    Name5
+                  </p>
+                  <span
+                    class="MuiTypography-root MuiTypography-caption emotion-37"
+                    data-testid="provider-visits-table-athena-id-5"
+                  >
+                    ID: 
+                    50
+                  </span>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-date-5"
+                >
+                  7
+                  /
+                  2
+                  /
+                  2023
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-chief-complaint-5"
+                >
+                  Skin infection (cellulitis) 5
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-diagnosis-5"
+                >
+                  LLE Cellulitis w failure of outpatient tx 5.
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some abx details 5"
+                    class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault emotion-57"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-abx-5"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      No
+                    </span>
+                  </div>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some escalation reason 5"
+                    class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault emotion-57"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-escalated-5"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      No
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="MuiTableRow-root emotion-26"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-11"
+                    data-testid="provider-visits-table-patient-name-6"
+                  >
+                    Patient6
+                     
+                    Name6
+                  </p>
+                  <span
+                    class="MuiTypography-root MuiTypography-caption emotion-37"
+                    data-testid="provider-visits-table-athena-id-6"
+                  >
+                    ID: 
+                    60
+                  </span>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-date-6"
+                >
+                  7
+                  /
+                  2
+                  /
+                  2023
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-chief-complaint-6"
+                >
+                  Skin infection (cellulitis) 6
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-diagnosis-6"
+                >
+                  LLE Cellulitis w failure of outpatient tx 6.
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some abx details 6"
+                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault emotion-42"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-abx-6"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      Yes
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault emotion-44"
+                      data-testid="InfoIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some escalation reason 6"
+                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault emotion-46"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-escalated-6"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      Yes
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault emotion-44"
+                      data-testid="InfoIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="MuiTableRow-root emotion-26"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-11"
+                    data-testid="provider-visits-table-patient-name-7"
+                  >
+                    Patient7
+                     
+                    Name7
+                  </p>
+                  <span
+                    class="MuiTypography-root MuiTypography-caption emotion-37"
+                    data-testid="provider-visits-table-athena-id-7"
+                  >
+                    ID: 
+                    70
+                  </span>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-date-7"
+                >
+                  7
+                  /
+                  2
+                  /
+                  2023
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-chief-complaint-7"
+                >
+                  Skin infection (cellulitis) 7
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-diagnosis-7"
+                >
+                  LLE Cellulitis w failure of outpatient tx 7.
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some abx details 7"
+                    class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault emotion-57"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-abx-7"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      No
+                    </span>
+                  </div>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some escalation reason 7"
+                    class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault emotion-57"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-escalated-7"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      No
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="MuiTableRow-root emotion-26"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-11"
+                    data-testid="provider-visits-table-patient-name-8"
+                  >
+                    Patient8
+                     
+                    Name8
+                  </p>
+                  <span
+                    class="MuiTypography-root MuiTypography-caption emotion-37"
+                    data-testid="provider-visits-table-athena-id-8"
+                  >
+                    ID: 
+                    80
+                  </span>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-date-8"
+                >
+                  7
+                  /
+                  2
+                  /
+                  2023
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-chief-complaint-8"
+                >
+                  Skin infection (cellulitis) 8
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-diagnosis-8"
+                >
+                  LLE Cellulitis w failure of outpatient tx 8.
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some abx details 8"
+                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault emotion-42"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-abx-8"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      Yes
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault emotion-44"
+                      data-testid="InfoIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some escalation reason 8"
+                    class="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-filledDefault emotion-46"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-escalated-8"
+                    role="button"
+                    tabindex="0"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      Yes
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconFilledColorDefault emotion-44"
+                      data-testid="InfoIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                      />
+                    </svg>
+                  </div>
+                </td>
+              </tr>
+              <tr
+                class="MuiTableRow-root emotion-26"
+              >
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 emotion-11"
+                    data-testid="provider-visits-table-patient-name-9"
+                  >
+                    Patient9
+                     
+                    Name9
+                  </p>
+                  <span
+                    class="MuiTypography-root MuiTypography-caption emotion-37"
+                    data-testid="provider-visits-table-athena-id-9"
+                  >
+                    ID: 
+                    90
+                  </span>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-date-9"
+                >
+                  7
+                  /
+                  2
+                  /
+                  2023
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-chief-complaint-9"
+                >
+                  Skin infection (cellulitis) 9
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                  data-testid="provider-visits-table-diagnosis-9"
+                >
+                  LLE Cellulitis w failure of outpatient tx 9.
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some abx details 9"
+                    class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault emotion-57"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-abx-9"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      No
+                    </span>
+                  </div>
+                </td>
+                <td
+                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-38"
+                >
+                  <div
+                    aria-label="some escalation reason 9"
+                    class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault emotion-57"
+                    data-mui-internal-clone-element="true"
+                    data-testid="provider-visits-table-escalated-9"
+                  >
+                    <span
+                      class="MuiChip-label MuiChip-labelMedium emotion-13"
+                    >
+                      No
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <nav
+          aria-label="pagination navigation"
+          class="MuiPagination-root MuiPagination-text emotion-174"
+          data-testid="provider-visits-pagination"
+        >
+          <ul
+            class="MuiPagination-ul emotion-175"
+          >
+            <li>
+              <button
+                aria-label="Go to previous page"
+                class="MuiButtonBase-root Mui-disabled MuiPaginationItem-root MuiPaginationItem-sizeMedium MuiPaginationItem-text MuiPaginationItem-circular Mui-disabled MuiPaginationItem-previousNext emotion-176"
+                disabled=""
+                tabindex="-1"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiPaginationItem-icon emotion-177"
+                  data-testid="NavigateBeforeIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+                  />
+                </svg>
+              </button>
+            </li>
+            <li>
+              <button
+                aria-current="true"
+                aria-label="page 1"
+                class="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-sizeMedium MuiPaginationItem-text MuiPaginationItem-circular Mui-selected MuiPaginationItem-page emotion-176"
+                tabindex="0"
+                type="button"
+              >
+                1
+                <span
+                  class="MuiTouchRipple-root emotion-14"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                aria-label="Go to page 2"
+                class="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-sizeMedium MuiPaginationItem-text MuiPaginationItem-circular MuiPaginationItem-page emotion-176"
+                tabindex="0"
+                type="button"
+              >
+                2
+                <span
+                  class="MuiTouchRipple-root emotion-14"
+                />
+              </button>
+            </li>
+            <li>
+              <button
+                aria-label="Go to next page"
+                class="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-sizeMedium MuiPaginationItem-text MuiPaginationItem-circular MuiPaginationItem-previousNext emotion-176"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiPaginationItem-icon emotion-177"
+                  data-testid="NavigateNextIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root emotion-14"
+                />
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;

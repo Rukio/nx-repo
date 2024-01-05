@@ -1,0 +1,52 @@
+syntax = "proto3";
+package pophealth;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/pophealthpb";
+option ruby_package = "PopHealthGRPC";
+
+import "common/date.proto";
+import "common/auth/auth.proto";
+
+service SearchPatientService {
+  rpc SearchPatient(SearchPatientRequest) returns (SearchPatientResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:pophealth:all"
+    };
+  }
+}
+
+message SearchPatientRequest {
+  string name = 1;
+  string first_name = 2;
+  string last_name = 3;
+  common.Date date_of_birth = 4;
+  optional string ssn = 5;
+  repeated int64 channel_item_ids = 6;
+  repeated int64 market_ids = 7;
+  optional int32 max_num_results = 8;
+
+  // True if search needs to be performed using backfill index.
+  bool is_backfill = 9;
+}
+
+message SearchPatientResponse {
+  repeated Patient patient = 1;
+}
+
+message Patient {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  common.Date dob = 4;
+  int64 channel_item_id = 5;
+  int64 market_id = 6;
+  string gender = 7;
+  string ssn = 8;
+  string street_address_1 = 9;
+  string street_address_2 = 10;
+  string city = 11;
+  string state = 12;
+  string zipcode = 13;
+  string member_id = 14;
+  string email = 15;
+}

@@ -1,0 +1,95 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "sql-formatter.dialect": "postgresql",
+  "clang-format.style": "google",
+
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": ["--build-tags=db_test", "--fast"],
+  "go.testTags": "db_test",
+  "gopls": {
+    "build.buildFlags": ["-tags=db_test"]
+  },
+  "go.testEnvVars": {
+    "BASE_DATABASE_URL": "postgres://postgres@localhost:5433/?sslmode=disable"
+  },
+
+  "eslint.format.enable": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": false
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": false
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[go]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[proto3]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "opa.roots": ["${workspaceFolder}/opa"],
+  "[rego]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "tsandall.opa"
+  },
+  "files.associations": {
+    "**/*.tf.tpl": "terraform"
+  },
+  "buf.binaryPath": "bin/buf",
+  "protoc": {
+    "options": ["--proto_path=${workspaceRoot}/proto"]
+  },
+  "yaml.schemas": {
+    "https://json.schemastore.org/circleciconfig.json": [
+      "infra/circleci_orbs/*.yml",
+      ".circleci/*.yml"
+    ],
+    "https://json.schemastore.org/github-workflow.json": [
+      ".github/workflows/*.yml"
+    ]
+  },
+  "typescript.preferences.importModuleSpecifier": "project-relative",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json"
+  ]
+}

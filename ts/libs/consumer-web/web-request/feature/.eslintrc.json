@@ -1,0 +1,19 @@
+{
+  "extends": ["plugin:@nx/react", "../../../../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      // TODO(ON-794): remove override when the dayjs package is removed
+      "rules": { "no-restricted-imports": "off" }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}

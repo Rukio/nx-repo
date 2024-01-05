@@ -1,0 +1,22 @@
+{
+  "protocol_name": "Advanced Care",
+  "score": 0,
+  "worst_case_score": 0,
+  "responses": {
+    "questions": [
+      {
+        "id": 2761,
+        "name": "Does this patient meet initial Advanced Care criteria?",
+        "order": null,
+        "weightYes": 0,
+        "weightNo": 0,
+        "protocolId": 500,
+        "allowNa": false,
+        "hasNotes": false,
+        "minLeftWeight": 0,
+        "maxLeftWeight": 0,
+        "answer": "Yes"
+      }
+    ]
+  }
+}

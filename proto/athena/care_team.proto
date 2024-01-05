@@ -1,0 +1,45 @@
+syntax = "proto3";
+package athena;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/athena";
+option ruby_package = "AthenaGRPC";
+
+import "common/demographic.proto";
+
+// CareTeamMember message represents a care provider who is part of a care
+// team.
+message CareTeamMember {
+  // address represents the primary, and secondary address of a
+  // care team member.
+  optional common.Address address = 1;
+  // name represents the name of a care team member.
+  optional common.Name name = 2;
+  // phone represents the phone number of a care team member.
+  optional common.PhoneNumber phone = 3;
+  // clinical_provider_id represents the unique identifier for clinical
+  // providers.
+  optional string clinical_provider_id = 4;
+  // ansi_specialty_name represents the specialty of a care team member.
+  optional string ansi_specialty_name = 5;
+  // country represents the country of a care team member.
+  optional string country = 6;
+  // facility_id represents the place identifier for pharmacies, labs,
+  // images centers, and equipment suppliers.
+  optional string facility_id = 7;
+  // member_id represents the unique identifier of a care team member.
+  optional string member_id = 8;
+  // npi represents the national provider identifier.
+  optional string npi = 9;
+  // provider_id represents the provider identifier.
+  optional string provider_id = 10;
+  // recipient_class represents the information about the care team member's
+  // organization.
+  optional RecipientClass recipient_class = 11;
+}
+
+message RecipientClass {
+  // code represents the recipient class identifier.
+  optional string code = 1;
+  // description represents the care team member's organization.
+  optional string description = 2;
+}

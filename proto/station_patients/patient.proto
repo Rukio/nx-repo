@@ -1,0 +1,47 @@
+syntax = "proto3";
+package station_patients;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/station_patients";
+option ruby_package = "StationPatientGRPC";
+
+message Patient {
+  // fields in station patient that are not
+  // stored in Athena.
+  int64 id = 1;
+  optional int64 channel_item_id = 2;
+  optional string source_type = 3;
+  optional string partner_id = 4;
+  optional PatientSafetyFlag patient_safety_flag = 5;
+  optional bool voicemail_consent = 6;
+  optional BillingCity billing_city = 7;
+  optional PowerOfAttorney power_of_attorney = 8;
+  optional string ehr_id = 9;
+
+  // Athena fields to sync.
+  optional string first_name = 10;
+  optional string last_name = 11;
+  optional string dob = 12;
+  optional string mobile_number = 13;
+}
+
+message PatientSafetyFlag {
+  optional int64 id = 1;
+  optional int64 patient_id = 2;
+  optional string flag_type = 3;
+  optional string flag_reason = 4;
+  optional int64 flagger_id = 5;
+}
+
+message BillingCity {
+  optional int64 id = 1;
+  optional string default_department = 2;
+  optional string usual_provider = 3;
+}
+
+message PowerOfAttorney {
+  optional int64 id = 1;
+  optional int64 patient_id = 2;
+  optional string name = 3;
+  optional string phone = 4;
+  optional string relationship = 5;
+}

@@ -1,0 +1,9 @@
+{
+  "id": "123",
+  "name": "Pepe",
+  "phone_number": "+11234567890",
+  "fax_number": "+11234567890",
+  "address": "Av. Siempreviva 742",
+  "provider_type_id": "3",
+  "patient_id": "1"
+}

@@ -1,0 +1,86 @@
+syntax = "proto3";
+package ml_models.on_scene;
+
+import "common/auth/auth.proto";
+import "common/date.proto";
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/ml_models/on_scene";
+option ruby_package = "MlModels::OnSceneGRPC";
+
+service OnSceneService {
+  rpc GetOnSceneTime(GetOnSceneTimeRequest) returns (GetOnSceneTimeResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:on_scene:all"
+    };
+  }
+}
+
+message GetOnSceneTimeRequest {
+  // Request schema should match that in the on-scene-model-api repo. We are
+  // doing a 1 to 1 port of the existing request structure to minimize work
+  // to migrate to gRPC service. Here is an
+  // example request:
+  // {
+  //   "care_request_id": 1234,
+  //   "protocol_name": "Dehydration",
+  //   "service_line": "Acute Care",
+  //   "place_of_service": "Home",
+  //   "num_crs": 1,
+  //   "patient_dob": "1970-01-01",
+  //   "risk_assessment_score": 1.5,
+  //   "shift_teams": [
+  //     {
+  //       "id": 1,
+  //       "member_ids": [
+  //         1,
+  //         2
+  //       ]
+  //     },
+  //     {
+  //       "id": 2,
+  //       "member_ids": [
+  //         3,
+  //         4
+  //       ]
+  //     }
+  //   ]
+  // }
+  // care request ID being scheduled
+  optional int64 care_request_id = 1;
+  // risk protocol name
+  optional string protocol_name = 2;
+  // service line (acute, bridge, etc.)
+  optional string service_line = 3;
+  // place of service (e.g., home)
+  optional string place_of_service = 4;
+  // Number of care requests included (should normally be 1, but can be
+  // more than 1 if multiple patients need attention at the same
+  // address, as was more common during covid)
+  optional int64 num_crs = 5;
+  // patient date of birth
+  optional common.Date patient_dob = 6;
+  // risk assessment score
+  optional float risk_assessment_score = 7;
+  // list of shift teams we want to estimate on-scene time for
+  repeated ShiftTeam shift_teams = 8;
+}
+
+message ShiftTeam {
+  // internal ID for shift teams being considered in each request
+  optional int64 id = 1;
+  // member_id refers to user_id but is maintained for legacy purposes
+  repeated int64 member_ids = 2;
+}
+
+/* Should match that in the on-scene-model-api repo. Example response:
+{ "care_request_id": 1234, "shift_team_predictions": { "1": XX, "2": XX } } */
+message GetOnSceneTimeResponse {
+  optional int64 care_request_id = 1;
+  repeated ShiftTeamPrediction predictions = 2;
+}
+
+message ShiftTeamPrediction {
+  // same id as in ShiftTeam
+  optional int64 id = 1;
+  optional int64 prediction = 2;
+}

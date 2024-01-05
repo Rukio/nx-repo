@@ -1,0 +1,38 @@
+name: Build Policy Service
+
+run-name: ${{ inputs.ref || github.ref }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: The sha to build, otherwise builds HEAD of branch
+        type: string
+        required: false
+  workflow_call:
+    inputs:
+      ref:
+        description: The sha to build, otherwise builds HEAD of branch
+        type: string
+        required: false
+
+jobs:
+  build-policy-service-container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Build and Push Docker Container
+        uses: ./.github/actions/build_and_push_docker
+        with:
+          image_name: policy-service
+          dockerfile: docker/opa.Dockerfile
+          docker_port: 8181
+          extra_build_args: |
+            BUNDLE=opa/bundle
+          docker_registry_url: ${{ secrets.DH_DOCKER_REGISTRY_URL }}
+          docker_registry_username: ${{ secrets.DH_DOCKER_REGISTRY_PUSH_USERNAME }}
+          docker_registry_password: ${{ secrets.DH_DOCKER_REGISTRY_PASSWORD }}

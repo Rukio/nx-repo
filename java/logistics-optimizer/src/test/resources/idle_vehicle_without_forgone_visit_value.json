@@ -1,0 +1,232 @@
+{
+  "problem": {
+    "description": {
+      "shift_teams": [
+        {
+          "id": 10,
+          "depot_location_id": 10,
+          "available_time_window": {
+            "start_timestamp_sec": 0,
+            "end_timestamp_sec": 21600
+          },
+          "attributes": [],
+          "route_history": {
+            "stops": [],
+            "current_position": {
+              "location_id": 10
+            }
+          },
+          "upcoming_commitments": {}
+        },
+        {
+          "id": 20,
+          "depot_location_id": 20,
+          "available_time_window": {
+            "start_timestamp_sec": 0,
+            "end_timestamp_sec": 21600
+          },
+          "attributes": [],
+          "route_history": {
+            "stops": [],
+            "current_position": {
+              "location_id": 20
+            }
+          },
+          "upcoming_commitments": {}
+        }
+      ],
+      "visits": [
+        {
+          "id": 1,
+          "location_id": 1,
+          "arrival_time_window": {
+            "start_timestamp_sec": 0,
+            "end_timestamp_sec": 14400
+          },
+          "acuity": {
+            "level": 2
+          },
+          "service_duration_sec": 3600,
+          "required_attributes": [],
+          "forbidden_attributes": [],
+          "value": {
+            "completion_value_cents": 100
+          }
+        },
+        {
+          "id": 2,
+          "location_id": 2,
+          "arrival_time_window": {
+            "start_timestamp_sec": 0,
+            "end_timestamp_sec": 14400
+          },
+          "acuity": {
+            "level": 2
+          },
+          "service_duration_sec": 3600,
+          "required_attributes": [],
+          "forbidden_attributes": [],
+          "value": {
+            "completion_value_cents": 100
+          }
+        }
+      ],
+      "locations": [
+        {
+          "id": 1,
+          "latitude_e6": 36250490,
+          "longitude_e6": -115193890
+        },
+        {
+          "id": 2,
+          "latitude_e6": 36254370,
+          "longitude_e6": -115197920
+        },
+        {
+          "id": 10,
+          "latitude_e6": 36246930,
+          "longitude_e6": -115198520
+        },
+        {
+          "id": 20,
+          "latitude_e6": 36247040,
+          "longitude_e6": -115189150
+        }
+      ],
+      "distance_matrix": {
+        "distances": [
+          {
+            "from_location_id": 10,
+            "to_location_id": 10,
+            "length_meters": 0,
+            "duration_sec": 0
+          },
+          {
+            "from_location_id": 10,
+            "to_location_id": 20,
+            "length_meters": 5000,
+            "duration_sec": 10800
+          },
+          {
+            "from_location_id": 10,
+            "to_location_id": 1,
+            "length_meters": 1000,
+            "duration_sec": 3600
+          },
+          {
+            "from_location_id": 10,
+            "to_location_id": 2,
+            "length_meters": 2000,
+            "duration_sec": 4320
+          },
+          {
+            "from_location_id": 1,
+            "to_location_id": 10,
+            "length_meters": 1000,
+            "duration_sec": 3600
+          },
+          {
+            "from_location_id": 1,
+            "to_location_id": 20,
+            "length_meters": 5000,
+            "duration_sec": 12600
+          },
+          {
+            "from_location_id": 1,
+            "to_location_id": 1,
+            "length_meters": 0,
+            "duration_sec": 0
+          },
+          {
+            "from_location_id": 1,
+            "to_location_id": 2,
+            "length_meters": 500,
+            "duration_sec": 1200
+          },
+          {
+            "from_location_id": 2,
+            "to_location_id": 10,
+            "length_meters": 2000,
+            "duration_sec": 4320
+          },
+          {
+            "from_location_id": 2,
+            "to_location_id": 20,
+            "length_meters": 5000,
+            "duration_sec": 7560
+          },
+          {
+            "from_location_id": 2,
+            "to_location_id": 1,
+            "length_meters": 500,
+            "duration_sec": 1200
+          },
+          {
+            "from_location_id": 2,
+            "to_location_id": 2,
+            "length_meters": 0,
+            "duration_sec": 0
+          },
+          {
+            "from_location_id": 20,
+            "to_location_id": 10,
+            "length_meters": 5000,
+            "duration_sec": 10800
+          },
+          {
+            "from_location_id": 20,
+            "to_location_id": 1,
+            "length_meters": 5000,
+            "duration_sec": 12600
+          },
+          {
+            "from_location_id": 20,
+            "to_location_id": 2,
+            "length_meters": 5000,
+            "duration_sec": 7560
+          }
+        ]
+      }
+    }
+  },
+  "config": {
+    "termination_duration_ms": 1000,
+    "termination_type": "TERMINATION_TYPE_BEST_FOR_TIME",
+    "include_intermediate_solutions": false,
+    "include_intermediate_infeasible_solutions": false,
+    "include_distance_matrix": false,
+    "app_hourly_cost_usd_cents": 7200,
+    "dhmt_hourly_cost_usd_cents": 3600,
+    "random_seed": 0,
+    "constraint_config": {
+      "work_distribution": {
+        "exponential_policy": {
+          "base_numerator": 2,
+          "base_denominator": 1,
+          "full_queue_value_limit_usd_mills": 250000
+        }
+      },
+      "late_arrival": {
+        "linear_offset_policy": {
+          "lateness_cost_usd_mills_per_ms": 0.0,
+          "offset_prior_to_time_window_end_ms": 0
+        },
+        "hard_lateness_threshold_ms": 1800000
+      },
+      "clinical_urgency": {
+        "linear_offset_policy": {
+          "lateness_cost_usd_mills_per_ms": 0.0833,
+          "offset_prior_to_urgency_window_end_ms": "3600000"
+        },
+        "higher_level_value_wins": true
+      },
+      "depot_late_arrival": {
+        "linear_offset_policy": {
+          "lateness_cost_usd_mills_per_ms": 0.0833,
+          "offset_prior_to_depot_due_time_ms": "3600000"
+        },
+        "hard_lateness_threshold_ms": "1800000"
+      }
+    }
+  }
+}

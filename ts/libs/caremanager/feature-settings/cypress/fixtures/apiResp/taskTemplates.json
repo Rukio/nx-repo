@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "current_page": 1,
+    "page_size": 5,
+    "total_pages": 2,
+    "total_results": 7
+  },
+  "task_templates": [
+    {
+      "id": "1",
+      "created_at": "2022-07-25T05:39:37.632Z",
+      "updated_at": "2022-07-25T05:39:37.632Z",
+      "name": "Special Cases",
+      "summary": "Lorem ipsum ex magna commodo exercitation ut commodo officia tempor veniam.",
+      "tasks_count": "7",
+      "service_line": {
+        "id": "1",
+        "name": "Advanced Care"
+      },
+      "service_line_id": "1",
+      "care_phase": {
+        "id": "2",
+        "name": "High Acuity"
+      },
+      "updated_by_user_id": "441",
+      "last_updated_by": {
+        "id": "441",
+        "first_name": "John",
+        "last_name": "Woo",
+        "email": "john@woo.com"
+      }
+    },
+    {
+      "id": "2",
+      "created_at": "2022-07-25T05:39:37.632Z",
+      "updated_at": "2022-07-25T05:39:37.632Z",
+      "name": "Providers Only",
+      "summary": "Occaecat velit sunt irure consectetur dolor id laboris id qui mollit.",
+      "tasks_count": "5",
+      "service_line": {
+        "id": "14",
+        "name": "Advanced Care"
+      },
+      "service_line_id": "1",
+      "care_phase": {
+        "id": "3",
+        "name": "Some Acuity"
+      },
+      "updated_by_user_id": "3145",
+      "last_updated_by": {
+        "id": "3145",
+        "first_name": "Tina",
+        "last_name": "Turner",
+        "email": "tina@turner.com"
+      }
+    },
+    {
+      "id": "3",
+      "created_at": "2022-07-25T05:39:37.632Z",
+      "updated_at": "2022-07-25T05:39:37.632Z",
+      "name": "Postpartum Advanced Care",
+      "summary": "One morning, when Gregor Samsa woke from troubled dreams.",
+      "tasks_count": "3",
+      "service_line": {
+        "id": "1",
+        "name": "Advanced Care"
+      },
+      "service_line_id": "1",
+      "care_phase": {
+        "id": "24",
+        "name": "Super Ultra Acuity"
+      },
+      "updated_by_user_id": "552",
+      "last_updated_by": {
+        "id": "552",
+        "first_name": "Jonny",
+        "last_name": "Greenwood",
+        "email": "jonny@greenwood.com"
+      }
+    },
+    {
+      "id": "4",
+      "created_at": "2022-07-25T05:39:37.632Z",
+      "updated_at": "2022-07-25T05:39:37.632Z",
+      "name": "Preoperatory Requirements",
+      "summary": "One morning, when Gregor Samsa woke from troubled dreams.",
+      "tasks_count": "9",
+      "service_line": {
+        "id": "1",
+        "name": "Advanced Care"
+      },
+      "service_line_id": "1",
+      "care_phase": {
+        "id": "2",
+        "name": "High Acuity"
+      },
+      "updated_by_user_id": "255",
+      "last_updated_by": {
+        "id": "255",
+        "first_name": "Chavela",
+        "last_name": "Vargas",
+        "email": "lalala@gmail.com"
+      }
+    },
+    {
+      "id": "5",
+      "created_at": "2022-07-25T05:39:37.632Z",
+      "updated_at": "2022-07-25T05:39:37.632Z",
+      "name": "Disability Support Services",
+      "summary": "One morning, when Gregor Samsa woke from troubled dreams.",
+      "tasks_count": "13",
+      "service_line": {
+        "id": "2",
+        "name": "Bridge Care"
+      },
+      "service_line_id": "2",
+      "care_phase": {
+        "id": "1",
+        "name": "Medium Acuity"
+      },
+      "updated_by_user_id": "1355",
+      "last_updated_by": {
+        "id": "1355",
+        "first_name": "Jordan",
+        "last_name": "Peele",
+        "email": "jp@getout.com"
+      }
+    }
+  ]
+}

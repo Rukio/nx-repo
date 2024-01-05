@@ -1,0 +1,83 @@
+name: Nightly E2E Tests Typescript
+
+run-name: 'Nightly E2E Tests Typescript: ${{ github.head_ref || github.ref }}'
+
+on:
+  schedule:
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  setup_nightly_ts:
+    runs-on: ubuntu-latest
+    outputs:
+      affected_projects: ${{ steps.affected_projects.outputs.projects }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'npm'
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: v1-node_modules-cypress-${{ hashFiles('package-lock.json') }}-${{ github.head_ref }}
+          restore-keys: |
+            v1-node_modules-cypress-${{ hashFiles('package-lock.json') }}-
+
+      - name: Set up Nx
+        uses: nrwl/nx-set-shas@v3
+        with:
+          main-branch-name: 'trunk'
+
+      - name: Generate affected project list
+        id: affected_projects
+        run: |
+          npx nx print-affected --targets=e2e --all > affected.json
+          echo "projects=$(jq -cr '.projects' affected.json)" >> $GITHUB_OUTPUT
+
+  test_nightly_ts:
+    runs-on: ubuntu-latest
+    if: ${{ needs.setup_nightly_ts.outputs.affected_projects != '[]' && needs.setup_nightly_ts.outputs.affected_projects != '' }}
+    needs:
+      - setup_nightly_ts
+    strategy:
+      matrix:
+        projects: ${{ fromJSON(needs.setup_nightly_ts.outputs.affected_projects) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'npm'
+          registry-url: https://npm.pkg.github.com/
+          scope: '@*company-data-covered*'
+          always-auth: true
+
+      - name: Restore node_modules
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: v1-node_modules-cypress-${{ hashFiles('package-lock.json') }}-${{ github.head_ref }}
+
+      - name: E2E Test
+        env:
+          CYPRESS_CAREMANAGER_M2M_CLIENT_SECRET: ${{ secrets.CAREMANAGER_M2M_CLIENT_SECRET_UAT }}
+          COMMIT_INFO_MESSAGE: '${{ github.workflow }} SHA: ${{ github.sha }}'
+        run: npx nx run-many --target=e2e --projects=${{ matrix.projects }} --configuration=uat

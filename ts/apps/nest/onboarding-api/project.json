@@ -1,0 +1,88 @@
+{
+  "name": "onboarding-api",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/nest/onboarding-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["pre-build"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/ts/apps/nest/onboarding-api",
+        "main": "ts/apps/nest/onboarding-api/src/main.ts",
+        "tsConfig": "ts/apps/nest/onboarding-api/tsconfig.app.json",
+        "assets": ["ts/apps/nest/onboarding-api/src/proto"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "onboarding-api:build"
+      },
+      "dependsOn": ["pre-build"],
+      "configurations": {
+        "production": {
+          "buildTarget": "onboarding-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/nest/onboarding-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "dependsOn": ["pre-build"],
+      "options": {
+        "jestConfig": "ts/apps/nest/onboarding-api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "pre-build": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "dependsOn": [
+        {
+          "projects": ["protos"],
+          "target": "generate-types"
+        }
+      ],
+      "options": {
+        "command": "scripts/onboarding/copy-protos.sh"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "dependsOn": ["pre-build"],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.app.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/nest/onboarding-api"
+      }
+    }
+  },
+  "tags": ["type:nest"]
+}

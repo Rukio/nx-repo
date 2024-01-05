@@ -1,0 +1,15 @@
+# Configuration file for generating proto definitions with `buf generate`.
+# Documentation at https://docs.buf.build/configuration/v1/buf-gen-yaml
+version: v1
+plugins:
+  - name: go
+    out: go/pkg/generated/proto
+    opt: paths=source_relative
+  - name: go-grpc
+    out: go/pkg/generated/proto
+    opt:
+      - paths=source_relative
+      - require_unimplemented_servers=false
+  - name: grpc-gateway
+    out: go/pkg/generated/proto
+    opt: paths=source_relative

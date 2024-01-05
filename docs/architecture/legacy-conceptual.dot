@@ -1,0 +1,58 @@
+digraph G {
+    compound=true;
+    node [shape=box style=rounded];
+
+    subgraph cluster_Dashboard {
+        label = "Dashboard";
+        node [style=rounded, color=lightgrey]
+        Market [label="Market/Billing City"]
+        Patient [label="Patient"]
+        Channel [label="Channel"]
+        ChannelItem [label="ChannelItem"]
+        User [label="User"]
+        Provider [label="Provider"]
+        ServiceLine [label="ServiceLine"]
+        InsurancePlan [label="InsurancePlan"]
+        CareRequest [label="CareRequest"]
+    }
+
+    subgraph cluster_Athena{
+        label = "EHR"
+        node [style=rounded, color=blue]
+        EhrDepartment [label="Ehr Department"]
+        EhrAppointment [label="Ehr Appointment"]
+        EhrInsurance [label="Ehr Insurance"]
+        EhrPatient [label="Ehr Patient"]
+        EhrProvider [label="Ehr Provider"]
+    }
+
+    subgraph LogisticsSvc{
+        label = "LogisticsSvc"
+        node [style=rounded, color=green]
+        LogisticsSvc [label="LogisticsSvc"]
+    }
+ 
+     subgraph RiskStratSvc{
+        label = "RiskStratSvc"
+        node [style=rounded, color=orange]
+        RiskStratSvc [label="RiskStratSvc"]
+    }
+
+    // Relations
+    Market -> EhrDepartment
+    Patient -> EhrPatient
+    Provider -> EhrProvider
+    InsurancePlan -> EhrInsurance
+    CareRequest -> EhrAppointment
+
+    User -> Patient
+    Market -> CareRequest
+    ServiceLine -> CareRequest
+    Patient -> CareRequest
+    Patient -> InsurancePlan
+    Provider -> CareRequest
+    CareRequest -> LogisticsSvc
+    CareRequest -> RiskStratSvc
+
+    Channel -> ChannelItem -> CareRequest
+}

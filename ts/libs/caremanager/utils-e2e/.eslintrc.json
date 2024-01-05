@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "plugin:promise/recommended",
+    "plugin:vitest/recommended",
+    "../../../../.eslintrc.json"
+  ],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off",
+        "vitest/expect-expect": "off",
+        "vitest/valid-expect": "off",
+        "promise/always-return": "off",
+        "promise/catch-or-return": "off"
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    }
+  ]
+}

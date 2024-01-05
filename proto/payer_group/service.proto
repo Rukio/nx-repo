@@ -1,0 +1,38 @@
+syntax = "proto3";
+package payer_group;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/payer_group";
+option ruby_package = "PayerGroupGRPC";
+
+import "common/auth/auth.proto";
+
+service PayerGroupService {
+  // Returns a collection of Payer Groups matching a set of provided payer
+  // group IDs.
+  rpc ListPayerGroups(ListPayerGroupsRequest)
+      returns (ListPayerGroupsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:insurance_plans:all"
+    };
+  }
+}
+
+message ListPayerGroupsRequest {
+  // payer_group_ids represents a group of ids of the Payer group from verity
+  // stream.
+  repeated int64 payer_group_ids = 1;
+}
+
+message ListPayerGroupsResponse {
+  // payer_group represents a group of Payer group data from station.
+  repeated PayerGroup payer_groups = 1;
+}
+
+message PayerGroup {
+  // id represents the unique identifier of the Payer group name.
+  int64 id = 1;
+  // represents the name of the Payer group.
+  string name = 2;
+  // payer_group_id represents the id of the Payer group.
+  int64 payer_group_id = 3;
+}

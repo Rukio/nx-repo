@@ -1,0 +1,165 @@
+syntax = "proto3";
+package partner;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/partnerpb";
+option ruby_package = "PartnerGRPC";
+
+import "common/demographic.proto";
+import "common/logistics.proto";
+import "google/protobuf/timestamp.proto";
+
+// Enums
+enum CallbackOption {
+  CALLBACK_OPTION_UNSPECIFIED = 0;
+  CALLBACK_OPTION_SOURCE = 1;
+  CALLBACK_OPTION_REQUESTER = 2;
+  CALLBACK_OPTION_PATIENT = 3;
+}
+
+enum PartnerCategory {
+  PARTNER_CATEGORY_UNSPECIFIED = 0;
+  PARTNER_CATEGORY_EMPLOYER = 1;
+  PARTNER_CATEGORY_HEALTH_SYSTEM = 2;
+  PARTNER_CATEGORY_HOME_HEALTH = 3;
+  PARTNER_CATEGORY_HOSPICE_AND_PALLIATIVE_CARE = 4;
+  PARTNER_CATEGORY_INJURY_FINANCE = 5;
+  PARTNER_CATEGORY_PAYER = 6;
+  PARTNER_CATEGORY_PROVIDER_GROUP = 7;
+  PARTNER_CATEGORY_SENIOR_CARE = 8;
+  PARTNER_CATEGORY_SKILLED_NURSING_FACILITY = 9;
+}
+
+// Data Objects
+message EmrProvider {
+  int64 emr_provider_id = 1;
+}
+
+message InsurancePackage {
+  int64 package_id = 1;
+}
+
+message Location {
+  common.Address address = 1;
+  common.Location geo_location = 2;
+}
+
+// A brief market description used when defining market specific properties
+message Market {
+  // Represents the ID of the partner configuration market association
+  optional int64 id = 1;
+  int64 partner_configuration_id = 2;
+  int64 station_market_id = 3;
+  string display_name = 4;
+  repeated ServiceLine service_lines = 5;
+}
+
+message Partner {
+  optional int64 id = 1;
+  string name = 2;
+  // Category provides an additional way to group partners.
+  // This is called "type_name" in station.
+  PartnerCategory partner_category = 3;
+  // Phone number composed of a type, country code the 10 digit num and
+  // extension
+  common.PhoneNumber phone_number = 4;
+  optional string email = 5;
+  // The partner's address (city, state, zipcode) and geographic location
+  Location location = 6;
+  // A set of identifiers in for Station (channel_item_id, channel_id)
+  StationIdentifiers station_identifiers = 7;
+  // Insurance packages associated with this Partner
+  repeated InsurancePackage insurance_packages = 8;
+  // EMR providers, otherwise known as Athena Clinical Providers
+  repeated EmrProvider emr_providers = 9;
+  optional google.protobuf.Timestamp deactivated_at = 10;
+  optional google.protobuf.Timestamp created_at = 11;
+  optional google.protobuf.Timestamp updated_at = 12;
+}
+
+message PartnerConfiguration {
+  optional int64 id = 1;
+  // ID of configuration in Express
+  optional string express_id = 2;
+  // Display name of partner config shown in Express
+  string display_name = 3;
+  // Number of partner shown at call center
+  common.PhoneNumber phone_number = 4;
+  // True if partner uses SSO to login
+  optional bool sso_enabled = 5;
+  // True if partner has a Redox integration
+  optional bool redox_enabled = 6;
+  // True if partner is able to bypass risk strat
+  optional bool risk_strat_bypass_enabled = 7;
+  // True is partner users can view care requests of other partner users
+  optional bool view_all_care_requests_enabled = 8;
+  // Valid email domains for partner users
+  repeated string accepted_domains = 9;
+  // Configuration options for SSO
+  optional SSOProperties sso_properties = 10;
+  // Configuration options for Redox
+  optional RedoxProperties redox_properties = 11;
+  // Channel item IDs identifying searchable pop health patients
+  repeated int64 pophealth_channel_item_ids = 12;
+  optional google.protobuf.Timestamp deleted_at = 13;
+  optional google.protobuf.Timestamp created_at = 14;
+  optional google.protobuf.Timestamp updated_at = 15;
+  repeated Market markets = 16;
+  repeated Source sources = 17;
+}
+
+message RedoxProperties {
+  // Redox source ID, unique for each integration
+  string source_id = 1;
+  // Redox destination ID, used to send results back to partners
+  string destination_id = 2;
+  // Redox destination ID for clinical summaries
+  optional string clinical_summary_destination_id = 3;
+  // String used to identify cancelled orders in partner EHR
+  optional string cancellation_id = 4;
+  // True if clinical notes are sent to partner
+  bool clinical_notes_enabled = 5;
+}
+
+// Service line defines what kind of care is delivered
+message ServiceLine {
+  int64 id = 1;
+  // A unique, immutable name used to consistently identify service lines
+  optional string short_name = 2;
+  optional string display_name = 3;
+  // A source partner for Redox care requests using the service line
+  optional int64 redox_partner_id = 4;
+  // The email address used for routing care requests into the correct Genesys
+  // queue
+  optional string genesys_email = 5;
+  // Enabled if service line qualifies for risk stratification bypass
+  optional bool allow_bypass_risk_stratification = 6;
+}
+
+message Source {
+  optional int64 id = 1;
+  int64 partner_id = 2;
+  int64 partner_configuration_id = 3;
+  // Callback number to use during onboarding if callback option is source
+  common.PhoneNumber callback_number = 4;
+  // Default address for care requests from this source
+  common.Address default_visit_address = 5;
+  // Callback option to define who to call during onboarding
+  CallbackOption default_callback_option = 6;
+  optional google.protobuf.Timestamp deleted_at = 7;
+  optional google.protobuf.Timestamp created_at = 8;
+  optional google.protobuf.Timestamp updated_at = 9;
+}
+
+message SSOProperties {
+  // The name of the Auth0 Connection for the partner
+  string connection_name = 1;
+  // URL used to log out the partner within their IdP
+  optional string logout_url = 2;
+  // Define if SSO configuration should enforce SAML to include a role for user
+  optional bool enforce_role_presence = 3;
+}
+
+message StationIdentifiers {
+  int64 channel_item_id = 1;
+  optional int64 channel_id = 2;
+}

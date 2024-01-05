@@ -1,0 +1,51 @@
+digraph G {
+    compound=true;
+    node [shape=box style=rounded];
+
+
+    subgraph cluster_Universal{
+        label = "Universal"
+        Auth0 [label="Auth0"]
+        WSS [label="WSS"]
+    }
+    
+    subgraph cluster_Frontend {
+        label = "Applications/FE"
+        DashboardFE [label="DashboardFE"]
+        RoverIOS [label="RoverIOS"]
+        ConsumerIOS [label="ConsumerIOS"]
+        ConsumerAndroid [label="ConsumerAndroid"]
+
+    }
+
+    subgraph cluster_Backend{
+        label="Backend"
+        DashboardBE [label="DashboardBE"]
+        LogisticsSvc [label="LogisticsSvc"]
+        RiskStratSvc [label="RiskStratSvc"]
+        Vroom [label="Vroom"]
+    }
+
+    subgraph cluster_External{
+        label="External"
+        EhrAdapter [label="labresults"]
+        CallManagerSvc [label="CallManagerSvc"]
+        VerityStream [label="VerityStream"]
+        Athena [label="Athena"]
+    }
+
+    DashboardFE -> DashboardBE
+    RoverIOS -> DashboardBE
+    ConsumerIOS -> DashboardBE
+    ConsumerAndroid -> DashboardBE
+    DashboardFE -> LogisticsSvc
+    DashboardFE -> RiskStratSvc
+    DashboardFE -> CallManagerSvc
+
+    DashboardBE -> LogisticsSvc
+    DashboardBE -> RiskStratSvc
+    DashboardBE -> Athena
+    DashboardBE -> VerityStream
+    LogisticsSvc -> Vroom
+
+}

@@ -1,0 +1,492 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'snyk:lic:golang:github.com:hashicorp:consul:sdk:MPL-2.0':
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T12:58:12.539Z
+  SNYK-GOLANG-K8SIOKUBERNETES-1585630:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T14:24:25.355Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGKUBELET-1729741:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:21:14.566Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGAPISERVER-1050879:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGKUBECTLCMDCP-174801:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGREGISTRYCORENODE-3112356:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMGORILLAWEBSOCKET-597108:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSRUNCLIBCONTAINER-1294545:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSRUNCLIBCONTAINER-2309909:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSRUNCLIBCONTAINER-3339620:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDRUNTIMEV1-1728018:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDPKGCRI-2330891:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERNETWORKINGCNIPKGINVOKE-1070549:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCOREOSETCDEMBED-50063:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCOREOSETCDETCDMAIN-50065:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCOREOSETCDETCDMAIN-1080617:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCOREOSETCDETCDSERVER-50067:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCOREOSETCDPKGHTTPUTIL-50069:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3EMBED-1083945:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3ETCDMAIN-1083901:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3ETCDMAIN-1083902:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3ETCDSERVER-1083907:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3PKGHTTPUTIL-1083906:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMDOCKERDOCKER-50044:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMBUGERJSONPARSER-1294541:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSRUNCLIBCONTAINERUSER-50037:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETES-1048855:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETES-1585632:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGKUBELET-1015602:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGVOLUMERBD-1018858:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGVOLUMERBD-1048859:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGKUBECTLCMDCP-2826204:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGKUBECTLCMDCP-2826207:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGVOLUMECEPHFS-1015598:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGVOLUMEQUOBYTE-575596:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGVOLUMESCALEIO-575599:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGVOLUMEGLUSTERFS-575597:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGVOLUMEAZUREFILE-1015599:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGVOLUMESTORAGEOS-1083964:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGKUBELETKUBERUNTIME-174842:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGAPISAPPSVALIDATION-1246528:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGCREDENTIALPROVIDER-1048993:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESSTAGINGSRCK8SIOCLIENTGOTRANSPORT-1018856:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESSTAGINGSRCK8SIOCLIENTGOTRANSPORT-1048853:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESSTAGINGSRCK8SIOCLIENTGOTRANSPORT-1325547:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESSTAGINGSRCK8SIOAPISERVERPKGSERVER-1083942:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESSTAGINGSRCK8SIOAPISERVERPKGSTORAGEETCD-3112360:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDIMGCRYPTIMAGESENCRYPTION-2434277:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSRUNCLIBCONTAINER-50017:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSRUNCLIBCONTAINER-469151:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSRUNCLIBCONTAINER-540485:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSRUNCLIBCONTAINER-575144:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDCMD-1047459:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDOCI-3323388:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDARCHIVE-1320090:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDRUNTIMEV2-1047460:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDPKGCRIOPTS-2415030:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDPKGCRISERVER-2859770:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDPKGCRISERVER-3323387:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDIMAGESARCHIVE-3323384:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDPKGCRISTREAMINGREMOTECOMMAND-3164748:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDPKGPROCESS-536210:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDREMOTESDOCKER-1019358:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCOREOSETCDEMBED-50064:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCOREOSETCDETCDMAIN-50066:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCOREOSETCDETCDSERVER-50068:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCOREOSETCDPKGHTTPUTIL-50070:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMDOCKERCLICLICOMMANDREGISTRY-1728020:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3WAL-1083968:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3EMBED-1083944:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3ETCDMAIN-1083903:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3ETCDSERVER-1083908:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3PKGFILEUTIL-1083969:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3PKGHTTPUTIL-1083905:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMDOCKERDOCKER-50047:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMBUGERJSONPARSER-1051963:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMGORILLAHANDLERS-540773:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKG-2389037:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGFEATURES-536841:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGKUBECTLCMD-2331662:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESCMDKUBEAPISERVERAPP-3027031:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGAPISCOREVALIDATION-1294543:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGKUBELETKUBERUNTIME-3027029:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPKGAPISDISCOVERYVALIDATION-1295564:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESSTAGINGSRCK8SIOCLIENTGOUTILJSONPATH-597671:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-K8SIOKUBERNETESPLUGINPKGAUTHAUTHORIZERRBACBOOTSTRAPPOLICY-1318920:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSRUNC-2823317:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSRUNC-2823318:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDIMAGES-1922886:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMCONTAINERDCONTAINERDREMOTES-1922887:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMOPENCONTAINERSIMAGESPECSPECSGOV1-1922832:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMDOCKERDISTRIBUTIONMANIFESTOCISCHEMA-3145570:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMDOCKERDISTRIBUTIONMANIFESTMANIFESTLIST-3145569:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3WAL-1083967:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GOETCDIOETCDV3DISCOVERY-3040871:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+  SNYK-GOLANG-GITHUBCOMDGRIJALVAJWTGO-50049:
+    - '*':
+        reason: Imported with containerd from OPA OCI requirements which is not in usage
+        expires: 2023-12-31T23:59:59.000Z
+        created: 2023-03-22T15:25:38.479Z
+patch: {}
+exclude:
+  global:
+    # mockServiceWorker.js is a auto-generated file and should only be served in development mode,
+    # so it does not represent an issue when it comes to vulnerabilities.
+    # Also, any attempt to modify the file to have it pass snyk code analyzer can potentially
+    # be overwritten by next generate runs.
+    - public/mockServiceWorker.js

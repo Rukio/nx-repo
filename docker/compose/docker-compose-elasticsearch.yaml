@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    container_name: services-elasticsearch
+    image: 'elasticsearch:7.17.5'
+    ports:
+      - ${DEV_ELASTICSEARCH_PORT}:9200
+    volumes:
+      - 'esdata:/usr/share/elasticsearch/data:cached'
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+volumes:
+  esdata:

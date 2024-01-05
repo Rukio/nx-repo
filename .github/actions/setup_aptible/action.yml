@@ -1,0 +1,26 @@
+name: 'Setup Aptible CLI'
+description: |
+  Install Aptible CLI and login.
+
+inputs:
+  username:
+    description: Username to login with. Use the secret APTIBLE_USERNAME
+    required: true
+  password:
+    description: Password to login with. Use the secret APTIBLE_PASSWORD
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Install Aptible CLI'
+      run: |
+        curl -o aptible-cli.deb \
+          https://omnibus-aptible-toolbelt.s3.amazonaws.com/aptible/omnibus-aptible-toolbelt/master/384/pkg/aptible-toolbelt_0.19.6%2B20220928202841%7Eubuntu.16.04-1_amd64.deb
+        sudo dpkg -i aptible-cli.deb
+        rm -f aptible-cli.deb
+      shell: bash
+
+    - name: 'Login to Aptible'
+      run: aptible login --email "${{ inputs.username }}" --password "${{ inputs.password }}"
+      shell: bash

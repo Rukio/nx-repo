@@ -1,0 +1,117 @@
+syntax = "proto3";
+package user;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/userpb";
+option ruby_package = "UserGRPC";
+
+import "common/auth/auth.proto";
+
+service UserService {
+  // Returns a User matching the provided ID.
+  rpc GetUserByID(GetUserByIDRequest) returns (GetUserByIDResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:users:all"
+    };
+  }
+
+  // Returns a collection of Users matching a set of provided IDs.
+  rpc GetUsersByID(GetUsersByIDRequest) returns (GetUsersByIDResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:users:all"
+    };
+  }
+
+  // Returns the user matching the data in the authentication metadata.
+  rpc GetAuthenticatedUser(GetAuthenticatedUserRequest)
+      returns (GetAuthenticatedUserResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:users:all"
+    };
+  }
+
+  // Returns the authenticated user roles.
+  rpc GetAuthenticatedUserRoles(GetAuthenticatedUserRolesRequest)
+      returns (GetAuthenticatedUserRolesResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:users:all"
+    };
+  }
+
+  // Returns a list of users that match the input conditions.
+  rpc SearchUsers(SearchUsersRequest) returns (SearchUsersResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:users:all"
+    };
+  }
+}
+
+message GetUserByIDRequest {
+  int64 user_id = 1;
+}
+
+message GetUserByIDResponse {
+  User user = 1;
+}
+
+message GetUsersByIDRequest {
+  repeated int64 user_ids = 1;
+}
+
+message GetUsersByIDResponse {
+  repeated User users = 1;
+}
+
+message GetAuthenticatedUserRequest {}
+
+message GetAuthenticatedUserResponse {
+  User user = 1;
+}
+
+message GetAuthenticatedUserRolesRequest {}
+
+message GetAuthenticatedUserRolesResponse {
+  repeated Role roles = 1;
+}
+
+message User {
+  // id represents the unique identifier of the User.
+  int64 id = 1;
+  // first_name represents the first name of the User.
+  string first_name = 2;
+  // last_name represents the last name of the User.
+  string last_name = 3;
+  // email represents the email address of the User.
+  string email = 4;
+  // job_title represents the job title of the User.
+  optional string job_title = 5;
+  // avatar_url representes the avatar URL of the User.
+  optional string avatar_url = 6;
+  // phone_number represents the phone number of the User.
+  optional string phone_number = 7;
+}
+
+message Role {
+  // id represents the unique identifier of the Role.
+  int64 id = 1;
+  // name represents the name of the Role.
+  string name = 2;
+}
+
+message SearchUsersRequest {
+  // page represents the current page to paginate the response.
+  optional int64 page = 1;
+  // page_size represents the desired number of users we want to include in the
+  // response.
+  optional int64 page_size = 2;
+  // search_term represents the text used to match with the user's information.
+  // the supported fields to match so far are: email, first_name, and last_name.
+  string search_term = 3;
+}
+
+message SearchUsersResponse {
+  // users represents a list of users that match the given input.
+  repeated User users = 1;
+  // total_count represents the total number of users that match
+  // with the given conditions.
+  int64 total_count = 2;
+}

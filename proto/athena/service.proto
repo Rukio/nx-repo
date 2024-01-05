@@ -1,0 +1,654 @@
+syntax = "proto3";
+package athena;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/athena";
+option ruby_package = "AthenaGRPC";
+
+import "audit/audit.proto";
+import "athena/patient.proto";
+import "common/date.proto";
+import "athena/pharmacy.proto";
+import "athena/care_team.proto";
+import "athena/insurance.proto";
+import "athena/clinical_provider.proto";
+import "common/demographic.proto";
+import "athena/lab_result.proto";
+import "athena/order.proto";
+
+service AthenaService {
+  rpc GetPatient(GetPatientRequest) returns (GetPatientResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  rpc CreatePatient(CreatePatientRequest) returns (CreatePatientResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  rpc UpdatePatient(UpdatePatientRequest) returns (UpdatePatientResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  // Returns a list of patients that most closely match the requested inputs
+  // from the Athena EHR.
+  rpc EnhancedBestMatch(EnhancedBestMatchRequest)
+      returns (EnhancedBestMatchResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+  // Update default pharmacy for patient in the Athena EHR
+  // given the patient ID, department ID, and the pharmacy's
+  // clinical provider ID from the Athena EHR
+  rpc UpdateDefaultPharmacy(UpdateDefaultPharmacyRequest)
+      returns (UpdateDefaultPharmacyResponse) {
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+  // Returns a list of preferred pharmacies for a patient given the
+  // patient ID and department ID from the Athena EHR
+  rpc GetPreferredPharmacies(GetPreferredPharmaciesRequest)
+      returns (GetPreferredPharmaciesResponse) {
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+  // Add a pharmacy to the patient's preferred pharmacy list in the Athena EHR
+  // given the patient ID, department ID, and the pharmacy's
+  // clinical provider ID from the Athena EHR
+  rpc UpdatePreferredPharmacy(UpdatePreferredPharmacyRequest)
+      returns (UpdatePreferredPharmacyResponse) {
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+
+  // Delete a pharmacy to the patient's preferred pharmacy list in the
+  // Athena EHR given the patient ID, department ID, and
+  // the pharmacy's clinical provider ID from the Athena EHR
+  rpc DeletePreferredPharmacy(DeletePreferredPharmacyRequest)
+      returns (DeletePreferredPharmacyResponse) {
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+
+  rpc GetDefaultPharmacy(GetDefaultPharmacyRequest)
+      returns (GetDefaultPharmacyResponse) {
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+
+  rpc GetCareTeam(GetCareTeamRequest) returns (GetCareTeamResponse) {
+    option (audit.rule) = {
+      event_data_type: "CareTeam"
+    };
+  }
+  // UpdateCareTeam adds the clinical_provider_id with recipient_class_id
+  // to the care team members given a patient_id and a department_id.
+  rpc UpdateCareTeam(UpdateCareTeamRequest) returns (UpdateCareTeamResponse) {
+    option (audit.rule) = {
+      event_data_type: "CareTeam"
+    };
+  }
+  // DeleteCareTeam deletes the member_id of the care team of the patient
+  // given a patient_id and a department_id.
+  rpc DeleteCareTeam(DeleteCareTeamRequest) returns (DeleteCareTeamResponse) {
+    option (audit.rule) = {
+      event_data_type: "CareTeam"
+    };
+  }
+  // GetPatientInsurance retrieves all patient insurances for a specific patient
+  rpc GetPatientInsurance(GetPatientInsuranceRequest)
+      returns (GetPatientInsuranceResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+  // CreatePatientInsurance creates a new record of patient insurance for a
+  // specific patient
+  rpc CreatePatientInsurance(CreatePatientInsuranceRequest)
+      returns (CreatePatientInsuranceResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+  // UpdatePatientInsurance updates a patient insurances for a specific patient
+  rpc UpdatePatientInsurance(UpdatePatientInsuranceRequest)
+      returns (UpdatePatientInsuranceResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+  // DeletePatientInsurance deletes a patient's specific insurance package
+  rpc DeletePatientSpecificInsurance(DeletePatientSpecificInsuranceRequest)
+      returns (DeletePatientSpecificInsuranceResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // SearchClinicalProviders returns a list of clinical providers given
+  // a match criteria.
+  rpc SearchClinicalProviders(SearchClinicalProvidersRequest)
+      returns (SearchClinicalProvidersResponse) {
+    option (audit.rule) = {
+      event_data_type: "ClinicalProvider"
+    };
+  }
+
+  // Returns a list of lab results for a patient given the
+  // patient ID and department ID from the Athena EHR
+  rpc ListPatientLabResults(ListPatientLabResultsRequest)
+      returns (ListPatientLabResultsResponse) {
+    option (audit.rule) = {
+      event_data_type: "LabResult"
+    };
+  }
+  // Modifies discussion notes of the patient goal for
+  // a specific encounter given the encounter ID
+  rpc UpdatePatientDiscussionNotes(UpdatePatientDiscussionNotesRequest)
+      returns (UpdatePatientDiscussionNotesResponse) {
+    option (audit.rule) = {
+      event_data_type: "Encounter"
+    };
+  }
+  // Retrieves the list of recipient classes available in Athena
+  rpc ListRecipientClasses(ListRecipientClassesRequest)
+      returns (ListRecipientClassesResponse) {
+    option (audit.rule) = {
+      skip_audit: true
+    };
+  }
+
+  // Checks the current level of subscription to the lab results changed
+  // endpoint.
+  rpc CheckLabResultsSubscriptionStatus(
+      CheckLabResultsSubscriptionStatusRequest)
+      returns (CheckLabResultsSubscriptionStatusResponse) {
+    option (audit.rule) = {
+      event_data_type: "LabResult"
+    };
+  }
+
+  // Subscribes to the lab results changed endpoint.
+  rpc SubscribeLabResultEvents(SubscribeLabResultEventsRequest)
+      returns (SubscribeLabResultEventsResponse) {
+    option (audit.rule) = {
+      event_data_type: "LabResult"
+    };
+  }
+
+  rpc ListChangedLabResults(ListChangedLabResultsRequest)
+      returns (ListChangedLabResultsResponse) {
+    option (audit.rule) = {
+      event_data_type: "LabResult"
+    };
+  }
+
+  // Checks the current level of subscription to the patients changed endpoint.
+  rpc CheckPatientsSubscriptionStatus(CheckPatientsSubscriptionStatusRequest)
+      returns (CheckPatientsSubscriptionStatusResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // Subscribes to the patients changed endpoint.
+  rpc SubscribePatientEvents(SubscribePatientEventsRequest)
+      returns (SubscribePatientEventsResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  rpc ListChangedPatients(ListChangedPatientsRequest)
+      returns (ListChangedPatientsResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  rpc SearchPatients(SearchPatientsRequest) returns (SearchPatientsResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // Returns a lab result document for a patient given the
+  // patient ID and lab result ID from the Athena EHR
+  rpc GetPatientLabResultDocument(GetPatientLabResultDocumentRequest)
+      returns (GetPatientLabResultDocumentResponse) {
+    option (audit.rule) = {
+      event_data_type: "LabResult"
+    };
+  }
+
+  // Retrieves eligibility information for a specific insurance
+  rpc GetPatientInsuranceBenefitDetails(
+      GetPatientInsuranceBenefitDetailsRequest)
+      returns (GetPatientInsuranceBenefitDetailsResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // Send eligibility check for a specific insurance
+  rpc TriggerPatientInsuranceEligibilityCheck(
+      TriggerPatientInsuranceEligibilityCheckRequest)
+      returns (TriggerPatientInsuranceEligibilityCheckResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+  // Retrieves patient goals for
+  // a specific encounter given the encounter ID
+  rpc GetPatientGoals(GetPatientGoalsRequest)
+      returns (GetPatientGoalsResponse) {
+    option (audit.rule) = {
+      event_data_type: "Encounter"
+    };
+  }
+  // Retrieves a patient's order given the order ID
+  rpc GetPatientOrder(GetPatientOrderRequest)
+      returns (GetPatientOrderResponse) {
+    option (audit.rule) = {
+      event_data_type: "Order"
+    };
+  }
+}
+
+message GetPatientRequest {
+  optional string patient_id = 1;
+}
+
+message GetPatientResponse {
+  optional Patient patient = 1;
+}
+
+message CreatePatientRequest {
+  optional Patient patient = 1;
+}
+
+message CreatePatientResponse {
+  optional string patient_id = 1;
+}
+
+message UpdatePatientRequest {
+  optional Patient patient = 1;
+}
+
+message UpdatePatientResponse {
+  optional string patient_id = 1;
+}
+
+message UpdateDefaultPharmacyRequest {
+  // Required
+  string patient_id = 1;
+  string department_id = 2;
+  string clinical_provider_id = 3;
+}
+
+message UpdateDefaultPharmacyResponse {}
+
+message GetPreferredPharmaciesRequest {
+  // Required
+  string patient_id = 1;
+  string department_id = 2;
+}
+
+message GetPreferredPharmaciesResponse {
+  repeated Pharmacy pharmacies = 1;
+}
+
+message UpdatePreferredPharmacyRequest {
+  // Required
+  string patient_id = 1;
+  string department_id = 2;
+  string clinical_provider_id = 3;
+}
+
+message UpdatePreferredPharmacyResponse {}
+
+message DeletePreferredPharmacyRequest {
+  // Required
+  string patient_id = 1;
+  string department_id = 2;
+  string clinical_provider_id = 3;
+}
+
+message DeletePreferredPharmacyResponse {}
+
+message GetDefaultPharmacyRequest {
+  // Required
+  string patient_id = 1;
+  string department_id = 2;
+}
+
+message GetDefaultPharmacyResponse {
+  Pharmacy pharmacy = 1;
+}
+
+message EnhancedBestMatchRequest {
+  // Required
+  string first_name = 1;
+  string last_name = 2;
+  common.Date date_of_birth = 3;
+  // Optional
+
+  // Maps to "mobile_number" in station
+  optional common.PhoneNumber home_phone_number = 7;
+  // Maps to "verified_mobile_number" in station
+  optional common.PhoneNumber mobile_phone_number = 8;
+  optional common.PhoneNumber guarantor_phone_number = 9;
+  optional string email = 10;
+  optional string guarantor_email = 11;
+  // Maps to "billing_city_id" in station
+  optional string department_id = 12;
+  // Zip code of the patient. This may or may not be the same as the zip code of
+  // their last care request.
+  string zip_code = 4;
+  // If this field is set to true, search patients based on a soundex search.
+  // Soundex search means that patient names that sound similar to the input
+  // names will also be returned in the results.
+  bool use_soundex_search = 5;
+  // If this field is set to true, the top five patients with a score of 16 or
+  // above will be returned. If false, only one result will be returned.
+  bool return_best_matches = 6;
+  // Override minimum acceptable score. Will default to 26 (which is the athena
+  // default) if unset.
+  optional float minimum_score = 13;
+}
+
+message EnhancedBestMatchResponse {
+  repeated EnhancedBestMatchResult results = 1;
+}
+
+message EnhancedBestMatchResult {
+  Patient patient = 1;
+  // This score indicates how likely Athena thinks it is for this result to be
+  // the patient that is being searched for.
+  // A score of 26 or higher indicates the patient is automatically assumed to
+  // be the same.
+  // A score under 16 indicates that this is almost guaranteed to NOT be the
+  // patient that is being searched for, and Athena will not return results with
+  // a score of less than 16.
+  // A score of around 23 is the maximum you can get if the only parameters you
+  // pass in are the required parameters.
+  // This field is a string, as Athena returns this value as a string. The
+  // caller is responsible for converting this to a float if necessary.
+  string score_string = 2;
+}
+
+message GetCareTeamRequest {
+  optional string patient_id = 1;
+  optional string department_id = 2;
+}
+
+message GetCareTeamResponse {
+  repeated CareTeamMember members = 1;
+  optional string note = 2;
+}
+
+message UpdateCareTeamRequest {
+  string patient_id = 1;
+  string clinical_provider_id = 2;
+  string department_id = 3;
+  string recipient_class_id = 4;
+}
+
+message UpdateCareTeamResponse {}
+
+message DeleteCareTeamRequest {
+  // Required
+  string patient_id = 1;
+  string member_id = 2;
+  string department_id = 3;
+}
+
+message DeleteCareTeamResponse {}
+
+message GetPatientInsuranceRequest {
+  optional string patient_id = 1;
+}
+
+message GetPatientInsuranceResponse {
+  repeated Insurance insurance_record = 1;
+}
+
+message CreatePatientInsuranceRequest {
+  Insurance insurance_record = 1;
+}
+
+message CreatePatientInsuranceResponse {
+  Insurance insurance_record = 1;
+}
+
+message UpdatePatientInsuranceRequest {
+  Insurance insurance_record = 1;
+}
+
+message UpdatePatientInsuranceResponse {}
+
+message DeletePatientSpecificInsuranceRequest {
+  string patient_id = 1;
+  string insurance_id = 2;
+}
+
+message DeletePatientSpecificInsuranceResponse {}
+
+message SearchClinicalProvidersRequest {
+  // Required
+  // name is required if first_name and last_name are not provided.
+  string name = 1;
+  // first_name and last_name are required if name is not provided.
+  string first_name = 2;
+  string last_name = 3;
+  // city and state are required if zip is not provided.
+  string city = 4;
+  string state = 5;
+  // zip is required if city and state are not provided.
+  string zip = 6;
+  // distance represents the distance in miles to filter by.
+  // zip is required if a distance is provided.
+  double distance = 7;
+
+  // Optional
+  common.PhoneNumber phone_number = 8;
+  // npi represents the national provider identifier.
+  string npi = 9;
+  common.PhoneNumber fax_number = 10;
+  common.Address address = 11;
+  // order_type represents the type of facility to search for.
+  OrderType order_type = 12;
+}
+
+message SearchClinicalProvidersResponse {
+  repeated ClinicalProviderSearchResult clinical_providers = 1;
+}
+
+message GetLabResultSubscriptionResponse {
+  optional LabResultSubscription lab_result_subscription = 1;
+}
+
+message ListPatientLabResultsRequest {
+  string patient_id = 1;
+  string department_id = 2;
+  string encounter_id = 3;
+}
+
+message ListPatientLabResultsResponse {
+  repeated LabResult results = 1;
+}
+
+message UpdatePatientDiscussionNotesRequest {
+  // Required
+  string encounter_id = 1;
+  // A free text field used for discussion notes.
+  string discussion_notes = 2;
+  // Bool to determine if notes should be replaced (true) or appended (false).
+  bool replace_discussion_notes = 3;
+}
+
+message UpdatePatientDiscussionNotesResponse {
+  string discussion_notes = 2;
+}
+
+message ListRecipientClassesRequest {
+  // Optional
+  // Number of entries to return
+  optional int32 limit = 1;
+  // Starting point of entries; 0-indexed
+  optional int32 offset = 2;
+}
+
+message ListRecipientClassesResponse {
+  repeated RecipientClass recipient_classes = 1;
+}
+
+enum StatusChangeSubscription {
+  STATUS_CHANGE_SUBSCRIPTION_UNSPECIFIED = 0;
+  STATUS_CHANGE_SUBSCRIPTION_ACTIVE = 1;
+  STATUS_CHANGE_SUBSCRIPTION_INACTIVE = 2;
+  STATUS_CHANGE_SUBSCRIPTION_PARTIAL = 3;
+}
+
+message CheckLabResultsSubscriptionStatusRequest {}
+
+message CheckLabResultsSubscriptionStatusResponse {
+  StatusChangeSubscription status = 1;
+}
+
+message SubscribeLabResultEventsRequest {}
+
+message SubscribeLabResultEventsResponse {}
+
+message CheckPatientsSubscriptionStatusRequest {}
+
+message CheckPatientsSubscriptionStatusResponse {
+  StatusChangeSubscription status = 1;
+}
+
+message SubscribePatientEventsRequest {}
+
+message SubscribePatientEventsResponse {}
+
+message ListChangedLabResultsResult {
+  optional string lab_result_id = 1;
+  optional string department_id = 2;
+  optional string encounter_id = 3;
+  optional string patient_id = 4;
+}
+
+message ListChangedLabResultsRequest {
+  // Per the Athena API docs the required format is "mm/dd/yyyy hh24:mi:ss" and
+  // will be assumed to be in Eastern time. The values passed in the start and
+  // end datetimes for showing processed events must be within a 24 hour span
+  // and the start time must be before the end time.
+  optional string show_processed_start_datetime = 1;
+  optional string show_processed_end_datetime = 2;
+  optional int32 limit = 3;
+  optional int32 offset = 4;
+  optional bool leave_unprocessed = 5;
+}
+
+message ListChangedLabResultsResponse {
+  repeated ListChangedLabResultsResult results = 1;
+}
+
+message ListChangedPatientsResult {
+  optional string department_id = 1;
+  optional string patient_id = 2;
+  repeated string previous_patient_ids = 3;
+}
+
+message ListChangedPatientsRequest {
+  // Per the Athena API docs the required format is "mm/dd/yyyy hh24:mi:ss" and
+  // will be assumed to be in Eastern time. The values passed in the start and
+  // end datetimes for showing processed events must be within a 24 hour span
+  // and the start time must be before the end time.
+  optional string show_processed_start_datetime = 1;
+  optional string show_processed_end_datetime = 2;
+  optional int32 limit = 3;
+  optional int32 offset = 4;
+  optional bool leave_unprocessed = 5;
+}
+
+message ListChangedPatientsResponse {
+  repeated ListChangedPatientsResult results = 1;
+}
+
+message SearchPatientsRequest {
+  // partial name or full patient id
+  string search_term = 1;
+}
+
+message SearchPatientsResponse {
+  repeated SearchPatientsResult results = 1;
+}
+
+message SearchPatientsResult {
+  Patient patient = 1;
+}
+
+message GetPatientLabResultDocumentRequest {
+  string patient_id = 1;
+  string lab_result_id = 2;
+}
+
+message GetPatientLabResultDocumentResponse {
+  repeated LabResultDocument results = 1;
+}
+
+message GetPatientInsuranceBenefitDetailsRequest {
+  // Required
+  // Athena patient ID
+  string patient_id = 1;
+  // Athena insurance ID
+  string insurance_id = 2;
+
+  // Optional
+  // STC Code for which we are checking the eligibility
+  optional string service_type_code = 3;
+  // Date of service for eligibility verification
+  optional common.Date date_of_service = 4;
+}
+
+message GetPatientInsuranceBenefitDetailsResponse {
+  InsuranceBenefitDetails details = 1;
+}
+
+message TriggerPatientInsuranceEligibilityCheckRequest {
+  // Athena patient ID
+  string patient_id = 1;
+  // Athena insurance ID
+  string insurance_id = 2;
+  // Date of service for eligibility verification
+  optional common.Date date_of_service = 3;
+  // STC Code for which we are checking the eligibility
+  optional string service_type_code = 4;
+}
+
+message TriggerPatientInsuranceEligibilityCheckResponse {}
+
+message GetPatientGoalsRequest {
+  // Required
+  string encounter_id = 1;
+}
+
+message GetPatientGoalsResponse {
+  string discussion_notes = 1;
+}
+
+message GetPatientOrderRequest {
+  string patient_id = 1;
+  string order_id = 2;
+}
+
+message GetPatientOrderResponse {
+  PatientOrder order = 1;
+}

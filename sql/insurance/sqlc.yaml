@@ -1,0 +1,12 @@
+version: 2
+sql:
+  - schema: 'migrations/'
+    queries: 'queries/'
+    engine: 'postgresql'
+    gen:
+      go:
+        package: 'insurancesql'
+        out: '../../go/pkg/generated/sql/insurance'
+        sql_package: 'pgx/v4'
+        emit_result_struct_pointers: true
+        emit_exported_queries: true

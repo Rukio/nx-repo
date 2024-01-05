@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("COMPANION_API_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model DashboardAuth {
+  accessToken String   @unique
+  expiration  DateTime
+}
+
+model CompanionLink {
+  id               String          @id @default(uuid())
+  careRequestId    Int             @unique
+  created          DateTime        @default(now()) // used to determine if link is expired
+  invalidAuthCount Int             @default(0)
+  lastInvalidAuth  DateTime?
+  isBlocked        Boolean         @default(false)
+  tasks            CompanionTask[]
+
+  createdNotificationSent Boolean?
+  onRouteNotificationSent Boolean?
+}
+
+model CompanionTask {
+  id              Int                   @id @default(autoincrement())
+  type            CompanionTaskType
+  companionLink   CompanionLink         @relation(references: [id], fields: [companionLinkId], onDelete: Cascade)
+  companionLinkId String
+  statuses        CompanionTaskStatus[]
+  metadata        Json?
+  updatedAt       DateTime              @updatedAt
+  createdAt       DateTime              @default(now())
+}
+
+model CompanionTaskStatus {
+  id              Int                     @id @default(autoincrement())
+  companionTask   CompanionTask           @relation(references: [id], fields: [companionTaskId], onDelete: Cascade)
+  companionTaskId Int
+  name            CompanionTaskStatusName @default(NOT_STARTED)
+  createdAt       DateTime                @default(now())
+}
+
+enum CompanionTaskType {
+  IDENTIFICATION_IMAGE
+  INSURANCE_CARD_IMAGES
+  DEFAULT_PHARMACY
+  PRIMARY_CARE_PROVIDER
+  CONSENT_MEDICATION_HISTORY_AUTHORITY
+  CONSENTS
+}
+
+enum CompanionTaskStatusName {
+  NOT_STARTED
+  STARTED
+  COMPLETED
+}

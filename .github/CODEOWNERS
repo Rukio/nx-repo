@@ -1,0 +1,56 @@
+# These owners will be the default owners for everything in
+# the repo. Unless a later match takes precedence,
+*                   @*company-data-covered*/services-approvers
+/infra/             @*company-data-covered*/infra-approvers
+/sql/**/schema.sql  @*company-data-covered*/dwh-approvers
+.github/            @*company-data-covered*/infra-approvers @*company-data-covered*/services-approvers
+**/cypress-shared/  @*company-data-covered*/engprod
+.snyk               @*company-data-covered*/infosec @*company-data-covered*/services-approvers
+
+# Architecture
+/docs/edd                                   @*company-data-covered*/architecture-approvers
+/docs/edd/care-orchestration/mini           @*company-data-covered*/care-orchestration
+/docs/edd/engcore/mini                      @*company-data-covered*/engcore
+/docs/edd/marketplace/mini                  @*company-data-covered*/logistics
+/docs/edd/onboarding/mini                   @*company-data-covered*/onboarding
+/docs/edd/partner/mini                      @*company-data-covered*/partners
+/docs/edd/patient/mini                      @*company-data-covered*/patient
+/docs/edd/provider/mini                     @*company-data-covered*/providers
+/docs/edd/risk-stratification/mini          @*company-data-covered*/risk-strat
+
+# TypeScript
+/ts/                          @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+.eslintrc.json                @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+.npmrc                        @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+.prettierignore               @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+.prettierrc.json              @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+babel.config.json             @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+jest.config.ts                @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+jest.preset.ts                @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+migrations.json               @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+nx.json                       @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+package-lock.json             @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+package.json                  @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+sonar.ts.properties           @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+tsconfig.base.json            @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+workspace.json                @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+buf.gen.ts.yaml               @*company-data-covered*/typescript-approvers @*company-data-covered*/services-approvers
+
+# Python
+/py/                    @*company-data-covered*/python-approvers @*company-data-covered*/services-approvers
+poetry.lock             @*company-data-covered*/python-approvers @*company-data-covered*/services-approvers
+pyproject.toml          @*company-data-covered*/python-approvers @*company-data-covered*/services-approvers
+buf.gen.python.yaml     @*company-data-covered*/python-approvers @*company-data-covered*/services-approvers
+
+# Rego (OPA)
+/opa/ @*company-data-covered*/rego-approvers @*company-data-covered*/services-approvers
+
+# Go
+/go/                    @*company-data-covered*/go-approvers @*company-data-covered*/services-approvers
+.golangci.yaml          @*company-data-covered*/go-approvers @*company-data-covered*/services-approvers
+buf.gen.go.yaml         @*company-data-covered*/go-approvers @*company-data-covered*/services-approvers
+go.mod                  @*company-data-covered*/go-approvers @*company-data-covered*/services-approvers
+go.sum                  @*company-data-covered*/go-approvers @*company-data-covered*/services-approvers
+sonar.go.properties     @*company-data-covered*/go-approvers @*company-data-covered*/services-approvers
+
+# EVERYTHING SHOULD BE CONTROLLED BY GITHUB TEAMS.

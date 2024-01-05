@@ -1,0 +1,55 @@
+{
+  "name": "consumer-web-types",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/shared/consumer-web/types/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/ts/libs/shared/consumer-web/types",
+        "main": "ts/libs/shared/consumer-web/types/src/index.ts",
+        "tsConfig": "ts/libs/shared/consumer-web/types/tsconfig.lib.json",
+        "assets": ["ts/libs/shared/consumer-web/types/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/libs/shared/consumer-web/types/**/*.ts"]
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        {
+          "target": "build"
+        }
+      ],
+      "options": {
+        "cwd": "dist/ts/libs/shared/consumer-web/types",
+        "command": "npm publish"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/libs/shared/consumer-web/types"
+      }
+    }
+  },
+  "tags": ["scope:shared", "type:util"]
+}

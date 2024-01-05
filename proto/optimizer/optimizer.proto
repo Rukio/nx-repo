@@ -1,0 +1,739 @@
+syntax = "proto3";
+package optimizer;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/optimizer";
+option java_package = "com.*company-data-covered*.optimizer";
+option java_multiple_files = true;
+option java_outer_classname = "OptimizerProtos";
+option ruby_package = "OptimizerGRPC";
+
+import "common/auth/auth.proto";
+
+service OptimizerService {
+  // Solves a Vehicle Routing Problem (VRP), streaming back intermediate
+  // results.
+  rpc SolveVRP(SolveVRPRequest) returns (stream SolveVRPResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:solutions:all"
+    };
+  }
+
+  // Get assignability of shift teams to service a visit.
+  rpc GetAssignableShiftTeams(GetAssignableShiftTeamsRequest)
+      returns (GetAssignableShiftTeamsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:solutions:all"
+    };
+  }
+
+  // Get assignability of visits to shift team.
+  rpc GetAssignableVisits(GetAssignableVisitsRequest)
+      returns (GetAssignableVisitsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:solutions:all"
+    };
+  }
+}
+
+message OptimizerMetadata {
+  optional string version = 1;
+}
+
+message SolveVRPRequest {
+  optional VRPProblem problem = 1;
+
+  optional VRPConfig config = 2;
+
+  Monitoring monitoring = 3;
+
+  // TODO(LOG-2085): design a solution to enforce
+  // CounterfactualScheduleConstraint_Ordering.
+}
+
+message SolveVRPResponse {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_FINISHED = 1;
+    STATUS_INTERMEDIATE_INFEASIBLE_SOLUTION = 2;
+    STATUS_INTERMEDIATE_FEASIBLE_SOLUTION = 3;
+  }
+  optional Status status = 1;
+
+  optional VRPSolution solution = 2;
+
+  optional OptimizerMetadata optimizer_metadata = 3;
+}
+
+message VRPVisitLatenessTolerance {
+  int64 visit_id = 1;
+  // The number of milliseconds of lateness tolerance associated with the visit;
+  // which a hard constraint should enforce. Interacts with
+  // LateArrivalConstraintConfig.
+  uint64 hard_lateness_threshold_ms = 2;
+}
+
+message VRPConstraintConfig {
+  // Configuration for Work Distribution constraints, to promote more equitable
+  // distribution across the fleet of providers to improve provider experience.
+  message WorkDistributionConstraintConfig {
+    // ExponentialPolicy models work distribution as: v_max * (1 - 1 / base^n)
+    // where v_max is a scaling normalization factor and n is the number of
+    // customers served.
+    message ExponentialPolicy {
+      // Rational base for modeling diminishing returns to serving additional
+      // visits. 0 is invalid, 1 turns off the policy; ~2 is suggested.
+      // Base is expressed as (base_numerator / base_denominator).
+      uint32 base_numerator = 1;
+      uint32 base_denominator = 2;
+      // The maximum reward value that the policy can attain per shift team.
+      // Recommendation is that this value is proportional to the
+      // reward of serving a standard visit.
+      uint64 full_queue_value_limit_usd_mills = 3;
+    }
+
+    oneof policy {
+      ExponentialPolicy exponential_policy = 1;
+    }
+  }
+  WorkDistributionConstraintConfig work_distribution = 10;
+
+  message OpportunityCostConstraintConfig {
+    // IdleTimePolicy models opportunity cost per shift team as an value
+    // integral over each vehicle's contiguous blocks of idle time (i.e.
+    // time not spent driving or servicing demand).
+    message IdleTimePolicy {
+      // A global scaling factor for the policy.
+      float scaling_factor = 1;
+
+      // Coefficients for the integral of demand density polynomial; e.g:
+      // Let t = the local hour of day (5 = 5am); [0.1, -0.2, 0.3] means:
+      //   demand_density_integral = 0.1 + (-0.2 * t) + (0.3 * t^2)
+      //   where demand density_integral is in number of serviceable visits.
+      //
+      // Usage Note: integral evaluations should be precomputed into a lookup
+      // table at the given time resolution, to make constraint math cheap.
+      repeated float demand_density_integral_local_hour_of_day_coefficients = 2;
+      // Time resolution of the demand density integral curve's lookup table.
+      uint64 demand_density_time_resolution_minutes = 3;
+
+      // The number of minutes under which a block of idle time has zero value;
+      // where "cycle time" is expected service duration + expected drive time.
+      uint64 cycle_time_cutoff_minutes = 4;
+    }
+    oneof policy {
+      IdleTimePolicy idle_time_policy = 1;
+    }
+
+    // LinearOnSceneCostPolicy models the cost of the vehicle while on-scene.
+    message LinearOnSceneCostPolicy {
+      // The scaling factor for the vehicle on scene cost constraint.
+      float scaling_factor = 1;
+    }
+
+    oneof on_scene_cost {
+      LinearOnSceneCostPolicy linear_on_scene_cost = 2;
+    }
+
+    // LinearForegoneVisitValuePolicy. It defines the foregone visit value at a
+    // given time of day, as a linear cost.
+    message LinearForegoneVisitValuePolicy {
+      // Marginal opportunity cost per ETA hour, in 1/100 points.
+      float cents_per_minute = 1;
+    }
+
+    // Prioritizes early ETAs to encourage teams to arrive at visits sooner.
+    oneof foregone_visit_cost {
+      LinearForegoneVisitValuePolicy linear_foregone_visit_value = 3;
+    }
+  }
+  OpportunityCostConstraintConfig opportunity_cost = 11;
+
+  message LateArrivalConstraintConfig {
+    // LinearOffsetPolicy models lateness penalties as a linearly increasing
+    // cost from a buffer point before the end of a customer's time window.
+    message LinearOffsetPolicy {
+      float lateness_cost_usd_mills_per_ms = 1;
+      uint64 offset_prior_to_time_window_end_ms = 2;
+    }
+    oneof policy {
+      LinearOffsetPolicy linear_offset_policy = 1;
+    }
+    // The lateness threshold after which the optimizer enforces a hard
+    // constraint instead of a soft constraint.
+    // Note: this is independent of the policy choice up to this threshold.
+    uint64 hard_lateness_threshold_ms = 2;
+
+    // Visits for which we set an explicit hard lateness tolerance to override
+    // "hard_lateness_threshold_ms".
+    //
+    // Sample Policy (for Check Feasibility calls only):
+    //   1. Check feasibility visit should not be allowed to be late to start.
+    //      That is, they would show up in this list with "0" thresholds.
+    //   2. Visits that are already late should not be allowed to get any later.
+    //   3. Visits not already late should not be allowed to become too late.
+    repeated VRPVisitLatenessTolerance visit_lateness_tolerance_overrides = 3;
+  }
+  LateArrivalConstraintConfig late_arrival = 12;
+
+  message ClinicalUrgencyConfig {
+    // LinearOffsetPolicy models clinical urgency lateness penalties as a
+    // linearly increasing soft cost from a buffer point before the end of a
+    // customer's acuity-defined urgency window; which may be disjoint from the
+    // arrival window.
+    message LinearOffsetPolicy {
+      float lateness_cost_usd_mills_per_ms = 1;
+      // The point in the urgency window after which late arrivals start
+      // penalizing;
+      // modeled as a positive offset subtracted from urgency window time end.
+      uint64 offset_prior_to_urgency_window_end_ms = 2;
+    }
+
+    oneof policy {
+      LinearOffsetPolicy linear_offset_policy = 1;
+    }
+
+    // Defines the direction of the acuity prioritization.
+    // If true, higher value wins to a lower value.
+    // That is: "0/unset" < 1 < 2 < ... < n
+    // If false, the lower non zero value wins.
+    // That is: 1 > 2 > ... > n > "0/unset"
+    bool higher_level_value_wins = 2;
+  }
+  ClinicalUrgencyConfig clinical_urgency = 13;
+
+  message DepotLateArrivalConstraintConfig {
+    // The LinearOffsetPolicy penalizes late arrival to depot according to an
+    // offset prior to the due time and a linearly increasing cost according to
+    // the Mills/Ms lateness_cost parameter.
+    message LinearOffsetPolicy {
+      float lateness_cost_usd_mills_per_ms = 1;
+      int64 offset_prior_to_depot_due_time_ms = 2;
+    }
+    oneof policy {
+      LinearOffsetPolicy linear_offset_policy = 1;
+    }
+
+    // The lateness threshold after which the optimizer enforces a hard
+    // constraint instead of a soft constraint.
+    // Note: this is independent of the policy choice up to this threshold.
+    int64 hard_lateness_threshold_ms = 2;
+
+    // Visits that aren't allowed to contribute to a vehicle's late arrival.
+    // For example, a check feasibility visit should not make a vehicle late
+    // but optimizer should be happy with an unchanged route being late.
+    repeated int64 disallowed_late_arrival_visit_ids = 3;
+  }
+  DepotLateArrivalConstraintConfig depot_late_arrival = 14;
+}
+
+message VRPConfig {
+  // Maximum duration to run the VRP solver.
+  //
+  // Note: unimproved_score_termination_duration_ms may cause the solver to
+  // terminate early if there's a stable score.
+  optional int64 termination_duration_ms = 1;
+
+  // Duration of a stable score (unimproved score) before terminating VRP
+  // solver. 0 disables checking for stable score.
+  //
+  // Ref:
+  // https://www.optaplanner.org/docs/optaplanner/latest/optimization-algorithms/optimization-algorithms.html#unimprovedTimeMillisSpentTermination
+  optional int64 unimproved_score_termination_duration_ms = 15;
+
+  // Type of termination condition.
+  enum TerminationType {
+    TERMINATION_TYPE_UNSPECIFIED = 0;
+
+    // Use all the solving time available to find the best answer.
+    TERMINATION_TYPE_BEST_FOR_TIME = 1;
+
+    // Return early on the first feasible solution.
+    TERMINATION_TYPE_FIRST_FEASIBLE = 2;
+  }
+  optional TerminationType termination_type = 8;
+
+  // Stream back intermediate solutions.
+  optional bool include_intermediate_solutions = 11;
+  // Stream back intermediate solutions that are infeasible.
+  optional bool include_intermediate_infeasible_solutions = 2;
+
+  // Include a VRPDistanceMatrix as part of the result.
+  optional bool include_distance_matrix = 3;
+
+  // Default revenue and cost fields for shift teams and visits
+  optional int64 per_visit_revenue_usd_cents = 4;
+  optional int64 app_hourly_cost_usd_cents = 5;
+  optional int64 dhmt_hourly_cost_usd_cents = 6;
+
+  // Cost for distance traveled
+  optional int64 driving_cost_usd_mills_per_kilometer = 13;
+
+  // Random seed for solving VRP.
+  optional int64 random_seed = 7;
+
+  // Rich constraint configuration.
+  VRPConstraintConfig constraint_config = 10;
+
+  reserved "allow_unassigned_visits", "use_vrp_shift_team_route_history",
+      "use_vrp_shift_team_members_count";
+  reserved 9, 12, 14;
+}
+
+message VRPLocation {
+  optional int64 id = 1;
+
+  optional int32 latitude_e6 = 2;
+  optional int32 longitude_e6 = 3;
+}
+
+message VRPAttribute {
+  string id = 1;
+}
+
+message VRPTimeWindow {
+  optional int64 start_timestamp_sec = 1;
+  optional int64 end_timestamp_sec = 2;
+}
+
+message VRPShiftTeam {
+  optional int64 id = 1;
+
+  optional int64 depot_location_id = 2;
+  optional VRPTimeWindow available_time_window = 3;
+  // Ratio of total capacity that is allowed to be filled with visits.
+  optional float allowed_capacity_ratio = 13;
+
+  repeated VRPAttribute attributes = 4;
+
+  optional VRPShiftTeamRoute route = 5;
+
+  // Historical information for a shift team's day.
+  VRPShiftTeamRouteHistory route_history = 7;
+  // Upcoming commitments for a shift team.
+  VRPShiftTeamCommitments upcoming_commitments = 8;
+
+  optional int64 app_hourly_cost_usd_cents = 9;
+  optional int64 dhmt_hourly_cost_usd_cents = 10;
+
+  // Number of DHMT members on team.
+  optional int32 num_dhmt_members = 11;
+  // Number of APP members on team.
+  optional int32 num_app_members = 12;
+}
+
+message VRPShiftTeamRouteHistory {
+  // The shift team's current position at the end of Stops.
+  VRPShiftTeamPosition current_position = 1;
+
+  // Historical Stops known for the shift team.
+  // "En-Route" stops do not need an actual start (but it should be at the end,
+  // and only one such stop).
+  repeated VRPShiftTeamRouteStop stops = 2;
+}
+
+message VRPShiftTeamCommitments {
+  // Commitments are to be served in order (for now), before any other visits.
+  repeated VRPShiftTeamCommitment commitments = 1;
+}
+
+message VRPShiftTeamCommitment {
+  optional int64 visit_id = 1;
+}
+
+message VRPShiftTeamRouteStop {
+  oneof stop {
+    VRPShiftTeamVisit visit = 1;
+    VRPShiftTeamRestBreak rest_break = 2;
+    // TODO: fold start and ending depot into stop types.
+  }
+  // The route stop is pinned to this shift team and cannot change/
+  // Requires all previous stops in the VRPShiftTeam.route to also be pinned.
+  //
+  // Slated to be deprecated in favor of VRPShiftTeam.RouteHistory and
+  // Commitments.
+  optional bool pinned = 3;
+
+  // Timestamp at which the shift team was known to have started serving stop.
+  // If set, the optimizer must pin this shift team to this location at time.
+  optional int64 actual_start_timestamp_sec = 4;
+  // Timestamp at which the shift team was known to have completed this stop.
+  // If set, optimizer must not allow the shift team to leave before this time.
+  optional int64 actual_completion_timestamp_sec = 5;
+}
+
+message VRPShiftTeamPosition {
+  // Location associated with the position.
+  int64 location_id = 1;
+  // The known timestamp as of which the shift team was at this position.
+  int64 known_timestamp_sec = 2;
+}
+
+message VRPShiftTeamRoute {
+  repeated VRPShiftTeamRouteStop stops = 4;
+
+  optional int64 depot_departure_timestamp_sec = 2;
+  optional int64 depot_arrival_timestamp_sec = 3;
+
+  // Stats for Shift Team Route total time/distance
+  VRPShiftTeamRouteStats route_stats = 5;
+
+  // The shift team's current position.
+  //
+  // To be deprecated in favor of VRPShiftTeam.RouteHistory.CurrentPosition.
+  VRPShiftTeamPosition current_position = 6;
+
+  reserved 1;
+}
+
+// VRPShiftTeamVisit is a placement of a VRPVisit in a route.
+message VRPShiftTeamVisit {
+  optional int64 visit_id = 1;
+  // Slated to be deprecated in favor of
+  // VRPShiftTeamRouteStop.actual_start_timestamp_sec.
+  optional int64 arrival_timestamp_sec = 2;
+
+  // Pinned was deprecated in favor of VRPShiftTeamRouteStop.Pinned
+  // to handle pinned-ness for all types of route stops.
+  reserved 3;
+  reserved "pinned";
+}
+
+// VRPShiftTeamRestBreak is a placement of a VRPRestBreak in a route.
+message VRPShiftTeamRestBreak {
+  optional int64 rest_break_id = 1;
+  // Slated to be deprecated in favor of
+  // VRPShiftTeamRouteStop.actual_start_timestamp_sec.
+  optional int64 start_timestamp_sec = 2;
+}
+
+// VRPRestBreak is a shift team rest break.
+message VRPRestBreak {
+  // A unique identifier for a rest break.
+  optional int64 id = 1;
+
+  // The shift team associated with this rest break.
+  optional int64 shift_team_id = 2;
+
+  optional int64 duration_sec = 5;
+  // Whether the rest break was requested by the shift team.
+  //
+  // If unrequested, it represents a placeholder break to be scheduled
+  // for which we do not expect location_id nor
+  // start_timestamp_sec to be set.
+  optional bool unrequested = 6;
+  optional int64 location_id = 3;
+  optional int64 start_timestamp_sec = 4;
+}
+
+// Acuity describes clinical acuity + urgency information for the visit.
+message VRPVisitAcuity {
+  // Should only be used for relative prioritization of unassigned visits.
+  // Defaults to 0/unspecified, 9 is the max supported value.
+  //
+  // Between two acuity levels for which only one can be assigned;
+  // the *higher* level wins out.
+  // That is: "0/unset" < 1 < 2 < ... < n
+  optional int64 level = 1;
+  // A time window that clinical urgency suggests the patient should be seen
+  // within. Note that this time window may be disjoint from the arrival time
+  // window, in the case when clinical urgency is not respected while
+  // determining upfront patient availability.
+  VRPTimeWindow time_window = 2;
+}
+
+// VRPVisitPriority is prioritization information for a VRPVisit.
+message VRPVisitPriority {
+  // A non-negative priority level, 9 is the max supported value,
+  // 0 is default non-prioritized and any prioritized visit wins
+  // out over an unprioritized.
+  //
+  // Between two prioritized visits for which only one can be assigned;
+  // the *higher* unassigned_priority_level visit wins out.
+  // That is: "0/unset" < 1 < 2 < ... < n
+  optional uint32 unassigned_priority_level = 1;
+}
+
+// VRPVisitValue represents the computed values for a given visit
+// snapshot based on potential revenue and partner priority
+message VRPVisitValue {
+  // Number of 1/100 points for completing the care request.
+  optional int64 completion_value_cents = 1;
+
+  // Score given to prioritize a partner visit.
+  optional int64 partner_priority_score = 2;
+}
+
+message VRPVisit {
+  optional int64 id = 1;
+  optional int64 location_id = 2;
+  optional VRPTimeWindow arrival_time_window = 3;
+  // Additional time needed to account for setup time before servicing this
+  // visit.
+  // For example: The extra time needed to access a building, going upstairs,
+  // etc.
+  optional int64 extra_setup_duration_sec = 10;
+  optional int64 service_duration_sec = 4;
+
+  repeated VRPAttribute required_attributes = 5;
+  repeated VRPAttribute forbidden_attributes = 6;
+
+  VRPVisitAcuity acuity = 7;
+  VRPVisitPriority priority = 8;
+  VRPVisitValue value = 11;
+
+  optional int64 per_visit_revenue_usd_cents = 9;
+
+  // Any visit in the set can overlap with other visits in the same set.
+  // If no key is specified, then this visit will not overlap with any other
+  // visit.
+  optional string overlap_set_key = 12;
+
+  // Visit is expendable, and does not count against feasibility when not
+  // included in the schedule.
+  optional bool is_expendable = 13;
+}
+
+// VRPUnassignedVisit is a visit that has not been assigned to a shift team.
+message VRPUnassignedVisit {
+  optional int64 visit_id = 1;
+  // A pinned unassigned visit cannot become assigned during optimization,
+  // and does not contribute to a solution's feasibiliity.
+  optional bool pinned = 2;
+}
+
+message VRPDistance {
+  optional int64 from_location_id = 1;
+  optional int64 to_location_id = 2;
+
+  optional int64 length_meters = 3;
+  optional int64 duration_sec = 4;
+}
+
+message VRPDistanceMatrix {
+  repeated VRPDistance distances = 1;
+}
+
+message VRPScore {
+  optional bool is_valid = 6;
+
+  optional int64 hard_score = 1;
+  optional int64 medium_score = 2;
+  optional int64 soft_score = 3;
+  optional int64 unassigned_visits_score = 5;
+
+  // TODO: Remove and flesh out explanations proto.
+  optional string debug_explanation = 4;
+}
+
+message VRPStats {
+  optional int64 drive_duration_sec = 1;
+  optional int64 drive_distance_meters = 2;
+  optional int64 service_duration_sec = 3;
+}
+
+message VRPShiftTeamRouteStats {
+  // Total route duration / distance (including drive / stops)
+  optional int64 route_duration_sec = 1;
+  optional int64 route_distance_meters = 2;
+}
+
+message VRPProblem {
+  VRPDescription description = 1;
+}
+
+message VRPSolution {
+  VRPDescription description = 1;
+
+  optional VRPScore score = 2;
+  optional VRPStats total_stats = 3;
+
+  // deprecate unassigned_visits (now found in description)
+  reserved 4;
+  reserved "unassigned_visits";
+}
+
+message VRPDescription {
+  repeated VRPShiftTeam shift_teams = 1;
+  repeated VRPVisit visits = 2;
+  repeated VRPLocation locations = 3;
+  repeated VRPRestBreak rest_breaks = 5;
+
+  optional VRPDistanceMatrix distance_matrix = 4;
+  repeated VRPUnassignedVisit unassigned_visits = 6;
+
+  // The reference timestamp of this VRPDescription.
+  optional int64 current_timestamp_sec = 7;
+}
+
+message GetAssignableShiftTeamsRequest {
+  // Visit to check for shift team assignability.
+  optional AssignableVisit visit = 1;
+
+  // Candidate shift teams to check the visit against.
+  repeated AssignableShiftTeam shift_teams = 2;
+
+  Monitoring monitoring = 3;
+}
+
+message GetAssignableShiftTeamsResponse {
+  repeated AssignableShiftTeamResult shift_teams = 1;
+}
+
+message GetAssignableVisitsRequest {
+  // Shift team to check for assignable visits.
+  AssignableShiftTeam shift_team = 1;
+
+  // Candidates visits to check assignability.
+  repeated AssignableVisit visits = 2;
+
+  Monitoring monitoring = 3;
+}
+
+message GetAssignableVisitsResponse {
+  repeated AssignableVisitResult visits = 1;
+}
+
+message AssignableVisit {
+  // Visit ID.
+  optional int64 id = 1;
+
+  // Visit arrival time window.
+  optional VRPTimeWindow arrival_time_window = 2;
+
+  // Attributes that are required by the visit, and cannot be overridden.
+  repeated VRPAttribute required_attributes = 3;
+
+  // Attributes that are preferred by the visit, but can be overridden.
+  repeated VRPAttribute preferred_attributes = 4;
+
+  // Attributes that are forbidden by the visit, and cannot be overridden.
+  repeated VRPAttribute forbidden_attributes = 5;
+
+  // Attributes that are unwanted by the visit, but can be overridden.
+  repeated VRPAttribute unwanted_attributes = 6;
+}
+
+message AssignableShiftTeam {
+  // Shift team ID.
+  optional int64 id = 1;
+
+  // Shift team available time window.
+  optional VRPTimeWindow available_time_window = 2;
+
+  // Attributes for the shift team.
+  repeated VRPAttribute attributes = 3;
+}
+
+message AssignableShiftTeamResult {
+  optional AssignableShiftTeam shift_team = 1;
+
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+
+    // Shift team can be assigned without attribute restrictions.
+    STATUS_ASSIGNABLE = 1;
+
+    // Shift team can be assigned by manual override, overriding preferred
+    // attribute restrictions and time window restriction.
+    STATUS_OVERRIDE_ASSIGNABLE = 2;
+
+    // Shift team cannot be assigned even by manual override.
+    STATUS_NOT_ASSIGNABLE = 3;
+  }
+  // Status of the shift team.
+  optional Status status = 2;
+
+  enum TimeWindowStatus {
+    TIME_WINDOW_STATUS_UNSPECIFIED = 0;
+
+    // Shift team window overlaps with visit.
+    // True if status is STATUS_ASSIGNABLE.
+    TIME_WINDOW_STATUS_OVERLAP = 1;
+
+    // Shift team window does not overlap with visit.
+    // May be true if status is not STATUS_ASSIGNABLE.
+    TIME_WINDOW_STATUS_NO_OVERLAP = 2;
+
+    // TODO: Add other statuses for TOO_EARLY/TOO_LATE for more nuance, if
+    // needed.
+  }
+  // Status of the shift team time window.
+  optional TimeWindowStatus time_window_status = 7;
+
+  // Attributes that are required, but missing.
+  // May be filled if status is not STATUS_ASSIGNABLE.
+  repeated VRPAttribute missing_required_attributes = 3;
+
+  // Attributes that are preferred, but missing.
+  // May be filled if status is not STATUS_ASSIGNABLE.
+  repeated VRPAttribute missing_preferred_attributes = 4;
+
+  // Attributes that are forbidden, but included.
+  // May be filled if status is not STATUS_ASSIGNABLE.
+  repeated VRPAttribute included_forbidden_attributes = 5;
+
+  // Attributes that are unwanted, but included.
+  // May be filled if status is not STATUS_ASSIGNABLE.
+  repeated VRPAttribute included_unwanted_attributes = 6;
+}
+
+message AssignableVisitResult {
+  AssignableVisit visit = 1;
+
+  // Status of the visit.
+  AssignableStatus status = 2;
+
+  // Status of the visit time window.
+  AssignableTimeWindowStatus time_window_status = 7;
+
+  // Attributes that are required, but missing.
+  // May be filled if status is not ASSIGNABLE_STATUS_ASSIGNABLE.
+  repeated VRPAttribute missing_required_attributes = 3;
+
+  // Attributes that are preferred, but missing.
+  // May be filled if status is not ASSIGNABLE_STATUS_ASSIGNABLE.
+  repeated VRPAttribute missing_preferred_attributes = 4;
+
+  // Attributes that are forbidden, but included.
+  // May be filled if status is not ASSIGNABLE_STATUS_ASSIGNABLE.
+  repeated VRPAttribute included_forbidden_attributes = 5;
+
+  // Attributes that are unwanted, but included.
+  // May be filled if status is not ASSIGNABLE_STATUS_ASSIGNABLE.
+  repeated VRPAttribute included_unwanted_attributes = 6;
+}
+
+enum AssignableTimeWindowStatus {
+  ASSIGNABLE_TIME_WINDOW_STATUS_UNSPECIFIED = 0;
+
+  // Visit/Shift Team window overlaps with shift team/visit.
+  // True if status is ASSIGNABLE_STATUS_ASSIGNABLE.
+  ASSIGNABLE_TIME_WINDOW_STATUS_OVERLAP = 1;
+
+  // Visit/Shift Team window does not overlap with shift team/visit.
+  // May be true if status is not ASSIGNABLE_STATUS_ASSIGNABLE.
+  ASSIGNABLE_TIME_WINDOW_STATUS_NO_OVERLAP = 2;
+
+  // TODO: Add other statuses for TOO_EARLY/TOO_LATE for more nuance, if
+  // needed.
+}
+
+enum AssignableStatus {
+  ASSIGNABLE_STATUS_UNSPECIFIED = 0;
+
+  // Shift team/Visit can be assigned without attribute restrictions.
+  ASSIGNABLE_STATUS_ASSIGNABLE = 1;
+
+  // Shift team/Visit can be assigned by manual override, overriding preferred
+  // attribute restrictions and time window restriction.
+  ASSIGNABLE_STATUS_OVERRIDE_ASSIGNABLE = 2;
+
+  // Shift team/Visit cannot be assigned even by manual override.
+  ASSIGNABLE_STATUS_NOT_ASSIGNABLE = 3;
+}
+
+// Monitoring metadata.
+message Monitoring {
+  // Tags to add for call.
+  map<string, string> tags = 1;
+}

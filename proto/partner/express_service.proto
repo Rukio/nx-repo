@@ -1,0 +1,405 @@
+syntax = "proto3";
+package partner;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/partnerpb";
+option ruby_package = "PartnerGRPC";
+
+import "google/api/annotations.proto";
+import "audit/audit.proto";
+import "common/patient.proto";
+import "partner/entities.proto";
+
+// This service can handle requests containing Auth Tokens generated using the
+// Express tenant
+service ExpressService {
+  rpc CreateConfiguration(CreateConfigurationRequest)
+      returns (CreateConfigurationResponse) {
+    option (google.api.http) = {
+      post: "/v1/configurations"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc CreateConfigurationSource(CreateConfigurationSourceRequest)
+      returns (CreateConfigurationSourceResponse) {
+    option (google.api.http) = {
+      post: "/v1/sources"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc CreateMarket(CreateMarketRequest) returns (CreateMarketResponse) {
+    option (google.api.http) = {
+      post: "/v1/markets"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc DeleteConfiguration(DeleteConfigurationRequest)
+      returns (DeleteConfigurationResponse) {
+    option (google.api.http) = {
+      delete: "/v1/configurations/{id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc DeleteConfigurationSource(DeleteConfigurationSourceRequest)
+      returns (DeleteConfigurationSourceResponse) {
+    option (google.api.http) = {
+      delete: "/v1/sources/{id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc DeleteMarket(DeleteMarketRequest) returns (DeleteMarketResponse) {
+    option (google.api.http) = {
+      delete: "/v1/markets/{id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc GetConfiguration(GetConfigurationRequest)
+      returns (GetConfigurationResponse) {
+    option (google.api.http) = {
+      get: "/v1/configurations/{partner_configuration_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc GetConfigurationSource(GetConfigurationSourceRequest)
+      returns (GetConfigurationSourceResponse) {
+    option (google.api.http) = {
+      get: "/v1/sources/{id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc GetMarket(GetMarketRequest) returns (GetMarketResponse) {
+    option (google.api.http) = {
+      get: "/v1/markets/{id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc GetPartner(ExpressServiceGetPartnerRequest)
+      returns (ExpressServiceGetPartnerResponse) {
+    option (google.api.http) = {
+      get: "/v1/partners/{partner_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  // Get a patient using station patient ID.
+  rpc GetPatient(GetPatientRequest) returns (GetPatientResponse) {
+    option (google.api.http) = {
+      get: "/v1/patients/{patient_id}"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  rpc ListConfigurations(ListConfigurationsRequest)
+      returns (ListConfigurationsResponse) {
+    option (google.api.http) = {
+      get: "/v1/configurations"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc ListConfigurationSources(ListConfigurationSourcesRequest)
+      returns (ListConfigurationSourcesResponse) {
+    option (google.api.http) = {
+      get: "/v1/sources"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc ListMarkets(ListMarketsRequest) returns (ListMarketsResponse) {
+    option (google.api.http) = {
+      get: "/v1/markets"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  // Retrieves a list of patients matching a search string, scoped by
+  // Express partner_id. Patients will be retrieved using Patients Service and
+  // Pophealth Service, if the partner has pop health configured.
+  rpc ListPatients(ListPatientsRequest) returns (ListPatientsResponse) {
+    option (google.api.http) = {
+      get: "/v1/patients"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // List service lines for a partner user, scoped by market
+  rpc ListServiceLines(ListServiceLinesRequest)
+      returns (ListServiceLinesResponse) {
+    option (google.api.http) = {
+      get: "/v1/service_lines"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc SearchPartners(ExpressServiceSearchPartnersRequest)
+      returns (ExpressServiceSearchPartnersResponse) {
+    option (google.api.http) = {
+      get: "/v1/partners"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc UpdateConfiguration(UpdateConfigurationRequest)
+      returns (UpdateConfigurationResponse) {
+    option (google.api.http) = {
+      put: "/v1/configurations/{id}"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc UpdateConfigurationSource(UpdateConfigurationSourceRequest)
+      returns (UpdateConfigurationSourceResponse) {
+    option (google.api.http) = {
+      put: "/v1/sources/{id}"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc UpdateMarket(UpdateMarketRequest) returns (UpdateMarketResponse) {
+    option (google.api.http) = {
+      put: "/v1/markets/{id}"
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+}
+
+// Requests and Responses
+message CreateConfigurationRequest {
+  PartnerConfiguration partner_configuration = 1;
+}
+
+message CreateConfigurationResponse {
+  PartnerConfiguration partner_configuration = 1;
+}
+
+message CreateConfigurationSourceRequest {
+  Source source = 1;
+}
+
+message CreateConfigurationSourceResponse {
+  Source source = 1;
+}
+
+message CreateMarketRequest {
+  Market market = 1;
+}
+
+message CreateMarketResponse {
+  Market market = 1;
+}
+
+message DeleteConfigurationRequest {
+  int64 id = 1;
+}
+
+message DeleteConfigurationResponse {
+  PartnerConfiguration partner_configuration = 1;
+}
+
+message DeleteConfigurationSourceRequest {
+  int64 id = 1;
+}
+
+message DeleteConfigurationSourceResponse {
+  Source source = 1;
+}
+
+message DeleteMarketRequest {
+  // Represents the ID of the partner configuration market association
+  int64 id = 1;
+}
+
+message DeleteMarketResponse {
+  Market market = 1;
+}
+
+message GetConfigurationRequest {
+  // ID can be an integer or Express string ID
+  string partner_configuration_id = 1;
+}
+
+message GetConfigurationResponse {
+  PartnerConfiguration partner_configuration = 1;
+}
+
+message GetConfigurationSourceRequest {
+  int64 id = 1;
+}
+
+message GetConfigurationSourceResponse {
+  Source source = 1;
+}
+
+message GetMarketRequest {
+  // Represents the ID of the partner configuration market association
+  int64 id = 1;
+}
+
+message GetMarketResponse {
+  Market market = 1;
+}
+
+message ExpressServiceGetPartnerRequest {
+  int64 partner_id = 1;
+}
+
+message ExpressServiceGetPartnerResponse {
+  Partner partner = 1;
+}
+
+message GetPatientRequest {
+  // Station patient id
+  string patient_id = 1;
+}
+
+message GetPatientResponse {
+  common.Patient patient = 1;
+}
+
+message ListConfigurationsRequest {
+  // Optional name filter
+  optional string name = 1;
+  // If true, only Redox configurations are returned
+  bool only_redox = 2;
+  // Page number to be returned, will default to 1
+  optional int64 page_number = 3;
+  // Size of page if default of 10 is not acceptable
+  optional int64 page_size = 4;
+}
+
+message ListConfigurationsResponse {
+  // Total number of pages, for pagination
+  int64 total_pages = 1;
+  // Page number of the partner configurations in the response
+  int64 page_number = 2;
+  // List of matching partner configurations
+  repeated PartnerConfiguration partner_configurations = 3;
+}
+
+message ListConfigurationSourcesRequest {
+  int64 partner_configuration_id = 1;
+}
+
+message ListConfigurationSourcesResponse {
+  repeated Source sources = 1;
+}
+
+message ListMarketsRequest {
+  int64 partner_configuration_id = 1;
+}
+
+message ListMarketsResponse {
+  repeated Market markets = 1;
+}
+
+message ListPatientsRequest {
+  // Express searches for full names containing this field
+  string patient_name = 1;
+}
+
+message ListPatientsResponse {
+  repeated common.Patient patient = 1;
+}
+
+message ListServiceLinesRequest {
+  // Station market ID
+  int64 market_id = 1;
+  // Express partner ID
+  string partner_id = 2;
+}
+
+message ListServiceLinesResponse {
+  repeated ServiceLine service_lines = 1;
+}
+
+message ExpressServiceSearchPartnersRequest {
+  string name = 1;
+  // The maximum number of found Partners to return
+  optional int32 max_result_count = 2;
+}
+
+message ExpressServiceSearchPartnersResponse {
+  repeated Partner partners = 1;
+}
+
+message UpdateConfigurationRequest {
+  int64 id = 1;
+  PartnerConfiguration partner_configuration = 2;
+}
+
+message UpdateConfigurationResponse {
+  PartnerConfiguration partner_configuration = 1;
+}
+
+message UpdateConfigurationSourceRequest {
+  int64 id = 1;
+  Source source = 2;
+}
+
+message UpdateConfigurationSourceResponse {
+  Source source = 1;
+}
+
+message UpdateMarketRequest {
+  // Represents the ID of the partner configuration market association
+  int64 id = 1;
+  Market market = 2;
+}
+
+message UpdateMarketResponse {
+  Market market = 1;
+}

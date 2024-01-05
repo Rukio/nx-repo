@@ -1,0 +1,37 @@
+name: Validate Release Configs
+
+run-name: Validate Release Configs ${{ github.head_ref || github.ref }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - trunk
+    paths:
+      - .release.yaml
+      - .release/*
+  pull_request:
+    paths:
+      - .release.yaml
+      - .release/*
+      - .github/workflows/validate_release_files.yaml
+
+env:
+  RELEASEHUB_ACCOUNT_ID: 2820
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Validate
+        run: |
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew install releasehub-com/tap/release-cli
+          release auth login --login github@*company-data-covered*.com --token ${{ secrets.RELEASEHUB_TOKEN }}
+          release gitops validate --account ${{ env.RELEASEHUB_ACCOUNT_ID }}

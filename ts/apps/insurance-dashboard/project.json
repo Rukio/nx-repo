@@ -1,0 +1,141 @@
+{
+  "name": "insurance-dashboard",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/insurance-dashboard/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/ts/apps/insurance-dashboard",
+        "index": "ts/apps/insurance-dashboard/src/index.html",
+        "baseHref": "/",
+        "main": "ts/apps/insurance-dashboard/src/main.tsx",
+        "polyfills": "ts/apps/insurance-dashboard/src/polyfills.ts",
+        "tsConfig": "ts/apps/insurance-dashboard/tsconfig.app.json",
+        "assets": [
+          "ts/apps/insurance-dashboard/src/favicon.ico",
+          "ts/apps/insurance-dashboard/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nx/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "qa": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/insurance-dashboard/src/environments/environment.ts",
+              "with": "ts/apps/insurance-dashboard/src/environments/environment.qa.ts"
+            },
+            {
+              "replace": "ts/libs/insurance-dashboard/data-access/src/environments/environment.ts",
+              "with": "ts/libs/insurance-dashboard/data-access/src/environments/environment.qa.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "uat": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/insurance-dashboard/src/environments/environment.ts",
+              "with": "ts/apps/insurance-dashboard/src/environments/environment.uat.ts"
+            },
+            {
+              "replace": "ts/libs/insurance-dashboard/data-access/src/environments/environment.ts",
+              "with": "ts/libs/insurance-dashboard/data-access/src/environments/environment.uat.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/insurance-dashboard/src/environments/environment.ts",
+              "with": "ts/apps/insurance-dashboard/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "ts/libs/insurance-dashboard/data-access/src/environments/environment.ts",
+              "with": "ts/libs/insurance-dashboard/data-access/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "insurance-dashboard:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "insurance-dashboard:build:development"
+        },
+        "production": {
+          "buildTarget": "insurance-dashboard:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/insurance-dashboard/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ts/apps/insurance-dashboard/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.app.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/insurance-dashboard"
+      }
+    }
+  },
+  "tags": ["scope:insurance", "type:app"]
+}

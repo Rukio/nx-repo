@@ -1,0 +1,46 @@
+syntax = "proto3";
+package athena;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/athena";
+option ruby_package = "AthenaGRPC";
+
+import "common/date.proto";
+import "common/demographic.proto";
+
+message Patient {
+  optional string patient_id = 1;
+  optional common.Name name = 2;
+  optional common.Date date_of_birth = 3;
+  optional string sex = 4;
+  // Athena field: assignedsexatbirth
+  optional common.BirthSex birth_sex = 12;
+  optional ContactInfo contact_info = 5;
+  optional EmergencyContact emergency_contact = 6;
+  optional Guarantor guarantor = 7;
+  optional string department_id = 8;
+  optional string primary_provider_id = 9;
+  optional bool portal_access_given = 10;
+  common.GenderIdentity gender_identity = 11;
+}
+
+message EmergencyContact {
+  optional string contact_name = 1;
+  optional string contact_relationship = 2;
+  optional string contact_mobilephone = 3;
+}
+
+message Guarantor {
+  optional common.Name name = 1;
+  optional common.Date date_of_birth = 2;
+  optional ContactInfo contact_info = 3;
+  optional bool same_address_as_patient = 4;
+  optional string relationship_to_patient = 5;
+}
+
+message ContactInfo {
+  optional common.PhoneNumber home_number = 1;
+  optional common.PhoneNumber mobile_number = 2;
+  optional common.PhoneNumber work_number = 3;
+  optional string email = 4;
+  optional common.Address address = 5;
+}

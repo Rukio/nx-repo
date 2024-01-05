@@ -1,0 +1,22 @@
+{
+  "external_care_provider": {
+    "id": "123",
+    "name": "Dr Strange",
+    "provider_type_id": "3",
+    "patient_id": "1",
+    "phone_number": "1234",
+    "fax_number": "5678",
+    "address": "Multiverse nonsense"
+  },
+  "patient_external_care_providers": [
+    {
+      "id": "123",
+      "name": "Dr Strange",
+      "provider_type_id": "3",
+      "patient_id": "1",
+      "phone_number": "1234",
+      "fax_number": "5678",
+      "address": "Multiverse nonsense"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "patient": {
+    "id": "1",
+    "first_name": "Joe",
+    "middle_name": "C",
+    "last_name": "Montana",
+    "date_of_birth": "1956-06-11",
+    "sex": "male",
+    "phone_number": "+13035001519",
+    "athena_medical_record_number": "16",
+    "address_street": "21457 Calvin Islands",
+    "address_city": "West Elizabeth",
+    "address_state": "Arizona",
+    "address_zipcode": "44556",
+    "address_notes": "Watch the stairs",
+    "created_at": "2022-05-11T14:09:46Z",
+    "updated_at": "2022-09-08T21:49:08Z",
+    "athena_id": "16"
+  },
+  "medical_decision_makers": [
+    {
+      "id": "91",
+      "first_name": "Adam",
+      "last_name": "Smith",
+      "phone_number": "555",
+      "relationship": "Teacher",
+      "address": "44 West Street",
+      "patient_id": "1"
+    }
+  ],
+  "insurances": [
+    {
+      "id": "205",
+      "name": "United Healthcare",
+      "priority": 1,
+      "patient_id": "1",
+      "member_id": "333"
+    }
+  ],
+  "pharmacies": [
+    {
+      "id": "161",
+      "name": "Farmacias Guadalajara",
+      "patient_id": "1",
+      "phone_number": "111",
+      "fax_number": "222",
+      "address": "1524 Mexico Avenue"
+    }
+  ],
+  "external_care_providers": [
+    {
+      "id": "123",
+      "name": "Dr Mephesto",
+      "provider_type_id": "2",
+      "patient_id": "1",
+      "phone_number": "666",
+      "fax_number": "777",
+      "address": "Some desert island"
+    }
+  ]
+}

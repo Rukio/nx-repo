@@ -1,0 +1,25 @@
+name: Restart Optimizer Cron
+
+run-name: Restart Optimizer Cron
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # 1:00 A.M. MST
+
+jobs:
+  restart_optimizers_cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout # Required for actions on relative paths
+        uses: actions/checkout@v3
+      - name: Setup Aptible CLI
+        uses: ./.github/actions/setup_aptible
+        with:
+          username: ${{ secrets.APTIBLE_USERNAME }}
+          password: ${{ secrets.APTIBLE_PASSWORD }}
+      - name: Restart Logistics Optimizer QA
+        run: aptible restart --app logistics-optimizer-qa
+      - name: Restart Logistics Optimizer UAT
+        run: aptible restart --app logistics-optimizer-uat
+      - name: Restart Logistics Optimizer Prod
+        run: aptible restart --app logistics-optimizer-prod

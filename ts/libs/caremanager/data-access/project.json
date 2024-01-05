@@ -1,0 +1,45 @@
+{
+  "name": "caremanager-data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/caremanager/data-access/src",
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/ts/libs/caremanager/data-access"],
+      "options": {
+        "coverage": true,
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../coverage/ts/libs/caremanager/data-access"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "ts/libs/caremanager/data-access/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+
+        "cwd": "ts/libs/caremanager/data-access"
+      }
+    }
+  },
+  "tags": ["type:data-access"]
+}

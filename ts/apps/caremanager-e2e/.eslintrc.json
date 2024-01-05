@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "plugin:cypress/recommended",
+    "plugin:promise/recommended",
+    "../../../.eslintrc.json"
+  ],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off",
+        "vitest/expect-expect": "off",
+        "vitest/valid-expect": "off",
+        "promise/always-return": "off",
+        "promise/catch-or-return": "off"
+      }
+    }
+  ]
+}

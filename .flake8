@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 120
+per-file-ignores =
+    # some long lines were unavoidable, and generally more concise
+    py/lib/acuity_model/tests/test_version_0.py: E501
+    py/lib/acuity_model/tests/test_version_2.py: E501

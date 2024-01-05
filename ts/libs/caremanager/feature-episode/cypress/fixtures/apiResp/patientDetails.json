@@ -1,0 +1,25 @@
+{
+  "patient": {
+    "id": "35",
+    "first_name": "Jane",
+    "middle_name": "Mary",
+    "last_name": "Doe",
+    "sex": "unspecified",
+    "date_of_birth": "1956-05-21",
+    "phone_number": "2323232323",
+    "athena_medical_record_number": "324532387",
+    "medical_power_of_attorney_details": null,
+    "payer": null,
+    "preferred_pharmacy_details": null,
+    "doctor_details": null,
+    "referrer": null,
+    "address_street": "2ND STREET",
+    "address_street_2": "2",
+    "address_city": "Aspen",
+    "address_state": null,
+    "address_zipcode": null,
+    "address_notes": "TEST NOTE",
+    "created_at": "2022-05-19T15:48:41.709Z",
+    "updated_at": "2022-05-19T15:48:41.709Z"
+  }
+}

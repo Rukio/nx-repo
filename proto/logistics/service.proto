@@ -1,0 +1,1234 @@
+syntax = "proto3";
+package logistics;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/logisticspb";
+option java_package = "com.*company-data-covered*.logistics";
+option java_multiple_files = true;
+option java_outer_classname = "LogisticsProtos";
+option ruby_package = "LogisticsGRPC";
+
+import "common/auth/auth.proto";
+import "common/date.proto";
+import "common/episode.proto";
+import "common/logistics.proto";
+import "google/protobuf/timestamp.proto";
+import "optimizer/optimizer.proto";
+
+service LogisticsService {
+  rpc UpsertShiftTeam(UpsertShiftTeamRequest)
+      returns (UpsertShiftTeamResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:shift_teams:all"
+    };
+  }
+
+  rpc UpdateShiftTeamLoc(UpdateShiftTeamLocRequest)
+      returns (UpdateShiftTeamLocResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:shift_teams:all"
+    };
+  }
+
+  // RequestShiftTeamRestBreak requests a break for a shift team.
+  rpc RequestShiftTeamRestBreak(RequestShiftTeamRestBreakRequest)
+      returns (RequestShiftTeamRestBreakResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:shift_teams:all"
+    };
+  }
+
+  rpc UpsertCareRequest(UpsertCareRequestRequest)
+      returns (UpsertCareRequestResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:care_requests:all"
+    };
+  }
+
+  // UpsertVisitIfFeasible upserts a visit if it fits the schedule.
+  // The request fails if it is unfeasible.
+  rpc UpsertVisitIfFeasible(UpsertVisitIfFeasibleRequest)
+      returns (UpsertVisitIfFeasibleResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:care_requests:all"
+    };
+  }
+
+  rpc RemoveCareRequest(RemoveCareRequestRequest)
+      returns (RemoveCareRequestResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "delete:care_requests:all"
+    };
+  }
+
+  rpc GetShiftTeamSchedule(GetShiftTeamScheduleRequest)
+      returns (GetShiftTeamScheduleResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:shift_teams:all"
+    };
+  }
+
+  // Check feasibility of adding visits.
+  rpc CheckFeasibility(CheckFeasibilityRequest)
+      returns (CheckFeasibilityResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:feasibilities:all"
+    };
+  }
+
+  rpc GetCheckFeasibilityCareRequestHistory(
+      GetCheckFeasibilityCareRequestHistoryRequest)
+      returns (GetCheckFeasibilityCareRequestHistoryResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:feasibilities:all"
+    };
+  }
+
+  rpc UpsertMarket(UpsertMarketRequest) returns (UpsertMarketResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:markets:all"
+    };
+  }
+
+  rpc UpdateMarketFeasibilityCheckSettings(
+      UpdateMarketFeasibilityCheckSettingsRequest)
+      returns (UpdateMarketFeasibilityCheckSettingsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:markets:all"
+    };
+  }
+
+  rpc GetServiceRegionSchedule(GetServiceRegionScheduleRequest)
+      returns (GetServiceRegionScheduleResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:markets:all"
+    };
+  }
+
+  rpc GetCareRequestETA(GetCareRequestETARequest)
+      returns (GetCareRequestETAResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:care_requests:all"
+    };
+  }
+
+  // Get diagnostics information for given Care Requests.
+  rpc GetCareRequestsDiagnostics(GetCareRequestsDiagnosticsRequest)
+      returns (GetCareRequestsDiagnosticsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:care_requests:all"
+    };
+  }
+
+  // UpdateCareRequestStatus is deprecated.
+  rpc UpdateCareRequestStatus(UpdateCareRequestStatusRequest)
+      returns (UpdateCareRequestStatusResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:care_requests:all"
+    };
+  }
+
+  // Get assignability of shift teams to service a visit.
+  rpc GetAssignableShiftTeams(GetAssignableShiftTeamsRequest)
+      returns (GetAssignableShiftTeamsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:shift_teams:all"
+    };
+  }
+
+  // Get assignability of visits for a shift team.
+  rpc GetAssignableVisits(GetAssignableVisitsRequest)
+      returns (GetAssignableVisitsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:care_requests:all"
+    };
+  }
+
+  // Get diagnostic information for a given successful or errored optimizer run.
+  rpc GetOptimizerRunDiagnostics(GetOptimizerRunDiagnosticsRequest)
+      returns (GetOptimizerRunDiagnosticsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:shift_teams:all"
+    };
+  }
+
+  // Get diagnostic information for a given market.
+  rpc GetMarketDiagnostics(GetMarketDiagnosticsRequest)
+      returns (GetMarketDiagnosticsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:markets:all"
+    };
+  }
+
+  // Compare a schedule with an alternative
+  rpc CompareScheduleCounterfactual(CompareScheduleCounterfactualRequest)
+      returns (CompareScheduleCounterfactualResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:markets:all"
+    };
+  }
+
+  // Check Service Region Availability for incoming visits.
+  rpc GetServiceRegionAvailability(GetServiceRegionAvailabilityRequest)
+      returns (GetServiceRegionAvailabilityResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:service_region_availability:all"
+    };
+  }
+
+  // Returns the time windows remaining in the market open
+  // hours with its corresponding availability.
+  rpc GetAvailableTimeWindows(GetAvailableTimeWindowsRequest)
+      returns (GetAvailableTimeWindowsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:feasibilities:all"
+    };
+  }
+}
+
+// ShiftTeamSchedule represents a schedule for a particular shift team
+// represented by shift_team_id.
+message ShiftTeamSchedule {
+  // Shift team ID.
+  int64 shift_team_id = 1;
+
+  // Route that the shift team will take.
+  ShiftTeamRoute route = 2;
+}
+
+// ShiftTeamRoute represents the route that a shift team has or will take,
+// starting at the base_location.
+//
+// Unless otherwise denoted, timestamps in the future are estimates, and those
+// in the past are actual timestamps.
+message ShiftTeamRoute {
+  // Stops along a shift team's route.
+  repeated ShiftTeamRouteStop stops = 1;
+
+  // Location where shift team starts and ends a shift.
+  optional common.Location base_location = 2;
+
+  // Unix timestamp for when the shift team will leave from the base location.
+  // Not set if shift team does not leave the base_location.
+  // Optional.
+  optional int64 base_location_departure_timestamp_sec = 3;
+
+  // Unix timestamp for when the shift team will return to the base location.
+  // Not set if shift team does not leave the base_location.
+  // Optional.
+  optional int64 base_location_arrival_timestamp_sec = 4;
+
+  // TODO(LOG-1326): Add route statistics.
+}
+
+// ShiftTeamRouteStop represents a stop along a route.
+message ShiftTeamRouteStop {
+  oneof stop {
+    // Visit to a customer.
+    ShiftTeamVisit visit = 1;
+
+    ShiftTeamRestBreak rest_break = 2;
+  }
+}
+
+// VisitAcuity describes the clinical urgency information for the visit.
+message VisitAcuity {
+  // the patient age of the care request.
+  optional int32 patient_age = 3;
+
+  // the protocol name from the risk strat record.
+  optional string current_chief_complaint = 4;
+
+  // A higher number is more clinically urgent than a lower one.
+  common.ClinicalUrgencyLevel clinical_urgency_level = 1;
+
+  // A time window that clinical urgency suggests the patient should be seen
+  // within.
+  common.TimeWindow clinical_urgency_window = 2;
+}
+
+// UnassignableVisit is a visit that cannot be seen by any shift team.
+message UnassignableVisit {
+  optional int64 care_request_id = 1;
+
+  // Clinical urgency.
+  VisitAcuity acuity = 2;
+}
+
+// Rest break for shift team.
+message ShiftTeamRestBreak {
+  int64 rest_break_id = 4;
+
+  // Start timestamp of the rest break.
+  // Required.
+  optional int64 start_timestamp_sec = 1;
+
+  // Duration of the rest break.
+  // Required.
+  optional int64 duration_sec = 2;
+
+  // Location of the rest break.
+  // May indicate the current location of the shift team if the break has not
+  // ended.
+  // Required.
+  optional common.Location location = 3;
+}
+
+// ShiftTeamVisit is a visit by a shift team to a customer.
+message ShiftTeamVisit {
+  // Care request ID.
+  // Required.
+  optional int64 care_request_id = 1;
+
+  // Timestamp when shift team arrives for the visit.
+  // Optional.
+  optional int64 arrival_timestamp_sec = 2;
+
+  // Timestamp when shift team completes the visit, and is ready to depart.
+  // Optional.
+  optional int64 complete_timestamp_sec = 3;
+
+  // Location of the visit.
+  // Required.
+  optional common.Location location = 4;
+
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+
+    // Visit is on this shift team's route tentatively, and may change at any
+    // time.
+    STATUS_UNCOMMITTED = 1;
+
+    // Shift team has accepted this visit, and is expected to complete it.
+    // Requires all previous visits in the parent ShiftTeamRoute to also be
+    // committed.
+    STATUS_COMMITTED = 2;
+
+    // Shift team has indicated they are en route to this visit.
+    STATUS_EN_ROUTE = 3;
+
+    // Shift team has indicated that they have arrived at the patient's
+    // location.
+    STATUS_ON_SCENE = 4;
+
+    // Shift team has indicated that the visit is resolved.
+    STATUS_COMPLETE = 5;
+  }
+  // Status of the visit.
+  optional Status status = 5;
+
+  // Clinical urgency.
+  VisitAcuity acuity = 6;
+}
+
+// UpsertShiftTeamRequest requests to upsert information about a shift team.
+message UpsertShiftTeamRequest {
+  // Shift team ID.
+  int64 shift_team_id = 1;
+}
+
+message UpsertShiftTeamResponse {}
+
+// UpdateShiftTeamLocRequest updates the location for a shift team.
+message UpdateShiftTeamLocRequest {
+  // Shift team ID.
+  int64 shift_team_id = 1;
+
+  // Location for the shift team.
+  common.Location location = 2;
+}
+
+message UpdateShiftTeamLocResponse {}
+
+// RequestShiftTeamRestBreakRequest requests a break for a shift team.
+message RequestShiftTeamRestBreakRequest {
+  ShiftTeamRestBreakRequest rest_break = 1;
+}
+
+// ShiftTeamRestBreakRequest is a request for a rest break.
+message ShiftTeamRestBreakRequest {
+  // Shift team ID.
+  int64 shift_team_id = 1;
+
+  oneof break_type {
+    // BreakAfterCareRequest after_care_request = 2;
+    BreakOnDemand on_demand = 3;
+  }
+}
+
+// BreakOnDemand is a break requested on demand.
+message BreakOnDemand {
+  // Duration of the requested break.
+  // Required.
+  optional int64 duration_sec = 3;
+
+  // Start timestamp of the rest break.
+  optional int64 start_timestamp_sec = 4;
+}
+
+// BreakAfterCareRequest is a break requested to occur after
+// servicing a particular care request.
+message BreakAfterCareRequest {
+  // The care request after which the shift team
+  // request a break.
+  int64 care_request_id = 1;
+  // Duration of the requested break.
+  // Required.
+  optional int64 duration_sec = 2;
+}
+
+message RequestShiftTeamRestBreakResponse {
+  // TODO: If we find reasons why a team cannot
+  // take a break, consider adding a status val
+  // and descriptive error message for why it cannot.
+}
+
+// UpsertCareRequestRequest requests to upsert information about a care request.
+message UpsertCareRequestRequest {
+  // Care request ID.
+  int64 care_request_id = 1;
+}
+
+message UpsertCareRequestResponse {}
+
+// UpsertVisitIfFeasibleRequest upserts a visit if it is feasible.
+message UpsertVisitIfFeasibleRequest {
+  optional common.CareRequestInfo care_request_info = 1;
+}
+
+message UpsertVisitIfFeasibleResponse {
+  enum FeasibilityStatus {
+    FEASIBILITY_STATUS_UNSPECIFIED = 0;
+
+    // The visit is feasible.
+    FEASIBILITY_STATUS_FEASIBLE = 1;
+
+    // The visit is infeasible.
+    FEASIBILITY_STATUS_INFEASIBLE = 2;
+  }
+
+  FeasibilityStatus feasibility_status = 1;
+}
+
+// RemoveShiftTeamRequest removes a care request.
+message RemoveCareRequestRequest {
+  // Care request ID.
+  int64 care_request_id = 1;
+}
+
+message RemoveCareRequestResponse {}
+
+// SchedulePendingUpdates are updates that the schedule has not yet taken into
+// account.
+message SchedulePendingUpdates {
+  repeated ShiftTeamRestBreakRequest rest_break_requests = 1;
+
+  repeated PendingShiftTeamUpdate shift_teams = 2;
+
+  repeated PendingVisitUpdate visits = 3;
+}
+
+// Pending shift team updates not incorporated into the latest schedule.
+message PendingShiftTeamUpdate {
+  // Shift team ID.
+  int64 shift_team_id = 1;
+}
+
+// Pending Care Request Updates not yet incorporated into latest schedule
+message PendingVisitUpdate {
+  int64 care_request_id = 1;
+}
+
+// GetShiftTeamScheduleRequest requests a schedule for a shift team.
+message GetShiftTeamScheduleRequest {
+  // Shift team ID.
+  int64 shift_team_id = 1;
+}
+
+message ScheduleToken {
+  // Schedule ID
+  optional int64 schedule_id = 1;
+}
+
+// ScheduleMetadata is metadata associated with a schedule.
+message ScheduleMetadata {
+  // Schedule opaque token.
+  optional bytes schedule_token = 3;
+
+  // Service Date for the schedule.
+  common.Date service_date = 1;
+
+  // Timestamp that the schedule was generated.
+  google.protobuf.Timestamp generated_at = 2;
+}
+
+message GetShiftTeamScheduleResponse {
+  // Metadata for the schedule.
+  ScheduleMetadata meta = 3;
+
+  // Schedule for shift team.
+  ShiftTeamSchedule schedule = 1;
+
+  // Pending updates for the schedule.
+  optional SchedulePendingUpdates pending_updates = 2;
+}
+
+// GetServiceRegionScheduleRequest requests a schedule for a service region.
+message GetServiceRegionScheduleRequest {
+  // Market ID to get schedule for.
+  // Required.
+  optional int64 market_id = 1;
+}
+
+// Schedule for a service region and date.
+message ServiceRegionDateSchedule {
+  // Service date for the schedule.
+  // Slated to be deprecated in favor of meta.service_date.
+  optional common.Date service_date = 1;
+  // Metadata for the schedule.
+  ScheduleMetadata meta = 5;
+
+  // Schedules for each shift team.
+  repeated ShiftTeamSchedule schedules = 2;
+
+  // Visits that cannot be assigned in the schedule.
+  repeated UnassignableVisit unassignable_visits = 3;
+
+  // Pending updates for all schedules.
+  optional SchedulePendingUpdates pending_updates = 4;
+}
+
+message GetServiceRegionScheduleResponse {
+  // Schedules for all available dates.
+  repeated ServiceRegionDateSchedule date_schedules = 1;
+}
+
+// Visit description for checking feasibility.
+//
+// Note: All fields not explicitly marked Required are optional.
+message CheckFeasibilityVisit {
+  // Required
+  optional int64 market_id = 1;
+
+  optional int64 service_duration_sec = 2;
+
+  optional common.Location location = 3;
+
+  oneof arrival_time_specification {
+    common.TimeWindow arrival_time_window = 4;
+
+    common.Date arrival_date = 5;
+  }
+
+  // Visit is a manual adjustment by a human.
+  bool is_manual_adjustment = 11;
+
+  repeated common.Attribute required_attributes = 6;
+  repeated common.Attribute preferred_attributes = 9;
+  repeated common.Attribute forbidden_attributes = 7;
+  repeated common.Attribute unwanted_attributes = 8;
+
+  // Optional tag to reference a foreign entity.
+  oneof entity_descriptor {
+    int64 care_request_id = 10;
+  }
+}
+
+// Checks the feasibility of adding visits to a schedule.
+message CheckFeasibilityRequest {
+  // Visits to test feasibility of adding.
+  // Note: Only a single visit is currently supported.
+  repeated CheckFeasibilityVisit visits = 1;
+
+  // TODO: Add shift teams if needed.
+}
+
+// Checks the market availability for new incoming visits.
+message GetServiceRegionAvailabilityRequest {
+  // Station Market ID for get the availability.
+  optional int64 market_id = 1;
+
+  // The date to get the availability.
+  common.Date service_date = 2;
+
+  // Required set valid combinations of attributes that we want to take into
+  // account when looking for availability.
+  message RequiredAttributesSet {
+    repeated common.Attribute required_attributes = 1;
+  }
+  repeated RequiredAttributesSet required_attributes_sets = 4;
+
+  reserved 3;
+  reserved 'required_attributes';
+}
+
+message GetAvailableTimeWindowsRequest {
+  // The data of the visit to be fit into the schedule.
+  CheckFeasibilityVisit check_feasibility_visit = 1;
+
+  // The service dates to calculate the time window availability.
+  repeated common.Date service_dates = 2;
+
+  // If present, the returned time windows should be within this time window.
+  common.TimeWindow must_be_seen_within_time_window = 3;
+}
+
+message GetAvailableTimeWindowsResponse {
+  // Time window availabilities for each service date.
+  repeated ServiceDateAvailability service_date_availabilities = 1;
+}
+
+// Availability for a service date.
+message ServiceDateAvailability {
+  // Service date.
+  common.Date service_date = 1;
+
+  // List of time window availabilities, ordered chronologically.
+  repeated TimeWindowAvailability time_windows = 2;
+}
+
+// Availability information for a time window.
+message TimeWindowAvailability {
+  // Applicable time window.
+  common.TimeWindow time_window = 1;
+
+  // The availability status.
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+
+    // This is the recommended time window.
+    STATUS_RECOMMENDED = 1;
+
+    // There is room for the visit in the time window.
+    STATUS_AVAILABLE = 2;
+
+    // There is no room for the visit in the time window.
+    STATUS_UNAVAILABLE = 3;
+  }
+  Status status = 2;
+}
+
+message CheckFeasibilityResponse {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+
+    // All visits are feasible.
+    STATUS_FEASIBLE = 1;
+
+    // All visits are infeasible.
+    STATUS_INFEASIBLE = 2;
+
+    // The market is closing soon and not accepting new patients.
+    STATUS_MARKET_INFEASIBLE_CLOSING_SOON = 4;
+
+    // The market is open but nearing capacity to accept new patients.
+    STATUS_MARKET_PARTIALLY_FEASIBLE_NEARING_CAPACITY = 5;
+
+    // The market is open for any short duration visit but at least one
+    // location cannot be served for longer duration visits.
+    STATUS_MARKET_PARTIALLY_FEASIBLE_SERVICE_DURATION_LIMITED = 6;
+
+    // The market is open but cannot serve a visit with the shortest canonical
+    // service duration in one or more locations.
+    STATUS_MARKET_PARTIALLY_FEASIBLE_LOCATION_LIMITED = 7;
+
+    // TODO: Add more statuses for "lower scores" if needed, or partially
+    // feasible, if necessary.
+
+    reserved 3;
+    reserved "STATUS_MARKET_PARTIALLY_FEASIBLE";
+  }
+  Status status = 1;
+
+  // Diagnostics for the Check Feasibility.
+  CheckFeasibilityDiagnostics diagnostics = 2;
+}
+
+message ServiceRegionAvailability {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+
+    // The service region is available.
+    STATUS_AVAILABLE = 1;
+
+    // The service region is partially available.
+    STATUS_PARTIALLY_AVAILABLE = 2;
+
+    // The service region is not available
+    STATUS_UNAVAILABLE = 3;
+  }
+  Status status = 1;
+
+  // Add more fields like the attributes of the visit
+  // example service line, we are able to see acute visits but
+  // just with virtual modality.
+}
+
+// Result of the service region availability for new incoming visits.
+message GetServiceRegionAvailabilityResponse {
+  // The result of the availability for new incoming visits.
+  repeated ServiceRegionAvailability availabilities = 1;
+}
+
+message CheckFeasibilityDiagnostics {
+  // The Optimizer Run ID that this Check Feasibility
+  // runs against (can be 0 with no optimizer run records in DB).
+  int64 optimizer_run_id = 1;
+
+  // The Schedule ID that this Check Feasibility
+  // runs against (can be 0 with no schedule records in DB).
+  int64 schedule_id = 2;
+
+  // The logistics-service version this Check Feasibility call was served by.
+  string logistics_version = 3;
+  // The logistics-service version that the optimizer run was triggered from.
+  //
+  // Note that a potential source of discrepancy is that the problem prepared
+  // from one logistics version may be different than another.
+  // Can be empty with no optimizer run records in the DB.
+  string original_optimizer_run_logistics_version = 6;
+
+  // The Optimizer version this Check Feasibility runs against.
+  string optimizer_version = 4;
+  // The Optimizer version that the original schedule was generated from.
+  // Can be empty with no schedule records in the DB.
+  string original_optimizer_run_optimizer_version = 7;
+
+  // The VRP data used for each run.
+  repeated CheckFeasibilityVRPDebugData debug_data = 5;
+}
+
+message CheckFeasibilityVRPDebugData {
+  // The resulting hard score. If different than 0, it's an infeasible solution.
+  optional int64 hard_score = 1;
+
+  // Represents all the unassigned visits of the VRP result not taking into
+  // account pinned visits.
+  optional int64 unassigned_visits_score = 2;
+
+  // The VRP result explanation.
+  optional string debug_explanation = 3;
+
+  // The VRP problem generated formatted as json string.
+  optional string vrp_problem_json_string = 4;
+
+  // optimizer_run_id was deprecated
+  // The identifier for the optimizer run.
+  reserved 5;
+  reserved "optimizer_run_id";
+}
+
+message GetCheckFeasibilityCareRequestHistoryRequest {
+  // Care request id to retrieve history from
+  int64 care_request_id = 1;
+}
+
+message GetCheckFeasibilityCareRequestHistoryResponse {
+  // Diagnostics array
+  repeated CheckFeasibilityCareRequestDiagnostic results = 1;
+}
+
+message CheckFeasibilityCareRequestDiagnostic {
+  // Problem sent
+  optimizer.VRPProblem problem = 1;
+  // Solution returned
+  optimizer.VRPSolution solution = 2;
+  // Timestamp when CheckFeasibility was called.
+  google.protobuf.Timestamp created_at = 3;
+  // Error while building the diagnostic information.
+  // The existence of an error does not invalidate the rest of the diagnostic.
+  optional string error = 4;
+}
+
+message UpsertMarketRequest {
+  optional int64 market_id = 1;
+}
+
+message UpsertMarketResponse {}
+
+// Get Estimated time of arrival (ETA) for a Care Request.
+message GetCareRequestETARequest {
+  // Care request ID.
+  // Required.
+  optional int64 care_request_id = 1;
+}
+
+message GetCareRequestETAResponse {
+  // Estimated time of arrival.
+  // Optional.
+  optional int64 estimated_arrival_timestamp_sec = 1;
+
+  enum Precision {
+    PRECISION_UNSPECIFIED = 0;
+
+    // Coarse precision, with only approximate accuracy.
+    PRECISION_COARSE = 1;
+
+    // Realtime enroute precision.
+    PRECISION_EN_ROUTE_REALTIME = 2;
+  }
+  // Precision of response.
+  optional Precision precision = 2;
+}
+
+// Get latest data from multiple Care Requests.
+message GetCareRequestsDiagnosticsRequest {
+  // List of Care Requests IDs to retrieve data.
+  repeated int64 care_request_ids = 1;
+  common.DateTime created_before = 2;
+}
+
+// Get latest data from multiple Care Requests for diagnostics.
+message GetCareRequestsDiagnosticsResponse {
+  repeated CareRequestDiagnostics care_request_diagnostics = 1;
+}
+
+// Holds diagnostics information regarding a care request.
+message CareRequestDiagnostics {
+  // The Care Request ID.
+  optional int64 care_request_id = 1;
+
+  // The Shift Team ID associated with the Care Request.
+  // Empty if the care request is not scheduled, even if
+  // the care request was manually assigned to a shift team.
+  optional int64 shift_team_id = 2;
+
+  // Care Request's visit phase.
+  optional VisitPhase phase = 3;
+
+  // Care Request's arrival time window.
+  optional common.TimeWindow time_window = 4;
+
+  // Care Request's location.
+  optional common.Location location = 5;
+
+  // Care Request's service duration.
+  optional int64 service_duration_sec = 6;
+
+  // Care Request was manually overridden to a shift team.
+  optional bool is_manual_override = 7;
+
+  // Care Request's required attributes.
+  repeated common.Attribute required_attributes = 8;
+
+  // Care Request's preferred attributes.
+  repeated common.Attribute preferred_attributes = 11;
+
+  // Care Request's forbidden attributes.
+  repeated common.Attribute forbidden_attributes = 9;
+
+  // Care Request's unwanted attributes.
+  repeated common.Attribute unwanted_attributes = 12;
+
+  // Care Request's arrival time (expected or actual).
+  optional int64 arrival_timestamp_sec = 10;
+}
+
+enum VisitPhase {
+  VISIT_PHASE_UNSPECIFIED = 0;
+
+  // Visit is NOT available for planning, and may not have full data.
+  VISIT_PHASE_REQUESTED = 7;
+
+  // Visit is available for planning and assigning to any shift team.
+  VISIT_PHASE_UNCOMMITTED = 1;
+
+  // Shift team has committed to this Visit, and will be expected to complete it
+  VISIT_PHASE_COMMITTED = 2;
+
+  // Shift team has indicated they are en route to this visit.
+  VISIT_PHASE_EN_ROUTE = 3;
+
+  // Shift team has indicated that they have arrived at the patient's
+  // location.
+  VISIT_PHASE_ON_SCENE = 4;
+
+  // Shift team has indicated that the visit is resolved.
+  VISIT_PHASE_COMPLETE = 5;
+
+  // Visit has been cancelled, and should not be scheduled.
+  VISIT_PHASE_CANCELLED = 6;
+}
+
+// Updates the status of a Care Request.
+message UpdateCareRequestStatusRequest {
+  // Care request ID to update.
+  // Required.
+  optional int64 care_request_id = 1;
+
+  // Status for the Care Request.
+  // Required.
+  optional VisitPhase phase = 2;
+
+  // ID of shift team assigned to care_request_id.
+  // The shift_team_id may only be null if status is STATUS_UNCOMMITTED.
+  // Optional.
+  optional int64 shift_team_id = 3;
+
+  enum SourceType {
+    SOURCE_TYPE_UNSPECIFIED = 0;
+    // The change of status comes from the manual optimizer
+    SOURCE_TYPE_MANUAL_OPTIMIZER = 1;
+    // The change of status comes from the Shift Team taking this Care Request
+    SOURCE_TYPE_PROVIDER = 2;
+    // The change of status comes from logistics/elixir
+    SOURCE_TYPE_LOGISTICS_ELIXIR_AUTO_ASSIGNMENT = 3;
+  }
+  // Source type of the status update request.
+  // Required.
+  optional SourceType source_type = 4;
+
+  // Source User ID that requested the status change.
+  // Required.
+  optional int64 source_user_id = 5;
+}
+
+message UpdateCareRequestStatusResponse {}
+
+message GetAssignableShiftTeamsRequest {
+  // Visit to check for shift team assignability.
+  optional AssignableVisit visit = 1;
+}
+
+message GetAssignableShiftTeamsResponse {
+  repeated AssignableShiftTeamResult shift_teams = 1;
+}
+
+message AssignableVisit {
+  // Visit ID.
+  optional int64 id = 1;
+
+  // The station market ID.
+  // Required.
+  optional int64 market_id = 2;
+
+  // The care request's required attributes.
+  repeated common.Attribute required_attributes = 3;
+
+  // The care request's attributes that can be overridden.
+  repeated common.Attribute preferred_attributes = 4;
+
+  // The care request's forbidden attributes.
+  repeated common.Attribute forbidden_attributes = 5;
+
+  // The care request's unwanted attributes that can be overridden.
+  repeated common.Attribute unwanted_attributes = 7;
+
+  // The time window where the shift teams needs to be
+  // available.
+  // Required.
+  optional common.TimeWindow time_window = 6;
+}
+
+message AssignableShiftTeam {
+  // Shift team ID.
+  optional int64 id = 1;
+
+  // Shift team available time window.
+  optional common.TimeWindow available_time_window = 2;
+
+  // Shift team attributes.
+  repeated common.Attribute attributes = 3;
+}
+
+message AssignableShiftTeamResult {
+  optional AssignableShiftTeam shift_team = 1;
+
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+
+    // Shift team can be assigned without attribute restrictions.
+    STATUS_ASSIGNABLE = 1;
+
+    // Shift team can be assigned by manual override, overriding preferred
+    // attribute restrictions and time window restriction.
+    STATUS_OVERRIDE_ASSIGNABLE = 2;
+
+    // Shift team cannot be assigned even by manual override.
+    STATUS_NOT_ASSIGNABLE = 3;
+  }
+  // Status of the shift team.
+  optional Status status = 2;
+
+  enum TimeWindowStatus {
+    TIME_WINDOW_STATUS_UNSPECIFIED = 0;
+
+    // Shift team window overlaps with visit.
+    // True if status is STATUS_ASSIGNABLE.
+    TIME_WINDOW_STATUS_OVERLAP = 1;
+
+    // Shift team window does not overlap with visit.
+    // May be true if status is not STATUS_ASSIGNABLE.
+    TIME_WINDOW_STATUS_NO_OVERLAP = 2;
+
+    // TODO: Add other statuses for TOO_EARLY/TOO_LATE for more nuance, if
+    // needed.
+  }
+  // Status of the shift team time window.
+  optional TimeWindowStatus time_window_status = 7;
+
+  // Attributes that are required, but missing.
+  // May be filled if status is not STATUS_ASSIGNABLE.
+  repeated common.Attribute missing_required_attributes = 3;
+
+  // Attributes that are preferred, but missing.
+  // May be filled if status is not STATUS_ASSIGNABLE.
+  repeated common.Attribute missing_preferred_attributes = 4;
+
+  // Attributes that are forbidden, but included.
+  // May be filled if status is not STATUS_ASSIGNABLE.
+  repeated common.Attribute included_forbidden_attributes = 5;
+
+  // Attributes that are unwanted, but included.
+  // May be filled if status is not STATUS_ASSIGNABLE.
+  repeated common.Attribute included_unwanted_attributes = 6;
+}
+
+message GetOptimizerRunDiagnosticsRequest {
+  // The identifier for the optimizer run requested.
+  int64 optimizer_run_id = 1;
+}
+
+message GetOptimizerRunDiagnosticsResponse {
+  message Error {
+    string value = 1;
+
+    enum Source {
+      SOURCE_UNSPECIFIED = 0;
+      SOURCE_LOGISTICS = 1;
+      SOURCE_OPTIMIZER = 2;
+    }
+    Source source = 2;
+  }
+
+  // The expected SolveVRP request for this optimizer run.
+  //
+  // Note that the configuration may not reflect the actual config used as
+  // not all configuration exists in the DB for archival purposes.
+  optimizer.SolveVRPRequest solve_vrp_request = 5;
+  reserved 1;
+  reserved "problem";
+  // The problem if it didn't run validation routines.  If different, if means
+  // that the problem had issues that were "fixed forward".
+  optimizer.VRPProblem unvalidated_problem = 6;
+
+  oneof result {
+    // An error that occurred during the optimizer run.
+    Error error = 3;
+  }
+
+  message Revisions {
+    // The logistics revision at time of original run.
+    string logistics = 1;
+    // The optimizer revision at time of original run.
+    string optimizer = 2;
+
+    // The revision of the logistics code currently constructing the response.
+    string current_logistics = 3;
+  }
+  // The code revisions that participated in the optimizer run and current
+  // serving.
+  Revisions revisions = 4;
+}
+
+enum VirtualAPPVisitPhase {
+  VIRTUAL_APP_VISIT_PHASE_UNSPECIFIED = 0;
+  VIRTUAL_APP_VISIT_PHASE_VIRTUAL_APP_ASSIGNED = 1;
+  VIRTUAL_APP_VISIT_PHASE_VIRTUAL_APP_UNASSIGNED = 2;
+}
+
+message GetAssignableVisitsRequest {
+  // Market IDs to filter by
+  repeated int64 market_ids = 1;
+
+  // Filter by visit phases
+  repeated VisitPhase visit_phases = 2;
+
+  // Filter by virtual app visit phases
+  repeated VirtualAPPVisitPhase virtual_app_visit_phases = 3;
+
+  // The shift teams's attributes.
+  repeated common.Attribute shift_team_attributes = 4;
+
+  // Time window to communicate availability
+  common.TimeWindow time_window = 5;
+}
+
+message GetAssignableVisitsResponse {
+  repeated AssignableVisitResult visits = 1;
+}
+
+message AssignableVisitResult {
+  // Care request ID for this Visit.
+  int64 care_request_id = 1;
+}
+
+message GetMarketDiagnosticsRequest {
+  int64 market_id = 1;
+}
+
+message MarketDiagnostics {
+  int64 market_id = 1;
+
+  bool lv1_launchable = 7;
+  bool lv1_ui_enabled = 8;
+
+  optional string market_short_name = 2;
+  optional int64 service_region_id = 3;
+
+  message Sync {
+    bool enabled = 1;
+
+    bool shift_teams = 2;
+    bool care_requests = 3;
+  }
+  Sync sync = 4;
+
+  message OptimizerRuns {
+    bool enabled = 1;
+
+    int64 horizon_days = 2;
+    int64 poll_interval_sec = 3;
+    int64 optimizer_config_id = 4;
+  }
+  OptimizerRuns optimizer_runs = 5;
+
+  // Availability Runs configuration.
+  message AvailabilityRuns {
+    bool enabled = 1;
+
+    int64 poll_interval_sec = 2;
+
+    // Attributes used by market availability to generate visits.
+    message Attributes {
+      // Attribute type.
+      string name = 1;
+
+      // List of attribute variants.
+      repeated string variants = 2;
+    }
+    repeated Attributes attributes = 3;
+
+    // Settings to define capacity based on attributes and horizon days.
+    message CapacitySettings {
+      // List of shift team attributes.
+      repeated string shift_team_attributes = 1;
+
+      // List of percentages of capacity for horizon days.
+      repeated int32 capacity_percent_for_horizon_days = 2;
+    }
+    repeated CapacitySettings capacity_settings = 4;
+  }
+  AvailabilityRuns availability_runs = 10;
+
+  message Feasibility {
+    bool enabled = 1;
+
+    CanonicalLocations locations = 2;
+    int64 min_visit_duration_sec = 3;
+    int64 max_visit_duration_sec = 4;
+  }
+  Feasibility feasibility = 6;
+
+  message Schedule {
+    bool enabled = 1;
+
+    repeated common.ScheduleDay days = 2;
+  }
+  Schedule schedule = 9;
+}
+
+message CanonicalLocations {
+  repeated common.Location locations = 1;
+}
+
+message GetMarketDiagnosticsResponse {
+  MarketDiagnostics market = 1;
+}
+
+message UpdateMarketFeasibilityCheckSettingsRequest {
+  // Station market ID.
+  int64 market_id = 1;
+
+  oneof data {
+    CanonicalLocations locations = 2;
+
+    // CSV data of canonical locations
+    // Format:
+    //   latitude,longitude
+    //   1.23,4.56
+    bytes csv_data = 3;
+  }
+
+  // The minimum of time that a visit can take
+  // to be serviced on the service region.
+  optional int64 min_visit_duration_sec = 4;
+
+  // The maximum of time that a visit can take
+  // to be serviced on the service region.
+  optional int64 max_visit_duration_sec = 5;
+}
+
+message UpdateMarketFeasibilityCheckSettingsResponse {}
+
+message CompareScheduleCounterfactualRequest {
+  // The schedule to compare against.
+  bytes schedule_token = 3;
+
+  // Additional constraints with which to run the schedule's data through the
+  // optimizer.
+  repeated CounterfactualScheduleConstraint additional_schedule_constraints = 2;
+
+  reserved 1;
+  reserved "schedule_id";
+}
+
+message CounterfactualScheduleConstraint {
+  // Unpairing ensures that a shift team cannot be paired with a particular care
+  // request.
+  message Unpairing {
+    int64 shift_team_id = 1;
+    int64 care_request_id = 2;
+  }
+  // Pairing ensures that a shift team must be paired with a particular care
+  // request.
+  message Pairing {
+    int64 shift_team_id = 1;
+    int64 care_request_id = 2;
+  }
+  // Ordering ensures that the care requests are seen in particular order (by
+  // any shift team).
+  message Ordering {
+    reserved 1;
+    reserved "care_request_id";
+    repeated int64 care_request_ids = 2;
+  }
+
+  // ShiftTeamOverride allows for overriding a particular shift team's
+  // working time.
+  message ShiftTeamOverride {
+    int64 shift_team_id = 1;
+    int64 start_timestamp_sec = 2;
+    int64 end_timestamp_sec = 3;
+  }
+
+  oneof constraint {
+    Unpairing unpairing = 1;
+    Pairing pairing = 2;
+    Ordering ordering = 3;
+    ShiftTeamOverride shift_team_override = 4;
+  }
+}
+
+message CompareScheduleCounterfactualResponse {
+  // The original schedule.
+  ServiceRegionDateSchedule original_schedule = 1;
+  // The optimizer score (and debug info) for the original schedule.
+  optimizer.VRPScore original_score = 2;
+
+  // The counterfactual schedule, with the requested constraints applied.
+  ServiceRegionDateSchedule counterfactual_schedule = 4;
+  // The optimizer score (and debug info) for the counterfactual schedule.
+  optimizer.VRPScore counterfactual_score = 5;
+
+  reserved 3, 6;
+}

@@ -1,0 +1,89 @@
+syntax = "proto3";
+package athena;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/athena";
+option ruby_package = "AthenaGRPC";
+
+import "common/date.proto";
+import "common/demographic.proto";
+
+message Insurance {
+  // athenaNet patient identifier
+  optional string patient_id = 1;
+  // If set, athenaNet will use the department id in an attempt to add to the
+  // local patient.
+  optional string department_id = 2;
+  // The insurance policy ID number (as presented on the insurance card itself).
+  // maps to athena 'insuranceidnumber' field
+  optional string member_id = 3;
+  // The athenaNet insurance package ID.
+  // maps to athena 'insurancepackageid' field
+  optional int64 package_id = 4;
+  // The insurance group number. This is sometimes present on an insurance card
+  // maps to athena 'policynumber' field
+  optional int64 group_id = 5;
+  // Info of the entity who holds this insurance policy
+  optional PrimaryInsuranceHolder primary_insurance_holder = 6;
+  // If set to true, automatically updates all future appointments to use
+  // this insurance as primary or secondary, respective to the sequence number.
+  optional bool update_appointments = 7;
+  // The athena insurance policy ID.
+  optional string insurance_id = 8;
+}
+
+message PrimaryInsuranceHolder {
+  // Name of the entity who holds this insurance policy
+  optional common.Name name = 1;
+  // The DOB of the insurance policy holder
+  optional common.Date date_of_birth = 2;
+  // The sex of the insurance policy holder.  Except for self-pay, required
+  // for new policies.
+  optional common.Sex sex = 3;
+  // This patient's relationship to the policy holder (as an ID)
+  optional RelationToPatient relation = 4;
+}
+
+message InsuranceBenefitDetails {
+  // Eligibility and Benefit Response (271 response) from the payer
+  string eligibility_data = 1;
+  // Date on which eligibility was checked
+  common.Date date_of_service = 2;
+  // The last date we did an eligibility check for this patient
+  common.Date last_check_date = 3;
+}
+
+// source:
+// https://docs.athenahealth.com/api/workflows/patient-relationship-mapping
+enum RelationToPatient {
+  RELATION_TO_PATIENT_UNSPECIFIED = 0;
+  RELATION_TO_PATIENT_SELF = 1;
+  RELATION_TO_PATIENT_SPOUSE = 2;
+  RELATION_TO_PATIENT_CHILD = 3;
+  RELATION_TO_PATIENT_OTHER = 4;
+  RELATION_TO_PATIENT_GRANDPARENT = 5;
+  RELATION_TO_PATIENT_GRANDCHILD = 6;
+  RELATION_TO_PATIENT_NEPHEW_NIECE = 7;
+  RELATION_TO_PATIENT_FOSTER_CHILD = 9;
+  RELATION_TO_PATIENT_WARD = 10;
+  RELATION_TO_PATIENT_STEPSON_STEPDAUGHTER = 11;
+  RELATION_TO_PATIENT_EMPLOYEE = 12;
+  RELATION_TO_PATIENT_UNKNOWN = 13;
+  RELATION_TO_PATIENT_HANDICAPPED_DEPENDENT = 14;
+  RELATION_TO_PATIENT_SPONSORED_DEPENDENT = 15;
+  RELATION_TO_PATIENT_DEPENDENT_OF_A_MINOR_DEPENDENT = 16;
+  RELATION_TO_PATIENT_SIGNIFICANT_OTHER = 17;
+  RELATION_TO_PATIENT_MOTHER = 18;
+  RELATION_TO_PATIENT_FATHER = 19;
+  RELATION_TO_PATIENT_EMANCIPATED_MINOR = 21;
+  RELATION_TO_PATIENT_ORGAN_DONOR = 22;
+  RELATION_TO_PATIENT_CADAVER_DONOR = 23;
+  RELATION_TO_PATIENT_INJURED_PLAINTIFF = 24;
+  RELATION_TO_PATIENT_CHILD_INS_NOT_FINANCIALLY_RESPONS = 25;
+  RELATION_TO_PATIENT_LIFE_PARTNER = 26;
+  RELATION_TO_PATIENT_CHILD_MOTHER_INSURANCE = 27;
+  RELATION_TO_PATIENT_CHILD_FATHER_INSURANCE = 28;
+  RELATION_TO_PATIENT_CHILD_OF_MOTHER_INS_NOT_FINANCIALLY_RESPONS = 29;
+  RELATION_TO_PATIENT_CHILD_OF_FATHER_INS_NOT_FINANCIALLY_RESPONS = 30;
+  RELATION_TO_PATIENT_STEPSON_STEPDAUGHTER_STEPMOTHER_INSURANCE = 31;
+  RELATION_TO_PATIENT_STEPSON_STEPDAUGHTER_STEPFATHER_INSURANCE = 32;
+}

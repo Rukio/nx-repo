@@ -1,0 +1,243 @@
+{
+  "markets": [
+    {
+      "id": "159",
+      "name": "Denver",
+      "short_name": "DEN",
+      "schedule_days": [],
+      "tz_name": "America/Denver"
+    },
+    {
+      "id": "177",
+      "name": "Atlanta",
+      "short_name": "ATL",
+      "schedule_days": []
+    },
+    {
+      "id": "160",
+      "name": "Colorado Springs",
+      "short_name": "COS",
+      "schedule_days": []
+    },
+    {
+      "id": "162",
+      "name": "Las Vegas",
+      "short_name": "LAS",
+      "schedule_days": []
+    },
+    {
+      "id": "173",
+      "name": "Spokane",
+      "short_name": "SPO",
+      "schedule_days": []
+    },
+    {
+      "id": "192",
+      "name": "Knoxville",
+      "short_name": "KNX",
+      "schedule_days": []
+    },
+    {
+      "id": "186",
+      "name": "Hartford",
+      "short_name": "HRT",
+      "schedule_days": []
+    },
+    {
+      "id": "174",
+      "name": "Seattle",
+      "short_name": "SEA",
+      "schedule_days": []
+    },
+    {
+      "id": "171",
+      "name": "Ridgewood",
+      "short_name": "NJR",
+      "schedule_days": []
+    },
+    {
+      "id": "181",
+      "name": "Tampa",
+      "short_name": "TPA",
+      "schedule_days": []
+    },
+    {
+      "id": "176",
+      "name": "Boise",
+      "short_name": "BOI",
+      "schedule_days": []
+    },
+    {
+      "id": "168",
+      "name": "Springfield",
+      "short_name": "SPR",
+      "schedule_days": []
+    },
+    {
+      "id": "194",
+      "name": "San Antonio",
+      "short_name": "SAT",
+      "schedule_days": []
+    },
+    {
+      "id": "164",
+      "name": "Richmond",
+      "short_name": "RIC",
+      "schedule_days": []
+    },
+    {
+      "id": "179",
+      "name": "Reno",
+      "short_name": "RNO",
+      "schedule_days": []
+    },
+    {
+      "id": "189",
+      "name": "Raleigh Durham",
+      "short_name": "RDU",
+      "schedule_days": []
+    },
+    {
+      "id": "161",
+      "name": "Phoenix",
+      "short_name": "PHX",
+      "schedule_days": []
+    },
+    {
+      "id": "172",
+      "name": "Olympia",
+      "short_name": "OLY",
+      "schedule_days": []
+    },
+    {
+      "id": "166",
+      "name": "Oklahoma City",
+      "short_name": "OKC",
+      "schedule_days": []
+    },
+    {
+      "id": "191",
+      "name": "Nashville",
+      "short_name": "NSH",
+      "schedule_days": []
+    },
+    {
+      "id": "178",
+      "name": "Fort Worth",
+      "short_name": "FTW",
+      "schedule_days": []
+    },
+    {
+      "id": "188",
+      "name": "Indianapolis",
+      "short_name": "IND",
+      "schedule_days": []
+    },
+    {
+      "id": "190",
+      "name": "Cleveland",
+      "short_name": "CLE",
+      "schedule_days": []
+    },
+    {
+      "id": "165",
+      "name": "Houston",
+      "short_name": "HOU",
+      "schedule_days": []
+    },
+    {
+      "id": "175",
+      "name": "Portland",
+      "short_name": "POR",
+      "schedule_days": []
+    },
+    {
+      "id": "185",
+      "name": "Morristown",
+      "short_name": "MOR",
+      "schedule_days": []
+    },
+    {
+      "id": "170",
+      "name": "Tacoma",
+      "short_name": "TAC",
+      "schedule_days": []
+    },
+    {
+      "id": "169",
+      "name": "Dallas",
+      "short_name": "DAL",
+      "schedule_days": []
+    },
+    {
+      "id": "271",
+      "name": "Anchorage",
+      "short_name": "AKA",
+      "schedule_days": []
+    }
+  ],
+  "service_lines": [
+    {
+      "id": "1",
+      "name": "Advanced Care",
+      "short_name": "Advanced"
+    },
+    {
+      "id": "2",
+      "name": "Bridge Care",
+      "short_name": "Bridge"
+    },
+    {
+      "id": "3",
+      "name": "Bridge Care Plus",
+      "short_name": "Bridge Plus"
+    },
+    {
+      "id": "4",
+      "name": "Extended Care",
+      "short_name": "Extended"
+    }
+  ],
+  "care_phases": [
+    {
+      "id": "1",
+      "name": "Pending",
+      "phase_type": "inactive"
+    },
+    {
+      "id": "2",
+      "name": "High Acuity",
+      "phase_type": "active"
+    },
+    {
+      "id": "3",
+      "name": "Transition - High",
+      "phase_type": "active"
+    },
+    {
+      "id": "4",
+      "name": "Discharged",
+      "phase_type": "inactive"
+    },
+    {
+      "id": "5",
+      "name": "Closed",
+      "phase_type": "inactive"
+    },
+    {
+      "id": "6",
+      "name": "Active",
+      "phase_type": "active"
+    },
+    {
+      "id": "7",
+      "name": "Transition - Low",
+      "phase_type": "active"
+    },
+    {
+      "id": "8",
+      "name": "Closed Without Admitting",
+      "phase_type": "inactive"
+    }
+  ]
+}

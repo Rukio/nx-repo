@@ -1,0 +1,15 @@
+syntax = "proto3";
+package common.auth;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/common/auth";
+
+extend google.protobuf.MethodOptions {
+  AuthorizationRule rule = 50132;
+  bool public = 51416;
+}
+
+message AuthorizationRule {
+  optional string jwt_permission = 1;
+}

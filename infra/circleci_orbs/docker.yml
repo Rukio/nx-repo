@@ -1,0 +1,4 @@
+# Note: When adding a new command do not setup the remote docker engine or login. It should be assumed that this is setup already when using commands from this orb
+version: 2.1
+
+description: This orb has been deprecated in favor of the [aws-ecr orb](https://circleci.com/developer/orbs/orb/circleci/aws-ecr) or the [official docker orb](https://circleci.com/developer/orbs/orb/circleci/docker)

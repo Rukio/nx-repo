@@ -1,0 +1,21 @@
+{
+  "recommendations": [
+    "bierner.markdown-mermaid",
+    "bufbuild.vscode-buf",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "firsttris.vscode-jest-runner",
+    "golang.go",
+    "joaompinto.vscode-graphviz",
+    "ms-python.black-formatter",
+    "nrwl.angular-console",
+    "snyk-security.snyk-vulnerability-scanner",
+    "teejae.vscode-sql-formatter",
+    "timonwong.shellcheck",
+    "tsandall.opa",
+    "xaver.clang-format",
+    "yzhang.markdown-all-in-one",
+    "zxh404.vscode-proto3"
+  ]
+}

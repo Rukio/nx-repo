@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "first_name": "John",
+      "middle_name": "Dane",
+      "last_name": "Doe",
+      "email": "john@example.com",
+      "job_title": "CRN"
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+name: Test Typescript
+
+run-name: Test Typescript ${{ github.head_ref || github.ref }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  push:
+    branches:
+      - trunk
+    paths:
+      - ts/**
+      - .storybook/**
+      - package.json
+      - package-lock.json
+      - Makefile
+      - .npmrc
+      - jest.config.ts
+      - jest.preset.ts
+      - nx.json
+      - tsconfig.base.json
+      - .github/workflows/test_typescript.yml
+      - sonar.ts.properties
+      - proto/**
+      - buf.gen.ts.yaml
+      - buf.work.yaml
+  pull_request:
+    paths:
+      - ts/**
+      - .storybook/**
+      - package.json
+      - package-lock.json
+      - Makefile
+      - .npmrc
+      - jest.config.ts
+      - jest.preset.ts
+      - nx.json
+      - tsconfig.base.json
+      - .github/workflows/test_typescript.yml
+      - sonar.ts.properties
+      - proto/**
+      - buf.gen.ts.yaml
+      - buf.work.yaml
+
+jobs:
+  setup_ts:
+    runs-on: ubuntu-latest
+    outputs:
+      affected_projects: ${{ steps.affected_projects.outputs.projects }}
+      BIN_CACHE_SHA: ${{ steps.tools.outputs.BIN_CACHE_SHA }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'npm'
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: v1-node_modules-cypress-${{ hashFiles('package-lock.json') }}-${{ github.head_ref }}
+          restore-keys: |
+            v1-node_modules-cypress-${{ hashFiles('package-lock.json') }}-
+
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Verify npm dependencies are unchanged
+        run: |
+          (git diff --exit-code package-lock.json && git diff --exit-code package.json) || (echo \
+            "::error::There was a dependency updated during installation. Install locally and commit changes" && exit 1)
+
+      - name: Get tool versions from Makefile
+        id: tools
+        run: |
+          sha=$(awk '/ TOOL_VERSIONS/{f=1} / END_TOOL_VERSIONS/{f=0;print} f' Makefile | sha1sum | awk '{print $1}')
+          echo "BIN_CACHE_SHA=$sha" >> $GITHUB_OUTPUT
+
+      - name: Cache setup-common-gen go cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+            ./bin
+          key: v1-gogen-${{ hashFiles('.tool-versions') }}-${{ hashFiles('**/go.sum') }}-${{ steps.tools.outputs.BIN_CACHE_SHA }}-${{ github.head_ref }}
+          restore-keys: |
+            v1-gogen-${{ hashFiles('.tool-versions') }}-${{ hashFiles('**/go.sum') }}-${{ steps.tools.outputs.BIN_CACHE_SHA }}-
+
+      - name: Setup common gen
+        run: make setup-common-gen
+
+      - name: Set up Nx
+        uses: nrwl/nx-set-shas@v3
+        with:
+          main-branch-name: 'trunk'
+
+      - name: Validate workspace configuration
+        run: npx nx workspace-lint
+
+      - name: Generate affected project list
+        id: affected_projects
+        run: |
+          npx nx print-affected ${{ github.ref_name == 'trunk' && '--base=HEAD~1 --head=HEAD' || format('--base={0} --head={1}', env.NX_BASE, env.NX_HEAD) }} > affected.json
+          echo "projects=$(jq -cr '.projects' affected.json)" >> $GITHUB_OUTPUT
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure() && github.ref == 'refs/heads/trunk'
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *Trunk GitHub Action Job Failed*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}
+
+  test_ts:
+    name: test - ${{ matrix.projects }}
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    if: ${{ needs.setup_ts.outputs.affected_projects != '[]' && needs.setup_ts.outputs.affected_projects != '' }}
+    needs:
+      - setup_ts
+    strategy:
+      fail-fast: false
+      matrix:
+        projects: ${{ fromJSON(needs.setup_ts.outputs.affected_projects) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'npm'
+
+      - name: Restore node_modules
+        uses: actions/cache/restore@v3
+        id: cache-node-modules
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: v1-node_modules-cypress-${{ hashFiles('package-lock.json') }}-${{ github.head_ref }}
+
+      - name: Install NPM dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Restore setup-common-gen go cache
+        if: contains(matrix.projects, 'onboarding-api') || contains(matrix.projects, 'caremanager')
+        uses: actions/cache/restore@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+            ./bin
+          key: v1-gogen-${{ hashFiles('.tool-versions') }}-${{ hashFiles('**/go.sum') }}-${{ needs.setup_ts.outputs.BIN_CACHE_SHA }}-${{ github.head_ref }}
+          restore-keys: |
+            v1-gogen-${{ hashFiles('.tool-versions') }}-${{ hashFiles('**/go.sum') }}-${{ needs.setup_ts.outputs.BIN_CACHE_SHA }}-
+
+      - name: Should skip Cypress tests
+        id: skip_cypress_test
+        run: echo "value=${{ contains(matrix.projects, 'clinical-kpi-e2e') || contains(matrix.projects, 'modality-dashboard-e2e') }}" >> "$GITHUB_OUTPUT"
+
+      - name: Test
+        env:
+          NODE_OPTIONS: '--max_old_space_size=8192'
+        run: |
+          npx nx format:check --projects=${{ matrix.projects }}
+          npx nx run-many --targets=lint,typecheck,build,test${{ steps.skip_cypress_test.outputs.value != 'true' && ',e2e' || '' }} --projects=${{ matrix.projects }} --configuration=ci --parallel=5 --coverage --ci --code-coverage --coverageReporters=lcov
+
+      - name: Upload Cypress failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-artifacts
+          path: dist/cypress
+
+      - name: Setup Sonarcloud
+        id: sonar_setup
+        run: |
+          project_json_path=$(grep -lr "\"name\": \"${{ matrix.projects }}\"" ts || (echo "::error::could not find project.json path for ${{ matrix.projects }}" && exit 1))
+          echo "$project_json_path"
+          project_path=$(dirname $project_json_path)
+          echo "$project_path"
+
+          ls -al | grep coverage || (echo "::notice::No coverage found for ${{ matrix.projects }}" && echo "SKIP_SONAR=true" >> $GITHUB_OUTPUT && exit 0)
+
+          mv sonar.ts.properties sonar-project.properties
+          echo "sonar.projectName=ts-${{ matrix.projects }}" >> sonar-project.properties
+          echo "sonar.projectKey=ts-${{ matrix.projects }}" >> sonar-project.properties
+          echo "sonar.sources=$project_path" >> sonar-project.properties
+
+      - name: Create sonarcloud project if not exists
+        if: steps.sonar_setup.outputs.SKIP_SONAR != 'true'
+        run: |
+          sonarcloud_api="https://${{ secrets.SONAR_TOKEN }}@sonarcloud.io/api"
+          sonarcloud_org="*company-data-covered*"
+
+          sonar_projects=$(curl -X GET "${sonarcloud_api}/projects/search?organization=${sonarcloud_org}" | jq -cr '.components | .[].name')
+          if ! echo "$sonar_projects" | grep -Eq "^ts-${{ matrix.projects }}$"; then
+            # Create project
+            curl \
+              -X POST \
+              "${sonarcloud_api}/projects/create" \
+              -d "name=ts-${{ matrix.projects }}&organization=${sonarcloud_org}&project=ts-${{ matrix.projects }}&visibility=private"
+
+            # Set main branch name to trunk
+            curl \
+              -X POST \
+              "${sonarcloud_api}/project_branches/rename" \
+              -d "project=ts-${{ matrix.projects }}&name=trunk"
+
+            # Turn off github summary comment
+            curl \
+              -X POST \
+              "${sonarcloud_api}/settings/set" \
+              -d "component=ts-${{ matrix.projects }}&key=sonar.pullrequest.github.summary_comment&value=false"
+
+            # Associate DispatchWay quality gate
+            curl \
+              -X POST \
+              "${sonarcloud_api}/qualitygates/select" \
+              -d "organization=${sonarcloud_org}&gateId=59672&projectKey=ts-${{ matrix.projects }}"
+
+            echo "::notice::Created sonar project for ts-${{ matrix.projects }}"
+          fi
+
+      - name: SonarQube Scan
+        if: steps.sonar_setup.outputs.SKIP_SONAR != 'true'
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: SonarQube Quality Gate check
+        if: steps.sonar_setup.outputs.SKIP_SONAR != 'true'
+        timeout-minutes: 5
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Get Current Job Log URL
+        if: failure() && github.ref == 'refs/heads/trunk'
+        uses: Tiryoh/gha-jobid-action@v0
+        id: jobs
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          job_name: 'test - ${{ matrix.projects }}'
+          per_page: 100
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure() && github.ref == 'refs/heads/trunk'
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *Trunk GitHub Action Job Failed*
+            *Job*: <${{ steps.jobs.outputs.html_url }}|${{ github.job }} - ${{ matrix.projects }}>
+            *Author*: ${{ github.actor }}

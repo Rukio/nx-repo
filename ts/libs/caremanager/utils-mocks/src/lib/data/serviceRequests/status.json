@@ -1,0 +1,20 @@
+{
+  "service_request_status": [
+    { "id": "1", "name": "Requested", "slug": "requested", "is_active": true },
+    {
+      "id": "2",
+      "name": "Clinical Screening",
+      "slug": "clinical_screening",
+      "is_active": true
+    },
+    {
+      "id": "3",
+      "name": "Secondary Screening",
+      "slug": "secondary_screening",
+      "is_active": true
+    },
+    { "id": "4", "name": "Accepted", "slug": "accepted", "is_active": true },
+    { "id": "5", "name": "Resolved", "slug": "resolved", "is_active": false },
+    { "id": "6", "name": "Rejected", "slug": "rejected", "is_active": false }
+  ]
+}

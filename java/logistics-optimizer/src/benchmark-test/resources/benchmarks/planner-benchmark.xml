@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plannerBenchmark xmlns="https://www.optaplanner.org/xsd/benchmark"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.optaplanner.org/xsd/benchmark https://www.optaplanner.org/xsd/benchmark/benchmark.xsd">
+
+    <solverBenchmark>
+        <name>Tabu Search</name>
+        <solver>
+            <localSearch>
+                <localSearchType>TABU_SEARCH</localSearchType>
+            </localSearch>
+        </solver>
+    </solverBenchmark>
+    <solverBenchmark>
+        <name>Late Acceptance</name>
+        <solver>
+            <localSearch>
+                <localSearchType>LATE_ACCEPTANCE</localSearchType>
+            </localSearch>
+        </solver>
+    </solverBenchmark>
+    <solverBenchmark>
+        <name>Previous Late Acceptance</name>
+        <solver>
+            <localSearch>
+                <unionMoveSelector>
+                    <changeMoveSelector />
+                    <swapMoveSelector />
+                    <subChainChangeMoveSelector>
+                        <selectReversingMoveToo>true</selectReversingMoveToo>
+                    </subChainChangeMoveSelector>
+                    <subChainSwapMoveSelector>
+                        <selectReversingMoveToo>true</selectReversingMoveToo>
+                    </subChainSwapMoveSelector>
+                    <!-- TODO: use nearby selection to scale out -->
+                </unionMoveSelector>
+                <acceptor>
+                    <lateAcceptanceSize>200</lateAcceptanceSize>
+                </acceptor>
+                <forager>
+                    <acceptedCountLimit>1</acceptedCountLimit>
+                </forager>
+            </localSearch>
+        </solver>
+    </solverBenchmark>
+</plannerBenchmark>

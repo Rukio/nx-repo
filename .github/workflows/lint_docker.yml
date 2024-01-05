@@ -1,0 +1,60 @@
+name: Dockerlint
+
+run-name: Dockerlint ${{ github.head_ref || github.ref }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - trunk
+    paths:
+      - 'docker/*.Dockerfile'
+  pull_request:
+    paths:
+      - 'docker/*.Dockerfile'
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-dockerfiles-list.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - id: set-dockerfiles-list
+        run: echo "matrix=$(ls docker/*.Dockerfile | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+
+  lint-docker:
+    needs: checkout
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        dockerfile: ${{ fromJson(needs.checkout.outputs.matrix) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Dockerlint
+        id: hadolint
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: '${{ matrix.dockerfile }}'
+          verbose: true
+          failure-threshold: error
+          trusted-registries: ghcr.io,registry.*company-data-covered*.com
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure() && github.ref == 'refs/heads/trunk'
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *<!subteam^S04AEG5A3AP> Failed to run Dockerlint on `trunk`*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}

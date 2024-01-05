@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "current_page": 2,
+    "page_size": 5,
+    "total_pages": 2,
+    "total_results": 7
+  },
+  "task_templates": [
+    {
+      "id": "6",
+      "created_at": "2022-07-25T05:39:37.632Z",
+      "updated_at": "2022-07-25T05:39:37.632Z",
+      "name": "High Acuity Long Term Tasks",
+      "summary": "Minim velit ex eu et cillum dolore minim reprehenderit in anim dolor sit ad dolor occaecat veniam quis excepteur.",
+      "tasks_count": "13",
+      "service_line": {
+        "id": "1",
+        "name": "Advanced Care"
+      },
+      "care_phase": {
+        "id": "2",
+        "name": "High Acuity"
+      },
+      "updated_by_user_id": "441",
+      "last_updated_by": {
+        "id": "441",
+        "first_name": "Rosalía",
+        "last_name": "Vila",
+        "email": "larosalia@outlook.com"
+      }
+    },
+    {
+      "id": "7",
+      "created_at": "2022-07-25T05:39:37.632Z",
+      "updated_at": "2022-07-25T05:39:37.632Z",
+      "name": "Advanced Care Tasks - Providers Only",
+      "summary": "Occaecat velit sunt irure consectetur dolor id laboris id qui mollit.",
+      "tasks_count": "4",
+      "service_line": {
+        "id": "45",
+        "name": "Special Care"
+      },
+      "care_phase": {
+        "id": "6",
+        "name": "Intensive Acuity"
+      },
+      "updated_by_user_id": "3145",
+      "last_updated_by": {
+        "id": "3145",
+        "first_name": "Stephen",
+        "last_name": "Lee Bruner",
+        "email": "thundercat@thundera.com"
+      }
+    }
+  ]
+}

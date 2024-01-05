@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "typecheck": {
+      "factory": "./src/generators/typecheck/generator",
+      "schema": "./src/generators/typecheck/schema.json",
+      "description": "Generates a typecheck task that leverages tsc"
+    }
+  }
+}

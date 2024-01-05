@@ -1,0 +1,139 @@
+// Target Architecture (Future)
+digraph G {
+    compound=true;
+    node [shape=box style=rounded];
+
+    // Component definitions
+
+    subgraph cluster_Frontend {
+        label="Frontend"
+
+        WebOnboardingFE [label="Web\nOnboarding"]
+        AdvancedCareOnboardingFE [label="AdvancedCare\nOnboarding"]
+        PartnerOnboardingFE [label="Partner\nOnboarding"]
+        ManualOptimizerFE [label="Optimizer Ops FE"]
+        ProviderFE [label="Provider\n(Self-Service FE)"]
+        ProviderApp [label="Provider App\n(Rover)"]
+        PatientFE [label="Patient\n(Companion)"]
+        RevenueCycleManagementFE [label="Revenue\nCycle\nManagement"]
+    }
+
+    subgraph Backend {
+        ConsumerAPIGatewaySvc [label="Consumer\nAPI Gateway" tooltip="Lowest privilege gateway for patient facing interfaces."]
+        PartnerAPIGatewaySvc [label="Partner\nAPI Gateway" tooltip="Moderate privilege gateway for partner facing interfaces."]
+        AdminAPIGatewaySvc [label="Admin\nAPI Gateway" tooltip="High privilege gateway for Dispatch internal interfaces."]
+        RevenueCycleManagementAPIGatewaySvc [label="RCM\nAPI Gateway" tooltip="Revenue cycle management gateway."]
+
+        subgraph grouped_services {
+            style="dashed"
+
+            subgraph cluster_Episodes {
+                EpisodeSvc [label="Episode"]
+                VisitSvc [label="Visit"]
+                TaskSvc [label="Tasks"]
+
+                subgraph enums {
+                    node [style="dashed,diagonals"]
+
+                    ChiefComplaintSvc [label="Chief\nComplaint"]
+                    ServiceLineSvc [label="Service\nLine"]
+                }
+            }
+
+            subgraph cluster_RCM {
+                RevenueCycleManagementSvc [label="Revenue\nCycle\nManagement"]
+                InsuranceProxy [label="Insurance Proxy"]
+            }
+
+            subgraph cluster_Logistics {
+                LogisticsSvc [label="Logistics"]
+                EquipmentSvc [label="Equipment"]
+            }
+
+            subgraph cluster_EHR {
+                PatientSvc [label="Patient"]
+                ProviderSvc [label="Provider"]
+
+                EHRProxy [label="EHR Proxy"]
+                EHR [label="EHR\n(Athena)" color="red"]
+            }
+        }
+
+        subgraph cluster_Universal {
+            label = "Universal"
+
+            AuthSvc [label="Auth" color="red"]
+            AuditingSvc [label="Auditing"]
+            LoggingSvc [label="LogAggregation"
+                        tooltip="Handles general log aggregation as well as siloing of PHI/scrubbable/PHI-free data. May vend events for data consumers."]
+        }
+
+        RiskAssessmentSvc [label="Risk\nAssessment"]
+        PartnerSvc [label="Partner"]
+        ExternalPartnerSystems [label="External partner systems (Redox, Salesforce)" color="red"]
+        PatientEngagementSystems [label="Patient notification systems" color="red"]
+        NotificationSvc [label="Notification"]
+        UsageMonitoringSvc [label="Usage\nMonitoring"]
+    }
+
+
+    // Relations
+
+    ProviderApp -> AdminAPIGatewaySvc [label="Location/\nScheduling"]
+    ProviderApp -> AdminAPIGatewaySvc -> PatientSvc [label="Treatment"]
+    ManualOptimizerFE -> AdminAPIGatewaySvc [label="Scheduling"]
+    AdminAPIGatewaySvc -> EquipmentSvc [label="Location"]
+    AdminAPIGatewaySvc -> LogisticsSvc [label="Scheduling"]
+    ProviderFE -> AdminAPIGatewaySvc -> ProviderSvc [label="Provider\nMetadata"]
+
+    {WebOnboardingFE PatientFE} -> ConsumerAPIGatewaySvc
+    {AdvancedCareOnboardingFE PartnerOnboardingFE} -> PartnerAPIGatewaySvc
+    {ConsumerAPIGatewaySvc PartnerAPIGatewaySvc} -> LogisticsSvc [label="Scheduling"]
+    {ConsumerAPIGatewaySvc PartnerAPIGatewaySvc} -> ChiefComplaintSvc
+    {ConsumerAPIGatewaySvc PartnerAPIGatewaySvc} -> EpisodeSvc
+    PartnerAPIGatewaySvc -> PartnerSvc
+
+    RevenueCycleManagementFE -> RevenueCycleManagementAPIGatewaySvc
+    RevenueCycleManagementAPIGatewaySvc -> RevenueCycleManagementSvc
+    RevenueCycleManagementSvc -> {
+        EpisodeSvc
+        InsuranceProxy
+    }
+
+    {ConsumerAPIGatewaySvc PartnerAPIGatewaySvc} -> PatientSvc
+    LogisticsSvc -> {
+        PatientSvc
+        ProviderSvc
+        EquipmentSvc
+    }
+
+    {AdminAPIGatewaySvc ConsumerAPIGatewaySvc PartnerAPIGatewaySvc RevenueCycleManagementAPIGatewaySvc} -> UsageMonitoringSvc
+
+    {PatientSvc ProviderSvc EpisodeSvc} -> EHRProxy -> EHR
+    {ConsumerAPIGatewaySvc PartnerAPIGatewaySvc} -> RiskAssessmentSvc
+    RiskAssessmentSvc -> {
+        PatientSvc
+        ChiefComplaintSvc
+    }
+
+    EpisodeSvc -> {
+        VisitSvc
+        PatientSvc
+
+        ServiceLineSvc
+        ChiefComplaintSvc
+    }
+
+    {EpisodeSvc VisitSvc} -> TaskSvc
+    {EpisodeSvc PatientSvc} -> NotificationSvc
+    VisitSvc -> ProviderSvc
+
+    PartnerSvc -> {
+        NotificationSvc
+        ExternalPartnerSystems
+    }
+    NotificationSvc -> {
+        ExternalPartnerSystems
+        PatientEngagementSystems
+    }
+}

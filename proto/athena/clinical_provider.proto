@@ -1,0 +1,48 @@
+syntax = "proto3";
+package athena;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/athena";
+option ruby_package = "AthenaGRPC";
+
+import "common/demographic.proto";
+
+message ClinicalProviderSearchResult {
+  // clinical_provider_id represents the primary identifier of
+  // the clinical provider.
+  optional string clinical_provider_id = 1;
+  // provider_name represents name of person-entity clinical providers.
+  optional common.Name provider_name = 2;
+  // address represents the full address of the clinical provider.
+  optional common.Address address = 3;
+  // distances represents in miles how far is the clinical provider given
+  // a zip code.
+  optional double distance = 4;
+  // fax_number represents the fax number of the clinical provider.
+  optional common.PhoneNumber fax_number = 5;
+  // ncpdp_id represents the National Council for Prescription Drug Program
+  // for pharmacies.
+  optional string ncpdp_id = 6;
+  // pharmacy_type represents of pharmacy type (retail, mailorder)
+  optional string pharmacy_type = 7;
+  // phone_number represents the phone number of the clinical_provider.
+  optional common.PhoneNumber phone_number = 8;
+  // organization_name represents the name of non-person entity
+  // clinical providers.
+  optional string organization_name = 9;
+}
+
+// Order type enum represents the type of facility.
+enum OrderType {
+  ORDER_TYPE_UNSPECIFIED = 0;
+  ORDER_TYPE_DME = 1;
+  ORDER_TYPE_IMAGING = 2;
+  ORDER_TYPE_LAB = 3;
+  ORDER_TYPE_OTHER = 4;
+  ORDER_TYPE_PRESCRIPTION = 5;
+  ORDER_TYPE_PROCEDURE = 6;
+  ORDER_TYPE_SURGERY = 7;
+  ORDER_TYPE_VACCINE = 8;
+  ORDER_TYPE_CONSULTANT = 9;
+  ORDER_TYPE_GLASSES = 10;
+  ORDER_TYPE_CONTACTLENSES = 11;
+}

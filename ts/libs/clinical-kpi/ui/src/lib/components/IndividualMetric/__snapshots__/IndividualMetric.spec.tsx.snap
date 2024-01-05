@@ -1,0 +1,646 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IndividualMetric should render correctly for ChartClosure type 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 8px;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.00938em;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 2.125rem;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+  font-size: 1.5rem;
+}
+
+.emotion-5 {
+  margin: 0;
+  font-family: Open Sans;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 8px;
+  margin-right: 8px;
+  color: #2e7d32;
+}
+
+.emotion-6 {
+  margin: 0;
+  color: #616161;
+  padding: 8px;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #616161;
+  padding: 8px;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1 emotion-2"
+        data-testid="text-prefix-individual-metric-type"
+      >
+        Chart Closure
+      </h6>
+    </div>
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <h4
+        class="MuiTypography-root MuiTypography-h4 emotion-4"
+        data-testid="text-prefix-individual-metric-value"
+      >
+        57.7%
+      </h4>
+      <span
+        class="MuiTypography-root MuiTypography-label emotion-5"
+        data-testid="text-prefix-individual-metric-change"
+      >
+        +14.27%
+      </span>
+    </div>
+    <span
+      class="MuiTypography-root MuiTypography-label emotion-6"
+      data-testid="text-prefix-individual-metric-performance"
+    >
+      Since last week, your Chart Closure went up 14.27%
+    </span>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-7"
+      data-testid="text-prefix-individual-metric-goal"
+    >
+      Goal: 21
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`IndividualMetric should render correctly for NPS type 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 8px;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.00938em;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 2.125rem;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+  font-size: 1.5rem;
+}
+
+.emotion-5 {
+  margin: 0;
+  font-family: Open Sans;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 8px;
+  margin-right: 8px;
+  color: #2e7d32;
+}
+
+.emotion-6 {
+  margin: 0;
+  color: #616161;
+  padding: 8px;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #616161;
+  padding: 8px;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1 emotion-2"
+        data-testid="text-prefix-individual-metric-type"
+      >
+        NPS
+      </h6>
+    </div>
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <h4
+        class="MuiTypography-root MuiTypography-h4 emotion-4"
+        data-testid="text-prefix-individual-metric-value"
+      >
+        57.7
+      </h4>
+      <span
+        class="MuiTypography-root MuiTypography-label emotion-5"
+        data-testid="text-prefix-individual-metric-change"
+      >
+        +14.27
+      </span>
+    </div>
+    <span
+      class="MuiTypography-root MuiTypography-label emotion-6"
+      data-testid="text-prefix-individual-metric-performance"
+    >
+      Since last week, your NPS went up 14.27
+    </span>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-7"
+      data-testid="text-prefix-individual-metric-goal"
+    >
+      Goal: 21
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`IndividualMetric should render correctly for OnSceneTime type 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 8px;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.00938em;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 2.125rem;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+  font-size: 1.5rem;
+}
+
+.emotion-5 {
+  margin: 0;
+  font-family: Open Sans;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 8px;
+  margin-right: 8px;
+  color: #d32f2f;
+}
+
+.emotion-6 {
+  margin: 0;
+  color: #616161;
+  padding: 8px;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #616161;
+  padding: 8px;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1 emotion-2"
+        data-testid="text-prefix-individual-metric-type"
+      >
+        On Scene Time
+      </h6>
+    </div>
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <h4
+        class="MuiTypography-root MuiTypography-h4 emotion-4"
+        data-testid="text-prefix-individual-metric-value"
+      >
+        57.7 mins
+      </h4>
+      <span
+        class="MuiTypography-root MuiTypography-label emotion-5"
+        data-testid="text-prefix-individual-metric-change"
+      >
+        +14.27 mins
+      </span>
+    </div>
+    <span
+      class="MuiTypography-root MuiTypography-label emotion-6"
+      data-testid="text-prefix-individual-metric-performance"
+    >
+      Since last week, your On Scene Time went up 14.27 mins
+    </span>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-7"
+      data-testid="text-prefix-individual-metric-goal"
+    >
+      Goal: 21
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`IndividualMetric should render correctly for SurveyCapture type 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 8px;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.00938em;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 2.125rem;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+  font-size: 1.5rem;
+}
+
+.emotion-5 {
+  margin: 0;
+  font-family: Open Sans;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 8px;
+  margin-right: 8px;
+  color: #2e7d32;
+}
+
+.emotion-6 {
+  margin: 0;
+  color: #616161;
+  padding: 8px;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #616161;
+  padding: 8px;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1 emotion-2"
+        data-testid="text-prefix-individual-metric-type"
+      >
+        Survey Capture
+      </h6>
+    </div>
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <h4
+        class="MuiTypography-root MuiTypography-h4 emotion-4"
+        data-testid="text-prefix-individual-metric-value"
+      >
+        57.7%
+      </h4>
+      <span
+        class="MuiTypography-root MuiTypography-label emotion-5"
+        data-testid="text-prefix-individual-metric-change"
+      >
+        +14.27%
+      </span>
+    </div>
+    <span
+      class="MuiTypography-root MuiTypography-label emotion-6"
+      data-testid="text-prefix-individual-metric-performance"
+    >
+      Since last week, your Survey Capture went up 14.27%
+    </span>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-7"
+      data-testid="text-prefix-individual-metric-goal"
+    >
+      Goal: 21
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`IndividualMetric should render correctly for different possessiveOfMetric 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: left;
+  -webkit-box-align: left;
+  -ms-flex-align: left;
+  align-items: left;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding: 8px;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.00938em;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 2.125rem;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+  font-size: 1.5rem;
+}
+
+.emotion-5 {
+  margin: 0;
+  font-family: Open Sans;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 8px;
+  margin-right: 8px;
+  color: #2e7d32;
+}
+
+.emotion-6 {
+  margin: 0;
+  color: #616161;
+  padding: 8px;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #616161;
+  padding: 8px;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <h6
+        class="MuiTypography-root MuiTypography-subtitle1 emotion-2"
+        data-testid="text-prefix-individual-metric-type"
+      >
+        NPS
+      </h6>
+    </div>
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <h4
+        class="MuiTypography-root MuiTypography-h4 emotion-4"
+        data-testid="text-prefix-individual-metric-value"
+      >
+        57.7
+      </h4>
+      <span
+        class="MuiTypography-root MuiTypography-label emotion-5"
+        data-testid="text-prefix-individual-metric-change"
+      >
+        +14.27
+      </span>
+    </div>
+    <span
+      class="MuiTypography-root MuiTypography-label emotion-6"
+      data-testid="text-prefix-individual-metric-performance"
+    >
+      Since last week, Market's NPS went up 14.27
+    </span>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-7"
+      data-testid="text-prefix-individual-metric-goal"
+    >
+      Goal: 21
+    </p>
+  </div>
+</DocumentFragment>
+`;

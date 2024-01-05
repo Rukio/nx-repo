@@ -1,0 +1,62 @@
+{
+  "name": "caremanager-data-access-types",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/caremanager/data-access-types/src",
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/ts/libs/caremanager/data-access-types"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../coverage/ts/libs/caremanager/data-access-types"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/libs/caremanager/data-access-types/**/*.ts"]
+      }
+    },
+    "generate-types": {
+      "executor": "nx:run-commands",
+      "inputs": [
+        "default",
+        "{workspaceRoot}/proto/**",
+        "{workspaceRoot}/package.json"
+      ],
+      "outputs": ["{projectRoot}/src/lib/__generated__"],
+      "dependsOn": ["setup-common-gen"],
+      "options": {
+        "command": "make generate-ts-caremanager"
+      }
+    },
+    "setup-common-gen": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "make setup-common-gen"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+
+        "cwd": "ts/libs/caremanager/data-access-types"
+      }
+    }
+  },
+  "tags": ["type:data-access"]
+}

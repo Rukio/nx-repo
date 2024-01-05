@@ -1,0 +1,35 @@
+syntax = "proto3";
+package ml_models.telep;
+
+import "common/auth/auth.proto";
+import "common/date.proto";
+import "common/demographic.proto";
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/ml_models/telep";
+option ruby_package = "MlModels::TelepGRPC";
+
+service TelepV1Service {
+  rpc GetEligibility(GetEligibilityRequest) returns (GetEligibilityResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:telep:all"
+    };
+  }
+}
+
+message GetEligibilityRequest {
+  optional string risk_protocol = 1;
+  optional int32 patient_age = 2;
+  optional float risk_score = 3;
+  optional string place_of_service = 4;
+  optional string market_name = 5;
+  optional common.DateTime timestamp = 6;
+  optional common.Sex gender = 7;
+  optional int64 care_request_id = 8;
+  repeated string dispatcher_notes = 9;
+  repeated string secondary_screening_notes = 10;
+}
+
+message GetEligibilityResponse {
+  optional bool eligible = 1;
+  optional string model_version = 2;
+}

@@ -1,0 +1,453 @@
+syntax = "proto3";
+package patients.accounts;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/patientaccountspb";
+option ruby_package = "PatientAccountsGRPC";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "audit/audit.proto";
+import "common/demographic.proto";
+import "common/patient.proto";
+import "common/logistics.proto";
+import "patients/patient.proto";
+
+service PatientAccountsService {
+  // Given a request with a valid JWT token attached, FindOrCreateAccountByToken
+  // will retrieve the account matching the claims on the token. If the account
+  // does not exist yet, it will be created using the claims on the token.
+  rpc FindOrCreateAccountByToken(FindOrCreateAccountByTokenRequest)
+      returns (FindOrCreateAccountByTokenResponse) {
+    option (google.api.http) = {
+      post: "/v1/accounts",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Account"
+    };
+  }
+
+  rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {
+    option (google.api.http) = {
+      get: "/v1/accounts/{account_id}",
+    };
+    option (audit.rule) = {
+      event_data_type: "Account"
+    };
+  }
+
+  rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse) {
+    option (google.api.http) = {
+      put: "/v1/accounts/{account_id}",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Account"
+    };
+  }
+
+  rpc CreateAddress(CreateAddressRequest) returns (CreateAddressResponse) {
+    option (google.api.http) = {
+      post: "/v1/accounts/{account_id}/addresses",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Address"
+    };
+  }
+
+  rpc GetAddress(GetAddressRequest) returns (GetAddressResponse) {
+    option (google.api.http) = {
+      get: "/v1/accounts/*/addresses/{address_id}",
+    };
+    option (audit.rule) = {
+      event_data_type: "Address"
+    };
+  }
+
+  rpc UpdateAddress(UpdateAddressRequest) returns (UpdateAddressResponse) {
+    option (google.api.http) = {
+      put: "/v1/accounts/*/addresses/{address_id}",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "Address"
+    };
+  }
+
+  rpc DeleteAddress(DeleteAddressRequest) returns (DeleteAddressResponse) {
+    option (google.api.http) = {
+      delete: "/v1/accounts/*/addresses/{address_id}",
+    };
+    option (audit.rule) = {
+      event_data_type: "Address"
+    };
+  }
+
+  rpc ListAddresses(ListAddressesRequest) returns (ListAddressesResponse) {
+    option (google.api.http) = {
+      get: "/v1/accounts/{account_id}/addresses",
+    };
+    option (audit.rule) = {
+      event_data_type: "Address"
+    };
+  }
+
+  rpc ListAccountPatientLinks(ListAccountPatientLinksRequest)
+      returns (ListAccountPatientLinksResponse) {
+    option (google.api.http) = {
+      get: "/v1/accounts/{account_id}/patients",
+    };
+    option (audit.rule) = {
+      event_data_type: "AccountPatientLink"
+    };
+  }
+
+  rpc GetAccountPatientLink(GetAccountPatientLinkRequest)
+      returns (GetAccountPatientLinkResponse) {
+    option (google.api.http) = {
+      get: "/v1/accounts/*/patients/{account_patient_link_id}",
+    };
+    option (audit.rule) = {
+      event_data_type: "AccountPatientLink"
+    };
+  }
+
+  rpc DeleteAccountPatientLink(DeleteAccountPatientLinkRequest)
+      returns (DeleteAccountPatientLinkResponse) {
+    option (google.api.http) = {
+      delete: "/v1/accounts/*/patients/{account_patient_link_id}",
+    };
+    option (audit.rule) = {
+      event_data_type: "AccountPatientLink"
+    };
+  }
+
+  rpc AddUnverifiedAccountPatientLink(AddUnverifiedAccountPatientLinkRequest)
+      returns (AddUnverifiedAccountPatientLinkResponse) {
+    option (google.api.http) = {
+      post: "/v1/accounts/{account_id}/patients/unverified",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "AccountPatientLink"
+    };
+  }
+
+  rpc UpdateAccountPatientLink(UpdateAccountPatientLinkRequest)
+      returns (UpdateAccountPatientLinkResponse) {
+    option (google.api.http) = {
+      put: "/v1/accounts/*/patients/{account_patient_link_id}",
+      body: "*"
+    };
+    option (audit.rule) = {
+      event_data_type: "AccountPatientLink"
+    };
+  }
+
+  // Given an account ID, return a list of the associated care request IDs
+  // for all patients and unverified patients.
+  rpc ListCareRequestIds(ListCareRequestIdsRequest)
+      returns (ListCareRequestIdsResponse) {
+    option (audit.rule) = {
+      event_data_type: "CareRequest"
+    };
+  }
+}
+
+message FindOrCreateAccountByTokenRequest {}
+
+message FindOrCreateAccountByTokenResponse {
+  Account account = 1;
+  optional bytes consistency_token = 2;
+}
+
+message GetAccountRequest {
+  int64 account_id = 1;
+}
+
+message GetAccountResponse {
+  Account account = 1;
+  optional bytes consistency_token = 2;
+}
+
+message UpdateAccountRequest {
+  int64 account_id = 1;
+  optional string given_name = 2;
+  optional string family_name = 3;
+  common.PhoneNumber number = 4;
+  optional bytes consistency_token = 5;
+}
+
+message UpdateAccountResponse {
+  Account account = 1;
+  optional bytes consistency_token = 2;
+}
+
+message CreateAddressRequest {
+  int64 account_id = 1;
+  common.Address address = 2;
+  // additional address details not in common.Address
+  optional string location_details = 3;
+  optional string previous_google_validation_response_id = 4;
+  optional FacilityType facility_type = 5;
+}
+
+message SuggestedAddress {
+  common.Address address = 1;
+  // Whether or not the input is a geocodeable address
+  bool geocodeable = 2;
+  // Must be included in next
+  // CreateAddressRequest.previous_google_validation_response_id
+  // https://developers.google.com/maps/documentation/address-validation/requests-validate-address#validate-update
+  // for details.
+  string google_validation_response_id = 4;
+  // Location latitude and longitude
+  common.Location location = 5;
+  // Human readable reasons why a new address is being suggested.
+  repeated string reasons = 6;
+  // Whether all parts of the address seem to be present
+  bool is_complete = 7;
+
+  reserved 3;
+  reserved "is_changed";
+}
+
+enum AddressValidationStatus {
+  ADDRESS_VALIDATION_STATUS_UNSPECIFIED = 0;
+
+  // Given address is invalid
+  ADDRESS_VALIDATION_STATUS_INVALID = 1;
+
+  // Given address is valid but flagged as incomplete. Address should be
+  // confirmed by the client
+  ADDRESS_VALIDATION_STATUS_NEEDS_CONFIRMATION = 2;
+
+  // Address is valid
+  ADDRESS_VALIDATION_STATUS_VALID = 3;
+}
+
+message CreateAddressResponse {
+  AddressValidationStatus address_validation_status = 5;
+
+  AccountAddress address = 1;
+  optional bytes consistency_token = 2;
+  // Suggested new address
+  SuggestedAddress suggested_address = 3;
+  reserved "location";
+  reserved 4;
+}
+
+message GetAddressRequest {
+  int64 address_id = 1;
+}
+
+message GetAddressResponse {
+  AccountAddress address = 1;
+  optional bytes consistency_token = 2;
+  reserved "location";
+  reserved 3;
+}
+
+message UpdateAddressRequest {
+  int64 address_id = 1;
+  common.Address address = 2;
+  optional bytes consistency_token = 3;
+  // additional address details not in common.Address
+  optional string location_details = 4;
+  optional string previous_google_validation_response_id = 5;
+  optional FacilityType facility_type = 6;
+}
+
+message UpdateAddressResponse {
+  AddressValidationStatus address_validation_status = 5;
+
+  AccountAddress address = 1;
+  optional bytes consistency_token = 2;
+  // Suggested new address
+  SuggestedAddress suggested_address = 3;
+  reserved "location";
+  reserved 4;
+}
+
+message DeleteAddressRequest {
+  int64 address_id = 1;
+}
+
+message DeleteAddressResponse {}
+
+message ListAddressesRequest {
+  int64 account_id = 1;
+}
+
+message ListAddressesResponse {
+  repeated ListAddressesResult results = 1;
+}
+
+message ListAddressesResult {
+  AccountAddress address = 1;
+  optional bytes consistency_token = 2;
+}
+
+// Patient accounts hold user data for patients or requesters.
+// Users will log in to their patient account to read or write information.
+// This differs from patient records in Athena and Patients Service, which hold
+// clinical and administrative data for particular patients.
+message Account {
+  int64 account_id = 1;
+  string email = 2;
+  optional string given_name = 3;
+  optional string family_name = 4;
+  common.PhoneNumber number = 5;
+  // timestamp at which the Address was last updated. used for consistency token
+  optional google.protobuf.Timestamp updated_at = 6;
+}
+
+// From
+// https://github.com/*company-data-covered*/station/blob/trunk/config/initializers/constants.rb#L12
+enum FacilityType {
+  FACILITY_TYPE_UNSPECIFIED = 0;
+  FACILITY_TYPE_HOME = 1;
+  FACILITY_TYPE_WORK = 2;
+  FACILITY_TYPE_INDEPENDENT_LIVING_FACILITY = 3;
+  FACILITY_TYPE_ASSISTED_LIVING_FACILITY = 4;
+  FACILITY_TYPE_SKILLED_NURSING_FACILITY = 5;
+  FACILITY_TYPE_CLINIC = 6;
+  FACILITY_TYPE_LONG_TERM_CARE_FACILITY = 7;
+  FACILITY_TYPE_REHABILITATION_FACILITY = 8;
+  FACILITY_TYPE_VIRTUAL_VISIT = 9;
+  FACILITY_TYPE_SENIOR_LIVING_TESTING = 10;
+  FACILITY_TYPE_SCHOOL = 11;
+  FACILITY_TYPE_HOTEL = 12;
+}
+
+message AccountAddress {
+  int64 id = 1;
+  int64 account_id = 2;
+  common.Address address = 3;
+  // additional address details not in common.Address
+  optional string location_details = 4;
+  // timestamp at which the Address was last updated. used for consistency token
+  optional google.protobuf.Timestamp updated_at = 5;
+  // location latitude and longitude
+  optional common.Location location = 6;
+  // the type of facility that is located at this address
+  optional FacilityType facility_type = 7;
+}
+
+// Describes the relationship between an account holder and a linked patient
+message ConsentingRelationship {
+  enum Category {
+    CATEGORY_UNSPECIFIED = 0;
+    // The account holder is the patient
+    CATEGORY_SELF = 1;
+    // The account holder is a family member or friend of the patient
+    CATEGORY_FAMILY_FRIEND = 2;
+    // The account holder is a clinician or an organization
+    CATEGORY_CLINICIAN_ORGANIZATION = 3;
+    // None of the other options
+    CATEGORY_OTHER = 4;
+  }
+  Category category = 1;
+}
+
+message AccountPatientLink {
+  enum AccessLevel {
+    ACCESS_LEVEL_UNSPECIFIED = 0;
+    // Account holder has access to the patient's PHI
+    ACCESS_LEVEL_PHI = 2;
+    // Account holder has full control over the patient, including viewing PHI,
+    // inviting other accounts, and designating another PRIMARY. A patient can
+    // only have one PRIMARY
+    ACCESS_LEVEL_PRIMARY = 3;
+    // Account holder only has access to information they themselves have
+    // previously provided about the patient
+    ACCESS_LEVEL_UNVERIFIED = 4;
+
+    reserved 1;
+    reserved "ACCESS_LEVEL_SELF";
+  }
+
+  // account patient ID
+  int64 id = 1;
+  // ID of the account associated with the patient
+  int64 account_id = 2;
+  // exactly one of verified_patient and unverified_patient must be NULL
+  oneof patient {
+    // patient for account, which maps to the DH patient.
+    common.Patient verified_patient = 3;
+    // unverified patient associated only with this account
+    patients.UnverifiedPatient unverified_patient = 4;
+  }
+  // access level that the account has to the patient
+  AccessLevel access_level = 5;
+  ConsentingRelationship consenting_relationship = 6;
+  // timestamp at which the Account Patient was last updated. used for
+  // consistency token
+  google.protobuf.Timestamp updated_at = 8;
+  // verified_patient or unverified_patient consistency token
+  bytes consistency_token = 9;
+}
+
+message ListAccountPatientLinksResult {
+  AccountPatientLink account_patient_link = 1;
+  bytes consistency_token = 2;
+}
+
+message ListAccountPatientLinksRequest {
+  // account patients account_id
+  int64 account_id = 1;
+}
+
+message ListAccountPatientLinksResponse {
+  repeated ListAccountPatientLinksResult result = 1;
+}
+
+message GetAccountPatientLinkRequest {
+  int64 account_patient_link_id = 1;
+}
+
+message GetAccountPatientLinkResponse {
+  AccountPatientLink account_patient_link = 1;
+  bytes consistency_token = 2;
+}
+
+message DeleteAccountPatientLinkRequest {
+  int64 account_patient_link_id = 1;
+}
+
+message DeleteAccountPatientLinkResponse {}
+
+message AddUnverifiedAccountPatientLinkRequest {
+  int64 account_id = 1;
+  int64 unverified_patient_id = 2;
+  ConsentingRelationship consenting_relationship = 4;
+
+  reserved 3;
+  reserved "access_level";
+}
+
+message AddUnverifiedAccountPatientLinkResponse {
+  AccountPatientLink account_patient_link = 1;
+  bytes consistency_token = 2;
+}
+
+message UpdateAccountPatientLinkRequest {
+  int64 account_patient_link_id = 1;
+  AccountPatientLink.AccessLevel access_level = 2;
+  ConsentingRelationship consenting_relationship = 3;
+  bytes consistency_token = 4;
+}
+
+message UpdateAccountPatientLinkResponse {
+  AccountPatientLink account_patient_link = 1;
+  bytes consistency_token = 2;
+}
+
+message ListCareRequestIdsRequest {
+  int64 account_id = 1;
+}
+
+message ListCareRequestIdsResponse {
+  repeated int64 care_request_ids = 1;
+}

@@ -1,0 +1,39 @@
+syntax = "proto3";
+package visit_value;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/visitvaluepb";
+option ruby_package = "VisitValueGRPC";
+
+import "audit/audit.proto";
+import "common/auth/auth.proto";
+
+service VisitValueService {
+  // GetVisitValue returns the points given to a Visit based on the
+  // combination of both the Visit's service line and payer.
+  rpc GetVisitValue(GetVisitValueRequest) returns (GetVisitValueResponse) {
+    option (audit.rule) = {
+      event_data_type: "Visit"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:visit_values:all"
+    };
+  }
+}
+
+message GetVisitValueRequest {
+  // service_line_short_name
+  //
+  // the short name of the Visit's service line.
+  optional string service_line_short_name = 1;
+  // payer_name
+  //
+  // the name of the Visit's payer.
+  optional string payer_name = 2;
+}
+
+message GetVisitValueResponse {
+  // completion_value_cents
+  //
+  // number of 1/100 points for completing the care request.
+  int64 completion_value_cents = 1;
+}

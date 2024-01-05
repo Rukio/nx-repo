@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "model_utils"
+version = "0.1.0"
+description = "Utils for the MLOps platform, generalized for all models"
+authors = ["Kuang-Han Huang <kuang-han.huang@*company-data-covered*.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10.12 <3.11"
+pytest = "^7.2.2"
+beartype = "^0.15.0"
+xgboost = "^1.7.2"
+pandas = "^1.5.3"
+boto3 = "^1.26.42"
+moto = "^4.0.13"
+scikit-learn = "^1.2.1"
+python-decouple = "^3.7"
+statsig = "^0.16.6"
+SQLAlchemy = "^2.0.9"
+psycopg2-binary = "^2.9.6"
+seaborn = "^0.12.2"
+# requests is imported by dependencies. we force the latest version for security
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.11.0"
+pytest-cov = "^4.0.0"
+ipykernel = "^6.25.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

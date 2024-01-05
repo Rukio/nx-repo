@@ -1,0 +1,781 @@
+syntax = "proto3";
+package insurance;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/insurancepb";
+option ruby_package = "InsuranceGRPC";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "insurance/entities.proto";
+import "common/demographic.proto";
+
+service InsuranceService {
+  // Creates and returns insurance payer.
+  rpc CreateInsurancePayer(CreateInsurancePayerRequest)
+      returns (CreateInsurancePayerResponse) {
+    option (google.api.http) = {
+      post: "/v1/payers"
+      body: "*"
+    };
+  }
+
+  // Returns insurance network by id.
+  rpc GetInsuranceNetwork(GetInsuranceNetworkRequest)
+      returns (GetInsuranceNetworkResponse) {
+    option (google.api.http) = {
+      get: "/v1/networks/{network_id}"
+    };
+  }
+
+  // Returns insurance network by insurance plan id.
+  rpc GetInsuranceNetworkByInsurancePlanID(
+      GetInsuranceNetworkByInsurancePlanIDRequest)
+      returns (GetInsuranceNetworkByInsurancePlanIDResponse) {}
+
+  // Returns insurance networks by given params.
+  rpc SearchInsuranceNetworks(SearchInsuranceNetworksRequest)
+      returns (SearchInsuranceNetworksResponse) {
+    option (google.api.http) = {
+      post: "/v1/networks/search"
+      body: "*"
+    };
+  }
+
+  // Returns insurance payer by id.
+  rpc GetInsurancePayer(GetInsurancePayerRequest)
+      returns (GetInsurancePayerResponse) {
+    option (google.api.http) = {
+      get: "/v1/payers/{payer_id}"
+    };
+  }
+
+  // Returns all insurance payers.
+  rpc ListInsurancePayers(ListInsurancePayersRequest)
+      returns (ListInsurancePayersResponse) {
+    option (google.api.http) = {
+      get: "/v1/payers"
+    };
+  }
+
+  // UpdateInsurancePayer updates exisitng insurance payer.
+  rpc UpdateInsurancePayer(UpdateInsurancePayerRequest)
+      returns (UpdateInsurancePayerResponse) {
+    option (google.api.http) = {
+      patch: "/v1/payers/{payer_id}"
+      body: "*"
+    };
+  }
+
+  // DeleteInsurancePayerRequest archives insurance payer.
+  rpc DeleteInsurancePayer(DeleteInsurancePayerRequest)
+      returns (DeleteInsurancePayerResponse) {
+    option (google.api.http) = {
+      delete: "/v1/payers/{payer_id}"
+    };
+  }
+
+  // ListModalities returns all possible modalities.
+  rpc ListModalities(ListModalitiesRequest) returns (ListModalitiesResponse) {
+    option (google.api.http) = {
+      get: "/v1/modalities"
+    };
+  }
+
+  // ListPayerGroups returns all payer groups.
+  rpc ListPayerGroups(ListPayerGroupsRequest)
+      returns (ListPayerGroupsResponse) {
+    option (google.api.http) = {
+      get: "/v1/payer_groups"
+    };
+  }
+
+  // ListInsuranceClassifications returns all insurance classifications.
+  rpc ListInsuranceClassifications(ListInsuranceClassificationsRequest)
+      returns (ListInsuranceClassificationsResponse) {
+    option (google.api.http) = {
+      get: "/v1/insurance_classifications"
+    };
+  }
+
+  // ListServiceLines returns list of all service lines.
+  rpc ListServiceLines(ListServiceLinesRequest)
+      returns (ListServiceLinesResponse) {
+    option (google.api.http) = {
+      get: "/v1/service_lines"
+    };
+  }
+
+  // ListStates returns all states.
+  rpc ListStates(ListStatesRequest) returns (ListStatesResponse) {
+    option (google.api.http) = {
+      get: "/v1/states"
+    };
+  }
+
+  // Creates and returns InsuranceNetwork.
+  rpc CreateInsuranceNetwork(CreateInsuranceNetworkRequest)
+      returns (CreateInsuranceNetworkResponse) {
+    option (google.api.http) = {
+      post: "/v1/networks"
+      body: "*"
+    };
+  }
+
+  // UpdateInsuranceNetwork updates existing InsuranceNetwork.
+  rpc UpdateInsuranceNetwork(UpdateInsuranceNetworkRequest)
+      returns (UpdateInsuranceNetworkResponse) {
+    option (google.api.http) = {
+      patch: "/v1/networks/{network_id}"
+      body: "*"
+    };
+  }
+
+  // Returns InsuranceNetwork modality configs based.
+  rpc ListInsuranceNetworkModalityConfigs(
+      ListInsuranceNetworkModalityConfigsRequest)
+      returns (ListInsuranceNetworkModalityConfigsResponse) {
+    option (google.api.http) = {
+      get: "/v1/networks/{network_id}/modality_configs"
+    };
+  }
+
+  // Updates modality configs for the specific InsuranceNetwork.
+  // It will overwrite modality configs for the given InsuranceNetwork.
+  rpc UpdateInsuranceNetworkModalityConfigs(
+      UpdateInsuranceNetworkModalityConfigsRequest)
+      returns (UpdateInsuranceNetworkModalityConfigsResponse) {
+    option (google.api.http) = {
+      patch: "/v1/networks/{network_id}/modality_configs"
+      body: "*"
+    };
+  }
+
+  // Updates all InsuranceNetworkStates for the specific InsuranceNetwork.
+  // It will overwrite InsuranceNetworkStates for the given InsuranceNetwork.
+  rpc UpdateInsuranceNetworkStates(UpdateInsuranceNetworkStatesRequest)
+      returns (UpdateInsuranceNetworkStatesResponse) {
+    option (google.api.http) = {
+      patch: "/v1/networks/{network_id}/states"
+      body: "*"
+    };
+  }
+
+  // Returns list of service line for given InsuranceNetwork.
+  rpc ListInsuranceNetworkServiceLines(ListInsuranceNetworkServiceLinesRequest)
+      returns (ListInsuranceNetworkServiceLinesResponse) {
+    option (google.api.http) = {
+      get: "/v1/networks/{network_id}/service_lines"
+    };
+  }
+
+  // UpsertInsuranceNetworkCreditCardRules upserts
+  // CreditCard rules for InsuranceNetwork.
+  rpc UpsertInsuranceNetworkCreditCardRules(
+      UpsertInsuranceNetworkCreditCardRulesRequest)
+      returns (UpsertInsuranceNetworkCreditCardRulesResponse) {
+    option (google.api.http) = {
+      patch: "/v1/networks/{network_id}/credit_card_rules"
+      body: "*"
+    };
+  }
+
+  // ListInsuranceNetworkCreditCardRules returns list of
+  // CreditCard rules for given InsuranceNetwork.
+  rpc ListInsuranceNetworkCreditCardRules(
+      ListInsuranceNetworkCreditCardRulesRequest)
+      returns (ListInsuranceNetworkCreditCardRulesResponse) {
+    option (google.api.http) = {
+      get: "/v1/networks/{network_id}/credit_card_rules"
+    };
+  }
+
+  // ListInsuranceNetworkAppointmentTypes returns list of
+  // AppointmentTypes for given InsuranceNetwork.
+  rpc ListInsuranceNetworkAppointmentTypes(
+      ListInsuranceNetworkAppointmentTypesRequest)
+      returns (ListInsuranceNetworkAppointmentTypesResponse) {
+    option (google.api.http) = {
+      get: "/v1/networks/{network_id}/appointment_types"
+    };
+  }
+
+  // UpdateInsuranceNetworkAppointmentTypes deletes existing AppointmentTypes
+  // and creates new AppointmentTypes for given InsuranceNetwork.
+  rpc UpdateInsuranceNetworkAppointmentTypes(
+      UpdateInsuranceNetworkAppointmentTypesRequest)
+      returns (UpdateInsuranceNetworkAppointmentTypesResponse) {
+    option (google.api.http) = {
+      patch: "/v1/networks/{network_id}/appointment_types"
+      body: "*"
+    };
+  }
+
+  // ListAppointmentTypes returns list of
+  // Athena appointment types.
+  rpc ListAppointmentTypes(ListAppointmentTypesRequest)
+      returns (ListAppointmentTypesResponse) {
+    option (google.api.http) = {
+      get: "/v1/appointment_types"
+    };
+  }
+}
+
+// sort_direction represents the sort direction of the list
+enum SortDirection {
+  SORT_DIRECTION_UNSPECIFIED = 0;
+  SORT_DIRECTION_ASCENDING = 1;
+  SORT_DIRECTION_DESCENDING = 2;
+}
+
+// Insurance Payer is the high-level insurance company.
+message InsurancePayer {
+  // Subset of related Insurance Network data
+  message InsuranceNetwork {
+    // Insurance Network ID.
+    int64 id = 1;
+
+    // Insurance Network name.
+    string name = 2;
+
+    // Insurance Network Package ID.
+    int64 package_id = 3;
+
+    // Insurance Network InsuranceClassification ID.
+    int64 insurance_classification_id = 4;
+
+    // Insurance Network InsurancePlan ID.
+    int64 insurance_plan_id = 5;
+  }
+
+  // Insurance Payer ID.
+  int64 id = 1;
+
+  // Insurance Payer name.
+  string name = 2;
+
+  // Notes for Insurance Payer.
+  string notes = 3;
+
+  // Current Insurance Payer status.
+  bool active = 4;
+
+  // ID of Insurance Payer group.
+  int64 payer_group_id = 5;
+
+  // The creation timestamp of the Insurance Payer.
+  google.protobuf.Timestamp created_at = 6;
+
+  // The last update timestamp of the Insurance Payer.
+  google.protobuf.Timestamp updated_at = 7;
+
+  // The timestamp of deletion the Insurance Payer or null.
+  google.protobuf.Timestamp deleted_at = 8;
+
+  // Array of Insurance Networks.
+  repeated InsuranceNetwork insurance_networks = 9;
+
+  // Array of unique state abbreviations for all payer's networks.
+  repeated string state_abbrs = 10;
+}
+
+// Modality defines all possible types of care that can be provided.
+message Modality {
+  // Modality id.
+  int64 id = 1;
+
+  // Name of modality for FE.
+  string display_name = 2;
+
+  // Modality value (virtual, in_person etc.)
+  string type = 3;
+}
+
+// InsuranceNetwork is the high-level insurance plan.
+message InsuranceNetwork {
+  // InsuranceNetwork ID.
+  int64 id = 1;
+
+  // InsuranceNetwork name.
+  string name = 2;
+
+  // Notes for InsuranceNetwork.
+  string notes = 3;
+
+  // ID of Package.
+  // 0 value is for Self Pay insurance plans.
+  int64 package_id = 4;
+
+  // ID of InsuranceClassification.
+  int64 insurance_classification_id = 5;
+
+  // ID of InsurancePlan.
+  int64 insurance_plan_id = 6;
+
+  // ID of InsurancePayer.
+  int64 insurance_payer_id = 7;
+
+  // Address for InsuranceNetwork.
+  common.Address address = 8 [deprecated = true];
+
+  // Enable eligibility check for current InsuranceNetwork.
+  bool eligibility_check = 9;
+
+  // Enable provider enrollment for current InsuranceNetwork.
+  bool provider_enrollment = 10;
+
+  // Current InsuranceNetwork status.
+  bool active = 11;
+
+  // The creation timestamp of the InsuranceNetwork.
+  google.protobuf.Timestamp created_at = 12;
+
+  // The last update timestamp of the InsuranceNetwork.
+  google.protobuf.Timestamp updated_at = 13;
+
+  // The timestamp of deletion the InsuranceNetwork or null.
+  google.protobuf.Timestamp deleted_at = 14;
+
+  // Array of unique state abbreviations for all payer's networks.
+  repeated string state_abbrs = 15;
+
+  // Name of InsurancePayer this network belongs to.
+  string insurance_payer_name = 16;
+
+  // Group ID of InsurancePayer this network belongs to.
+  int64 insurance_payer_group_id = 17;
+
+  // EMC code of this network.
+  string emc_code = 18;
+
+  // Addresses for InsuranceNetwork.
+  repeated common.Address addresses = 19;
+}
+
+message InsuranceNetworkAppointmentType {
+  // InsuranceNetworkAppointmentType ID.
+  int64 id = 1;
+
+  // InsuranceNetwork ID.
+  int64 network_id = 2;
+
+  // Station ServiceLine ID.
+  int64 service_line_id = 3;
+
+  // Modality type.
+  string modality_type = 4;
+
+  // Athena AppointmentType for new patient.
+  string new_patient_appointment_type = 5;
+
+  // Athena AppointmentType for existing patient.
+  string existing_patient_appointment_type = 6;
+}
+
+message CreateInsurancePayerRequest {
+  // Insurance Payer name.
+  string name = 1;
+
+  // Notes for Insurance Payer.
+  optional string notes = 2;
+
+  // Current Insurance Payer status.
+  optional bool active = 3;
+
+  // ID of Insurance Payer group.
+  optional int64 payer_group_id = 4;
+}
+
+message CreateInsurancePayerResponse {
+  // Insurance Payer.
+  InsurancePayer payer = 1;
+}
+
+message GetInsuranceNetworkRequest {
+  // Insurance network ID.
+  int64 network_id = 1;
+}
+
+message GetInsuranceNetworkResponse {
+  // Insurance Network.
+  InsuranceNetwork network = 1;
+}
+
+message GetInsuranceNetworkByInsurancePlanIDRequest {
+  // Insurance plan ID.
+  int64 insurance_plan_id = 1;
+}
+
+message GetInsuranceNetworkByInsurancePlanIDResponse {
+  // Insurance Network.
+  InsuranceNetwork network = 1;
+}
+
+message SearchInsuranceNetworksRequest {
+  // Insurance payer IDs for filtration.
+  // Passing this parameter will return all Insurance Networks
+  // associated with those Insurance Payers.
+  // If empty - will return Insurance Networks with any Insurance Payers.
+  repeated int64 payer_ids = 1;
+
+  // State abbreviations for filtration.
+  // If empty - will return Insurance Networks associated with any state.
+  repeated string state_abbrs = 2;
+
+  // Insurance classification IDs for filtration.
+  // If empty - will return Insurance Networks associated with any
+  // classification.
+  repeated int64 insurance_classifications = 3;
+
+  // String for search by InsuranceNetwork's name, payer name, address and
+  // package ID.
+  // If empty - will return all Insurance Networks matching all previous filter
+  // conditions.
+  optional string search = 4;
+
+  // SortField enum represents set of fields which can be used for sorting the
+  // networks.
+  enum SortField {
+    SORT_FIELD_UNSPECIFIED = 0;
+    SORT_FIELD_NAME = 1;
+    SORT_FIELD_UPDATED_AT = 2;
+  }
+
+  // sort_field represents field used for sorting the networks.
+  SortField sort_field = 5;
+
+  // sort_direction represents the sort direction of the network list by
+  // SortField.
+  SortDirection sort_direction = 6;
+
+  // Station billing city ID for filtration.
+  // Passing this parameter will return all Insurance Networks
+  // associated with given billing cities.
+  optional int64 billing_city_id = 7;
+
+  // Insurance package IDs for filtration.
+  // If empty - will return Insurance Networks associated with any
+  // package ID.
+  repeated int64 package_ids = 8;
+
+  // Station insurance plan IDs for filtration.
+  // If empty - will return Insurance Networks associated with any
+  // insurance plan ID.
+  repeated int64 insurance_plan_ids = 9;
+
+  // show_inactive flag for filtration.
+  // If empty - will return only active Insurance Networks.
+  optional bool show_inactive = 10;
+}
+
+message SearchInsuranceNetworksResponse {
+  // Array of Insurance Networks.
+  repeated InsuranceNetwork networks = 1;
+}
+
+message GetInsurancePayerRequest {
+  // Insurance payer ID.
+  int64 payer_id = 1;
+}
+
+message GetInsurancePayerResponse {
+  // Insurance Payer.
+  InsurancePayer payer = 1;
+}
+
+message ListInsurancePayersRequest {
+  // State abbreviations for filtration.
+  repeated string state_abbrs = 1;
+
+  // service_line_ids is used to filter the response.
+  optional string service_line_ids = 2;
+
+  // billing_city_ids is used to filter the response.
+  optional string billing_city_ids = 3;
+
+  // modality_ids is used to filter the response.
+  optional string modality_ids = 4;
+
+  // payer_name is used to filter the response.
+  optional string payer_name = 5;
+
+  // SortField enum represents set of fields which can be used for sorting the
+  // payers.
+  enum SortField {
+    SORT_FIELD_UNSPECIFIED = 0;
+    SORT_FIELD_NAME = 1;
+    SORT_FIELD_UPDATED_AT = 2;
+  }
+
+  // sort_field represents field used for sorting the payers.
+  SortField sort_field = 6;
+
+  // sort_direction represents the sort direction of the payer list by
+  // SortField.
+  SortDirection sort_direction = 7;
+}
+
+message ListInsurancePayersResponse {
+  // Array of Insurance Payers.
+  repeated InsurancePayer payers = 1;
+}
+
+message UpdateInsurancePayerRequest {
+  // Insurance Payer ID.
+  int64 payer_id = 1;
+
+  // Insurance Payer name.
+  string name = 2;
+
+  // Notes for Insurance Payer.
+  optional string notes = 3;
+
+  // Current Insurance Payer status.
+  optional bool active = 4;
+
+  // ID of Insurance Payer group.
+  optional int64 payer_group_id = 5;
+}
+
+message UpdateInsurancePayerResponse {
+  // Insurance Payer.
+  InsurancePayer payer = 1;
+}
+
+message DeleteInsurancePayerRequest {
+  // Insurance Payer ID.
+  int64 payer_id = 1;
+}
+
+message DeleteInsurancePayerResponse {}
+
+message ListModalitiesRequest {}
+
+message ListModalitiesResponse {
+  // Array of modalities.
+  repeated Modality modalities = 1;
+}
+
+message ListServiceLinesRequest {}
+
+message ListServiceLinesResponse {
+  // Array of service lines.
+  repeated ServiceLine service_lines = 1;
+}
+
+message ListPayerGroupsRequest {}
+
+message ListPayerGroupsResponse {
+  // payer_group represents a list of Payer group data.
+  repeated PayerGroup payer_groups = 1;
+}
+
+message ListStatesRequest {}
+
+message ListStatesResponse {
+  // represents a list of state data.
+  repeated State states = 1;
+}
+
+message CreateInsuranceNetworkRequest {
+  // InsuranceNetwork name.
+  string name = 1;
+
+  // InsuranceNetwork notes.
+  optional string notes = 2;
+
+  // ID of Package.
+  // Required field, сan be "0" for support of Self Pay insurance plans.
+  optional int64 package_id = 3;
+
+  // ID of InsuranceClassification.
+  int64 insurance_classification_id = 4;
+
+  // ID of InsurancePayer.
+  int64 insurance_payer_id = 5;
+
+  // Address for InsuranceNetwork.
+  optional common.Address address = 6 [deprecated = true];
+
+  // Enable eligibility check for current InsuranceNetwork.
+  optional bool eligibility_check = 7;
+
+  // Enable provider enrollment for current InsuranceNetwork.
+  optional bool provider_enrollment = 8;
+
+  // Current InsuranceNetwork status.
+  optional bool active = 9;
+
+  // EMC code for InsuranceNetwork.
+  optional string emc_code = 10;
+
+  // Addresses for InsuranceNetwork.
+  repeated common.Address addresses = 11;
+}
+
+message CreateInsuranceNetworkResponse {
+  // Newly created InsuranceNetwork.
+  InsuranceNetwork network = 1;
+}
+
+message UpdateInsuranceNetworkRequest {
+  // InsuranceNetwork ID.
+  int64 network_id = 1;
+
+  // InsuranceNetwork name.
+  string name = 2;
+
+  // InsuranceNetwork notes.
+  optional string notes = 3;
+
+  // ID of Package.
+  // Required field, сan be "0" for support of Self Pay insurance plans.
+  optional int64 package_id = 4;
+
+  // ID of InsuranceClassification.
+  int64 insurance_classification_id = 5;
+
+  // ID of InsurancePlan.
+  int64 insurance_plan_id = 6;
+
+  // ID of InsurancePayer.
+  int64 insurance_payer_id = 7;
+
+  // Address for InsuranceNetwork.
+  optional common.Address address = 8 [deprecated = true];
+
+  // Enable eligibility check for current InsuranceNetwork.
+  optional bool eligibility_check = 9;
+
+  // Enable provider enrollment for current InsuranceNetwork.
+  optional bool provider_enrollment = 10;
+
+  // Current InsuranceNetwork status.
+  optional bool active = 11;
+
+  // EMC code for InsuranceNetwork.
+  optional string emc_code = 12;
+
+  // Address for InsuranceNetwork.
+  repeated common.Address addresses = 13;
+}
+
+message UpdateInsuranceNetworkResponse {
+  // Updated InsuranceNetwork.
+  InsuranceNetwork network = 1;
+}
+
+message ListInsuranceNetworkModalityConfigsRequest {
+  // ID of InsuranceNetwork.
+  int64 network_id = 1;
+}
+
+message ListInsuranceNetworkModalityConfigsResponse {
+  // Array of InsuranceNetwork modality configs.
+  repeated InsuranceNetworkModalityConfig configs = 1;
+}
+
+message UpdateInsuranceNetworkModalityConfigsRequest {
+  // ID of InsuranceNetwork.
+  int64 network_id = 1;
+
+  // List of new InsuranceNetwork modality configs.
+  repeated InsuranceNetworkModalityConfig configs = 2;
+}
+
+message UpdateInsuranceNetworkModalityConfigsResponse {
+  // List of InsuranceNetwork modality configs after update.
+  repeated InsuranceNetworkModalityConfig configs = 1;
+}
+
+message UpdateInsuranceNetworkStatesRequest {
+  // ID of InsuranceNetwork.
+  int64 network_id = 1;
+
+  // Array of state abbreviations for given InsuranceNetwork.
+  repeated string state_abbrs = 2;
+}
+
+message UpdateInsuranceNetworkStatesResponse {
+  // Array of InsuranceNetwork's state abbreviations after update.
+  repeated string state_abbrs = 1;
+}
+
+message ListInsuranceNetworkServiceLinesRequest {
+  // ID of InsuranceNetwork.
+  int64 network_id = 1;
+}
+
+message ListInsuranceNetworkServiceLinesResponse {
+  // Array of service lines.
+  repeated ServiceLine service_lines = 1;
+}
+
+message UpsertInsuranceNetworkCreditCardRulesRequest {
+  // ID of InsuranceNetwork.
+  int64 network_id = 1;
+
+  // List of InsuranceNetworkCreditCardRule to upsert.
+  repeated InsuranceNetworkCreditCardRule credit_card_rules = 2;
+}
+
+message UpsertInsuranceNetworkCreditCardRulesResponse {}
+
+message ListInsuranceNetworkCreditCardRulesRequest {
+  // ID of InsuranceNetwork.
+  int64 network_id = 1;
+}
+
+message ListInsuranceNetworkCreditCardRulesResponse {
+  // InsuranceNetwork CreditCard rules list.
+  repeated InsuranceNetworkCreditCardRule credit_card_rules = 1;
+}
+
+message ListAppointmentTypesRequest {}
+
+message ListAppointmentTypesResponse {
+  // Athena appointment types list.
+  repeated AppointmentType appointment_types = 1;
+}
+
+message ListInsuranceNetworkAppointmentTypesRequest {
+  // InsuranceNetwork ID.
+  int64 network_id = 1;
+
+  // Station ServiceLine ID.
+  // Filter to return appointment types for ServiceLine.
+  optional int64 service_line_id = 2;
+}
+
+message ListInsuranceNetworkAppointmentTypesResponse {
+  // InsuranceNetwork AppointmentTypes list.
+  repeated InsuranceNetworkAppointmentType appointment_types = 1;
+}
+
+message UpdateInsuranceNetworkAppointmentTypesRequest {
+  message InsuranceNetworkAppointmentType {
+    // InsuranceNetwork ID.
+    int64 network_id = 1;
+
+    // Station ServiceLine ID.
+    int64 service_line_id = 2;
+
+    // Modality type.
+    string modality_type = 3;
+
+    // Athena AppointmentType for new patient.
+    string new_patient_appointment_type = 4;
+
+    // Athena AppointmentType for existing patient.
+    string existing_patient_appointment_type = 5;
+  }
+
+  // InsuranceNetwork ID.
+  int64 network_id = 1;
+
+  repeated InsuranceNetworkAppointmentType appointment_types = 2;
+}
+
+message UpdateInsuranceNetworkAppointmentTypesResponse {
+  // List of newly created InsuranceNetwork AppointmentTypes.
+  repeated InsuranceNetworkAppointmentType appointment_types = 1;
+}

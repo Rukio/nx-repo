@@ -1,0 +1,25 @@
+{
+  "insurance": {
+    "id": "206",
+    "name": "Medicare",
+    "priority": 1,
+    "patient_id": "1",
+    "member_id": "777"
+  },
+  "patient_insurances": [
+    {
+      "id": "205",
+      "name": "United Healthcare",
+      "priority": 1,
+      "patient_id": "1",
+      "member_id": "333"
+    },
+    {
+      "id": "206",
+      "name": "Medicare",
+      "priority": 2,
+      "patient_id": "1",
+      "member_id": "777"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Do a git diff against the common ancestor trunk.
+
+set -euo pipefail
+
+git diff "$(git merge-base trunk HEAD)"

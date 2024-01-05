@@ -1,0 +1,5 @@
+# Configuration file for finding location of `buf.yaml` files.
+# Documentation at https://docs.buf.build/configuration/v1/buf-work-yaml
+version: v1
+directories:
+  - proto

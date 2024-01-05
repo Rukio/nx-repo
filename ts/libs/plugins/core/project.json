@@ -1,0 +1,83 @@
+{
+  "name": "plugins-core",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/plugins/core/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/ts/libs/plugins/core",
+        "main": "ts/libs/plugins/core/src/index.ts",
+        "tsConfig": "ts/libs/plugins/core/tsconfig.lib.json",
+        "assets": [
+          "ts/libs/plugins/core/*.md",
+          {
+            "input": "./ts/libs/plugins/core/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./ts/libs/plugins/core/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./ts/libs/plugins/core",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./ts/libs/plugins/core",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "ts/libs/plugins/core/**/*.ts",
+          "ts/libs/plugins/core/package.json",
+          "ts/libs/plugins/core/generators.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ts/libs/plugins/core/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/libs/plugins/core"
+      }
+    }
+  },
+  "tags": ["type:plugin"]
+}

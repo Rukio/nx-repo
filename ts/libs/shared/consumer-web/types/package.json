@@ -1,0 +1,10 @@
+{
+  "name": "@*company-data-covered*/consumer-web-types",
+  "version": "1.1.76",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/*company-data-covered*/services.git",
+    "directory": "ts/libs/shared/consumer-web/types"
+  }
+}

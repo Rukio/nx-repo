@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "on-scene"
+version = "0.1.0"
+description = "Library for on-scene model"
+authors = ["Kuang-Han Huang <kuang-han.huang@*company-data-covered*.com>"]
+readme = "README.md"
+packages = [{include = "on_scene"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10.12 <3.11"
+model_utils = {path = "../model_utils", develop = true}
+normalized_protocol_names = {path = "../normalized_protocol_names", develop = true}
+feature_store = {path = "../../tools/feature_store", develop = true}
+proto = {path = "../proto", develop = true}
+monitoring = {path = "../monitoring", develop = true}
+pydantic = "^1.10.7"
+pendulum = "^2.1.2"
+pyyaml = ">=6.0,<7.0" # mandatory since cython 3.0.0 broke prior versions (upperbound arbitrary)
+# requests is imported by dependencies. we force the latest version for security
+requests = "^2.31.0"
+# note: cryptography not directly needed, but must bump due to unsafe old vers
+cryptography = "^41.0.2"
+scikit-learn = "1.2.2"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.12.0"
+ipykernel = "^6.22.0"
+psycopg2-binary = "^2.9.6"
+s3fs = "^2023.5.0"
+pytest-cov = "^4.0.0"
+pytest-rng = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

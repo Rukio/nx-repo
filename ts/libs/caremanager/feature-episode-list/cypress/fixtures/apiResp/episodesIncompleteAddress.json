@@ -1,0 +1,508 @@
+{
+  "meta": {
+    "current_page": 1,
+    "page_size": 25,
+    "total_pages": 2,
+    "total_results": 26
+  },
+  "episodes": [
+    {
+      "id": "1",
+      "care_day": "4",
+      "admitted_at": "2022-02-28T05:39:37.632Z",
+      "discharged_at": "2022-02-28T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": "Suspected",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Advanced Care"
+      },
+      "service_line_id": "1",
+      "care_phase": {
+        "id": "2",
+        "name": "High Acuity"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "1",
+        "first_name": "QA",
+        "middle_name": "",
+        "last_name": "Automation",
+        "date_of_birth": "1999-04-03",
+        "sex": "male",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "",
+        "address_city": "Denver",
+        "address_state": "CO",
+        "address_zipcode": "04350",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "0",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse.",
+        "note_kind": "daily_update",
+        "noteable_id": 0,
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "1",
+        "nurse_navigator": "2",
+        "t1": "3",
+        "t2": "4"
+      }
+    },
+    {
+      "id": "2",
+      "care_day": "4",
+      "admitted_at": "2022-02-26T05:39:37.632Z",
+      "discharged_at": "2022-02-26T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": " Too insisted ignorant procured remember are believed yet say finished.",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Low Care"
+      },
+      "service_line_id": "1",
+      "care_phase": {
+        "id": "3",
+        "name": "Transition - High"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "2",
+        "first_name": "Automation",
+        "middle_name": "",
+        "last_name": "QA",
+        "date_of_birth": "2000-04-03",
+        "sex": "other",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "",
+        "address_city": "",
+        "address_state": "TX",
+        "address_zipcode": "90000",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "0",
+        "details": "Invitation on an advantages collecting.",
+        "note_kind": "daily_update",
+        "noteable_id": 0,
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "10",
+        "nurse_navigator": "20",
+        "t1": "30",
+        "t2": "40"
+      }
+    },
+    {
+      "id": "3",
+      "care_day": "4",
+      "admitted_at": "2022-02-24T05:39:37.632Z",
+      "discharged_at": "2022-02-24T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": "Difficulty on insensible reasonable in. From as went he they. Preference themselves me as thoroughly partiality considered on in estimating.",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Mid Care"
+      },
+      "service_line_id": "1",
+      "care_phase": {
+        "id": "5",
+        "name": "Closed"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "3",
+        "first_name": "Roy",
+        "middle_name": "",
+        "last_name": "Kent",
+        "date_of_birth": "1980-11-03",
+        "sex": "female",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "",
+        "address_city": "",
+        "address_state": "",
+        "address_zipcode": "90210",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "0",
+        "details": "Depart do be so he enough talent. Sociable formerly six but handsome.",
+        "note_kind": "daily_update",
+        "noteable_id": 0,
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "100",
+        "nurse_navigator": "200",
+        "t1": "300",
+        "t2": "400"
+      }
+    },
+    {
+      "id": "4",
+      "care_day": "4",
+      "admitted_at": "2022-02-28T05:39:37.632Z",
+      "discharged_at": "2022-02-28T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": "Suspected",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Advanced Care"
+      },
+      "service_line_id": "1",
+      "care_phase": {
+        "id": "2",
+        "name": "High Acuity"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "4",
+        "first_name": "QA",
+        "middle_name": "",
+        "last_name": "Automation",
+        "date_of_birth": "1999-04-03",
+        "sex": "male",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "",
+        "address_city": "Denver",
+        "address_state": "CO",
+        "address_zipcode": "04350",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "0",
+        "details": "7/24: Stable w good sats thought he says he feels a little worse.",
+        "note_kind": "daily_update",
+        "noteable_id": 0,
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "1",
+        "nurse_navigator": "2",
+        "t1": "3",
+        "t2": "4"
+      }
+    },
+    {
+      "id": "5",
+      "care_day": "4",
+      "admitted_at": "2022-02-26T05:39:37.632Z",
+      "discharged_at": "2022-02-26T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": " Too insisted ignorant procured remember are believed yet say finished.",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Low Care"
+      },
+      "service_line_id": "1",
+      "care_phase": {
+        "id": "3",
+        "name": "Transition - High"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "5",
+        "first_name": "Automation",
+        "middle_name": "",
+        "last_name": "QA",
+        "date_of_birth": "2000-04-03",
+        "sex": "other",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "",
+        "address_city": "",
+        "address_state": "TX",
+        "address_zipcode": "90000",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "0",
+        "details": "Invitation on an advantages collecting.",
+        "note_kind": "daily_update",
+        "noteable_id": 0,
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "10",
+        "nurse_navigator": "20",
+        "t1": "30",
+        "t2": "40"
+      }
+    },
+    {
+      "id": "6",
+      "care_day": "4",
+      "admitted_at": "2022-02-24T05:39:37.632Z",
+      "discharged_at": "2022-02-24T05:39:37.632Z",
+      "source": "string",
+      "patient_summary": "Difficulty on insensible reasonable in. From as went he they. Preference themselves me as thoroughly partiality considered on in estimating.",
+      "primary_diagnosis": "Some diagnosis",
+      "payer": "IMSS",
+      "doctors_primary_care": "Billy Jean",
+      "created_at": "2022-02-24T05:39:37.632Z",
+      "updated_at": "2022-02-24T05:39:37.632Z",
+      "service_line": {
+        "id": "0",
+        "name": "Mid Care"
+      },
+      "service_line_id": "1",
+      "care_phase": {
+        "id": "5",
+        "name": "Closed"
+      },
+      "market": {
+        "id": "0",
+        "name": "Denver",
+        "short_name": "DNV",
+        "schedule_days": []
+      },
+      "user": {
+        "id": "0",
+        "first_name": "Someone",
+        "last_name": "Lastname",
+        "email": "user@example.com",
+        "job_title": "developer"
+      },
+      "patient": {
+        "id": "6",
+        "first_name": "Roy",
+        "middle_name": "",
+        "last_name": "Kent",
+        "date_of_birth": "1980-11-03",
+        "sex": "female",
+        "phone_number": "55555",
+        "athena_medical_record_number": "string",
+        "medical_power_of_attorney_details": "string",
+        "payer": "string",
+        "preferred_pharmacy_details": "string",
+        "primary_care_provider_details": "string",
+        "address_street": "",
+        "address_city": "",
+        "address_state": "",
+        "address_zipcode": "90210",
+        "address_notes": "string"
+      },
+      "most_relevant_note": {
+        "id": "0",
+        "details": "Depart do be so he enough talent. Sociable formerly six but handsome.",
+        "note_kind": "daily_update",
+        "noteable_id": 0,
+        "noteable_type": "string",
+        "created_by_user_id": "1",
+        "updated_by_user_id": "1",
+        "created_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        },
+        "last_updated_by": {
+          "id": "0",
+          "first_name": "Noter",
+          "last_name": "McNote",
+          "email": "user@example.com",
+          "job_title": "string"
+        }
+      },
+      "incomplete_tasks": {
+        "daily_and_onboarding": "100",
+        "nurse_navigator": "200",
+        "t1": "300",
+        "t2": "400"
+      }
+    }
+  ]
+}

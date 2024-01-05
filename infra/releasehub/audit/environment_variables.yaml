@@ -1,0 +1,24 @@
+# Note: There is no deployment method for this configuration.
+# ReleaseHub is the source of truth.
+---
+defaults: []
+services:
+  audit-service:
+    - key: DATABASE_URL
+      value: postgres://postgres@postgres:5432/audit
+    - key: AUTHORIZATION_DISABLED
+      value: true
+    - key: GRPC_LISTEN_ADDR
+      value: ':8471'
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+  postgres:
+    - key: POSTGRES_HOST_AUTH_METHOD
+      value: trust
+    - key: DATABASE_URL
+      value: postgres://postgres@postgres:5432
+    - key: DATABASE_NAME
+      value: audit
+  db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@postgres:5432/audit?sslmode=disable

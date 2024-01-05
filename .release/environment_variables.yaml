@@ -1,0 +1,527 @@
+---
+mapping:
+  STATION_URL: STATION_INGRESS_URL
+  ONBOARDING_BASE_URL: ONBOARDING_WEB_INGRESS_URL
+  INSURANCE_SERVICE_URL: INSURANCE_SERVICE_INGRESS_URL
+  NX_INSURANCE_DASHBOARD_API_URL: INSURANCE_SERVICE_INGRESS_URL
+  NX_CLINICALKPI_DASHBOARD_API_URL: CLINICALKPI_SERVICE_INGRESS_URL
+  NX_CLINICALKPI_DASHBOARD_STATION_URL: STATION_INGRESS_URL
+  RISK_STRAT_SERVICE_URL: RISKSTRATIFICATION_SERVICE_INGRESS_URL
+  OPA_URL: POLICY_SERVICE_INGRESS_URL
+  POP_HEALTH_SERVICE_URL: POPHEALTH_SERVICE_INGRESS_URL
+defaults: []
+services:
+  logistics-service:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/logistics
+    - key: AUTHORIZATION_DISABLED
+      value: false
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: LOGISTICS_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: '$secrets.rsm.logistics_service_m2m_auth0_client_id'
+      secret: true
+    - key: LOGISTICS_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.logistics_service_m2m_auth0_client_secret'
+      secret: true
+    - key: LOGISTICS_SERVICE_M2M_AUTH0_AUDIENCE
+      value: station.*company-data-covered*.com
+    - key: LOGISTICS_SERVICE_M2M_AUTH0_URL
+      value: https://staging-auth.*company-data-covered*.com/oauth/token
+    - key: OSRM_ADDR
+      value: https://vroom.*company-data-covered*.com:5000
+    - key: OPTIMIZER_GRPC_ADDR
+      value: logistics-optimizer:8081
+    - key: OPTIMIZER_SETTINGS_POLL_INTERVAL
+      value: 1m
+    - key: STATION_GRPC_ADDR
+      value: station-grpc:9001
+    - key: STATSIG_SDK_SERVER_SECRET_KEY
+      value: '$secrets.rsm.statsig_secret_key'
+      secret: true
+    - key: STATSIG_ENVIRONMENT
+      value: uat
+  clinicalkpi-service:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/clinicalkpi
+    - key: AUTHORIZATION_DISABLED
+      value: false
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: AUTH0_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: CLINICALKPI_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: '$secrets.rsm.clinicalkpi_service_m2m_auth0_client_id'
+      secret: true
+    - key: CLINICALKPI_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.clinicalkpi_service_m2m_auth0_client_secret'
+      secret: true
+    - key: ALLOWED_HTTP_ORIGINS
+      value: https://*.*company-data-covered*.com
+    - key: SEED_CALCULATED_METRICS_ON_SERVER_START
+      value: true
+    - key: SEED_STAGING_METRICS_ON_SERVER_START
+      value: true
+    - key: SEED_LOOK_BACK_METRICS_ON_SERVER_START
+      value: true
+    - key: SEED_LEADER_HUB_METRICS_ON_SERVER_START
+      value: true
+    - key: DEV_MODE
+      value: true
+    - key: STATSIG_ENVIRONMENT
+      value: uat
+    - key: STATSIG_SDK_SERVER_SECRET_KEY
+      value: '$secrets.rsm.statsig_secret_key'
+      secret: true
+  patients-service:
+    - key: AUTHORIZATION_DISABLED
+      value: false
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: PATIENTS_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: '$secrets.rsm.patients_service_m2m_auth0_client_id'
+      secret: true
+    - key: PATIENTS_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.patients_service_m2m_auth0_client_secret'
+      secret: true
+    - key: ENABLE_ATHENA_SERVICE
+      value: true
+    - key: AUDIT_SERVICE_GRPC_ADDRESS
+      value: audit-service:8482
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/patients
+    - key: PATIENTS_SERVICE_M2M_AUTH0_URL
+      value: https://staging-auth.*company-data-covered*.com/oauth/token
+    - key: PATIENTS_SERVICE_M2M_AUTH0_AUDIENCE
+      value: station.*company-data-covered*.com
+    - key: PATIENTS_SERVICE_AUTH0_ISSUER
+      value: https://dispatch-development.auth0.com/
+    - key: ATHENA_SERVICE_GRPC_ADDRESS
+      value: athena-service:8472
+    - key: STATSIG_ENVIRONMENT
+      value: uat
+    - key: STATSIG_SDK_SERVER_SECRET_KEY
+      value: '$secrets.rsm.statsig_secret_key'
+      secret: true
+    - key: STATION_PATIENTS_SERVICE_GRPC_ADDR
+      value: station-grpc:9001
+  caremanager-service:
+    - key: ACT_AS_PROXY
+      value: false
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/caremanager
+    - key: AUTHORIZATION_DISABLED
+      value: false
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: AUTH0_AUDIENCE
+      value: internal.*company-data-covered*.com,caremanager-service.*company-data-covered*.com,sCKFY4qtV1Pwx8WuVV5zWbgIT0YcQmij
+    - key: CAREMANAGER_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: '$secrets.rsm.caremanager_service_m2m_auth0_client_id'
+      secret: true
+    - key: CAREMANAGER_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.caremanager_service_m2m_auth0_client_secret'
+      secret: true
+    - key: AUTH0_AUDIT_SERVICE_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: ALLOWED_HTTP_ORIGINS
+      value: https://caremanager-*.release.*company-data-covered*.com
+    - key: STATION_GRPC_ADDRESS
+      value: station-grpc:9001
+    - key: STATSIG_SDK_SERVER_SECRET_KEY
+      value: '$secrets.rsm.statsig_secret_key'
+      secret: true
+    - key: STATSIG_ENVIRONMENT
+      value: uat
+    - key: LOGISTICS_SERVICE_GRPC_ADDRESS
+      value: logistics-service:8081
+    - key: AUTH0_LOGISTICS_SERVICE_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: DEV_MODE
+      value: true
+  modality-service:
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: ALLOWED_HTTP_ORIGINS
+      value: https://*.*company-data-covered*.com
+    - key: MODALITY_INSURANCE_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: '$secrets.rsm.modality_service_m2m_auth0_client_id'
+      secret: true
+    - key: MODALITY_INSURANCE_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.modality_service_m2m_auth0_client_secret'
+      secret: true
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/modality
+    - key: INSURANCE_SERVICE_GRPC_ADDR
+      value: insurance-service:8096
+    - key: INSURANCE_SERVICE_AUTH0_AUDIENCE
+      value: insurance-service.*company-data-covered*.com
+  insurance-service:
+    - key: ALLOWED_HTTP_ORIGINS
+      value: https://*.*company-data-covered*.com
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/insurance
+    - key: INSURANCE_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: '$secrets.rsm.insurance_service_m2m_auth0_client_id'
+      secret: true
+    - key: INSURANCE_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.insurance_service_m2m_auth0_client_secret'
+      secret: true
+    - key: STATION_GRPC_ADDRESS
+      value: station-grpc:9001
+    - key: AUTH0_STATION_AUDIENCE
+      value: station.*company-data-covered*.com
+    - key: AUTH0_AUDIENCE
+      value: 4zBDRbWBhpOigKx8TUA4at8VSnvkKGV7
+  services-postgres:
+    - key: POSTGRES_HOST_AUTH_METHOD
+      value: trust
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432
+    - key: DATABASE_NAME
+      value: logistics
+    - key: AUDIT_DATABASE_NAME
+      value: audit
+    - key: CLINICALKPI_DATABASE_NAME
+      value: clinicalkpi
+    - key: CAREMANAGER_DATABASE_NAME
+      value: caremanager
+    - key: MODALITY_DATABASE_NAME
+      value: modality
+    - key: INSURANCE_DATABASE_NAME
+      value: insurance
+    - key: PATIENT_DATABASE_NAME
+      value: patients
+    - key: RISKSTRATIFICATION_DATABASE_NAME
+      value: riskstratification
+    - key: POPHEALTH_DATABASE_NAME
+      value: pophealth
+    - key: PARTNER_DATABASE_NAME
+      value: partner
+  services-elasticsearch:
+    - key: discovery.type
+      value: single-node
+    - key: bootstrap.memory_lock
+      value: true
+    - key: ES_JAVA_OPTS
+      value: '-Xms512m -Xmx512m'
+    - key: ELASTIC_PASSWORD
+      value: donotuse
+    - key: xpack.security.enabled
+      value: true
+  audit-service:
+    - key: GRPC_LISTEN_ADDR
+      value: ':8482'
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/audit?sslmode=disable
+  tytocare-service:
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: TYTOCARE_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: '$secrets.rsm.tytocare_service_m2m_auth0_client_id'
+      secret: true
+    - key: TYTOCARE_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.tytocare_service_m2m_auth0_client_secret'
+      secret: true
+    - key: TYTOCARE_SERVICE_M2M_AUTH0_AUDIENCE
+      value: station.*company-data-covered*.com
+    - key: TYTOCARE_SERVICE_M2M_AUTH0_URL
+      value: https://staging-auth.*company-data-covered*.com/oauth/token
+    - key: TYTO_CARE_BASE_URL
+      value: https://app-stage1.tytocare.com/api
+    - key: TYTO_CARE_TOKEN_TYPE
+      value: Basic
+    - key: TYTO_CARE_ACCESS_TOKEN
+      value: '$secrets.rsm.tytocare_access_token'
+      secret: true
+    - key: ALLOWED_HTTP_ORIGINS
+      value: https://*.*company-data-covered*.com
+    - key: SSL_PROTOCOLS_OVERRIDE
+      value: TLSv1.2
+    - key: AUTH0_STATION_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: AUTH0_AUDIENCE
+      value: internal.*company-data-covered*.com
+  riskstratification-service:
+    - key: ALLOWED_HTTP_ORIGINS
+      value: https://*.*company-data-covered*.com
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: AUTH0_STATION_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: RISKSTRATIFICATION_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: BSqKmltObKeD55urXO2ifib2iKD6PX8X
+    - key: RISKSTRATIFICATION_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.riskstratification_service_m2m_auth0_client_secret'
+      secret: true
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/riskstratification?sslmode=disable
+  athena-service:
+    - key: ATHENA_CLIENT_ID
+      value: '$secrets.rsm.athena_client_id'
+      secret: true
+    - key: ATHENA_SECRET_KEY
+      value: '$secrets.rsm.athena_secret_key'
+      secret: true
+    - key: ATHENA_BASE_URL
+      value: https://api.preview.platform.athenahealth.com/v1
+    - key: ATHENA_AUTH_URL
+      value: https://api.preview.platform.athenahealth.com/oauth2/v1/token
+    - key: AUTHORIZATION_DISABLED
+      value: false
+    - key: AUDIT_SVC_GRPC_ADDR
+      value: audit-service:8482
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: ATHENA_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: '$secrets.rsm.athena_service_m2m_auth0_client_id'
+      secret: true
+    - key: ATHENA_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.athena_service_m2m_auth0_client_secret'
+      secret: true
+    - key: REDIS_URL
+      value: redis://services-redis:6379
+    - key: ENABLE_REDIS
+      value: true
+    - key: ENABLE_INSURANCE_ELIGIBILITY_CHECK
+      value: false
+    - key: STATSIG_ENVIRONMENT
+      value: uat
+    - key: STATSIG_SDK_SERVER_SECRET_KEY
+      value: '$secrets.rsm.statsig_secret_key'
+      secret: true
+  pophealth-service:
+    - key: ELASTICSEARCH_URL
+      value: http://elastic:donotuse@services-elasticsearch:9200/
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/pophealth?sslmode=disable
+    - key: POP_HEALTH_PARTNER_TOPIC_ARN
+      value: arn:aws:sns:us-west-2:530082637045:pop_health_partner_file_notification_stage
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: AUTH0_AUDIENCE
+      value: internal.*company-data-covered*.com,pophealth.*company-data-covered*.com
+    - key: POP_HEALTH_RESULTS_TOPIC_ARN
+      value: arn:aws:sns:us-west-2:530082637045:pop_health_file_exchange_notification_stage
+    - key: ES_INDEX
+      value: pop_health_patients
+    - key: AWS_ACCESS_KEY_ID
+      value: '$secrets.rsm.aws_access_key_id'
+      secret: true
+    - key: AWS_SECRET_ACCESS_KEY
+      value: '$secrets.rsm.aws_secret_access_key'
+      secret: true
+    - key: AWS_REGION
+      value: us-west-2
+    - key: PREFECT_POP_HEALTH_CLIENT_TOKEN
+      value: '$secrets.rsm.prefect_pop_health_client_token'
+      secret: true
+    - key: SENDGRID_API_KEY
+      value: '$secrets.rsm.sendgrid_api_key'
+      secret: true
+    - key: POP_HEALTH_PREFECT_VERSION_GROUP_ID
+      value: 40594b8e-f1fe-49ca-b694-366b2542f462
+    - key: POP_HEALTH_FILE_EXCHANGE_BUCKET
+      value: pop-health-file-exchange-bucket-stage
+    - key: PREFECT_CHANGE_PERCENT_LIMIT
+      value: 25
+    - key: PREFECT_ERROR_PERCENT_LIMIT
+      value: 5
+    - key: PREFECT_VERSION_GROUP_ID
+      value: 40594b8e-f1fe-49ca-b694-366b2542f462
+    - key: PREFECT_PROCESS_FILE_VERSION_GROUP_ID
+      value: 40594b8e-f1fe-49ca-b694-366b2542f462
+    - key: PREFECT_SYNC_PATIENTS_VERSION_GROUP_ID
+      value: 82072ef6-e7b6-4fdf-acbd-86e5ad8b14dd
+    - key: PREFECT_DEACTIVATE_BUCKET_VERSION_GROUP_ID
+      value: 0b9c4c90-3222-4cb8-ae77-f7bede113b9e
+    - key: ENABLE_PARTNER_SERVICE
+      value: false
+    - key: ES_BACKFILL_INDEX
+      value: backfill_index_1
+    - key: PARTNER_SERVICE_GRPC_ADDRESS
+      value: partner-service:8081
+    - key: POPHEALTH_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: uNd2gEpuC7cSx34NVfeY2otyxZZ5WJTz
+    - key: POPHEALTH_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.pophealth_service_m2m_auth0_client_secret'
+      secret: true
+    - key: NUMBER_OF_PARALLEL_BACKFILLS
+      value: 1
+  partner-service:
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: AUTH0_AUDIENCE
+      value: internal.*company-data-covered*.com,partner.*company-data-covered*.com
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/partner?sslmode=disable
+    - key: ENABLE_POPHEALTH_SERVICE
+      value: false
+    - key: ENABLE_FEATURE_STORE
+      value: true
+    - key: PARTNER_SERVICE_M2M_AUTH0_CLIENT_ID
+      value: WGg7Btvo5u37LNcqBPUBdx2I885jH87m
+    - key: PARTNER_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      value: '$secrets.rsm.partner_service_m2m_auth0_client_secret'
+      secret: true
+    - key: POPHEALTH_SERVICE_GRPC_ADDRESS
+      value: pophealth-service:8081
+    - key: EPISODE_SERVICE_GRPC_ADDRESS
+      value: station-grpc:9001
+    - key: STATION_AUTH0_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: AWS_ACCESS_KEY_ID
+      value: '$secrets.rsm.aws_access_key_id'
+      secret: true
+    - key: AWS_SECRET_ACCESS_KEY
+      value: '$secrets.rsm.aws_secret_access_key'
+      secret: true
+    - key: AWS_REGION
+      value: us-west-2
+    - key: FEATURE_STORE_FEATURE_GROUP_NAME
+      value: partner_priority_scores
+    - key: FEATURE_STORE_FEATURE_NAME
+      value: partner_score
+    - key: ALLOWED_HTTP_ORIGINS
+      value: https://*.*company-data-covered*.com
+    - key: BACKFILL_LIST_VISITS_BATCH_SIZE
+      value: 25
+    - key: GRPC_LISTEN_ADDR
+      value: ':8181'
+    - key: INSURANCE_SERVICE_GRPC_ADDRESS
+      value: insurance-service:8096
+  onboarding-api:
+    - key: PORT
+      value: '8080'
+    - key: AWS_ACCESS_KEY_ID
+      value: '$secrets.rsm.aws_access_key_id'
+      secret: true
+    - key: AWS_SECRET_ACCESS_KEY
+      value: '$secrets.rsm.aws_secret_access_key'
+      secret: true
+    - key: LOG_INCLUDE_EXTENDED_DATA
+      value: true
+    - key: NODE_ENV
+      value: production
+    - key: ONBOARDING_M2M_CLIENT_ID
+      value: o2ukpznOmPGCz3pn6qUujWX2JmBTngaY
+    - key: ONBOARDING_M2M_CLIENT_SECRET
+      value: '$secrets.rsm.onboarding_m2m_auth0_client_secret'
+      secret: true
+    - key: ONBOARDING_M2M_AUTH0_DOMAIN
+      value: staging-auth.*company-data-covered*.com
+    - key: ONBOARDING_AUTH0_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: ONBOARDING_AUTH0_ISSUER_BASE_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: M2M_PATIENT_SERVICE_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: M2M_AUDIENCE
+      value: station.*company-data-covered*.com
+    - key: M2M_CARE_MANAGER_SERVICE_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: M2M_RISK_STRAT_SERVICE_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: M2M_INSURANCE_SERVICE_AUDIENCE
+      value: insurance-service.*company-data-covered*.com
+    - key: M2M_STATION_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: STATSIG_SDK_SERVER_SECRET_KEY
+      value: '$secrets.rsm.statsig_secret_key'
+      secret: true
+    - key: STATSIG_ENVIRONMENT
+      value: uat
+    - key: WEB_REQUEST_AUTH0_ISSUER_BASE_URL
+      value: https://dev-patients-auth.*company-data-covered*.com/
+    - key: WEB_REQUEST_AUTH0_AUDIENCE
+      value: patients.*company-data-covered*.com
+    - key: PATIENT_SERVICE_GRPC_URL
+      value: patients-service:8471
+    - key: SSL_PROTOCOLS_OVERRIDE
+      value: TLSv1.2
+    - key: CARE_MANAGER_SERVICE_URL
+      value: caremanager-service:8080
+    - key: ONBOARDING_REDIS_URL
+      value: redis://services-redis:6379
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+  clinicalkpi-dashboard-web:
+    - key: NX_CLINICALKPI_DASHBOARD_STATION_URL
+      value: STATION_INGRESS_URL
+    - key: NX_CLINICALKPI_DASHBOARD_AUTH0_DOMAIN
+      value: staging-auth.*company-data-covered*.com
+    - key: NX_CLINICALKPI_DASHBOARD_AUTH0_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: NX_CLINICALKPI_DASHBOARD_AUTH0_CLIENT_ID
+      value: '$secrets.rsm.nx_clinicalkpi_dashboard_auth0_client_id'
+      secret: true
+    - key: NX_CLINICALKPI_DASHBOARD_AUTH0_CLIENT_KEY
+      value: '$secrets.rsm.nx_clinicalkpi_dashboard_auth0_client_key'
+      secret: true
+    - key: NX_CLINICALKPI_DASHBOARD_STATSIG_CLIENT_KEY
+      value: '$secrets.rsm.nx_clinicalkpi_dashboard_statsig_client_key'
+      secret: true
+    - key: NX_CLINICALKPI_DASHBOARD_AUTH0_STATSIG_TIER
+      value: uat
+  consumer-web:
+    - key: NX_CONSUMER_WEB_STATSIG_CLIENT_KEY
+      value: '$secrets.rsm.nx_consumer_web_statsig_client_key'
+      secret: true
+    - key: NX_CONSUMER_WEB_STATSIG_TIER
+      value: uat
+    - key: NX_CONSUMER_WEB_DATADOG_APPLICATION_ID
+      value: 327ca92b-deb5-43fc-b561-86cc028bad56
+    - key: NX_CONSUMER_WEB_DATADOG_CLIENT_TOKEN
+      value: pubef13b742d5980eb1131cda703e999cb3
+    - key: NX_CONSUMER_WEB_GOOGLE_MAPS_KEY
+      value: AIzaSyBkuiUQv85N4SuRX4hmWHjGZbwjhbUjtUE
+    - key: NX_CONSUMER_WEB_GOOGLE_TAG_MANAGER_ID
+      value: GTM-5TDBJ89
+    - key: NX_CONSUMER_WEB_GOOGLE_RECAPTCHA_KEY
+      value: 6LfqX_cUAAAAABGRkYhp04NFK2SznPTePU6F3NyX
+    - key: NX_CONSUMER_WEB_MAIN_SITE_URL
+      value: https://www.*company-data-covered*.com/
+    - key: NX_CONSUMER_WEB_AUTH0_CLIENT_ID
+      value: Q9fqF3TyHg0ShzpcwtfaBRFwHuWVNk0W
+    - key: NX_CONSUMER_WEB_AUTH0_DOMAIN
+      value: dev-patients-auth.*company-data-covered*.com
+    - key: NX_CONSUMER_WEB_AUTH0_AUDIENCE
+      value: patients.*company-data-covered*.com
+    - key: NX_CONSUMER_WEB_SEGMENT_WRITE_KEY
+      value: Reb4nH5HyNlV1IDIYY1xucV1sKFjb23M
+    - key: NX_CONSUMER_WEB_DISPATCHER_LINE_PHONE_NUMBER
+      value: 17207380723
+  logistics-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/logistics?sslmode=disable
+  audit-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/audit?sslmode=disable
+  clinicalkpi-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/clinicalkpi?sslmode=disable
+  caremanager-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/caremanager?sslmode=disable
+  modality-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/modality?sslmode=disable
+  insurance-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/insurance?sslmode=disable
+  patients-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/patients?sslmode=disable
+  riskstratification-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/riskstratification?sslmode=disable
+  pophealth-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/pophealth?sslmode=disable
+  partner-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/partner?sslmode=disable

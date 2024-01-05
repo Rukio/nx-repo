@@ -1,0 +1,45 @@
+name: Build and Push Tonic Cron
+
+run-name: Build and Push Tonic Cron ${{ github.head_ref || github.ref }}
+
+on:
+  push:
+    branches:
+      - trunk
+    paths:
+      - docker/tonic/**
+      - '!docker/tonic/*.md'
+      - .github/workflows/build_and_push_tonic_cron.yml
+      - .github/actions/build_and_push_docker
+
+jobs:
+  build-and-push-tonic-cron-image:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build and Push Docker Container
+        uses: ./.github/actions/build_and_push_docker
+        with:
+          image_name: tonic-cron
+          dockerfile: docker/tonic/Dockerfile
+          docker_port: ''
+          docker_registry_url: ${{ secrets.DH_DOCKER_REGISTRY_URL }}
+          docker_registry_username: ${{ secrets.DH_DOCKER_REGISTRY_PUSH_USERNAME }}
+          docker_registry_password: ${{ secrets.DH_DOCKER_REGISTRY_PASSWORD }}
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure()
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          # <!subteam^S04AEG5A3AP> is the engcore user group
+          slack-text: |
+            :this-is-fine: *<!subteam^S04AEG5A3AP> Failed to build and push tonic-cron image on `trunk`*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}
+
+  # To deploy new image, update the image_name local in infra/terraform/aws/swe-production/tonic/tonic_cron.tf

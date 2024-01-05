@@ -1,0 +1,124 @@
+syntax = "proto3";
+package athena;
+
+import "common/demographic.proto";
+import "common/date.proto";
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/athena";
+option ruby_package = "AthenaGRPC";
+
+message LabResultSubscription {
+  // List of Department IDs subscribed
+  repeated string department_ids = 1;
+  // Will return one of following statuses: ACTIVE, INACTIVE, or PARTIAL.
+  // The PARTIAL status means that not all events are subscribed to.
+  // In the event of a problem, UNKNOWN may be returned.
+  optional string status = 2;
+  // List of events subscribed to.
+  repeated Subscription subscriptions = 3;
+}
+
+message Subscription {
+  // Name of the event.
+  optional string event_name = 1;
+}
+
+message LabResult {
+  // Document priority, when available. 1 is high, 2 is normal. Some labs use
+  // other numbers or characters that are lab-specific.
+  optional string priority = 1;
+  // Observation date associated with this lab result.
+  optional common.Date date = 2;
+  // The status of the result (eg. Complete or Preliminary).
+  optional string result_status = 3;
+  // Whether the lab result has been reviewed by a provider
+  optional bool is_reviewed_by_provider = 4;
+  // This is the address1 field of the performing lab. For point-of-care tests
+  // this is the department. Otherwise, it is the clinical provider
+  optional common.Address performing_lab_address = 5;
+  // Athena ID for this lab result.
+  optional string id = 6;
+  // The provider ID for this document.
+  optional string provider_id = 7;
+  // This is the name of the performing lab. For point-of-care tests this is the
+  // department. Otherwise, it is the clinical provider
+  optional string performing_lab_name = 8;
+  // Observation date associated with this lab result.
+  optional common.DateTime date_time = 9;
+  // Individual lab result observations/analytes.
+  repeated Analyte analytes = 10;
+  // The ID of the clinical provider associated with this clinical document.
+  // Clinical providers are a master list of providers throughout the country.
+  // These include providers as well as radiology centers, labs and pharmacies.
+  optional string facility_id = 11;
+  // The LOINC description for the result document or associated order.
+  optional string description = 12;
+  // This flag depicts if the lab result has a scanned document attachment
+  // or not.
+  optional bool attachment_exists = 13;
+  // The LOINC for the result document or associated order.
+  optional string loinc = 14;
+}
+
+message Analyte {
+  // Local lab ID for the given lab result observation/analyte
+  optional string observation_identifier = 1;
+  // The status of the result (e.g., "final", "preliminary", "corrected", etc.)
+  optional string result_status = 2;
+  // Name / description specific to this analyte
+  optional string name = 3;
+  // The date and time when this observation was recorded.
+  optional common.DateTime date_time = 4;
+  // Date when this observation was recorded
+  optional common.Date date = 5;
+  // Value recorded for this observation
+  optional string value = 6;
+  // Type of units for the analyte value
+  optional string units = 7;
+  // General description of the lab result test
+  optional string description = 8;
+  // Logical Observation Identifiers Names and Codes ID, if available
+  optional string loinc = 9;
+  // Additional note for this analyte, if applicable
+  optional string note = 10;
+  // Athena ID for the given lab result observation/analyte
+  optional string id = 11;
+}
+
+message LabResultDocument {
+  // Department for the document.
+  optional string department_id = 1;
+  // Explains method by which the document was entered into the AthenaNet
+  // (INTERFACE (digital), FAX, etc.)
+  optional string document_route = 2;
+  // Explains where this document originated.
+  optional string document_source = 3;
+  // The ID of the description for this document
+  optional string document_type_id = 4;
+  // Date of the encounter associated with this document
+  optional common.Date encounter_date = 5;
+  // Encounter ID
+  optional string encounter_id = 6;
+  // The ID of the clinical provider associated with this clinical document.
+  // Clinical providers are a master list of providers throughout the country.
+  // These include providers as well as radiology centers, labs and pharmacies.
+  optional string facility_id = 7;
+  // If true, this result document should not be shown to the patient.
+  optional bool is_confidential = 8;
+  // The primary key for labresult class of documents.
+  optional string id = 9;
+  // Laboratory code that identifies the overall result.
+  optional string loinc = 10;
+  // Date/time (ISO 8601) the observation was taken.
+  optional common.DateTime observation_date_time = 11;
+  // Individual observation details.
+  repeated Analyte observations = 12;
+  // This is the name of the performing lab.
+  // For point-of-care tests this is the department.
+  // Otherwise, it is the clinical provider.
+  optional string performing_lab_name = 14;
+  // Provider ID for this document.
+  optional string provider_id = 15;
+  // Order ID of the order this document is tied to, if any.
+  optional string order_id = 16;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "@*company-data-covered*/nx-plugin-core",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "generators": "./generators.json"
+}

@@ -1,0 +1,50 @@
+name: Register Schema Subject
+
+run-name: Register Kafka Schemas Subject ${{ github.head_ref || github.ref }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - trunk
+    paths:
+      - events/**
+
+jobs:
+  register_schemas:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: ./.github/actions/setup_python
+
+      - name: Register Schemas Dev
+        run: |
+          cd ./py/lib/event_streaming
+          poetry install
+          poetry run python \
+            -u schema_management/register.py \
+            -f ../../../events/ \
+            -p *company-data-covered*-development \
+            -s main
+        env:
+          AIVEN_API_TOKEN: ${{ secrets.AIVEN_DEV_API_TOKEN }}
+        timeout-minutes: 20
+
+      - name: Register Schemas Prod
+        run: |
+          cd ./py/lib/event_streaming
+          poetry install
+          poetry run python \
+            -u schema_management/register.py \
+            -f ../../../events/ \
+            -p *company-data-covered*-production \
+            -s main
+        env:
+          AIVEN_API_TOKEN: ${{ secrets.AIVEN_PRODUCTION_API_TOKEN }}
+        timeout-minutes: 20

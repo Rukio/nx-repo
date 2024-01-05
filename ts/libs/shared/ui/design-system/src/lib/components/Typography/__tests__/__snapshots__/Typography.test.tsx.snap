@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Default should render 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 0.031rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+<p
+    class="MuiTypography-root MuiTypography-body1 emotion-0"
+  >
+    This is an example of using the Typography component
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Variants should render 1`] = `
+<DocumentFragment>
+  .emotion-1 {
+  margin: 0;
+  font-weight: 300;
+  font-size: 3.375rem;
+  line-height: 1.185;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-weight: 300;
+  font-size: 2.625rem;
+  line-height: 1.19;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-3 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.25;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-4 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-5 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-6 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.375;
+  letter-spacing: 0.01rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.285;
+  letter-spacing: 0.016rem;
+}
+
+.emotion-8 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.01rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-9 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 0.031rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  letter-spacing: 0.016rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-11 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.714;
+  text-transform: none;
+  letter-spacing: 0.025rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-12 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+}
+
+.emotion-13 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0.025rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+.emotion-14 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.094rem;
+  font-family: Open Sans,Segoe UI,Tahoma,sans-serif;
+}
+
+<div
+    class="MuiBox-root emotion-0"
+  >
+    <h1
+      class="MuiTypography-root MuiTypography-h1 emotion-1"
+    >
+      Heading 1
+    </h1>
+    <h2
+      class="MuiTypography-root MuiTypography-h2 emotion-2"
+    >
+      Heading 2
+    </h2>
+    <h3
+      class="MuiTypography-root MuiTypography-h3 emotion-3"
+    >
+      Heading 3
+    </h3>
+    <h4
+      class="MuiTypography-root MuiTypography-h4 emotion-4"
+    >
+      Heading 4
+    </h4>
+    <h5
+      class="MuiTypography-root MuiTypography-h5 emotion-5"
+    >
+      Heading 5
+    </h5>
+    <h6
+      class="MuiTypography-root MuiTypography-h6 emotion-6"
+    >
+      Heading 6
+    </h6>
+    <span
+      class="MuiTypography-root MuiTypography-h7 emotion-7"
+    >
+      Heading 7
+    </span>
+    <h6
+      class="MuiTypography-root MuiTypography-subtitle1 emotion-8"
+    >
+      subtitle1
+    </h6>
+    <p
+      class="MuiTypography-root MuiTypography-body1 emotion-9"
+    >
+      body1
+    </p>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-10"
+    >
+      body2
+    </p>
+    <span
+      class="MuiTypography-root MuiTypography-button emotion-11"
+    >
+      button
+    </span>
+    <span
+      class="MuiTypography-root MuiTypography-label emotion-12"
+    >
+      label
+    </span>
+    <span
+      class="MuiTypography-root MuiTypography-caption emotion-13"
+    >
+      caption
+    </span>
+    <span
+      class="MuiTypography-root MuiTypography-overline emotion-14"
+    >
+      overline
+    </span>
+  </div>
+</DocumentFragment>
+`;

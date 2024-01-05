@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+// USAGE ./scripts/update-node-dep-owners owner.one owner.two  ... owner.n
+
+const { writeFileSync } = require('fs');
+const packageJSON = require('../package.json');
+
+const [_node, _script, ...newDepOwners] = process.argv;
+if (!newDepOwners || newDepOwners.length === 0) {
+  throw new Error('No valid owners passed as args!');
+}
+newDepOwners.sort(); // JS array sort alters original array
+
+if (!packageJSON.dependencyOwners) {
+  packageJSON.dependencyOwners = {};
+}
+
+const newDependencyOwners = { ...packageJSON.dependencyOwners };
+const deps = [
+  ...Object.keys(packageJSON.dependencies ?? {}),
+  ...Object.keys(packageJSON.devDependencies ?? {}),
+];
+const packagesWithOwners = Object.keys(packageJSON.dependencyOwners);
+
+console.log('Checking for owners of dependencies that no longer exist...');
+
+let removedCount = 0;
+for (const ownedDep of packagesWithOwners) {
+  if (!deps.includes(ownedDep)) {
+    delete newDependencyOwners[ownedDep];
+    removedCount++;
+  }
+}
+
+console.log('Checking for new dependencies...');
+
+let addedCount = 0;
+for (const dep of deps) {
+  if (!packagesWithOwners.includes(dep)) {
+    newDependencyOwners[dep] = newDepOwners;
+    addedCount++;
+  }
+}
+
+if (!addedCount && !removedCount) {
+  console.log('No dependency owner changes required for package.json!');
+  process.exit();
+}
+
+const sortedDependencyOwners = sortObjectKeys(newDependencyOwners);
+
+console.log('Changes required for package.json, writing new file...');
+writeFileSync(
+  `package.json`,
+  JSON.stringify(
+    { ...packageJSON, dependencyOwners: sortedDependencyOwners },
+    null,
+    2
+  ) + '\n'
+);
+console.log(
+  `Added ${addedCount} and removed ${removedCount} dependency owners!`
+);
+console.log('Dependency owners updated successfully!');
+
+/** Sort an object by key, does not affect original object. */
+function sortObjectKeys(original) {
+  if (typeof original != 'object' || Array.isArray(original)) {
+    throw new Error('Invalid object passed to sortObjectKeys!');
+  }
+
+  return Object.entries(original)
+    .sort()
+    .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {});
+}

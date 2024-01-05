@@ -1,0 +1,75 @@
+{
+  "name": "insurance-dashboard-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/insurance-dashboard-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "cy:open:qa": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "cypress.qa.config.ts",
+        "testingType": "e2e",
+        "headed": true,
+        "exit": false
+      }
+    },
+    "cy:run:qa": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "cypress.qa.config.ts",
+        "testingType": "e2e",
+        "headless": true
+      }
+    },
+    "cy:open:uat": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "cypress.uat.config.ts",
+        "testingType": "e2e",
+        "headed": true,
+        "exit": false
+      }
+    },
+    "cy:run:uat": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "cypress.uat.config.ts",
+        "testingType": "e2e",
+        "headless": true
+      }
+    },
+    "cy:open": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "cypress.local.config.ts",
+        "testingType": "e2e",
+        "headed": true,
+        "exit": false
+      }
+    },
+    "cy:run": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "cypress.local.config.ts",
+        "testingType": "e2e",
+        "headless": true
+      }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "ts/apps/insurance-dashboard-e2e/cypress.qa.config.ts",
+        "testingType": "e2e"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/insurance-dashboard-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": ["type:app"],
+  "implicitDependencies": ["insurance-dashboard"]
+}

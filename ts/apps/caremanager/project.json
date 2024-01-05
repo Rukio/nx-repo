@@ -1,0 +1,140 @@
+{
+  "name": "caremanager",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/caremanager/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
+      "options": {
+        "outputPath": "dist/ts/apps/caremanager"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "qa": {
+          "mode": "qa"
+        },
+        "uat": {
+          "mode": "uat"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "build-cleanup": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "rm dist/ts/apps/caremanager/mockServiceWorker.js"
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "caremanager:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "caremanager:build:development",
+          "hmr": true
+        },
+        "qa": {
+          "buildTarget": "caremanager:build:qa",
+          "hmr": false
+        },
+        "uat": {
+          "buildTarget": "caremanager:build:uat",
+          "hmr": false
+        },
+        "production": {
+          "buildTarget": "caremanager:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "caremanager:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "caremanager:build:development"
+        },
+        "qa": {
+          "buildTarget": "caremanager:build:qa"
+        },
+        "uat": {
+          "buildTarget": "caremanager:build:uat"
+        },
+        "production": {
+          "buildTarget": "caremanager:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/ts/apps/caremanager"],
+      "options": {
+        "coverage": true,
+        "reportsDirectory": "../../../coverage/ts/apps/caremanager"
+      },
+      "configurations": {
+        "ci": {}
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/caremanager/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "caremanager:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "caremanager:build:development"
+        },
+        "qa": {
+          "buildTarget": "caremanager:build:qa"
+        },
+        "uat": {
+          "buildTarget": "caremanager:build:uat"
+        },
+        "production": {
+          "buildTarget": "caremanager:build:production"
+        }
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.app.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/caremanager"
+      }
+    }
+  },
+  "tags": ["type:app"]
+}

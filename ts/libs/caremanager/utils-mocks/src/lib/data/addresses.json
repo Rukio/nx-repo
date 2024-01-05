@@ -1,0 +1,17 @@
+{
+  "addresses": [
+    {
+      "id": "1",
+      "created_at": "2023-01-26T20:09:15.881Z",
+      "updated_at": "2023-01-26T20:09:15.881Z",
+      "street_address_1": "Volcán Vesubio 2228 A",
+      "street_address_2": "Col. Colli Urbano",
+      "city": "Zapopan",
+      "state": "Jalisco",
+      "zipcode": "45070",
+      "latitude": 20.6422974,
+      "longitude": -103.4327582,
+      "additional_details": "Long-term care facility. Ring Doorbell, it will take them a while to get up"
+    }
+  ]
+}

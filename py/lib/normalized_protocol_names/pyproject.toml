@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "normalized_protocol_names"
+version = "0.1.0"
+description = "Interface to the normalized protocol names seed file via S3"
+authors = ["Favio Manriquez <favio.manriquez@*company-data-covered*.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10.12 <3.11"
+boto3 = "^1.26.41"
+pandas = "^1.5.2"
+beartype = "^0.15.0"
+# requests is imported by dependencies. we force the latest version for security
+requests = "^2.31.0"
+# note: cryptography not directly needed, but must bump due to unsafe old vers
+cryptography = "^41.0.2"
+
+[tool.poetry.dev-dependencies]
+ipython = "^8.4.0"
+pytest = "^7.1.2"
+
+[tool.poetry.group.dev.dependencies]
+moto = {extras = ["s3"], version = "^4.0.13"}
+pytest-cov = "^4.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

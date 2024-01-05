@@ -1,0 +1,195 @@
+syntax = "proto3";
+package partner;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/partnerpb";
+option ruby_package = "PartnerGRPC";
+
+import "google/api/annotations.proto";
+import "audit/audit.proto";
+import "common/auth/auth.proto";
+import "common/date.proto";
+import "common/demographic.proto";
+import "patients/insurance.proto";
+import "partner/entities.proto";
+import "google/protobuf/timestamp.proto";
+
+service PartnerService {
+  rpc GetPartner(GetPartnerRequest) returns (GetPartnerResponse) {
+    option (google.api.http) = {
+      get: "/v1/partners/{partner_id}"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:partner:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc GetPartnerInsurance(GetPartnerInsuranceRequest)
+      returns (GetPartnerInsuranceResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:partner:all"
+    };
+  }
+
+  rpc GetPartnerPriorityForCareRequest(GetPartnerPriorityForCareRequestRequest)
+      returns (GetPartnerPriorityForCareRequestResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:partner:all"
+    };
+  }
+
+  rpc SearchPartners(SearchPartnersRequest) returns (SearchPartnersResponse) {
+    option (google.api.http) = {
+      get: "/v1/partners"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:partner:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+
+  rpc StartBackfill(StartBackfillRequest) returns (StartBackfillResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:partner:all"
+    };
+  }
+
+  rpc UpdateCareRequestPartners(UpdateCareRequestPartnersRequest)
+      returns (UpdateCareRequestPartnersResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:partner:all"
+    };
+  }
+
+  rpc UpsertPartner(UpsertPartnerRequest) returns (UpsertPartnerResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:partner:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Partner"
+    };
+  }
+}
+
+// Requests and Responses
+message GetPartnerInsuranceRequest {
+  int64 care_request_id = 1;
+}
+
+message GetPartnerInsuranceResponse {
+  // If found, partner's corporate insurance record
+  patients.InsuranceRecord insurance = 1;
+}
+
+message GetPartnerPriorityForCareRequestRequest {
+  // Station care request ID
+  int64 care_request_id = 1;
+  // Station channel item ID
+  int64 channel_item_id = 2;
+}
+
+message GetPartnerPriorityForCareRequestResponse {
+  // A value without units (0-100) that represents the relative value
+  // of a care request based on associated partners.
+  int64 partner_score = 1;
+  optional google.protobuf.Timestamp calculated_at = 2;
+}
+
+message GetPartnerRequest {
+  int64 partner_id = 1;
+}
+
+message GetPartnerResponse {
+  Partner partner = 1;
+}
+
+message SearchPartnersRequest {
+  string name = 1;
+  // The maximum number of found Partners to return
+  optional int32 max_result_count = 2;
+}
+
+message SearchPartnersResponse {
+  repeated Partner partners = 1;
+}
+
+message StartBackfillRequest {
+  int64 partner_id = 1;
+  BackfillType backfill_type = 2;
+  common.Date start_date = 3;
+  common.Date end_date = 4;
+}
+
+message StartBackfillResponse {}
+
+message UpdateCareRequestPartnersRequest {
+  CareRequest care_request = 1;
+  optional CareRequestPartnerOrigin origin = 2;
+}
+
+message UpdateCareRequestPartnersResponse {
+  // The Care Request Partners associated with the care request, scoped by
+  // origin
+  repeated CareRequestPartner care_request_partners = 1;
+}
+
+message UpsertPartnerRequest {
+  Partner partner = 1;
+}
+
+message UpsertPartnerResponse {
+  int64 partner_id = 1;
+}
+
+// Enums
+enum CareRequestPartnerOrigin {
+  CARE_REQUEST_PARTNER_ORIGIN_UNSPECIFIED = 0;
+  CARE_REQUEST_PARTNER_ORIGIN_SOURCE = 1;
+  CARE_REQUEST_PARTNER_ORIGIN_POP_HEALTH = 2;
+  CARE_REQUEST_PARTNER_ORIGIN_PROVIDER_NETWORK = 3;
+  CARE_REQUEST_PARTNER_ORIGIN_LOCATION = 4;
+  CARE_REQUEST_PARTNER_ORIGIN_INSURANCE = 5;
+}
+
+enum BackfillType {
+  BACKFILL_TYPE_UNSPECIFIED = 0;
+  BACKFILL_TYPE_POPHEALTH = 1;
+  BACKFILL_TYPE_PROVIDER_NETWORK = 2;
+}
+
+// Data Objects
+message CareRequest {
+  int64 id = 1;
+  int64 channel_item_id = 2;
+  Patient patient = 3;
+  Location location = 4;
+  // Patient insurance packages requested in this Care Request
+  repeated InsurancePackage insurance_packages = 5;
+  // Provider networks associated with care team members
+  repeated ProviderNetwork provider_networks = 6;
+  google.protobuf.Timestamp created_at = 7;
+}
+
+message Patient {
+  int64 id = 1;
+  // Patient's full name
+  common.Name name = 2;
+  common.Date date_of_birth = 3;
+  common.Sex sex = 4;
+  optional string ssn = 5;
+}
+
+message CareRequestPartner {
+  // Indicates the way in which this partner is associated with the care request
+  CareRequestPartnerOrigin origin = 1;
+  int64 id = 2;
+}
+
+message ProviderNetwork {
+  string name = 1;
+  int64 channel_item_id = 2;
+}

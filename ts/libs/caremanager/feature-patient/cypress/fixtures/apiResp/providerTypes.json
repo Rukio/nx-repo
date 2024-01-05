@@ -1,0 +1,20 @@
+{
+  "provider_types": [
+    {
+      "id": "1",
+      "name": "Other"
+    },
+    {
+      "id": "2",
+      "name": "Geneticist"
+    },
+    {
+      "id": "3",
+      "name": "Charlatan"
+    },
+    {
+      "id": "4",
+      "name": "Psychiatrist"
+    }
+  ]
+}

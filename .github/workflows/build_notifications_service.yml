@@ -1,0 +1,34 @@
+name: Build Notifications Service
+
+run-name: ${{ github.head_ref || github.ref_name }} (${{ inputs.ref || github.sha }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: The sha to build, otherwise builds HEAD of branch
+        type: string
+        required: false
+  push:
+    branches:
+      - trunk
+
+jobs:
+  build-notifications-service-container:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Build and Push Docker Container
+        uses: ./.github/actions/build_and_push_docker
+        with:
+          image_name: notifications-service
+          dockerfile: docker/go.Dockerfile
+          docker_port: 8100 8101
+          docker_registry_url: ${{ secrets.DH_DOCKER_REGISTRY_URL }}
+          docker_registry_username: ${{ secrets.DH_DOCKER_REGISTRY_PUSH_USERNAME }}
+          docker_registry_password: ${{ secrets.DH_DOCKER_REGISTRY_PASSWORD }}

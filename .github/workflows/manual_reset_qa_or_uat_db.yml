@@ -1,0 +1,108 @@
+########################################################################################################################
+# Manually reset an Aptible Database to empty
+# ----------------------------------------------------------------------------------------------------------------------
+# This workflow can be used to manually reset an Aptible Database to empty.
+#
+# REQUIREMENTS
+# ------------
+#   1. The following make commands can be run:
+#       a. make db-status-${{ inputs.service_name with -service stripped from name }}
+#       b. make db-reset-${{ inputs.service_name with -service stripped from name }}
+#       c. make db-migrate-${{ inputs.service_name with -service stripped from name }}
+#   2. The database name must be named ${{ input.service_name }}-db-${{ inputs.environment }}
+#
+# WORKFLOW OVERVIEW
+# -----------------
+#   1. Perform the above make commands against the given database
+#
+# It can only be run manually through github
+# Optionally, you can use the github cli to run the workflow:
+# >  gh workflow run manual_deploy_service_to_aptible.yml -f service_name="<my_service>" -f environment=qa
+#
+# REFERENCES
+# ----------
+# See the github docs for more info:
+# https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
+########################################################################################################################
+
+name: Reset QA or UAT database
+
+run-name: Reset ${{ inputs.service_name }}-db-${{ inputs.environment }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      service_name:
+        description: |
+          The service name used in the db name to reset
+          It is assumed that the schema is the service name chose but with the -service stripped
+        type: choice
+        options:
+          - caremanager-service
+          - clinicalkpi-service
+          - insurance-service
+          - logistics-service
+          - modality-service
+          - partner-service
+          - pophealth-service
+          - patientaccounts-service
+      environment:
+        description: environment of the db to reset
+        type: choice
+        options:
+          - uat
+          - qa
+      ref:
+        type: string
+        description: |
+          A specific ref to checkout, typically a sha of the branch selected
+          If left blank, HEAD of the branch selected is used
+
+jobs:
+  reset_db:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.sha || github.sha }}
+
+      - name: Install dependencies
+        run: make setup-linux-deploy
+
+      - uses: ./.github/actions/setup_aptible
+        with:
+          username: ${{ secrets.APTIBLE_USERNAME }}
+          password: ${{ secrets.APTIBLE_PASSWORD }}
+
+      - name: Reset DB
+        run: |
+          echo "Creating aptible db tunnel to ${{ inputs.service_name }}-db-${{ inputs.environment }} ..."
+          aptible db:tunnel ${{ inputs.service_name }}-db-${{ inputs.environment }} 2> db.log &
+          ( (timeout "30s" tail -F "db.log" &) | grep -q "Connect at" ) || ( echo "Failed to create aptible db tunnel. Log:" && cat db.log && exit 1 )
+          TID=$!
+
+          echo "Tunnel created and connected."
+          export DATABASE_URL=$(grep 'Connect at' db.log | awk '{print $3}')
+
+          schema=$(echo ${{ inputs.service_name }} | sed 's/-service//g')
+          make db-status-${schema}
+          make db-reset-${schema}
+          make db-status-${schema}
+          make db-migrate-${schema}
+
+          echo "Destroying tunnel..."
+          kill -SIGINT "$TID"
+          echo "Tunnel destroyed"
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure()
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *Failed to reset ${{ inputs.service_name }}-db-${{ inputs.environment }} database*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}

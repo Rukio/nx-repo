@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.optaplanner.org/xsd/solver"
+        xsi:schemaLocation="https://www.optaplanner.org/xsd/solver https://www.optaplanner.org/xsd/solver/solver.xsd">
+    <!--<environmentMode>FULL_ASSERT</environmentMode>--><!-- To slowly prove there are no bugs in this code -->
+    <moveThreadCount>NONE</moveThreadCount><!-- 'NONE' for reproducibility. 'AUTO' to solve faster by saturating multiple CPU cores -->
+
+    <solutionClass>com.*company-data-covered*.logistics.domain.VehicleRoutingSolution</solutionClass>
+    <entityClass>com.*company-data-covered*.logistics.domain.Standstill</entityClass>
+    <entityClass>com.*company-data-covered*.logistics.domain.Customer</entityClass>
+    <entityClass>com.*company-data-covered*.logistics.domain.Vehicle</entityClass>
+
+    <scoreDirectorFactory>
+        <constraintProviderClass>com.*company-data-covered*.logistics.solver.VehicleRoutingConstraintProvider</constraintProviderClass>
+        <constraintStreamImplType>BAVET</constraintStreamImplType>
+        <initializingScoreTrend>ONLY_DOWN</initializingScoreTrend>
+    </scoreDirectorFactory>
+
+    <termination>
+    </termination>
+    <constructionHeuristic>
+        <!-- TODO: Add DifficultyWeightFactoryClass to allow using FIRST_FIT_DECREASING constructionHeuristicType. -->
+        <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
+    </constructionHeuristic>
+    <localSearch>
+        <!-- TODO: Investigate LATE_ACCEPTANCE combined with TABU_SEARCH.
+             https://www.optaplanner.org/docs/optaplanner/latest/local-search/local-search.html#lateAcceptanceAlgorithm -->
+        <localSearchType>TABU_SEARCH</localSearchType>
+    </localSearch>
+</solver>

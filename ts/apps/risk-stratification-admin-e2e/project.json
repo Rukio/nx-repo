@@ -1,0 +1,32 @@
+{
+  "name": "risk-stratification-admin-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/risk-stratification-admin-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "ts/apps/risk-stratification-admin-e2e/cypress.config.ts",
+        "devServerTarget": "risk-stratification-admin:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "risk-stratification-admin:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "ts/apps/risk-stratification-admin-e2e/**/*.{js,ts}"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:risk-stratification-admin", "type:e2e"],
+  "implicitDependencies": ["risk-stratification-admin"]
+}

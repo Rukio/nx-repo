@@ -1,0 +1,137 @@
+syntax = "proto3";
+package insurance_plan;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/insurance_plan";
+option ruby_package = "InsurancePlanGRPC";
+
+import "insurance_plan/entities.proto";
+import "common/auth/auth.proto";
+
+service InsurancePlanService {
+  // Returns InsurancePlan by id.
+  rpc GetInsurancePlan(GetInsurancePlanRequest)
+      returns (GetInsurancePlanResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:insurance_plans:all"
+    };
+  }
+
+  // Creates and returns InsurancePlan.
+  rpc CreateInsurancePlan(CreateInsurancePlanRequest)
+      returns (CreateInsurancePlanResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:insurance_plans:all"
+    };
+  }
+
+  // UpdateInsurancePlan updates existing InsurancePlan.
+  rpc UpdateInsurancePlan(UpdateInsurancePlanRequest)
+      returns (UpdateInsurancePlanResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:insurance_plans:all"
+    };
+  }
+
+  // UpsertInsurancePlanCreditCardPolicy upserts CreditCard policy for
+  // InsurancePlan.
+  rpc UpsertInsurancePlanCreditCardPolicy(
+      UpsertInsurancePlanCreditCardPolicyRequest)
+      returns (UpsertInsurancePlanCreditCardPolicyResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:insurance_plans:all"
+    };
+  }
+
+  // ListInsurancePlanCreditCardPolicy returns list of CreditCard policy of
+  // InsurancePlan.
+  rpc ListInsurancePlanCreditCardPolicy(
+      ListInsurancePlanCreditCardPolicyRequest)
+      returns (ListInsurancePlanCreditCardPolicyResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:insurance_plans:all"
+    };
+  }
+}
+
+message GetInsurancePlanRequest {
+  // InsurancePlan ID.
+  int64 insurance_plan_id = 1;
+}
+
+message GetInsurancePlanResponse {
+  // InsurancePlan.
+  InsurancePlan insurance_plan = 1;
+}
+
+message CreateInsurancePlanRequest {
+  // InsurancePlan name.
+  string name = 1;
+
+  // InsurancePlan notes.
+  optional string note = 2;
+
+  // ID of Athena Package.
+  string package_id = 3;
+
+  // Current InsurancePlan status.
+  bool active = 4;
+
+  // ID of PayerGroup
+  optional int64 payer_group_id = 5;
+
+  // ID of InsuranceClassification
+  int64 insurance_classification_id = 6;
+}
+
+message CreateInsurancePlanResponse {
+  // Newly created InsurancePlan.
+  InsurancePlan insurance_plan = 1;
+}
+
+message UpdateInsurancePlanRequest {
+  // InsurancePlan ID.
+  int64 insurance_plan_id = 1;
+
+  // InsurancePlan name.
+  string name = 2;
+
+  // InsurancePlan notes.
+  optional string note = 3;
+
+  // ID of Athena Package.
+  string package_id = 4;
+
+  // Current InsurancePlan active state.
+  bool active = 5;
+
+  // ID of PayerGroup.
+  optional int64 payer_group_id = 6;
+
+  // ID of InsuranceClassification
+  int64 insurance_classification_id = 7;
+}
+
+message UpdateInsurancePlanResponse {
+  // Updated InsurancePlan.
+  InsurancePlan insurance_plan = 1;
+}
+
+message UpsertInsurancePlanCreditCardPolicyRequest {
+  // InsurancePlan ID.
+  int64 insurance_plan_id = 1;
+
+  // List of InsurancePlanCreditCardPolicy to upsert.
+  repeated InsurancePlanCreditCardPolicy credit_card_policies = 2;
+}
+
+message UpsertInsurancePlanCreditCardPolicyResponse {}
+
+message ListInsurancePlanCreditCardPolicyRequest {
+  // InsurancePlan ID.
+  int64 insurance_plan_id = 1;
+}
+
+message ListInsurancePlanCreditCardPolicyResponse {
+  // List of InsurancePlan CreditCard policy rules.
+  repeated InsurancePlanCreditCardPolicy credit_card_policies = 1;
+}

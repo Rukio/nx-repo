@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "grpc_proxy"
+version = "0.1.0"
+description = ""
+authors = ["Manu Sabherwal <manu.sabherwal@*company-data-covered*.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10.12 <3.11"
+fastapi = {extras = ["all"], version = "^0.79.0"}
+python-decouple = "^3.6"
+grpcio-health-checking = "1.47.2"
+python-json-logger = "^2.0.6"
+proto = {path = "../../lib/proto", develop = true}
+ddtrace = "^1.6.3"
+# requests is imported by dependencies. we force the latest version for security
+requests = "^2.31.0"
+# note: cryptography not directly needed, but must bump due to unsafe old vers
+cryptography = "^41.0.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+ipython = "^8.4.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^4.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "task": "string",
+    "task_type": "daily_and_onboarding",
+    "taskable_type": "string",
+    "taskable_id": "1",
+    "status": "pending",
+    "completed_by_user_id": "1",
+    "last_updated_by": {
+      "id": "1",
+      "first_name": "string",
+      "last_name": "string",
+      "email": "user@example.com",
+      "job_title": "string"
+    },
+    "created_at": "2022-04-22T21:08:11.253Z",
+    "updated_at": "2022-04-22T21:08:11.253Z"
+  }
+]

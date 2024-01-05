@@ -1,0 +1,9 @@
+{
+  "id": "123",
+  "first_name": "Pedro",
+  "last_name": "Pascal",
+  "patient_id": "1",
+  "phone_number": "+11234567890",
+  "address": "Av. Siempreviva 742",
+  "relationship": "Parent"
+}

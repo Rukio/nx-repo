@@ -1,0 +1,31 @@
+syntax = "proto3";
+package patients;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/patients";
+option ruby_package = "PatientGRPC";
+
+import "common/date.proto";
+import "common/demographic.proto";
+import "google/protobuf/timestamp.proto";
+
+message UnverifiedPatient {
+  int64 id = 1;
+  optional int64 athena_id = 2;
+  common.Date date_of_birth = 3;
+  common.PhoneNumber phone_number = 5;
+  common.Sex legal_sex = 6;
+  common.BirthSex birth_sex = 7;
+  common.GenderIdentity gender_identity = 8;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+  optional string given_name = 12;
+  optional string family_name = 13;
+  // The Dispatch Health patient ID. Defined if the
+  // unverified patient is associated with a patient record.
+  optional int64 patient_id = 14;
+
+  reserved 4;
+  reserved "name";
+  reserved 9;
+  reserved "gender_identity_details";
+}

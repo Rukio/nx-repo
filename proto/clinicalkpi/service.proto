@@ -1,0 +1,601 @@
+syntax = "proto3";
+package clinicalkpi;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/clinicalkpi";
+option ruby_package = "ClinicalKPIGRPC";
+
+import "common/date.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+service ClinicalKpiService {
+  // Given a *company-data-covered* provider_id GetLatestMetricsForProvider will
+  // retrieve the latest principal individual performance metrics.
+  rpc GetLatestMetricsForProvider(GetLatestMetricsForProviderRequest)
+      returns (GetLatestMetricsForProviderResponse) {
+    option (google.api.http) = {
+      get: "/v1/metrics/providers/{provider_id}"
+    };
+  }
+
+  // Process the data in the staging table with the given name.
+  rpc ProcessStagingRecords(ProcessStagingRecordsRequest)
+      returns (ProcessStagingRecordsResponse) {
+    option (google.api.http) = {
+      post: "/v1/staging-data"
+      body: "*"
+    };
+  }
+
+  // Given a *company-data-covered* market_id GetLatestMetricsByMarket
+  // will retrieve the list of the latest provider metrics in the
+  // given market for active providers in that market.
+  rpc GetLatestMetricsByMarket(GetLatestMetricsByMarketRequest)
+      returns (GetLatestMetricsByMarketResponse) {
+    option (google.api.http) = {
+      get: "/v1/metrics/markets/{market_id}"
+    };
+  }
+
+  // Given a JWT token, get user details from Station
+  rpc GetAuthenticatedUser(GetAuthenticatedUserRequest)
+      returns (GetAuthenticatedUserResponse) {
+    option (google.api.http) = {
+      get: "/v1/users/me"
+    };
+  }
+
+  // Given a *company-data-covered* market_id ListProviderMetricsByMarket will retrieve
+  // the list of provider metrics for active providers in that market.
+  rpc ListProviderMetricsByMarket(ListProviderMetricsByMarketRequest)
+      returns (ListProviderMetricsByMarketResponse) {
+    option (google.api.http) = {
+      get: "/v1/market-provider-metrics"
+    };
+  }
+
+  // Given a *company-data-covered* market_id GetMarketOverallMetrics
+  // will retrieve the latest market metrics.
+  rpc GetMarketOverallMetrics(GetMarketOverallMetricsRequest)
+      returns (GetMarketOverallMetricsResponse) {
+    option (google.api.http) = {
+      get: "/v1/market-overall-metrics/{market_id}"
+    };
+  }
+
+  // Given a *company-data-covered* provider_id and market_id GetProviderMetricsByMarket
+  // will retrieve the provider metrics in given market.
+  rpc GetProviderMetricsByMarket(GetProviderMetricsByMarketRequest)
+      returns (GetProviderMetricsByMarketResponse) {
+    option (google.api.http) = {
+      get: "/v1/market-provider-metrics/{provider_id}"
+    };
+  }
+
+  // Given a *company-data-covered* provider_id GetProviderOverallMetrics
+  // will retrieve the latest provider metrics across all markets.
+  rpc GetProviderOverallMetrics(GetProviderOverallMetricsRequest)
+      returns (GetProviderOverallMetricsResponse) {
+    option (google.api.http) = {
+      get: "/v1/provider-overall-metrics/{provider_id}"
+    };
+  }
+
+  // Given a *company-data-covered* provider_shift_id ListShiftSnapshots will retrieve
+  // the list of the given shift's snapshots.
+  rpc ListShiftSnapshots(ListShiftSnapshotsRequest)
+      returns (ListShiftSnapshotsResponse) {
+    option (google.api.http) = {
+      get: "/v1/shifts/{shift_team_id}/snapshots"
+    };
+  }
+
+  // Given a *company-data-covered* provider_id ListProviderShifts
+  // will retrieve the list of the provider shifts.
+  rpc ListProviderShifts(ListProviderShiftsRequest)
+      returns (ListProviderShiftsResponse) {
+    option (google.api.http) = {
+      get: "/v1/providers/{provider_id}/shifts"
+    };
+  }
+
+  // Given a *company-data-covered* provider_id ListProviderVisits
+  // will retrieve the list of the provider visits.
+  rpc ListProviderVisits(ListProviderVisitsRequest)
+      returns (ListProviderVisitsResponse) {
+    option (google.api.http) = {
+      get: "/v1/providers/{provider_id}/visits"
+    };
+  }
+
+  // Given a *company-data-covered* provider_id ListProviderMarkets
+  // will retrieve the list of the provider markets.
+  rpc ListProviderMarkets(ListProviderMarketsRequest)
+      returns (ListProviderMarketsResponse) {
+    option (google.api.http) = {
+      get: "/v1/providers/{provider_id}/markets"
+    };
+  }
+
+  // Given a *company-data-covered* provider_id GetProviderLookBack will
+  // retrieve info about that providers recent performance.
+  rpc GetProviderLookBack(GetProviderLookBackRequest)
+      returns (GetProviderLookBackResponse) {
+    option (google.api.http) = {
+      get: "/v1/metrics/providers/{provider_id}/look-back"
+    };
+  }
+
+  // Sync avatar_urls on provider table from station.
+  rpc SyncProviderAvatars(SyncProviderAvatarsRequest)
+      returns (SyncProviderAvatarsResponse) {
+    option (google.api.http) = {
+      post: "/v1/providers/avatars/sync"
+    };
+  }
+
+  // Given an empty *company-data-covered* request, HealthCheck will return a status
+  // that indicates the health of the Clinical KPI service. When the service is
+  // down the GRPC framework will return, by default, the UNAVAILABLE service
+  // status.
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {}
+}
+
+message Market {
+  int64 id = 1;
+  string name = 2;
+  string short_name = 3;
+}
+
+message ProviderProfile {
+  string position = 1;
+  string credentials = 2;
+}
+
+message Provider {
+  int64 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  optional string avatar_url = 4;
+  ProviderProfile profile = 5;
+}
+
+message User {
+  int64 id = 1;
+  string first_name = 2;
+  repeated Market markets = 3;
+  ProviderProfile provider_profile = 4;
+  string email = 5;
+}
+
+message MetricsData {
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    STATUS_OK = 1;
+    STATUS_NOT_ENOUGH_COMPLETED_CARE_REQUESTS = 2;
+  }
+
+  optional int32 care_requests_completed_last_seven_days = 1;
+  optional double chart_closure_rate = 4;
+  optional double chart_closure_rate_change = 5;
+  optional double survey_capture_rate = 6;
+  optional double survey_capture_rate_change = 7;
+  optional int32 median_on_scene_time_secs = 8;
+  optional int32 median_on_scene_time_secs_change = 9;
+  optional int32 change_days = 10;
+  optional google.protobuf.Timestamp last_care_request_completed_at = 11;
+  optional google.protobuf.Timestamp created_at = 12;
+  optional google.protobuf.Timestamp updated_at = 18;
+  optional double average_net_promoter_score = 13;
+  optional double average_net_promoter_score_change = 14;
+  optional int32 completed_care_requests = 15;
+  Status status = 16;
+  optional string error_message = 17;
+
+  reserved 2;
+  reserved "median_net_promoter_score";
+  reserved 3;
+  reserved "median_net_promoter_score_change";
+}
+
+message ProviderMetrics {
+  Provider provider = 1;
+  MetricsData metrics = 2;
+}
+
+message MarketMetrics {
+  int64 market_id = 1;
+  // Time median providers were on scene during visits. In seconds.
+  optional int32 on_scene_time_median_seconds = 2;
+  // Difference between median "on scene time" metrics today and week ago.
+  optional int32 on_scene_time_week_change_seconds = 3;
+  // Chart closure rate metric for all APPs in the market. In percents.
+  optional double chart_closure_rate = 4;
+  // Difference between median "chart closure rate" metrics today and week ago.
+  optional double chart_closure_rate_week_change = 5;
+  // Survey capture rate metric for all DTMTs in the market. In percents.
+  optional double survey_capture_rate = 6;
+  // Difference between median "survey capture rate" metrics today and week ago.
+  optional double survey_capture_rate_week_change = 7;
+  // Average net promoter score of providers in the market.
+  optional double net_promoter_score_average = 8;
+  // Difference between median "net promoter score" metrics today and week ago.
+  optional double net_promoter_score_week_change = 9;
+}
+
+message OverallProviderMetrics {
+  int64 provider_id = 1;
+  // Median time provider was on scene during the visit. In seconds.
+  optional int32 on_scene_time_median_seconds = 2;
+  // Average provider's chart closure rate metric. In percents.
+  // Applies to APPs only.
+  optional double chart_closure_rate = 3;
+  // Average provider's survey capture rate metric. In percents.
+  // Applies to DHMTs only.
+  optional double survey_capture_rate = 4;
+  // Average provider's net promoter score metric.
+  optional double net_promoter_score_average = 5;
+  // Percent of time provider is on task during shifts.
+  optional double on_task_percent = 6;
+  // Percent of escalated visits.
+  optional double escalation_rate = 7;
+  // Percent of antibiotics prescribed.
+  optional double abx_prescribing_rate = 8;
+  // Provider's info.
+  Provider provider = 9;
+}
+
+// ShiftSnapshot is a time span of the shift. E.g. shift team was on route
+// since 1pm till 1:22pm.
+message ShiftSnapshot {
+  // Station ID of the shift team
+  optional int64 shift_team_id = 1;
+  // Shift snapshot start time
+  google.protobuf.Timestamp start_timestamp = 2;
+  // Shift snapshot end time
+  google.protobuf.Timestamp end_timestamp = 3;
+  // Shift status (enum: on_scene, on_route, break, idle)
+  string phase = 4;
+  // Location latitude, multiplied by 1e6
+  optional int32 latitude_e6 = 5;
+  // Location longitude, multiplied by 1e6
+  optional int32 longitude_e6 = 6;
+}
+
+message ProviderShift {
+  int64 shift_team_id = 1;
+  int64 provider_id = 2;
+  // Shift team service date
+  common.Date service_date = 3;
+  // Shift team start time
+  optional common.TimeOfDay start_time = 4;
+  // Shift team end time
+  optional common.TimeOfDay end_time = 5;
+  // Count of patients seen
+  optional int32 patients_seen = 6;
+  // Amount of time was spent before leaving the depot
+  optional int32 out_the_door_duration_seconds = 7;
+  // Amount of time spent on route
+  optional int32 en_route_duration_seconds = 8;
+  // Amount of time spent on scene
+  optional int32 on_scene_duration_seconds = 9;
+  // Amount of time spent on break
+  optional int32 on_break_duration_seconds = 10;
+  // Amount of time spent not on scene, on route, or on break after leaving the
+  // depot
+  optional int32 idle_duration_seconds = 11;
+}
+
+message ProviderVisit {
+  // Station Care Request ID.
+  int64 care_request_id = 1;
+  // Station Provider ID.
+  int64 provider_id = 2;
+  // Patient first name.
+  string patient_first_name = 3;
+  // Patient last name.
+  string patient_last_name = 4;
+  // Patient Athena ID.
+  string patient_athena_id = 5;
+  // The Date visit was made.
+  common.Date service_date = 6;
+  // Patient's main complaint.
+  optional string chief_complaint = 7;
+  // Diagnosis.
+  optional string diagnosis = 8;
+  // Flag that is true if antibiotics were prescribed.
+  bool is_abx_prescribed = 9;
+  // Details about antibiotics that were prescribed.
+  optional string abx_details = 10;
+  // Flag that is true if the visit was escalated.
+  bool is_escalated = 11;
+  // Reason why the visit was escalated.
+  optional string escalated_reason = 12;
+}
+
+message Pagination {
+  int64 total = 1;
+  int32 page = 2;
+  int64 total_pages = 3;
+}
+
+message GetLatestMetricsForProviderRequest {
+  int64 provider_id = 1;
+}
+
+message GetLatestMetricsForProviderResponse {
+  MetricsData metrics = 1;
+}
+
+message GetLatestMetricsByMarketRequest {
+  int64 market_id = 1;
+}
+
+message GetLatestMetricsByMarketResponse {
+  repeated ProviderMetrics provider_metrics = 1;
+}
+
+message ProcessStagingRecordsRequest {
+  // The name of the staging table to which data has been added.
+  string table_name = 1;
+}
+
+message ProcessStagingRecordsResponse {}
+
+message SyncProviderAvatarsRequest {}
+
+message SyncProviderAvatarsResponse {}
+
+message GetAuthenticatedUserRequest {}
+
+message GetAuthenticatedUserResponse {
+  User user = 1;
+}
+
+message MarketProviderMetricsListItem {
+  int64 market_id = 1;
+  int64 provider_id = 2;
+  // Time median provider was on scene during the visit. In seconds.
+  optional int32 on_scene_time_median_seconds = 3;
+  // Difference between median "on scene time" metrics today and week ago.
+  optional int32 on_scene_time_week_change_seconds = 4;
+  // Provider's position in list sorted by "on scene time" metric.
+  optional int64 on_scene_time_rank = 5;
+  // Average APP's chart closure rate. In percents.
+  optional double chart_closure_rate = 6;
+  // Difference between APP's chart closure rate today and week ago.
+  optional double chart_closure_rate_week_change = 7;
+  // Provider's position in list sorted by "chart closure rate" metric.
+  optional int64 chart_closure_rate_rank = 8;
+  // Average DHMT's survey capture rate. In percents.
+  optional double survey_capture_rate = 9;
+  // Difference between DHMT's survey capture rate today and week ago.
+  optional double survey_capture_rate_week_change = 10;
+  // Provider's position in list sorted by "survey capture rate" metric.
+  optional int64 survey_capture_rate_rank = 11;
+  // Average provider's net promoter score metric.
+  optional double net_promoter_score_average = 12;
+  // Difference between average "net promoter score" metrics today and week ago.
+  optional double net_promoter_score_week_change = 13;
+  // Provider's position in list sorted by "net promoter score" metric.
+  optional int64 net_promoter_score_rank = 14;
+  // Percent of time provider is on task during shifts.
+  optional double on_task_percent = 15;
+  // Difference between average "on task percent" metrics today and week ago.
+  optional double on_task_percent_week_change = 16;
+  // Provider's position in list sorted by "on task percent" metric.
+  optional int64 on_task_percent_rank = 17;
+  // Provider's info.
+  Provider provider = 18;
+}
+
+enum MetricsSortBy {
+  METRICS_SORT_BY_UNSPECIFIED = 0;
+  METRICS_SORT_BY_ON_SCENE_TIME = 1;
+  METRICS_SORT_BY_CHART_CLOSURE_RATE = 2;
+  METRICS_SORT_BY_SURVEY_CAPTURE_RATE = 3;
+  METRICS_SORT_BY_NET_PROMOTER_SCORE = 4;
+}
+
+message ListProviderMetricsByMarketRequest {
+  int64 market_id = 1;
+  // Name of metric from MetricsSortBy enum the response array will be
+  // sorted by.
+  MetricsSortBy sort_by = 2;
+  // Search term that will be matched against the Provider's first and last name
+  // fields.
+  optional string search_text = 3;
+  // Provider position (APP, DHMT) that will be used for filters.
+  optional string provider_job_title = 4;
+  // Current page.
+  int32 page = 5;
+  // Number of items that will be listed.
+  int32 per_page = 6;
+}
+
+message ListProviderMetricsByMarketResponse {
+  repeated MarketProviderMetricsListItem market_provider_metrics = 1;
+  Pagination pagination = 2;
+}
+
+message GetMarketOverallMetricsRequest {
+  int64 market_id = 1;
+}
+
+message GetMarketOverallMetricsResponse {
+  MarketMetrics market_metrics = 1;
+  Market market = 2;
+}
+
+// Provider's metrics in the specific market
+message MarketProviderMetrics {
+  int64 market_id = 1;
+  int64 provider_id = 2;
+  // Median time provider was on scene during the visit. In seconds.
+  optional int32 on_scene_time_median_seconds = 3;
+  // Difference between median "on scene time" metrics today and week ago.
+  optional int32 on_scene_time_week_change_seconds = 4;
+  // Provider's position in a list sorted by on scene time.
+  optional int64 on_scene_time_rank = 5;
+  // Average provider's chart closure rate metric. In percents.
+  // Applies to APPs only.
+  optional double chart_closure_rate = 6;
+  // Difference between average "chart closure rate" metrics today and week ago.
+  // Applies to APPs only.
+  optional double chart_closure_rate_week_change = 7;
+  // Provider's position in a list sorted by chart closure rate.
+  optional int64 chart_closure_rate_rank = 8;
+  // Average provider's survey capture rate metric. In percents.
+  // Applies to DHMTs only.
+  optional double survey_capture_rate = 9;
+  // Difference between average "survey capture rate" metrics today and week
+  // ago. Applies to DHMTs only.
+  optional double survey_capture_rate_week_change = 10;
+  // Provider's position in a list sorted by survey capture rate.
+  optional int64 survey_capture_rate_rank = 11;
+  // Average provider's net promoter score metric.
+  optional double net_promoter_score_average = 12;
+  // Difference between average "net promoter score" metrics today and week ago.
+  optional double net_promoter_score_week_change = 13;
+  // Provider's position in a list sorted by net promoter score.
+  optional int64 net_promoter_score_rank = 14;
+  // Average percent of time provider is on task.
+  optional double on_task_percent = 15;
+  // Difference between average "on task percent" metrics today and week ago.
+  optional double on_task_percent_week_change = 16;
+  // Provider's position in a list sorted by on task percent.
+  optional int64 on_task_percent_rank = 17;
+  // Count of ranked providers
+  int64 total_providers = 18;
+}
+
+message GetProviderMetricsByMarketRequest {
+  int64 provider_id = 1;
+  int64 market_id = 2;
+}
+
+message GetProviderMetricsByMarketResponse {
+  MarketProviderMetrics market_provider_metrics = 1;
+}
+
+message GetProviderOverallMetricsRequest {
+  int64 provider_id = 1;
+}
+
+message GetProviderOverallMetricsResponse {
+  OverallProviderMetrics provider_metrics = 1;
+}
+
+message ListShiftSnapshotsRequest {
+  int64 shift_team_id = 1;
+}
+
+message ListShiftSnapshotsResponse {
+  repeated ShiftSnapshot shift_snapshots = 1;
+}
+
+enum SortOrder {
+  SORT_ORDER_UNSPECIFIED = 0;
+  SORT_ORDER_ASC = 1;
+  SORT_ORDER_DESC = 2;
+}
+
+message ListProviderShiftsRequest {
+  int64 provider_id = 1;
+  // Filter for the last X days. Will return shifts started after
+  // from_timestamp
+  optional google.protobuf.Timestamp from_timestamp = 2;
+  int32 page = 3;
+  int32 per_page = 4;
+  // Sort order by service date
+  SortOrder sort_order = 5;
+}
+
+message ListProviderShiftsResponse {
+  repeated ProviderShift provider_shifts = 1;
+  Pagination pagination = 2;
+}
+
+message ListProviderVisitsRequest {
+  int64 provider_id = 1;
+  // Filter by antibiotics prescribed value? Yes/No
+  optional bool is_abx_prescribed = 2;
+  // Filter by escalated value? Yes/No
+  optional bool is_escalated = 3;
+  // Text that will be used as keyword for search by patient first name
+  // and last name fields.
+  optional string search_text = 4;
+  // Current page.
+  int32 page = 5;
+  // Number of items that will be listed.
+  int32 per_page = 6;
+}
+
+message ListProviderVisitsResponse {
+  repeated ProviderVisit provider_visits = 1;
+  Pagination pagination = 2;
+}
+
+message ListProviderMarketsRequest {
+  // Station Provider ID.
+  int64 provider_id = 1;
+}
+
+message ListProviderMarketsResponse {
+  // Markets the Provider has metrics in.
+  repeated Market markets = 1;
+}
+
+message GetProviderLookBackRequest {
+  int64 provider_id = 1;
+}
+
+message GetProviderLookBackResponse {
+  // List of provider metrics and average metrics in market groups for the last
+  // 7 days
+  repeated LookBackMetrics shifts_trend = 1;
+  // Provider visits last day breakdown
+  Breakdown last_day_breakdown = 2;
+}
+
+message LookBackMetrics {
+  // The Date of metrics.
+  common.Date service_date = 1;
+  // Number of patients seen by provider
+  optional int32 provider_patients_seen = 2;
+  // Redshift market group id
+  optional int64 market_group_id = 3;
+  // Redshift market group name
+  optional string market_group_name = 4;
+  // Average patients seen in market group
+  optional double average_patients_seen = 5;
+  // Average on shift duration in market group
+  optional double average_on_shift_duration_seconds = 6;
+}
+
+message Breakdown {
+  // The Date of snapshots.
+  common.Date service_date = 1;
+  // List of provider visit snapshots for the service date
+  repeated Snapshot snapshots = 2;
+}
+
+// Snapshot is a time span of the provider visit phase.
+message Snapshot {
+  enum Phase {
+    PHASE_UNSPECIFIED = 0;
+    PHASE_EN_ROUTE = 1;
+    PHASE_ON_SCENE = 2;
+    PHASE_ON_BREAK = 3;
+  }
+  // Provider visit status
+  Phase phase = 1;
+  // Phase start time
+  google.protobuf.Timestamp start_timestamp = 2;
+  // Phase end time
+  google.protobuf.Timestamp end_timestamp = 3;
+}
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {}

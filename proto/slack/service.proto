@@ -1,0 +1,25 @@
+syntax = "proto3";
+package slack;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/slackpb";
+option ruby_package = "SlackGRPC";
+
+import "common/auth/auth.proto";
+
+service SlackService {
+  rpc PostMessage(PostMessageRequest) returns (PostMessageResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "create:slack_messages:all"
+    };
+  }
+}
+
+message PostMessageRequest {
+  // Email of the user the message should be sent to
+  string email = 1;
+
+  // Message text
+  string message = 2;
+}
+
+message PostMessageResponse {}

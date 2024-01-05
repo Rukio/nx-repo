@@ -1,0 +1,51 @@
+syntax = "proto3";
+package address;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/addresspb";
+option ruby_package = "AddressGRPC";
+
+import "common/auth/auth.proto";
+
+service AddressService {
+  // Returns a collection of Address matching a set of provided IDs.
+  rpc GetAddressesByID(GetAddressesByIDRequest)
+      returns (GetAddressesByIDResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:users:all"
+    };
+  }
+}
+
+message GetAddressesByIDRequest {
+  repeated int64 address_ids = 1;
+}
+
+message GetAddressesByIDResponse {
+  repeated Address addresses = 1;
+}
+
+message Address {
+  // id represents the unique identifier of the Address.
+  int64 id = 1;
+  // created_at represents the timestamp at which the Address was created.
+  string created_at = 2;
+  // updated_at represents the timestamp at which the Address was last updated.
+  string updated_at = 3;
+  // street_address_1 represents the main part of the street address like number
+  // and street name.
+  optional string street_address_1 = 4;
+  // street_address_2 represents extra details for the street address.
+  optional string street_address_2 = 5;
+  // city represents the city the Address is in.
+  optional string city = 6;
+  // state represents the state the Address is in.
+  optional string state = 7;
+  // zipcode represents the zipcode of the Address.
+  optional string zipcode = 8;
+  // latitude represents the latitude of the Address.
+  optional double latitude = 9;
+  // longitude represents the longitude of the Address.
+  optional double longitude = 10;
+  // additional_details represents any additional details for the Address.
+  optional string additional_details = 11;
+}

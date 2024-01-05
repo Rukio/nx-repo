@@ -1,0 +1,18 @@
+{
+  "insurance": {
+    "id": "205",
+    "name": "Humana",
+    "priority": 1,
+    "patient_id": "1",
+    "member_id": "666"
+  },
+  "patient_insurances": [
+    {
+      "id": "205",
+      "name": "Humana",
+      "priority": 1,
+      "patient_id": "1",
+      "member_id": "666"
+    }
+  ]
+}

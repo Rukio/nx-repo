@@ -1,0 +1,56 @@
+name: Build and push Atlantis
+
+on:
+  push:
+    paths:
+      - docker/atlantis.Dockerfile
+      - .github/workflows/build_and_push_atlantis_image.yml
+    branches:
+      - trunk
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push-atlantis-container:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build and push image
+        uses: ./.github/actions/build_and_push_docker
+        with:
+          image_name: atlantis_dh
+          dockerfile: ./docker/atlantis.Dockerfile
+          extra_tags: |
+            latest
+          push: ${{ github.event_name != 'pull_request' }}
+          docker_port: ''
+          docker_registry_url: ${{ secrets.DH_DOCKER_REGISTRY_URL }}
+          docker_registry_username: ${{ secrets.DH_DOCKER_REGISTRY_PUSH_USERNAME }}
+          docker_registry_password: ${{ secrets.DH_DOCKER_REGISTRY_PASSWORD }}
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::651625208281:role/github-actions
+          aws-region: us-east-1
+
+      - name: Update Amazon ECS service
+        run: aws ecs update-service --cluster atlantis --service atlantis --force-new-deployment
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure()
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          # slack-channel: C04CBBCFUAY #alert-test
+          # <!subteam^S04AEG5A3AP> is the engcore user group
+          slack-text: |
+            :this-is-fine: *<!subteam^S04AEG5A3AP> Failed to build and push atlantis image on `trunk`*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}

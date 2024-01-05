@@ -1,0 +1,157 @@
+{
+  "name": "clinical-kpi",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/clinical-kpi/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/ts/apps/clinical-kpi",
+        "index": "ts/apps/clinical-kpi/src/index.html",
+        "baseHref": "/",
+        "main": "ts/apps/clinical-kpi/src/main.tsx",
+        "polyfills": "ts/apps/clinical-kpi/src/polyfills.ts",
+        "tsConfig": "ts/apps/clinical-kpi/tsconfig.app.json",
+        "assets": ["ts/apps/clinical-kpi/src/favicon.ico"],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nx/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "qa": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/clinical-kpi/src/environments/environment.ts",
+              "with": "ts/apps/clinical-kpi/src/environments/environment.qa.ts"
+            },
+            {
+              "replace": "ts/libs/clinical-kpi/data-access/src/environments/environment.ts",
+              "with": "ts/libs/clinical-kpi/data-access/src/environments/environment.qa.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "uat": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/clinical-kpi/src/environments/environment.ts",
+              "with": "ts/apps/clinical-kpi/src/environments/environment.uat.ts"
+            },
+            {
+              "replace": "ts/libs/clinical-kpi/data-access/src/environments/environment.ts",
+              "with": "ts/libs/clinical-kpi/data-access/src/environments/environment.uat.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "releasehub": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/clinical-kpi/src/environments/environment.ts",
+              "with": "ts/apps/clinical-kpi/src/environments/environment.releasehub.ts"
+            },
+            {
+              "replace": "ts/libs/clinical-kpi/data-access/src/environments/environment.ts",
+              "with": "ts/libs/clinical-kpi/data-access/src/environments/environment.releasehub.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/clinical-kpi/src/environments/environment.ts",
+              "with": "ts/apps/clinical-kpi/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "ts/libs/clinical-kpi/data-access/src/environments/environment.ts",
+              "with": "ts/libs/clinical-kpi/data-access/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "clinical-kpi:build",
+        "hmr": true,
+        "port": 4252
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "clinical-kpi:build:development"
+        },
+        "production": {
+          "buildTarget": "clinical-kpi:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/clinical-kpi/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/ts/apps/clinical-kpi"],
+      "options": {
+        "jestConfig": "ts/apps/clinical-kpi/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.app.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/clinical-kpi"
+      }
+    }
+  },
+  "tags": ["scope:clinical-kpi", "type:app"]
+}

@@ -1,0 +1,7 @@
+syntax = "proto3";
+package provider_notifications;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/provider_notificationspb";
+option ruby_package = "ProviderNotificationsGRPC";
+
+service ProviderNotificationsService {}

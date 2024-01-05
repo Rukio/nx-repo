@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    image: bitnami/zookeeper:${DEV_ZOOKEEPER_VERSION}
+    restart: unless-stopped
+    ports:
+      - ${DEV_ZOOKEEPER_PORT}:2181
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    volumes:
+      - zookeeper:/bitnami/zookeeper
+  kafka:
+    image: bitnami/kafka:${DEV_KAFKA_VERSION}
+    restart: unless-stopped
+    depends_on:
+      - zookeeper
+    ports:
+      - ${DEV_KAFKA_PORT}:9092
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_ENABLE_KRAFT=false
+    volumes:
+      - kafka:/bitnami/kafka
+
+volumes:
+  kafka:
+  zookeeper:

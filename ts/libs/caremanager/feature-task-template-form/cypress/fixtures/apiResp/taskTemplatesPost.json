@@ -1,0 +1,46 @@
+{
+  "task_template": {
+    "id": "32",
+    "name": "a cool name",
+    "summary": "some summary",
+    "created_at": "2022-07-27T22:26:48.127Z",
+    "updated_at": "2022-07-27T22:26:48.127Z",
+    "service_line": {
+      "id": "2",
+      "name": "Bridge Care",
+      "short_name": "Bridge"
+    },
+    "service_line_id": "2",
+    "care_phase": {
+      "id": "1",
+      "name": "Pending",
+      "phase_type": "active"
+    },
+    "updated_by_user_id": "1",
+    "last_updated_by": {
+      "id": "115166",
+      "first_name": "Rodrigo",
+      "last_name": "Guinea",
+      "email": "rodrigo.guinea@*company-data-covered*.com",
+      "job_title": ""
+    },
+    "tasks": [
+      {
+        "id": "3",
+        "body": "be awesome",
+        "task_type": {
+          "id": "1",
+          "task_type": "nurse_navigator"
+        }
+      },
+      {
+        "id": "4",
+        "body": "be more awesome",
+        "task_type": {
+          "id": "1",
+          "task_type": "nurse_navigator"
+        }
+      }
+    ]
+  }
+}

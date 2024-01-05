@@ -1,0 +1,31 @@
+{
+  "external_care_provider": {
+    "id": "124",
+    "name": "Dr Hannibal Lecter",
+    "provider_type_id": "4",
+    "patient_id": "1",
+    "phone_number": "9876",
+    "fax_number": "5432",
+    "address": "Baltimore State Hospital for the Criminally Insane"
+  },
+  "patient_external_care_providers": [
+    {
+      "id": "123",
+      "name": "Dr Mephesto",
+      "provider_type_id": "2",
+      "patient_id": "1",
+      "phone_number": "666",
+      "fax_number": "777",
+      "address": "Some desert island"
+    },
+    {
+      "id": "124",
+      "name": "Dr Hannibal Lecter",
+      "provider_type_id": "4",
+      "patient_id": "1",
+      "phone_number": "9876",
+      "fax_number": "5432",
+      "address": "Baltimore State Hospital for the Criminally Insane"
+    }
+  ]
+}

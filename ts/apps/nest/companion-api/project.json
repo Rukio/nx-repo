@@ -1,0 +1,105 @@
+{
+  "name": "companion-api",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/nest/companion-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["gen-client"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/ts/apps/nest/companion-api",
+        "main": "ts/apps/nest/companion-api/src/main.ts",
+        "tsConfig": "ts/apps/nest/companion-api/tsconfig.app.json",
+        "assets": ["ts/apps/nest/companion-api/src/prisma"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/nest/companion-api/src/environments/environment.ts",
+              "with": "ts/apps/nest/companion-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "dependsOn": ["gen-client", "ensure-redis", "migrate-dev"],
+      "options": {
+        "buildTarget": "companion-api:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "companion-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/nest/companion-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "dependsOn": ["gen-client"],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "ts/apps/nest/companion-api/jest.config.ts",
+        "passWithNoTests": true,
+        "maxWorkers": 1
+      }
+    },
+    "migrate-dev": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma migrate dev --schema ./src/prisma/schema.prisma",
+        "cwd": "ts/apps/nest/companion-api"
+      }
+    },
+    "gen-client": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma generate --schema ./src/prisma/schema.prisma",
+        "cwd": "ts/apps/nest/companion-api"
+      }
+    },
+    "ensure-redis": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "make ensure-dev-redis"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "dependsOn": ["gen-client"],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.app.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/nest/companion-api"
+      }
+    }
+  },
+  "tags": ["scope:companion", "type:nest"]
+}

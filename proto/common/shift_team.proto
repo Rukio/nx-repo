@@ -1,0 +1,18 @@
+syntax = "proto3";
+package common;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/common";
+
+import "common/demographic.proto";
+
+message Car {
+  // id represents the ID of the Car.
+  int64 id = 1;
+
+  // name represents the name of the Car
+  string name = 2;
+
+  // phone_number represents the phone number of the notification subscription
+  // the Car is recipient for.
+  common.PhoneNumber phone_number = 3;
+}

@@ -1,0 +1,1202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MarqueeLeader OnSceneTime Type should render correctly with rank 1 with ascending order 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.emotion-1 {
+  min-height: 22px;
+}
+
+.emotion-2 {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 .MuiBadge-badge {
+  background-color: #FFD700;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: absolute;
+  box-sizing: border-box;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  min-width: 20px;
+  line-height: 1;
+  padding: 0 6px;
+  height: 20px;
+  border-radius: 10px;
+  z-index: 1;
+  -webkit-transition: -webkit-transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #2e7d32;
+  color: #fff;
+  top: 0;
+  right: 0;
+  -webkit-transform: scale(1) translate(50%, -50%);
+  -moz-transform: scale(1) translate(50%, -50%);
+  -ms-transform: scale(1) translate(50%, -50%);
+  transform: scale(1) translate(50%, -50%);
+  transform-origin: 100% 0%;
+}
+
+.emotion-3.MuiBadge-invisible {
+  -webkit-transform: scale(0) translate(50%, -50%);
+  -moz-transform: scale(0) translate(50%, -50%);
+  -ms-transform: scale(0) translate(50%, -50%);
+  transform: scale(0) translate(50%, -50%);
+}
+
+.emotion-4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 80px;
+  height: 80px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.emotion-4 .MuiAvatar-fallback {
+  fill: rgba(0, 0, 0, 0.54);
+}
+
+.emotion-5 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-family: Open Sans;
+}
+
+.emotion-8 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin-left: 8px;
+}
+
+.emotion-9 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #2e7d32;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <span
+        class="MuiBadge-root MuiBadge-root emotion-2"
+        data-testid="marquee-leader-badge-1"
+      >
+        <span
+          class="MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-colorSuccess MuiBadge-badge emotion-3"
+        >
+          1
+        </span>
+      </span>
+    </div>
+    <div
+      class="MuiAvatar-root MuiAvatar-circular emotion-4"
+      data-testid="marquee-leader-avatar-1"
+    >
+      <img
+        class="MuiAvatar-img emotion-5"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLE9Ylr4f4BXaJfXkLC0YGydJDZVQoxK0Dg&usqp=CAU"
+      />
+    </div>
+    <div
+      class="MuiBox-root emotion-6"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-h7 emotion-7"
+        data-testid="marquee-leader-name-1"
+      >
+        Desirae Bator •
+      </span>
+      <p
+        class="MuiTypography-root MuiTypography-body2 emotion-8"
+        data-testid="marquee-leader-position-1"
+      >
+        APP
+      </p>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-9"
+      data-testid="marquee-leader-value-1"
+    >
+      5.34 mins
+    </p>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-10"
+      data-testid="marquee-leader-value-change-1"
+    >
+      -1.67 mins
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MarqueeLeader OnSceneTime Type should render correctly with rank 3 with ascending order 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.emotion-1 {
+  min-height: 22px;
+}
+
+.emotion-2 {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 .MuiBadge-badge {
+  background-color: #FFD700;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: absolute;
+  box-sizing: border-box;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  min-width: 20px;
+  line-height: 1;
+  padding: 0 6px;
+  height: 20px;
+  border-radius: 10px;
+  z-index: 1;
+  -webkit-transition: -webkit-transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #2e7d32;
+  color: #fff;
+  top: 0;
+  right: 0;
+  -webkit-transform: scale(1) translate(50%, -50%);
+  -moz-transform: scale(1) translate(50%, -50%);
+  -ms-transform: scale(1) translate(50%, -50%);
+  transform: scale(1) translate(50%, -50%);
+  transform-origin: 100% 0%;
+}
+
+.emotion-3.MuiBadge-invisible {
+  -webkit-transform: scale(0) translate(50%, -50%);
+  -moz-transform: scale(0) translate(50%, -50%);
+  -ms-transform: scale(0) translate(50%, -50%);
+  transform: scale(0) translate(50%, -50%);
+}
+
+.emotion-4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 80px;
+  height: 80px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.emotion-4 .MuiAvatar-fallback {
+  fill: rgba(0, 0, 0, 0.54);
+}
+
+.emotion-5 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-family: Open Sans;
+}
+
+.emotion-8 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin-left: 8px;
+}
+
+.emotion-9 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #d32f2f;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <span
+        class="MuiBadge-root MuiBadge-root emotion-2"
+        data-testid="marquee-leader-badge-1"
+      >
+        <span
+          class="MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-colorSuccess MuiBadge-badge emotion-3"
+        >
+          1
+        </span>
+      </span>
+    </div>
+    <div
+      class="MuiAvatar-root MuiAvatar-circular emotion-4"
+      data-testid="marquee-leader-avatar-1"
+    >
+      <img
+        class="MuiAvatar-img emotion-5"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLE9Ylr4f4BXaJfXkLC0YGydJDZVQoxK0Dg&usqp=CAU"
+      />
+    </div>
+    <div
+      class="MuiBox-root emotion-6"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-h7 emotion-7"
+        data-testid="marquee-leader-name-1"
+      >
+        Desirae Bator •
+      </span>
+      <p
+        class="MuiTypography-root MuiTypography-body2 emotion-8"
+        data-testid="marquee-leader-position-1"
+      >
+        APP
+      </p>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-9"
+      data-testid="marquee-leader-value-1"
+    >
+      5.34 mins
+    </p>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-10"
+      data-testid="marquee-leader-value-change-1"
+    >
+      +5 mins
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MarqueeLeader should render correctly for different type 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.emotion-1 {
+  min-height: 22px;
+}
+
+.emotion-2 {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 .MuiBadge-badge {
+  background-color: #FFD700;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: absolute;
+  box-sizing: border-box;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  min-width: 20px;
+  line-height: 1;
+  padding: 0 6px;
+  height: 20px;
+  border-radius: 10px;
+  z-index: 1;
+  -webkit-transition: -webkit-transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #2e7d32;
+  color: #fff;
+  top: 0;
+  right: 0;
+  -webkit-transform: scale(1) translate(50%, -50%);
+  -moz-transform: scale(1) translate(50%, -50%);
+  -ms-transform: scale(1) translate(50%, -50%);
+  transform: scale(1) translate(50%, -50%);
+  transform-origin: 100% 0%;
+}
+
+.emotion-3.MuiBadge-invisible {
+  -webkit-transform: scale(0) translate(50%, -50%);
+  -moz-transform: scale(0) translate(50%, -50%);
+  -ms-transform: scale(0) translate(50%, -50%);
+  transform: scale(0) translate(50%, -50%);
+}
+
+.emotion-4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 80px;
+  height: 80px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.emotion-4 .MuiAvatar-fallback {
+  fill: rgba(0, 0, 0, 0.54);
+}
+
+.emotion-5 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-family: Open Sans;
+}
+
+.emotion-8 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin-left: 8px;
+}
+
+.emotion-9 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #2e7d32;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <span
+        class="MuiBadge-root MuiBadge-root emotion-2"
+        data-testid="marquee-leader-badge-1"
+      >
+        <span
+          class="MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-colorSuccess MuiBadge-badge emotion-3"
+        >
+          1
+        </span>
+      </span>
+    </div>
+    <div
+      class="MuiAvatar-root MuiAvatar-circular emotion-4"
+      data-testid="marquee-leader-avatar-1"
+    >
+      <img
+        class="MuiAvatar-img emotion-5"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLE9Ylr4f4BXaJfXkLC0YGydJDZVQoxK0Dg&usqp=CAU"
+      />
+    </div>
+    <div
+      class="MuiBox-root emotion-6"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-h7 emotion-7"
+        data-testid="marquee-leader-name-1"
+      >
+        Desirae Bator •
+      </span>
+      <p
+        class="MuiTypography-root MuiTypography-body2 emotion-8"
+        data-testid="marquee-leader-position-1"
+      >
+        APP
+      </p>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-9"
+      data-testid="marquee-leader-value-1"
+    >
+      5.34
+    </p>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-10"
+      data-testid="marquee-leader-value-change-1"
+    >
+      +5
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MarqueeLeader should render correctly when rank is more than 3 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.emotion-1 {
+  min-height: 22px;
+}
+
+.emotion-2 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  font-weight: 600;
+}
+
+.emotion-3 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 80px;
+  height: 80px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.emotion-3 .MuiAvatar-fallback {
+  fill: rgba(0, 0, 0, 0.54);
+}
+
+.emotion-4 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+
+.emotion-5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-6 {
+  margin: 0;
+  font-family: Open Sans;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin-left: 8px;
+}
+
+.emotion-8 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.emotion-9 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #2e7d32;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <p
+        class="MuiTypography-root MuiTypography-body2 emotion-2"
+        data-testid="marquee-leader-badge-4"
+      >
+        #4
+      </p>
+    </div>
+    <div
+      class="MuiAvatar-root MuiAvatar-circular emotion-3"
+      data-testid="marquee-leader-avatar-4"
+    >
+      <img
+        class="MuiAvatar-img emotion-4"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLE9Ylr4f4BXaJfXkLC0YGydJDZVQoxK0Dg&usqp=CAU"
+      />
+    </div>
+    <div
+      class="MuiBox-root emotion-5"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-h7 emotion-6"
+        data-testid="marquee-leader-name-4"
+      >
+        Desirae Bator •
+      </span>
+      <p
+        class="MuiTypography-root MuiTypography-body2 emotion-7"
+        data-testid="marquee-leader-position-4"
+      >
+        APP
+      </p>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-8"
+      data-testid="marquee-leader-value-4"
+    >
+      5.34
+    </p>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-9"
+      data-testid="marquee-leader-value-change-4"
+    >
+      +5
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`MarqueeLeader should render correctly with provider position 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.emotion-1 {
+  min-height: 22px;
+}
+
+.emotion-2 {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 .MuiBadge-badge {
+  background-color: #FFD700;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: absolute;
+  box-sizing: border-box;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  min-width: 20px;
+  line-height: 1;
+  padding: 0 6px;
+  height: 20px;
+  border-radius: 10px;
+  z-index: 1;
+  -webkit-transition: -webkit-transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #2e7d32;
+  color: #fff;
+  top: 0;
+  right: 0;
+  -webkit-transform: scale(1) translate(50%, -50%);
+  -moz-transform: scale(1) translate(50%, -50%);
+  -ms-transform: scale(1) translate(50%, -50%);
+  transform: scale(1) translate(50%, -50%);
+  transform-origin: 100% 0%;
+}
+
+.emotion-3.MuiBadge-invisible {
+  -webkit-transform: scale(0) translate(50%, -50%);
+  -moz-transform: scale(0) translate(50%, -50%);
+  -ms-transform: scale(0) translate(50%, -50%);
+  transform: scale(0) translate(50%, -50%);
+}
+
+.emotion-4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 80px;
+  height: 80px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.emotion-4 .MuiAvatar-fallback {
+  fill: rgba(0, 0, 0, 0.54);
+}
+
+.emotion-5 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  object-fit: cover;
+  color: transparent;
+  text-indent: 10000px;
+}
+
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-7 {
+  margin: 0;
+  font-family: Open Sans;
+}
+
+.emotion-8 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin-left: 8px;
+}
+
+.emotion-9 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.emotion-10 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #2e7d32;
+}
+
+<div
+    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+    >
+      <span
+        class="MuiBadge-root MuiBadge-root emotion-2"
+        data-testid="marquee-leader-badge-1"
+      >
+        <span
+          class="MuiBadge-badge MuiBadge-standard MuiBadge-anchorOriginTopRight MuiBadge-anchorOriginTopRightRectangular MuiBadge-overlapRectangular MuiBadge-colorSuccess MuiBadge-badge emotion-3"
+        >
+          1
+        </span>
+      </span>
+    </div>
+    <div
+      class="MuiAvatar-root MuiAvatar-circular emotion-4"
+      data-testid="marquee-leader-avatar-1"
+    >
+      <img
+        class="MuiAvatar-img emotion-5"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLE9Ylr4f4BXaJfXkLC0YGydJDZVQoxK0Dg&usqp=CAU"
+      />
+    </div>
+    <div
+      class="MuiBox-root emotion-6"
+    >
+      <span
+        class="MuiTypography-root MuiTypography-h7 emotion-7"
+        data-testid="marquee-leader-name-1"
+      >
+        Desirae Bator •
+      </span>
+      <p
+        class="MuiTypography-root MuiTypography-body2 emotion-8"
+        data-testid="marquee-leader-position-1"
+      >
+        APP
+      </p>
+    </div>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-9"
+      data-testid="marquee-leader-value-1"
+    >
+      5.34
+    </p>
+    <p
+      class="MuiTypography-root MuiTypography-body2 emotion-10"
+      data-testid="marquee-leader-value-change-1"
+    >
+      +5
+    </p>
+  </div>
+</DocumentFragment>
+`;

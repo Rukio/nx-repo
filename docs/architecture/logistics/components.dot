@@ -1,0 +1,38 @@
+digraph G {
+    node [shape=box, style=rounded];
+
+    rankdir="LR"
+
+    subgraph cluster_Station {
+        style=dotted
+        label="Station"
+
+        CareReqSvc [label="Care Requests"]
+        ShiftTeamSvc [label="Shift Teams"]
+        Station [label="Station"]
+    }
+
+    subgraph cluster_Logistics {
+        label="Logistics"
+        LogisticsSvc [label="Logistics\n(Go)"]
+        OptimizerSvc [label="Optimizer\n(Java)"]
+        LogisticsDB [label="Logistics\nDB", shape=cylinder]
+    }
+
+    subgraph cluster_MapsData {
+        label="Map Data"
+
+        OSRM [label="OSRM"]
+        GoogleMapsSvc [label="Google Maps"]
+    }
+
+    // Relations
+
+    Station -> LogisticsSvc [label="Update Care Reqs/Shift Teams"]
+    LogisticsSvc -> {GoogleMapsSvc OSRM}
+    LogisticsSvc -> OptimizerSvc
+    LogisticsSvc -> LogisticsDB
+
+    LogisticsSvc -> CareReqSvc
+    LogisticsSvc -> ShiftTeamSvc
+}

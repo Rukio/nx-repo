@@ -1,0 +1,141 @@
+{
+  "name": "modality-dashboard",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/modality-dashboard/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/ts/apps/modality-dashboard",
+        "index": "ts/apps/modality-dashboard/src/index.html",
+        "baseHref": "/",
+        "main": "ts/apps/modality-dashboard/src/main.tsx",
+        "polyfills": "ts/apps/modality-dashboard/src/polyfills.ts",
+        "tsConfig": "ts/apps/modality-dashboard/tsconfig.app.json",
+        "assets": [
+          "ts/apps/modality-dashboard/src/favicon.ico",
+          "ts/apps/modality-dashboard/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nx/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "qa": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/modality-dashboard/src/environments/environment.ts",
+              "with": "ts/apps/modality-dashboard/src/environments/environment.qa.ts"
+            },
+            {
+              "replace": "ts/libs/shared/station/data-access/src/environments/environment.ts",
+              "with": "ts/libs/shared/station/data-access/src/environments/environment.qa.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "uat": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/modality-dashboard/src/environments/environment.ts",
+              "with": "ts/apps/modality-dashboard/src/environments/environment.uat.ts"
+            },
+            {
+              "replace": "ts/libs/shared/station/data-access/src/environments/environment.ts",
+              "with": "ts/libs/shared/station/data-access/src/environments/environment.uat.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "ts/apps/modality-dashboard/src/environments/environment.ts",
+              "with": "ts/apps/modality-dashboard/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "ts/libs/shared/station/data-access/src/environments/environment.ts",
+              "with": "ts/libs/shared/station/data-access/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "modality-dashboard:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "modality-dashboard:build:development"
+        },
+        "production": {
+          "buildTarget": "modality-dashboard:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/modality-dashboard/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/ts/apps/modality-dashboard"],
+      "options": {
+        "jestConfig": "ts/apps/modality-dashboard/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.app.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/modality-dashboard"
+      }
+    }
+  },
+  "tags": ["scope:modality", "type:app"]
+}

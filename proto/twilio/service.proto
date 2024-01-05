@@ -1,0 +1,26 @@
+syntax = "proto3";
+package twilio;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/twiliopb";
+option ruby_package = "TwilioGRPC";
+
+import "common/auth/auth.proto";
+import "common/demographic.proto";
+
+service TwilioService {
+  rpc SendSMS(SendSMSRequest) returns (SendSMSResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "create:twilio_messages:all"
+    };
+  }
+}
+
+message SendSMSRequest {
+  // Phone number the message should be sent to
+  common.PhoneNumber phone_number = 1;
+
+  // Message text
+  string message = 2;
+}
+
+message SendSMSResponse {}

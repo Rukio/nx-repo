@@ -1,0 +1,20 @@
+{
+  "pharmacy": {
+    "id": "161",
+    "name": "Farmacias del Ahorro",
+    "patient_id": "1",
+    "phone_number": "444",
+    "fax_number": "555",
+    "address": "17 Terranova Avenue"
+  },
+  "patient_pharmacies": [
+    {
+      "id": "161",
+      "name": "Farmacias del Ahorro",
+      "patient_id": "1",
+      "phone_number": "444",
+      "fax_number": "555",
+      "address": "17 Terranova Avenue"
+    }
+  ]
+}

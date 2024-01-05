@@ -1,0 +1,13 @@
+{
+    "type": "record",
+    "namespace": "analytics.avro.telep_model_server",
+    "name": "telep_decision_event",
+    "fields": [
+        {"name": "care_request_id", "type": "long"},
+        {"name": "timestamp", "type": "string"},
+        {"name": "market_name", "type": "string"},
+        {"name": "ml_decision", "type": "boolean"},
+        {"name": "clinical_decision", "type": "boolean"},
+        {"name": "final_decision", "type": "boolean"}
+    ]
+}

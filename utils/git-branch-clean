@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+are_you_sure_verify () {
+    echo "$1"
+    read -n1 -r -p "Are you sure? (y/n) " answer
+    echo
+    case $answer in
+        y )
+            echo "Yes"
+        ;;
+        * )
+            echo "Cancelled."
+            exit 2
+        ;;
+    esac
+}
+
+echo "Fetching latest branches..."
+git fetch --prune
+
+set +e
+GONE_BRANCHES_INFO=$(git branch -vv | grep 'origin/.*: gone]')
+if [ $? -eq 1 ]; then
+  echo "No branches to cleanup."
+  exit 0
+fi
+set -e
+
+echo "
+Candidate branches:
+${GONE_BRANCHES_INFO}
+"
+
+are_you_sure_verify "WARNING: Will forcibly delete branches."
+
+echo "Deleting..."
+GONE_BRANCH_NAMES=$(echo "${GONE_BRANCHES_INFO}" | awk '{print $1}')
+echo "${GONE_BRANCH_NAMES}" | xargs git branch -D

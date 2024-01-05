@@ -1,0 +1,546 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Integration tests snapshot tests 1`] = `
+<DocumentFragment>
+  .emotion-0 {
+  position: relative;
+  height: 20px;
+}
+
+.emotion-1 {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #eeeeee;
+  left: 0%;
+}
+
+.emotion-2 {
+  position: absolute;
+  top: -15px;
+  width: 30px;
+  text-align: center;
+  font-size: 12px;
+  left: 0px;
+}
+
+.emotion-3 {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #eeeeee;
+  left: 11.11111111111111%;
+}
+
+.emotion-4 {
+  position: absolute;
+  top: -15px;
+  width: 30px;
+  text-align: center;
+  font-size: 12px;
+  left: -15px;
+}
+
+.emotion-5 {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #eeeeee;
+  left: 22.22222222222222%;
+}
+
+.emotion-7 {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #eeeeee;
+  left: 33.33333333333333%;
+}
+
+.emotion-9 {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #eeeeee;
+  left: 44.44444444444444%;
+}
+
+.emotion-11 {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #eeeeee;
+  left: 55.55555555555556%;
+}
+
+.emotion-13 {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #eeeeee;
+  left: 66.66666666666666%;
+}
+
+.emotion-15 {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #eeeeee;
+  left: 77.77777777777779%;
+}
+
+.emotion-17 {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #eeeeee;
+  left: 88.88888888888889%;
+}
+
+.emotion-19 {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #eeeeee;
+  left: 100%;
+}
+
+.emotion-20 {
+  position: absolute;
+  top: -15px;
+  width: 30px;
+  text-align: center;
+  font-size: 12px;
+  left: -30px;
+}
+
+.emotion-21 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0%;
+  width: 7.4074074074074066%;
+  background-color: #007C79;
+}
+
+.emotion-22 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 7.4074074074074066%;
+  width: 18.51851851851852%;
+  background-color: #00CCC7;
+}
+
+.emotion-23 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 25.925925925925924%;
+  width: 3.7037037037037033%;
+  background-color: #FF9E84;
+}
+
+.emotion-24 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 29.629629629629626%;
+  width: 3.7037037037037033%;
+  background-color: #007C79;
+}
+
+.emotion-25 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 33.33333333333333%;
+  width: 0.9259259259259258%;
+  background-color: #FF9E84;
+}
+
+.emotion-26 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 34.25925925925926%;
+  width: 10.185185185185185%;
+  background-color: #00CCC7;
+}
+
+.emotion-27 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 44.44444444444444%;
+  width: 5.555555555555555%;
+  background-color: #00CCC7;
+}
+
+.emotion-28 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 50%;
+  width: 5.555555555555555%;
+  background-color: #3A5C74;
+}
+
+.emotion-29 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 55.55555555555556%;
+  width: 1.8518518518518516%;
+  background-color: #FF9E84;
+}
+
+.emotion-30 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 57.407407407407405%;
+  width: 5.555555555555555%;
+  background-color: #007C79;
+}
+
+.emotion-31 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 62.96296296296296%;
+  width: 3.7037037037037033%;
+  background-color: #00CCC7;
+}
+
+.emotion-32 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 66.66666666666666%;
+  width: 2.7777777777777777%;
+  background-color: #FF9E84;
+}
+
+.emotion-33 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 69.44444444444444%;
+  width: 8.333333333333332%;
+  background-color: #007C79;
+}
+
+.emotion-34 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 77.77777777777779%;
+  width: 19.444444444444446%;
+  background-color: #00CCC7;
+}
+
+.emotion-35 {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 97.22222222222221%;
+  width: 2.7777777777777777%;
+  background-color: #FF9E84;
+}
+
+.emotion-36 {
+  box-sizing: border-box;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 16px;
+  position: absolute;
+  top: 150%;
+}
+
+.emotion-37 {
+  box-sizing: border-box;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.emotion-38 {
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: #007C79;
+}
+
+.emotion-39 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.emotion-41 {
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: #00CCC7;
+}
+
+.emotion-44 {
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: #3A5C74;
+}
+
+.emotion-47 {
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: #FF9E84;
+}
+
+<div
+    class="MuiBox-root emotion-0"
+  >
+    <div
+      class="MuiBox-root emotion-1"
+      data-testid="time-label-test-id"
+    >
+      <div
+        class="MuiBox-root emotion-2"
+      >
+        10:00
+      </div>
+    </div>
+    <div
+      class="MuiBox-root emotion-3"
+      data-testid="time-label-test-id"
+    >
+      <div
+        class="MuiBox-root emotion-4"
+      >
+        11:00
+      </div>
+    </div>
+    <div
+      class="MuiBox-root emotion-5"
+      data-testid="time-label-test-id"
+    >
+      <div
+        class="MuiBox-root emotion-4"
+      >
+        12:00
+      </div>
+    </div>
+    <div
+      class="MuiBox-root emotion-7"
+      data-testid="time-label-test-id"
+    >
+      <div
+        class="MuiBox-root emotion-4"
+      >
+        13:00
+      </div>
+    </div>
+    <div
+      class="MuiBox-root emotion-9"
+      data-testid="time-label-test-id"
+    >
+      <div
+        class="MuiBox-root emotion-4"
+      >
+        14:00
+      </div>
+    </div>
+    <div
+      class="MuiBox-root emotion-11"
+      data-testid="time-label-test-id"
+    >
+      <div
+        class="MuiBox-root emotion-4"
+      >
+        15:00
+      </div>
+    </div>
+    <div
+      class="MuiBox-root emotion-13"
+      data-testid="time-label-test-id"
+    >
+      <div
+        class="MuiBox-root emotion-4"
+      >
+        16:00
+      </div>
+    </div>
+    <div
+      class="MuiBox-root emotion-15"
+      data-testid="time-label-test-id"
+    >
+      <div
+        class="MuiBox-root emotion-4"
+      >
+        17:00
+      </div>
+    </div>
+    <div
+      class="MuiBox-root emotion-17"
+      data-testid="time-label-test-id"
+    >
+      <div
+        class="MuiBox-root emotion-4"
+      >
+        18:00
+      </div>
+    </div>
+    <div
+      class="MuiBox-root emotion-19"
+      data-testid="time-label-test-id"
+    >
+      <div
+        class="MuiBox-root emotion-20"
+      >
+        19:00
+      </div>
+    </div>
+    <div
+      class="MuiBox-root emotion-21"
+    />
+    <div
+      class="MuiBox-root emotion-22"
+    />
+    <div
+      class="MuiBox-root emotion-23"
+    />
+    <div
+      class="MuiBox-root emotion-24"
+    />
+    <div
+      class="MuiBox-root emotion-25"
+    />
+    <div
+      class="MuiBox-root emotion-26"
+    />
+    <div
+      class="MuiBox-root emotion-27"
+    />
+    <div
+      class="MuiBox-root emotion-28"
+    />
+    <div
+      class="MuiBox-root emotion-29"
+    />
+    <div
+      class="MuiBox-root emotion-30"
+    />
+    <div
+      class="MuiBox-root emotion-31"
+    />
+    <div
+      class="MuiBox-root emotion-32"
+    />
+    <div
+      class="MuiBox-root emotion-33"
+    />
+    <div
+      class="MuiBox-root emotion-34"
+    />
+    <div
+      class="MuiBox-root emotion-35"
+    />
+    <div
+      class="MuiGrid-root emotion-36"
+    >
+      <div
+        class="MuiGrid-root emotion-37"
+        data-testid="legend-En Route-test-id"
+      >
+        <div
+          class="MuiBox-root emotion-38"
+        />
+        <span
+          class="MuiTypography-root MuiTypography-caption emotion-39"
+        >
+          En Route
+        </span>
+      </div>
+      <div
+        class="MuiGrid-root emotion-37"
+        data-testid="legend-On Scene-test-id"
+      >
+        <div
+          class="MuiBox-root emotion-41"
+        />
+        <span
+          class="MuiTypography-root MuiTypography-caption emotion-39"
+        >
+          On Scene
+        </span>
+      </div>
+      <div
+        class="MuiGrid-root emotion-37"
+        data-testid="legend-Break-test-id"
+      >
+        <div
+          class="MuiBox-root emotion-44"
+        />
+        <span
+          class="MuiTypography-root MuiTypography-caption emotion-39"
+        >
+          Break
+        </span>
+      </div>
+      <div
+        class="MuiGrid-root emotion-37"
+        data-testid="legend-Idle-test-id"
+      >
+        <div
+          class="MuiBox-root emotion-47"
+        />
+        <span
+          class="MuiTypography-root MuiTypography-caption emotion-39"
+        >
+          Idle
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

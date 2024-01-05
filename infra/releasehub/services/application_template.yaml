@@ -1,0 +1,330 @@
+# Note: There is no deployment method for this configuration.
+# ReleaseHub is the source of truth.
+---
+app: services
+auto_deploy: true
+context: *company-data-covered*-release-us-east-1
+domain: release.*company-data-covered*.com
+repo_name: *company-data-covered*/services
+hostnames:
+  - logistics-service: logistics-service-${env_id}.${domain}
+  - clinicalkpi-service: clinicalkpi-service-${env_id}.${domain}
+  - patients-service: patients-service-${env_id}.${domain}
+  - caremanager-service: caremanager-service-${env_id}.${domain}
+  - modality-service: modality-service-${env_id}.${domain}
+  - audit-service: audit-service-${env_id}.${domain}
+  - tytocare-service: tytocare-service-${env_id}.${domain}
+  - policy-service: policy-service-${env_id}.${domain}
+environment_templates:
+  - name: ephemeral
+  - name: permanent
+resources:
+  cpu:
+    limits: 100m
+    requests: 10m
+  memory:
+    limits: 1Gi
+    requests: 100Mi
+  replicas: 1
+services:
+  - name: services-postgres
+    image: postgres:14.4-alpine
+    has_repo: false
+    ports:
+      - type: container_port
+        port: '5432'
+  - name: logistics-service
+    image: *company-data-covered*/services/logistics-service
+    command:
+      - '/busybox/sh'
+      - '/entrypoint.sh'
+    build:
+      dockerfile: './docker/go.Dockerfile'
+      args:
+        - DOCKER_PORT=8080 8081
+        - BUILD_TARGET=logistics-service
+    has_repo: true
+    static: false
+    ports:
+      - type: node_port
+        target_port: '8080'
+        port: '8080'
+      - type: node_port
+        target_port: '8081'
+        port: '8081'
+  - name: logistics-optimizer
+    image: *company-data-covered*/services/logistics-optimizer
+    build:
+      dockerfile: './docker/releasehub-java.Dockerfile'
+      args:
+        - DOCKER_PORT=8081 8181
+        - BUILD_TARGET=logistics-optimizer
+    has_repo: true
+    static: false
+    ports:
+      - type: node_port
+        target_port: '8081'
+        port: '8081'
+      - type: node_port
+        target_port: '8181'
+        port: '8181'
+  - name: clinicalkpi-service
+    image: *company-data-covered*/services/clinicalkpi-service
+    command:
+      - '/busybox/sh'
+      - '/entrypoint.sh'
+    build:
+      dockerfile: './docker/go.Dockerfile'
+      args:
+        - DOCKER_PORT=8182 8183
+        - BUILD_TARGET=clinicalkpi-service
+    has_repo: true
+    static: false
+    ports:
+      - type: node_port
+        target_port: '8182'
+        port: '8182'
+      - type: node_port
+        target_port: '8183'
+        port: '8183'
+  - name: patients-service
+    image: *company-data-covered*/services/patients-service
+    command:
+      - '/busybox/sh'
+      - '/entrypoint.sh'
+    build:
+      dockerfile: './docker/go.Dockerfile'
+      args:
+        - DOCKER_PORT=8182 8183
+        - BUILD_TARGET=patients-service
+    has_repo: true
+    static: false
+    ports:
+      - type: node_port
+        target_port: '8471'
+        port: '8471'
+      - type: node_port
+        target_port: '8473'
+        port: '8473'
+  - name: caremanager-service
+    image: *company-data-covered*/services/caremanager-service
+    command:
+      - '/busybox/sh'
+      - '/entrypoint.sh'
+    build:
+      dockerfile: './docker/go.Dockerfile'
+      args:
+        - DOCKER_PORT=8080 8081
+        - BUILD_TARGET=caremanager-service
+    has_repo: true
+    static: false
+    ports:
+      - type: node_port
+        target_port: '8080'
+        port: '8080'
+      - type: node_port
+        target_port: '8081'
+        port: '8081'
+  - name: modality-service
+    image: *company-data-covered*/services/modality-service
+    command:
+      - '/busybox/sh'
+      - '/entrypoint.sh'
+    build:
+      dockerfile: './docker/go.Dockerfile'
+      args:
+        - DOCKER_PORT=8092 8093
+        - BUILD_TARGET=modality-service
+    has_repo: true
+    static: false
+    ports:
+      - type: node_port
+        target_port: '8092'
+        port: '8092'
+      - type: node_port
+        target_port: '8093'
+        port: '8093'
+  - name: audit-service
+    image: *company-data-covered*/services/audit-service
+    command:
+      - '/busybox/sh'
+      - '/entrypoint.sh'
+    build:
+      dockerfile: './docker/go.Dockerfile'
+      args:
+        - DOCKER_PORT=8482
+        - BUILD_TARGET=audit-service
+    has_repo: true
+    static: false
+    ports:
+      - type: container_port
+        target_port: '8482'
+        port: '8482'
+  - name: tytocare-service
+    image: *company-data-covered*/services/tytocare-service
+    command:
+      - '/busybox/sh'
+      - '/entrypoint.sh'
+    build:
+      dockerfile: './docker/go.Dockerfile'
+      args:
+        - DOCKER_PORT=8090 8091
+        - BUILD_TARGET=tytocare-service
+    has_repo: true
+    static: false
+    ports:
+      - type: node_port
+        target_port: '8090'
+        port: '8090'
+      - type: node_port
+        target_port: '8091'
+        port: '8091'
+  - name: policy-service
+    image: *company-data-covered*/services/policy-service
+    build:
+      dockerfile: './docker/opa.Dockerfile'
+      args:
+        - BUNDLE=opa/bundle
+    has_repo: true
+    static: false
+    ports:
+      - type: node_port
+        target_port: '8181'
+        port: '8181'
+  - name: logistics-db-migrations
+    image: *company-data-covered*/services/logistics-db-migrations
+    build:
+      dockerfile: './docker/releasehub-tooling.Dockerfile'
+      args:
+        - DATABASE_NAME=logistics
+    has_repo: true
+    static: false
+  - name: audit-db-migrations
+    image: *company-data-covered*/services/audit-db-migrations
+    build:
+      dockerfile: './docker/releasehub-tooling.Dockerfile'
+      args:
+        - DATABASE_NAME=audit
+    has_repo: true
+    static: false
+  - name: clinicalkpi-db-migrations
+    image: *company-data-covered*/services/clinicalkpi-db-migrations
+    build:
+      dockerfile: './docker/releasehub-tooling.Dockerfile'
+      args:
+        - DATABASE_NAME=clinicalkpi
+    has_repo: true
+    static: false
+  - name: caremanager-db-migrations
+    image: *company-data-covered*/services/caremanager-db-migrations
+    build:
+      dockerfile: './docker/releasehub-tooling.Dockerfile'
+      args:
+        - DATABASE_NAME=caremanager
+    has_repo: true
+    static: false
+  - name: modality-db-migrations
+    image: *company-data-covered*/services/modality-db-migrations
+    build:
+      dockerfile: './docker/releasehub-tooling.Dockerfile'
+      args:
+        - DATABASE_NAME=modality
+    has_repo: true
+    static: false
+jobs:
+  - name: ensure-logistics-db
+    command:
+      - sh
+      - '-c'
+      - echo "SELECT 'CREATE DATABASE $DATABASE_NAME' WHERE NOT EXISTS (SELECT FROM pg_database
+        WHERE datname = '$DATABASE_NAME')\gexec" | psql $DATABASE_URL
+    from_services: services-postgres
+  - name: ensure-audit-db
+    command:
+      - sh
+      - '-c'
+      - echo "SELECT 'CREATE DATABASE $AUDIT_DATABASE_NAME' WHERE NOT EXISTS (SELECT FROM
+        pg_database WHERE datname = '$AUDIT_DATABASE_NAME')\gexec" | psql $DATABASE_URL
+    from_services: services-postgres
+  - name: ensure-clinicalkpi-db
+    command:
+      - sh
+      - '-c'
+      - echo "SELECT 'CREATE DATABASE $CLINICALKPI_DATABASE_NAME' WHERE NOT EXISTS (SELECT
+        FROM pg_database WHERE datname = '$CLINICALKPI_DATABASE_NAME')\gexec" | psql $DATABASE_URL
+    from_services: services-postgres
+  - name: ensure-caremanager-db
+    command:
+      - sh
+      - '-c'
+      - echo "SELECT 'CREATE DATABASE $CAREMANAGER_DATABASE_NAME' WHERE NOT EXISTS (SELECT
+        FROM pg_database WHERE datname = '$CAREMANAGER_DATABASE_NAME')\gexec" | psql $DATABASE_URL
+    from_services: services-postgres
+  - name: ensure-modality-db
+    command:
+      - sh
+      - '-c'
+      - echo "SELECT 'CREATE DATABASE $MODALITY_DATABASE_NAME' WHERE NOT EXISTS (SELECT
+        FROM pg_database WHERE datname = '$MODALITY_DATABASE_NAME')\gexec" | psql $DATABASE_URL
+    from_services: services-postgres
+  - name: logistics-db-migrations
+    from_services: logistics-db-migrations
+  - name: audit-db-migrations
+    from_services: audit-db-migrations
+  - name: clinicalkpi-db-migrations
+    from_services: clinicalkpi-db-migrations
+  - name: caremanager-db-migrations
+    from_services: caremanager-db-migrations
+  - name: modality-db-migrations
+    from_services: modality-db-migrations
+workflows:
+  - name: setup
+    order_from:
+      - services.services-postgres
+      - jobs.ensure-logistics-db
+      - jobs.logistics-db-migrations
+      - jobs.ensure-audit-db
+      - jobs.audit-db-migrations
+      - jobs.ensure-clinicalkpi-db
+      - jobs.clinicalkpi-db-migrations
+      - jobs.ensure-caremanager-db
+      - jobs.caremanager-db-migrations
+      - jobs.ensure-modality-db
+      - jobs.modality-db-migrations
+      - services.logistics-optimizer
+      - services.logistics-service
+      - services.clinicalkpi-service
+      - services.patients-service
+      - services.caremanager-service
+      - services.modality-service
+      - services.audit-service
+      - services.tytocare-service
+      - services.policy-service
+  - name: teardown
+    parallelize:
+      - step: remove_environment
+        tasks:
+          - release.remove_environment
+  - name: patch
+    order_from:
+      - jobs.logistics-db-migrations
+      - jobs.audit-db-migrations
+      - jobs.clinicalkpi-db-migrations
+      - jobs.caremanager-db-migrations
+      - jobs.modality-db-migrations
+      - services.logistics-optimizer
+      - services.logistics-service
+      - services.clinicalkpi-service
+      - services.caremanager-service
+      - services.modality-service
+      - services.audit-service
+      - services.tytocare-service
+      - services.policy-service
+app_imports:
+  - name: station
+  - name: turf-or-surf
+  - name: logistics
+  - name: caravan
+  - name: websocket-server
+  - name: onboarding-web
+  - name: onboarding-api

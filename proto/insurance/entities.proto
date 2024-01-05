@@ -1,0 +1,187 @@
+syntax = "proto3";
+package insurance;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/insurancepb";
+option ruby_package = "InsuranceGRPC";
+
+message PayerGroup {
+  // id represents the unique identifier of the Payer group name.
+  int64 id = 1;
+  // represents the name of the Payer group.
+  string name = 2;
+  // payer_group_id represents the id of the Payer group.
+  int64 payer_group_id = 3;
+}
+
+message InsuranceClassification {
+  // ID represents the unique identifier of the insurance classification.
+  int64 id = 1;
+  // represents the name of the insurance classification.
+  string name = 2;
+}
+
+message ListInsuranceClassificationsRequest {}
+
+message ListInsuranceClassificationsResponse {
+  // Array of insurance classifications.
+  repeated InsuranceClassification insurance_classifications = 1;
+}
+
+message AppointmentType {
+  // Appointment Type ID.
+  string id = 1;
+
+  // Appointment Type name.
+  string name = 2;
+}
+
+message ServiceLine {
+  // Service Line ID.
+  int64 id = 1;
+
+  // Service Line name.
+  string name = 2;
+
+  // Flag to represent if this service line is used as default one
+  // for all markets.
+  bool default = 3;
+
+  // Athena appointment type for existing patient.
+  optional AppointmentType existing_patient_appointment_type = 4;
+
+  // Athena appointment type for new patient.
+  optional AppointmentType new_patient_appointment_type = 5;
+
+  // Shift Type ID.
+  int64 shift_type_id = 6;
+
+  // Shift Team Service ID.
+  optional int64 shift_team_service_id = 7;
+
+  // Parent Service Line ID.
+  optional int64 parent_id = 8;
+
+  // Identifies if this Service Line can be used for OON insurances.
+  bool out_of_network_insurance = 9;
+
+  // Identifies that checkout process is required.
+  bool require_checkout = 10;
+
+  // Identifies that consent signature is required.
+  bool require_consent_signature = 11;
+
+  // Identifies that medical necessity is required.
+  bool require_medical_necessity = 12;
+
+  // Identifies if Service Line is enabled for follow up in 2 days.
+  bool followup_2_day = 13;
+
+  // Identifies if Service Line is enabled for follow up in 14-30 days.
+  bool followup_14_30_day = 14;
+
+  // Identifies if Service Line supports 911 for Care Request.
+  bool is_911 = 15;
+
+  // Identifies is Service Line eligible for screening.
+  bool upgradeable_with_screening = 16;
+
+  // Timestamp when Service Line was updated.
+  string updated_at = 17;
+
+  // Timestamp when Service Line was created.
+  string created_at = 18;
+}
+
+message BillingCity {
+  // represents the unique identifier of the Billing City.
+  int64 id = 1;
+  // represents the name of the Billing city.
+  string name = 2;
+  // the abbreviated name of the state of the Billing City.
+  string state = 3;
+  // represents the short name of the Billing City.
+  string short_name = 4;
+  // represents if the billing city is enabled in its state.
+  bool enabled = 5;
+  // represents the market associated to the Billing City.
+  int64 market_id = 6;
+}
+
+message State {
+  // represents the unique identifier of the State.
+  int64 id = 1;
+  // represents the name of the State.
+  string name = 2;
+  // abbreviation that represents the name of the State.
+  string abbreviation = 3;
+  // represents the billing cities of the State.
+  repeated BillingCity billing_cities = 4;
+}
+
+message InsurancePlan {
+  // represents the unique identifier of the InsurancePlan.
+  int64 id = 1;
+
+  // represents the name of the InsurancePlan.
+  string name = 2;
+
+  // represents the note of the InsurancePlan.
+  optional string note = 3;
+
+  // represents the Athena package ID associated to the InsurancePlan.
+  string package_id = 4;
+
+  // represents if the InsurancePlan is active.
+  bool active = 5;
+
+  // represents if the InsurancePlan is primary.
+  bool primary = 6;
+
+  // represents if the InsurancePlan is secondary.
+  bool secondary = 7;
+
+  // represents if InsurancePlan is tertiary.
+  bool tertiary = 8;
+
+  // represents the InsuranceClassification ID associated to the InsurancePlan.
+  int64 insurance_classification_id = 9;
+
+  // represents the Payer Group associated to the InsurancePlan.
+  optional int64 payer_group_id = 10;
+}
+
+// InsuranceNetworkModalityConfig defines a specific modality for insurance
+// network.
+message InsuranceNetworkModalityConfig {
+  // InsuranceNetwork modality config ID.
+  // ID is not required for newly added modality configurations,
+  // so it can be skipped in request.
+  optional int64 id = 1;
+
+  // InsuranceNetwork ID.
+  int64 network_id = 2;
+
+  // Billing city ID.
+  int64 billing_city_id = 3;
+
+  // Modality ID.
+  int64 modality_id = 4;
+
+  // Service line ID.
+  int64 service_line_id = 5;
+}
+
+// InsuranceNetworkCreditCardRule defines a specific CreditCard rule
+// by service line for InsuranceNetwork.
+message InsuranceNetworkCreditCardRule {
+  // InsuranceNetwork CreditCard rule ID.
+  // ID is not required for update of CreditCard rule,
+  // so it can be skipped in request.
+  optional int64 id = 1;
+
+  // Service line ID.
+  int64 service_line_id = 2;
+
+  // CreditCard rule.
+  string credit_card_rule = 3;
+}

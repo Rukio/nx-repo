@@ -1,0 +1,83 @@
+syntax = "proto3";
+package common;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/common";
+
+// Administrative or legal sex, used for administrative purposes like insurance
+// and billing. Not to be confused with gender identity (i.e. transgender,
+// non-binary, etc.)
+enum Sex {
+  SEX_UNSPECIFIED = 0;
+  SEX_MALE = 1;
+  SEX_FEMALE = 2;
+  SEX_OTHER = 3;
+}
+
+// Sex at birth, generally determined by physical anatomy at birth. This
+// may be the same or different than the patient's gender identity and legal
+// sex.
+enum BirthSex {
+  BIRTH_SEX_UNSPECIFIED = 0;
+  // Designated as a male at birth
+  BIRTH_SEX_MALE = 1;
+  // Designated as a female at birth
+  BIRTH_SEX_FEMALE = 2;
+  // Choose not to disclose
+  BIRTH_SEX_UNDISCLOSED = 3;
+  // Unknown
+  BIRTH_SEX_UNKNOWN = 4;
+}
+
+message GenderIdentity {
+  enum Category {
+    CATEGORY_UNSPECIFIED = 0;
+    // Additional gender category. Typically specified in an "Other" field
+    CATEGORY_OTHER = 1;
+    // Choose not to disclose
+    CATEGORY_UNDISCLOSED = 2;
+    // Identifies as male
+    CATEGORY_MALE = 3;
+    // Identifies as female
+    CATEGORY_FEMALE = 4;
+    // Transgender female
+    CATEGORY_MALE_TO_FEMALE = 5;
+    // Transgender male
+    CATEGORY_FEMALE_TO_MALE = 6;
+    // Gender non-conforming (neither exclusively male nor female)
+    CATEGORY_NON_BINARY = 7;
+  }
+  Category category = 1;
+
+  // Should be defined if CATEGORY_OTHER is chosen
+  optional string other_details = 2;
+}
+
+message Name {
+  optional string given_name = 1;
+  optional string family_name = 2;
+  optional string middle_name_or_initial = 3;
+  optional string prefix = 4;
+  optional string suffix = 5;
+  optional string preferred_name = 6;
+}
+
+message PhoneNumber {
+  enum PhoneNumberType {
+    PHONE_NUMBER_TYPE_UNSPECIFIED = 0;
+    PHONE_NUMBER_TYPE_HOME = 1;
+    PHONE_NUMBER_TYPE_MOBILE = 2;
+    PHONE_NUMBER_TYPE_WORK = 3;
+  }
+  PhoneNumberType phone_number_type = 1;
+  optional int32 country_code = 2;
+  optional string phone_number = 3;
+  optional string extension = 4;
+}
+
+message Address {
+  optional string address_line_one = 1;
+  optional string address_line_two = 2;
+  optional string city = 3;
+  optional string state = 4;
+  optional string zip_code = 5;
+}

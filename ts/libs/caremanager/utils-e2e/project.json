@@ -1,0 +1,16 @@
+{
+  "name": "caremanager-utils-e2e",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/caremanager/utils-e2e/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/libs/caremanager/utils-e2e/**/*.ts"]
+      }
+    }
+  },
+  "tags": ["type:util"]
+}

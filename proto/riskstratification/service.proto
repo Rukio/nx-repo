@@ -1,0 +1,844 @@
+syntax = "proto3";
+package riskstratification;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/riskstratificationpb";
+option ruby_package = "RiskStratificationGRPC";
+
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "common/auth/auth.proto";
+import "riskstratification/pagination.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+import "audit/audit.proto";
+
+service RiskStratificationService {
+  // Retrieve the time sensitive survey Versions.
+  rpc ListTimeSensitiveSurveyVersions(ListTimeSensitiveSurveyVersionsRequest)
+      returns (ListTimeSensitiveSurveyVersionsResponse) {
+    option (google.api.http) = {
+      get: "/v1/time_sensitive_questions/survey_versions",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:time_sensitive_survey_versions:all"
+    };
+  }
+
+  // Retrieves the time sensitive questions for secondary screening intended
+  // for a registered nurse.
+  rpc ListTimeSensitiveQuestions(ListTimeSensitiveQuestionsRequest)
+      returns (ListTimeSensitiveQuestionsResponse) {
+    option (google.api.http) = {
+      get: "/v1/time_sensitive_questions",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:time_sensitive_questions:all"
+    };
+  }
+
+  // Publishes an event. Should be called whenever a TimeSensitiveQuestion is
+  // answered.
+  rpc PublishTimeSensitiveAnswerEvent(PublishTimeSensitiveAnswerEventRequest)
+      returns (PublishTimeSensitiveAnswerEventResponse) {
+    option (google.api.http) = {
+      post: "/v1/time_sensitive_questions/{question_id}/answer",
+      body: "*",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "create:time_sensitive_answer:all"
+    };
+  }
+
+  // Creates or updates the result of screening, whether to escalate the care
+  // request or not to the emergency department, while answering time sensitive
+  // questions.
+  rpc UpsertTimeSensitiveScreeningResult(
+      UpsertTimeSensitiveScreeningResultRequest)
+      returns (UpsertTimeSensitiveScreeningResultResponse) {
+    option (google.api.http) = {
+      post: "/v1/time_sensitive_questions/screening_result",
+      body: "*",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "update:time_sensitive_screening:all"
+    };
+  }
+
+  // Creates or updates the result of screening per Station
+  // secondary_screening_id, and whether to escalate the care request or not to
+  // the emergency department, while answering time sensitive questions.
+  rpc UpsertTimeSensitiveScreening(UpsertTimeSensitiveScreeningRequest)
+      returns (UpsertTimeSensitiveScreeningResponse) {
+    option (google.api.http) = {
+      post: "/v1/time_sensitive_questions/screening",
+      body: "*",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "update:time_sensitive_screening:all"
+    };
+  }
+
+  // Retrieves information about the Time Sensitive Screening survey for a
+  // given care request id.
+  rpc GetTimeSensitiveScreeningResult(GetTimeSensitiveScreeningResultRequest)
+      returns (GetTimeSensitiveScreeningResultResponse) {
+    option (google.api.http) = {
+      get: "/v1/time_sensitive_questions/screening_result/{care_request_id}",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:time_sensitive_screening_results:all"
+    };
+  };
+
+  // Creates a question and its initial version.
+  rpc CreateQuestion(CreateQuestionRequest) returns (CreateQuestionResponse) {
+    option (google.api.http) = {
+      post: "/v1/questions",
+      body: "*",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:questions:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Question"
+    };
+  }
+
+  // Creates a QuestionVersion updating all TSC
+  // references to the previous version to the new version.
+  rpc CreateQuestionVersion(CreateQuestionVersionRequest)
+      returns (CreateQuestionVersionResponse) {
+    option (google.api.http) = {
+      post: "/v1/questions/{question_id}",
+      body: "*",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:questions:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Question"
+    };
+  }
+
+  // Deletes a Question only if is not associated to any TSC.
+  rpc DeleteQuestion(DeleteQuestionRequest) returns (DeleteQuestionResponse) {
+    option (google.api.http) = {
+      delete: "/v1/questions/{question_id}",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:questions:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Question"
+    };
+  }
+
+  // Retrieves a single Question. This endpoint is only used by admin users.
+  rpc GetQuestion(GetQuestionRequest) returns (GetQuestionResponse) {
+    option (google.api.http) = {
+      get: "/v1/questions/{question_id}"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:questions:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Question"
+    };
+  }
+
+  // List all Questions optionally filtered by search terms. This endpoint is
+  // only used by admin users.
+  rpc ListQuestions(ListQuestionsRequest) returns (ListQuestionsResponse) {
+    option (google.api.http) = {
+      get: "/v1/questions"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:questions:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Question"
+    };
+  }
+
+  // Create a TimeSensitiveConcern and its initial version.
+  rpc CreateTimeSensitiveConcern(CreateTimeSensitiveConcernRequest)
+      returns (CreateTimeSensitiveConcernResponse) {
+    option (google.api.http) = {
+      post: "/v1/time-sensitive-concerns",
+      body: "*",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:time_sensitive_concerns:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "TimeSensitiveConcern"
+    };
+  }
+
+  // Updates a TimeSensitiveConcern.
+  rpc UpdateTimeSensitiveConcern(UpdateTimeSensitiveConcernRequest)
+      returns (UpdateTimeSensitiveConcernResponse) {
+    option (google.api.http) = {
+      put: "/v1/time-sensitive-concerns/{time_sensitive_concern_id}",
+      body: "*",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:time_sensitive_concerns:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "TimeSensitiveConcern"
+    };
+  }
+
+  // Deletes a TimeSensitiveConcern only if is not live on production.
+  rpc DeleteTimeSensitiveConcern(DeleteTimeSensitiveConcernRequest)
+      returns (DeleteTimeSensitiveConcernResponse) {
+    option (google.api.http) = {
+      delete: "/v1/time-sensitive-concerns/{time_sensitive_concern_id}",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:time_sensitive_concerns:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "TimeSensitiveConcern"
+    };
+  }
+
+  // Retrieves a single TimeSensitiveConcern by ID.
+  rpc GetTimeSensitiveConcern(GetTimeSensitiveConcernRequest)
+      returns (GetTimeSensitiveConcernResponse) {
+    option (google.api.http) = {
+      get: "/v1/time-sensitive-concerns/{time_sensitive_concern_id}"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:time_sensitive_concerns:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "TimeSensitiveConcern"
+    };
+  }
+
+  // List all TimeSensitiveConcerns optionally filtered by search terms.
+  rpc ListTimeSensitiveConcerns(ListTimeSensitiveConcernsRequest)
+      returns (ListTimeSensitiveConcernsResponse) {
+    option (google.api.http) = {
+      get: "/v1/time-sensitive-concerns"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:time_sensitive_concerns:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "TimeSensitiveConcern"
+    };
+  }
+
+  rpc GetTimeSensitiveScreenings(GetTimeSensitiveScreeningsRequest)
+      returns (GetTimeSensitiveScreeningsResponse) {
+    option (google.api.http) = {
+      get: "/v1/time_sensitive_questions/screenings/{care_request_id}",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:time_sensitive_screening_results:all"
+    };
+  }
+
+  // Retrieve a Symptom
+  rpc GetSymptom(GetSymptomRequest) returns (GetSymptomResponse) {
+    option (google.api.http) = {
+      get: "/v1/symptoms/{symptom_id}",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:symptoms:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Symptom"
+    };
+  }
+
+  // Retrieve a list of Symptoms
+  rpc ListSymptoms(ListSymptomsRequest) returns (ListSymptomsResponse) {
+    option (google.api.http) = {
+      get: "/v1/symptoms"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "manage:symptoms:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Symptom"
+    };
+  }
+
+  // Searches Symptom aliases and produces the matching list of Symptoms and
+  // Symptom Aliases.
+  rpc SearchSymptomAliases(SearchSymptomAliasesRequest)
+      returns (SearchSymptomAliasesResponse) {
+    option (google.api.http) = {
+      get: "/v1/symptom_aliases/search"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:symptom_aliases:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "SymptomAlias"
+    };
+  };
+
+  // Retrieve a list of Symptom Aliases
+  rpc ListSymptomAliases(ListSymptomAliasesRequest)
+      returns (ListSymptomAliasesResponse) {
+    option (google.api.http) = {
+      get: "/v1/symptom_aliases"
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "read:symptom_aliases:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "SymptomAlias"
+    };
+  };
+
+  // Creates or updates symptoms associated with a care request
+  rpc UpsertCareRequestSymptoms(UpsertCareRequestSymptomsRequest)
+      returns (UpsertCareRequestSymptomsResponse) {
+    option (google.api.http) = {
+      post: "/v1/care_request_symptoms",
+      body: "*",
+    };
+    option (common.auth.rule) = {
+      jwt_permission: "update:care_request_symptoms:all"
+    };
+  }
+}
+
+message ListTimeSensitiveSurveyVersionsRequest {}
+
+message ListTimeSensitiveSurveyVersionsResponse {
+  repeated TimeSensitiveSurveyVersion versions = 1;
+}
+
+message TimeSensitiveSurveyVersion {
+  // The UUID v4 ID of the TimeSensitiveSurveyVersion.
+  string id = 1;
+
+  // The creation timestamp of the TimeSensitiveSurveyVersion.
+  google.protobuf.Timestamp created_at = 2;
+}
+
+message ListTimeSensitiveQuestionsRequest {
+  // The ID of the time sensitive survey Version.
+  // If not provided, will default to the latest version created.
+  optional string survey_version_id = 1;
+}
+
+message ListTimeSensitiveQuestionsResponse {
+  repeated TimeSensitiveQuestion questions = 1;
+}
+
+message TimeSensitiveQuestion {
+  // The UUID v4 ID of the TimeSensitiveQuestion.
+  string id = 1;
+
+  // The UUID v4 ID of the TimeSensitiveSurveyVersion.
+  string survey_version_id = 2;
+
+  // Question body.
+  // Example: Is the patient demonstrating evidence of respiratory distress?
+  string question = 3;
+
+  // Signs that indicate the answer to the question is: "Yes". This is helper
+  // text to aid the Registered Nurse answer the question.
+  // Example:
+  // {
+  //     "signs": [
+  //         "Sign 1",
+  //         "Sign 2",
+  //         [
+  //             "Nested Sign 1",
+  //             "Nested Sign 2"
+  //         ]
+  //     ]
+  // }
+  google.protobuf.Struct signs = 4;
+
+  int32 display_order = 5;
+}
+
+message PublishTimeSensitiveAnswerEventRequest {
+  // The UUID v4 ID of the TimeSensitiveQuestion.
+  string question_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // The UUID v4 ID of the TimeSensitiveSurveyVersion.
+  string survey_version_id = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // True if answer was Yes, False otherwise.
+  bool answer = 3 [(google.api.field_behavior) = REQUIRED];
+
+  // The ID of the CareRequest being screened.
+  int64 care_request_id = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+message PublishTimeSensitiveAnswerEventResponse {
+  // Whether to escalate the patient to the emergency department.
+  // If true, we don't need to ask more questions.
+  // If false, we can keep asking questions until they are finished.
+  bool escalate = 1;
+}
+
+message UpsertTimeSensitiveScreeningResultRequest {
+  // The ID of the CareRequest being screened.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // The UUID v4 ID of the TimeSensitiveSurveyVersion.
+  string survey_version_id = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // Was the patient escalated to the emergency department during screening.
+  bool escalated = 3 [(google.api.field_behavior) = REQUIRED];
+
+  // The UUID v4 of the time sensitive question that escalated the patient to
+  // the Emergency Department.
+  optional string escalated_question_id = 4;
+
+  // The ID of the SecondaryScreeningId created at Station.
+  optional int64 secondary_screening_id = 5;
+}
+
+message UpsertTimeSensitiveScreeningResultResponse {}
+
+message UpsertTimeSensitiveScreeningRequest {
+  // The ID of the CareRequest being screened.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // The ID of the SecondaryScreeningId created at Station.
+  int64 secondary_screening_id = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // The UUID v4 ID of the TimeSensitiveSurveyVersion.
+  string survey_version_id = 3 [(google.api.field_behavior) = REQUIRED];
+
+  // Was the patient escalated to the emergency department during screening.
+  bool escalated = 4 [(google.api.field_behavior) = REQUIRED];
+
+  // The UUID v4 of the time sensitive question that escalated the patient to
+  // the Emergency Department.
+  optional string escalated_question_id = 5;
+}
+
+message UpsertTimeSensitiveScreeningResponse {}
+
+message GetTimeSensitiveScreeningResultRequest {
+  // The ID of the CareRequest that has a time sensitive screening result
+  // recorded.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetTimeSensitiveScreeningResultResponse {
+  repeated TimeSensitiveScreeningResultQuestion questions = 1;
+}
+
+message TimeSensitiveScreening {
+  // The ID of the TimeSensitiveScreening.
+  int64 id = 1;
+
+  // The ID of the CareRequest being screened.
+  int64 care_request_id = 2;
+
+  // The ID of the SecondaryScreening created on AOB/Station.
+  int64 secondary_screening_id = 3;
+
+  // The UUID v4 ID of the Survey Version used for this screening.
+  string survey_version_id = 4;
+
+  // The UUID v4 ID of the Question that triggered escalation. Can be null if
+  // there was no escalation.
+  optional string escalated_question_id = 5;
+
+  // Was the patient escalated to the emergency department during screening.
+  bool escalated = 6;
+
+  // The creation timestamp of the TimeSensitiveScreening.
+  google.protobuf.Timestamp created_at = 7;
+
+  // The last updated timestamp of the TimeSensitiveScreening.
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+message GetTimeSensitiveScreeningsRequest {
+  // The ID of the CareRequest that has one or more time sensitive screening
+  // result recorded.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetTimeSensitiveScreeningsResponse {
+  message Response {
+    TimeSensitiveScreening screening = 1;
+    TimeSensitiveQuestion question = 2;
+  }
+
+  repeated Response screenings = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message TimeSensitiveScreeningResultQuestion {
+  TimeSensitiveQuestion question = 1;
+
+  // True if answer was Yes, False otherwise.
+  bool answer = 2;
+}
+
+message CreateInformation {
+  // The timestamp at which the record was created.
+  google.protobuf.Timestamp created_at = 1;
+
+  // The ID of the User that created the record.
+  int64 created_by = 2;
+}
+
+message UpdateInformation {
+  // The timestamp at which the record was last updated.
+  google.protobuf.Timestamp updated_at = 3;
+
+  // The ID of the User that updated the record.
+  int64 updated_by = 4;
+}
+
+message Question {
+  // The ID of the Question.
+  int64 id = 1;
+
+  // The current QuestionVersion set when creating or updating a Question.
+  QuestionVersion current_question_version = 2;
+
+  // TimeSensitiveConcerns that contain any version of question in any of their
+  // DAG versions.
+  repeated TimeSensitiveConcern time_sensitive_concerns = 3;
+
+  // Question creation information.
+  CreateInformation create_information = 4;
+
+  // Question update information.
+  UpdateInformation update_information = 5;
+}
+
+message QuestionVersion {
+  // The ID of the QuestionVersion.
+  int64 id = 1;
+
+  // The UUID v4 ID of the QuestionVersion.
+  string identifier = 2;
+
+  // The question asked on onboarding directly to the Patient.
+  string patient_question = 3;
+
+  // The question asked on onboarding when Patient is not available.
+  string someone_else_question = 4;
+
+  // QuestionVersion creation information.
+  CreateInformation create_information = 5;
+
+  // The ID of the associated Question for this version.
+  int64 question_id = 6;
+}
+
+enum TimeSensitiveConcernSeverity {
+  TIME_SENSITIVE_CONCERN_SEVERITY_UNSPECIFIED = 0;
+
+  // Time sensitive concerns with Low severity will be asked last.
+  TIME_SENSITIVE_CONCERN_SEVERITY_LOW = 1;
+
+  // Time sensitive concerns with Medium severity will be before Low TSCs.
+  TIME_SENSITIVE_CONCERN_SEVERITY_MEDIUM = 2;
+
+  // Time sensitive concerns with High severity will be asked first.
+  TIME_SENSITIVE_CONCERN_SEVERITY_HIGH = 3;
+
+  // Time sensitive concerns with Direct to Offboard severity will start the
+  // Offboard process immediately. No questions will be asked to the patient.
+  TIME_SENSITIVE_CONCERN_SEVERITY_DIRECT_TO_OFFBOARD = 4;
+}
+
+message TimeSensitiveConcern {
+  // The ID of the TimeSensitiveConcern.
+  int64 id = 1;
+
+  // The current TimeSensitiveConcernVersion associated to this
+  // TimeSensitiveConcern.
+  TimeSensitiveConcernVersion current_time_sensitive_concern_version = 2;
+
+  // The TimeSensitiveConcern name.
+  string name = 3;
+
+  // The symptom list associated to the TimeSensitiveConcern.
+  repeated Symptom symptoms = 4;
+
+  // Severity of the TimeSensitiveConcern.
+  TimeSensitiveConcernSeverity severity = 5;
+
+  // The TimeSensitiveConcern creation information.
+  CreateInformation create_information = 6;
+
+  // The TimeSensitiveConcern update information.
+  UpdateInformation update_information = 7;
+}
+
+message TimeSensitiveConcernVersion {
+  // The UUID v4 ID of the TimeSensitiveConcernVersion.
+  string id = 1;
+
+  // The ID of the TimeSensitiveConcern associated to this version.
+  int64 time_sensitive_concern_id = 2;
+
+  // A reference to the ID of the parent/start Node from the associated DAG of
+  // this TimeSensitiveConcernVersion.
+  optional int64 parent_node_id = 3;
+
+  // The TimeSensitiveConcernVersion creation information.
+  CreateInformation create_information = 4;
+
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+
+    // The TimeSensitiveConcernVersion is live on production.
+    STATUS_PUBLISHED = 1;
+
+    // The TimeSensitiveConcernVerion is in draft mode and not visible or
+    // available on production.
+    STATUS_DRAFT = 2;
+  }
+
+  // The TimeSensitiveConcernVersion publication status.
+  Status status = 5;
+}
+
+message CreateQuestionRequest {
+  // The question asked on onboarding directly to the Patient.
+  string patient_question = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // The question asked on onboarding when Patient is not available.
+  string someone_else_question = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateQuestionResponse {
+  // The resulting question version.
+  Question question = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateQuestionVersionRequest {
+  // The ID of the Question that will be updated.
+  int64 question_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // The ID of the QuestionVersion that serves as a starting point for a new
+  // version (to initialize the UI form). Question versions are only created,
+  // not updated.
+  int64 version_id = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // The question asked on onboarding directly to the Patient.
+  optional string patient_question = 3;
+
+  // The question asked on onboarding when Patient is not available.
+  optional string someone_else_question = 4;
+}
+
+message CreateQuestionVersionResponse {
+  // The Question updated with the new QuestionVersion.
+  Question question = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteQuestionRequest {
+  // The ID of the Question that is requested for deletion.
+  int64 question_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteQuestionResponse {}
+
+message GetQuestionRequest {
+  // The ID of the Question being fetched.
+  int64 question_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetQuestionResponse {
+  // The Question that matches a question ID.
+  Question question = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ListQuestionsRequest {
+  // The partial word, or words that will be used to search questions.
+  optional string search = 1;
+
+  PaginationQuery pagination_query = 2;
+}
+
+message ListQuestionsResponse {
+  // The list of Questions retrieved with default parameters or via search.
+  repeated Question questions = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Pagination information for the frontend.
+  Pagination pagination = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateTimeSensitiveConcernRequest {
+  // The TimeSensitiveConcern name.
+  string name = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // The symptoms UUID v4 IDs associated to this TimeSensitiveConcern that will
+  // trigger its DAG to ask questions to the patient.
+  repeated string symptom_ids = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // The TimeSensitiveConcern severity which determines the order in which
+  // questions are asked.
+  optional TimeSensitiveConcernSeverity severity = 3
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+message CreateTimeSensitiveConcernResponse {
+  // The resulting time sensitive concern.
+  TimeSensitiveConcern time_sensitive_concern = 1
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdateTimeSensitiveConcernRequest {
+  // The ID of the TimeSensitiveConcern that will be updated.
+  int64 time_sensitive_concern_id = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // The TimeSensitiveConcern name.
+  optional string name = 2;
+
+  // The symptoms UUID v4 IDs associated to this TimeSensitiveConcern that will
+  // trigger its DAG to ask questions to the patient.
+  repeated string symptom_ids = 3;
+
+  // The TimeSensitiveConcern severity which determines the order in which
+  // questions are asked.
+  optional TimeSensitiveConcernSeverity severity = 4;
+}
+
+message UpdateTimeSensitiveConcernResponse {
+  // The resulting updated TimeSensitiveConcern.
+  TimeSensitiveConcern time_sensitive_concern = 1
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteTimeSensitiveConcernRequest {
+  // The ID of the TimeSensitiveConcern that is requested for deletion.
+  int64 time_sensitive_concern_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message DeleteTimeSensitiveConcernResponse {}
+
+message GetTimeSensitiveConcernRequest {
+  // The ID of the TimeSensitiveConcern being fetched.
+  int64 time_sensitive_concern_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetTimeSensitiveConcernResponse {
+  // The TimeSensitiveConcern that matches the ID.
+  TimeSensitiveConcern time_sensitive_concern = 1
+      [(google.api.field_behavior) = REQUIRED];
+}
+
+message ListTimeSensitiveConcernsRequest {
+  // The partial word, or words that will be used to search time sensitive
+  // concerns.
+  optional string search = 1;
+
+  PaginationQuery pagination_query = 2;
+}
+
+message ListTimeSensitiveConcernsResponse {
+  // The list of TimeSensitiveConcerns retrieved with default parameters or
+  // via search.
+  repeated TimeSensitiveConcern time_sensitive_concerns = 1
+      [(google.api.field_behavior) = REQUIRED];
+
+  // Pagination information for the frontend.
+  Pagination pagination = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+// The partial word, or words that will be used to search time sensitive
+// concerns.
+message SymptomAlias {
+  // The UUID v4 ID of the SymptomAlias.
+  string id = 1;
+
+  // The alias name.
+  string name = 2;
+
+  // Associated symptom UUID v4 ID.
+  string symptom_id = 3;
+}
+
+message Symptom {
+  // The UUID v4 ID of the Symptom.
+  string id = 1;
+
+  // The canonical Symptom name.
+  string name = 2;
+
+  // The associated aliases for this Symptom.
+  repeated SymptomAlias aliases = 3;
+}
+
+message GetSymptomRequest {
+  string symptom_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetSymptomResponse {
+  Symptom symptom = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ListSymptomsRequest {
+  // The partial word, or words that will be used to search questions.
+  optional string search = 1;
+
+  PaginationQuery pagination_query = 2;
+}
+
+message ListSymptomAliasesRequest {
+  string symptom_id = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ListSymptomAliasesResponse {
+  repeated SymptomAlias aliases = 1;
+  Pagination pagination = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message SearchSymptomAliasesRequest {
+  // The partial word, or words that will be used to search questions.
+  optional string search = 1;
+
+  PaginationQuery pagination_query = 2;
+}
+
+message SymptomAliasesSearchResult {
+  // The UUID v4 ID of the Symptom.
+  string symptom_id = 1;
+
+  // The Symptom Alias that matched the search term.
+  string name = 2;
+
+  // The canonical Symptom name.
+  string symptom_name = 3;
+
+  // The risk protocol name from TurfOrSurf.
+  string legacy_risk_protocol_name = 4;
+
+  // The UUID v4 ID of the SymptomAlias.
+  string id = 5;
+}
+
+message SearchSymptomAliasesResponse {
+  repeated SymptomAliasesSearchResult symptoms = 1
+      [(google.api.field_behavior) = REQUIRED];
+  Pagination pagination = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message ListSymptomsResponse {
+  repeated Symptom symptoms = 1 [(google.api.field_behavior) = REQUIRED];
+  Pagination pagination = 2 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpsertCareRequestSymptomsRequest {
+  // The ID of the Care Request.
+  int64 care_request_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // The symptom aliases ids.
+  repeated string symptom_aliases_ids = 2;
+}
+
+message UpsertCareRequestSymptomsResponse {}

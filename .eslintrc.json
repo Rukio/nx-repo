@@ -1,0 +1,182 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx", "prettier", "jest-formatting"],
+  "extends": [
+    "plugin:jest-formatting/recommended",
+    "plugin:storybook/recommended"
+  ],
+  "rules": {
+    "no-unused-vars": "off",
+    "prettier/prettier": "error",
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }
+    ],
+    "storybook/no-uninstalled-addons": [
+      "error",
+      {
+        "ignore": ["@nx/react/plugins/storybook"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "jest/no-focused-tests": "error",
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "banTransitiveDependencies": true,
+            "depConstraints": [
+              {
+                "sourceTag": "type:app",
+                "onlyDependOnLibsWithTags": [
+                  "type:feature",
+                  "type:ui",
+                  "type:util"
+                ]
+              },
+              {
+                "sourceTag": "type:e2e",
+                "onlyDependOnLibsWithTags": ["type:ui", "type:util"]
+              },
+              {
+                "sourceTag": "type:feature",
+                "onlyDependOnLibsWithTags": [
+                  "type:feature",
+                  "type:data-access",
+                  "type:ui",
+                  "type:util"
+                ]
+              },
+              {
+                "sourceTag": "type:ui",
+                "onlyDependOnLibsWithTags": ["type:ui", "type:util"]
+              },
+              {
+                "sourceTag": "type:data-access",
+                "onlyDependOnLibsWithTags": ["type:util", "type:data-access"]
+              },
+              {
+                "sourceTag": "type:util",
+                "onlyDependOnLibsWithTags": ["type:util"]
+              },
+              {
+                "sourceTag": "type:nest",
+                "onlyDependOnLibsWithTags": ["type:nest", "type:util"]
+              },
+              {
+                "sourceTag": "scope:clinical-kpi",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:clinical-kpi"
+                ]
+              },
+              {
+                "sourceTag": "scope:consumer-web",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:consumer-web"
+                ]
+              },
+              {
+                "sourceTag": "scope:modality",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:modality"]
+              },
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
+              },
+              {
+                "sourceTag": "scope:widgets",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:widgets"]
+              },
+              {
+                "sourceTag": "scope:athena-credit-card-form",
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:athena-credit-card-form"
+                ]
+              },
+              {
+                "sourceTag": "scope:insurance",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:insurance"]
+              },
+              {
+                "sourceTag": "scope:companion",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:companion"]
+              }
+            ]
+          }
+        ],
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["dayjs", "dayjs/*"],
+                "message": "Please use `date-fns` package instead."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.json"],
+      "parser": "jsonc-eslint-parser",
+      "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "error",
+        "curly": ["error", "all"]
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {
+        "curly": ["error", "all"]
+      }
+    },
+    {
+      "files": ["*.jsx", "*.tsx"],
+      "extends": ["react-app", "react-app/jest"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "error",
+        "react/function-component-definition": [
+          "error",
+          {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+          }
+        ],
+        "react/jsx-no-useless-fragment": [
+          "error",
+          {
+            "allowExpressions": true
+          }
+        ],
+        "no-use-before-define": [
+          "error",
+          {
+            "functions": true,
+            "classes": true,
+            "variables": true
+          }
+        ]
+      }
+    }
+  ]
+}

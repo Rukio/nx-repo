@@ -1,0 +1,32 @@
+syntax = "proto3";
+package riskstratification;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/riskstratificationpb";
+option ruby_package = "RiskStratificationGRPC";
+
+import "google/api/field_behavior.proto";
+
+message Pagination {
+  // Represents the amount of elements retrieved in the current page.
+  int64 page_size = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Represents the total amount of elements of the current list.
+  int64 total_results = 2 [(google.api.field_behavior) = REQUIRED];
+
+  // Represents the total amount of pages for the current list
+  // (total_results / page_size).
+  int64 total_pages = 3 [(google.api.field_behavior) = REQUIRED];
+
+  // Represents number of the current page.
+  int64 current_page = 4 [(google.api.field_behavior) = REQUIRED];
+}
+
+message PaginationQuery {
+  // Represents the page number that the request should retrieve, starting
+  // from page 1, if empty, the first page is retrieved.
+  optional int64 page = 1;
+
+  // Represents the maximum amount of elements that the request
+  // should retrieve per page.
+  optional int64 page_size = 2;
+}

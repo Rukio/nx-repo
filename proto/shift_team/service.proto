@@ -1,0 +1,79 @@
+syntax = "proto3";
+package shift_team;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/shiftteampb";
+option ruby_package = "ShiftTeamGRPC";
+
+import "common/auth/auth.proto";
+import "common/date.proto";
+import "common/logistics.proto";
+import "common/shift_team.proto";
+
+service ShiftTeamService {
+  rpc GetShiftTeam(GetShiftTeamRequest) returns (GetShiftTeamResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:shift_teams:all"
+    };
+  }
+  rpc ListSoloDHMTShiftTeams(ListSoloDHMTShiftTeamsRequest)
+      returns (ListSoloDHMTShiftTeamsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:shift_teams:all"
+    };
+  }
+  rpc ListCarsByIDs(ListCarsByIDsRequest) returns (ListCarsByIDsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:shift_teams:all"
+    };
+  }
+}
+
+message GetShiftTeamRequest {
+  int64 id = 1;
+}
+
+message GetShiftTeamResponse {
+  optional ShiftTeam shift_team = 1;
+}
+
+message ListSoloDHMTShiftTeamsRequest {
+  // Market IDs to filter by
+  repeated int64 market_ids = 1;
+}
+
+message ListSoloDHMTShiftTeamsResponse {
+  repeated ShiftTeam shift_teams = 1;
+}
+
+message ListCarsByIDsRequest {
+  // car_ids represents IDs of Cars to list.
+  repeated int64 car_ids = 1;
+}
+
+message ListCarsByIDsResponse {
+  // cars represents the list of Cars.
+  repeated common.Car cars = 1;
+}
+
+message ShiftTeam {
+  int64 id = 1;
+
+  optional int64 market_id = 2;
+
+  optional common.Location base_location = 3;
+  optional common.Location current_location = 8;
+
+  optional common.TimeWindow shift_time_window = 4;
+
+  repeated common.Attribute shift_team_attributes = 5;
+
+  optional int32 advanced_practice_provider_count = 6;
+  optional int32 dispatch_health_medical_technician_count = 7;
+
+  // If the shift team is deleted, this field stores the
+  // date time of when that change occurred.
+  optional common.DateTime deleted_at = 9;
+
+  // member_ids represents the user ids of the ShiftTeam members
+  repeated int64 member_ids = 10;
+}

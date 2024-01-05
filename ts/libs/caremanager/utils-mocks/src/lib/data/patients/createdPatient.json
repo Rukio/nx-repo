@@ -1,0 +1,16 @@
+{
+  "id": "3",
+  "first_name": "Created",
+  "middle_name": "Super",
+  "last_name": "Patient",
+  "date_of_birth": "1954-05-22",
+  "sex": "female",
+  "phone_number": "324-533-3333",
+  "athena_medical_record_number": "21789057",
+  "athena_id": "21789057",
+  "address_street": "2543 S Toledo Way",
+  "address_city": "Denver",
+  "address_state": "CO",
+  "address_zipcode": "80205",
+  "address_notes": "Only available in the mornings"
+}

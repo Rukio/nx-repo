@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "plugin:cypress/recommended",
+    "plugin:promise/recommended",
+    "plugin:vitest/recommended",
+    "../../../../.eslintrc.react.json"
+  ],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.cy.{ts,js,tsx,jsx}", "cypress/**/*.{ts,js,tsx,jsx}"],
+      "rules": {
+        "@typescript-eslint/naming-convention": "off",
+        "vitest/expect-expect": "off",
+        "vitest/valid-expect": "off",
+        "promise/always-return": "off",
+        "promise/catch-or-return": "off"
+      }
+    }
+  ]
+}

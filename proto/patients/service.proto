@@ -1,0 +1,771 @@
+syntax = "proto3";
+package patients;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/patients";
+option ruby_package = "PatientGRPC";
+
+import "audit/audit.proto";
+import "common/demographic.proto";
+import "common/auth/auth.proto";
+import "common/date.proto";
+import "common/patient.proto";
+import "patients/patient.proto";
+import "patients/insurance.proto";
+import "patients/primary_care_provider.proto";
+import "google/api/annotations.proto";
+import "athena/pharmacy.proto";
+import "google/api/field_behavior.proto";
+
+service PatientsService {
+  // Given a *company-data-covered* patient ID, if the patient ID exists in the
+  // *company-data-covered* database, returns a Patient proto filled with information
+  // from the patient record in the associated EHR.
+  rpc GetPatient(GetPatientRequest) returns (GetPatientResponse) {
+    option (common.auth.rule) = {
+      // TODO: Support "own" permission
+      jwt_permission: "read:patients:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // Given a Patient proto, CreatePatient will check to see if the Patient
+  // record exists in the Patients DB.
+  // If the patient record does not exist, CreatePatient will attempt to create
+  // the patient record both in the Patients DB and in the EHR.
+  rpc CreatePatient(CreatePatientRequest) returns (CreatePatientResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "create:patients:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // Given a Patient proto, UpdatePatient will attempt to apply an update to the
+  // patient record in both the Patients DB and the EHR.
+  // The Patient.consistency_token is required.
+  rpc UpdatePatient(UpdatePatientRequest) returns (UpdatePatientResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:patients:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // Given a patient ID corresponding with a patient record, DeletePatient will
+  // soft-delete the patient record from the *company-data-covered* database.
+  rpc DeletePatient(DeletePatientRequest) returns (DeletePatientResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "update:patients:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // Given search parameters, SearchPatients will return the list of patient
+  // records that match based on
+  // https://docs.athenahealth.com/api/workflows/enhanced-best-match
+  // If additionally given more information (such as foreign table IDs),
+  // SearchPatients will use those IDs to narrow down the search.
+  rpc SearchPatients(SearchPatientsRequest) returns (SearchPatientsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:patients:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // Given search parameters, ListPatients will return the list of patient
+  // records that based on combined responses from
+  // https://docs.athenahealth.com/api/workflows/enhanced-best-match
+  // and StationPatientService ListPatients
+  rpc ListPatients(ListPatientsRequest) returns (ListPatientsResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // Given a list of *company-data-covered* patient IDs, if any patient IDs exist in the
+  // *company-data-covered* database, list Patient protos filled with information
+  // from patient records in the associated EHR.
+  rpc ListPatientsByID(ListPatientsByIDRequest)
+      returns (ListPatientsByIDResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:patients:all"
+    };
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // Given search term, SearchPatientsByName will return the list of
+  // *company-data-covered* patient records that match
+  rpc SearchPatientsByName(SearchPatientsByNameRequest)
+      returns (SearchPatientsByNameResponse) {
+    option (audit.rule) = {
+      event_data_type: "Patient"
+    };
+  }
+
+  // Given insurance information including a *company-data-covered* patient ID and
+  // priority, CreateInsurance will check to see if an insurance record with the
+  // same priority exists for that patient.
+  // CreateInsurance will attempt to create the insurance record in both the
+  // Insurance DB and the EHR if an insurance record with the same priority does
+  // not already exist for that patient, or respond with an error otherwise.
+  rpc CreateInsurance(CreateInsuranceRequest)
+      returns (CreateInsuranceResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // Given a *company-data-covered* insurance ID and patient ID, GetInsurance will
+  // return an Insurance proto filled with information from the insurance
+  // record.
+  rpc GetInsurance(GetInsuranceRequest) returns (GetInsuranceResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // Given insurance information including a *company-data-covered* insurance ID and
+  // patient ID, UpdateInsurance will update the non-nil input fields in the
+  // insurance record in both the Insurance DB and the EHR.
+  rpc UpdateInsurance(UpdateInsuranceRequest)
+      returns (UpdateInsuranceResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // Given a *company-data-covered* insurance ID and patient ID, DeleteInsurance will
+  // soft delete the insurance record in both the Insurance DB and the EHR.
+  rpc DeleteInsurance(DeleteInsuranceRequest)
+      returns (DeleteInsuranceResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // Given a *company-data-covered* patient ID, ListInsurances will return an ordered
+  // list, by priority, of the insurance records for that patient.
+  rpc ListInsurances(ListInsurancesRequest) returns (ListInsurancesResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // Given a *company-data-covered* insurance ID, patient ID, an image, and whether it
+  // is for the front or back of an insurance card, AddInsuranceImage will save
+  // the insurance image in the EHR.
+  rpc AddInsuranceImage(AddInsuranceImageRequest)
+      returns (AddInsuranceImageResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // Given a *company-data-covered* insurance ID, patient ID, and whether it is the
+  // front or back of an insurance card, RemoveInsuranceImageRequest will remove
+  // the insurance image from the EHR.
+  rpc RemoveInsuranceImage(RemoveInsuranceImageRequest)
+      returns (RemoveInsuranceImageResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // Given an empty *company-data-covered* request, HealthCheck will return a status
+  // that indicates the health of the Patients service. When the service is down
+  // the GRPC framework will return, by default, the UNAVAILABLE service status.
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {
+    option (common.auth.public) = true;
+    option (google.api.http) = {
+      get: "/healthcheck"
+    };
+    option (audit.rule) = {
+      skip_audit: true
+    };
+  }
+
+  // Given a *company-data-covered* patient ID, GetPrimaryCareProvider will return the
+  // primary care provider of the patient.
+  rpc GetPrimaryCareProvider(GetPrimaryCareProviderRequest)
+      returns (GetPrimaryCareProviderResponse) {
+    option (audit.rule) = {
+      event_data_type: "CareTeam"
+    };
+  }
+
+  // Given a *company-data-covered* patient ID and primary care provider ID,
+  // UpdatePrimaryCareProvider will update a primary care provider record of a
+  // patient.
+  rpc UpdatePrimaryCareProvider(UpdatePrimaryCareProviderRequest)
+      returns (UpdatePrimaryCareProviderResponse) {
+    option (audit.rule) = {
+      event_data_type: "CareTeam"
+    };
+  }
+
+  // Given a *company-data-covered* patient ID, DeletePrimaryCareProvider will remove
+  // the primary care provider of a patient from Athena EHR.
+  rpc DeletePrimaryCareProvider(DeletePrimaryCareProviderRequest)
+      returns (DeletePrimaryCareProviderResponse) {
+    option (audit.rule) = {
+      event_data_type: "CareTeam"
+    };
+  }
+
+  // UpdateCareTeam adds the clinical_provider_id with recipient_class_id
+  // to the care team members given a patient_id and a department_id.
+  rpc UpsertCareTeam(UpsertCareTeamRequest) returns (UpsertCareTeamResponse) {
+    option (audit.rule) = {
+      event_data_type: "CareTeam"
+    };
+  }
+
+  // DeleteCareTeam deletes the member_id of the care team of the patient
+  // given a patient_id and a department_id.
+  rpc DeleteCareTeam(DeleteCareTeamRequest) returns (DeleteCareTeamResponse) {
+    option (audit.rule) = {
+      event_data_type: "CareTeam"
+    };
+  }
+
+  // Given a Pharmacy proto,
+  // UpdateDefaultPharmacy will attempt to apply an update to the pharmacy
+  // record.
+  rpc UpdateDefaultPharmacy(UpdateDefaultPharmacyRequest)
+      returns (UpdateDefaultPharmacyResponse) {
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+
+  // Given a *company-data-covered* patient ID, GetDefaultPharmacy will get
+  // the default pharmacy of a patient.
+  rpc GetDefaultPharmacy(GetDefaultPharmacyRequest)
+      returns (GetDefaultPharmacyResponse) {
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+
+  // Given a *company-data-covered* patient ID and department ID,
+  // GetPreferredPharmacies will get the preferred
+  // pharmacies list of the patient.
+  rpc GetPreferredPharmacies(GetPreferredPharmaciesRequest)
+      returns (GetPreferredPharmaciesResponse) {
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+
+  // Given a *company-data-covered* patient ID and clinical provider id,
+  // DeletePreferredPharmacy will delete a pharmacy from the preferred
+  // pharmacies list of the patient.
+  rpc DeletePreferredPharmacy(DeletePreferredPharmacyRequest)
+      returns (DeletePreferredPharmacyResponse) {
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+
+  // Given a *company-data-covered* patient ID and department ID,
+  // UpdatePreferredPharmacy will add the given clinical provider ID
+  // to the patient's list of preferred pharmacies.
+  rpc UpdatePreferredPharmacy(UpdatePreferredPharmacyRequest)
+      returns (UpdatePreferredPharmacyResponse) {
+    option (audit.rule) = {
+      event_data_type: "Pharmacy"
+    };
+  }
+
+  // Given unverified patient information, stores the information in the
+  // database.
+  rpc CreateUnverifiedPatient(CreateUnverifiedPatientRequest)
+      returns (CreateUnverifiedPatientResponse) {
+    option (audit.rule) = {
+      event_data_type: "UnverifiedPatient"
+    };
+  }
+
+  // Given a list of IDs, returns the matching unverified patients. If a given
+  // ID does not match any unverified patient, no error will be thrown.
+  rpc ListUnverifiedPatients(ListUnverifiedPatientsRequest)
+      returns (ListUnverifiedPatientsResponse) {
+    option (audit.rule) = {
+      event_data_type: "UnverifiedPatient"
+    };
+  }
+
+  // Given an unverified patient ID,
+  // returns the corresponding unverified patient.
+  rpc GetUnverifiedPatient(GetUnverifiedPatientRequest)
+      returns (GetUnverifiedPatientResponse) {
+    option (audit.rule) = {
+      event_data_type: "UnverifiedPatient"
+    };
+  }
+
+  // Given unverified patient information, update the corresponding patient
+  // information in the database.
+  rpc UpdateUnverifiedPatient(UpdateUnverifiedPatientRequest)
+      returns (UpdateUnverifiedPatientResponse) {
+    option (audit.rule) = {
+      event_data_type: "UnverifiedPatient"
+    };
+  }
+
+  // Retrieves eligibility information for a specific insurance
+  rpc GetPatientInsuranceBenefitDetails(
+      GetPatientInsuranceBenefitDetailsRequest)
+      returns (GetPatientInsuranceBenefitDetailsResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // Trigger eligibility check for a specific insurance
+  rpc TriggerPatientInsuranceEligibilityCheck(
+      TriggerPatientInsuranceEligibilityCheckRequest)
+      returns (TriggerPatientInsuranceEligibilityCheckResponse) {
+    option (audit.rule) = {
+      event_data_type: "PatientInsurance"
+    };
+  }
+
+  // Given an UnverifiedPatient, find or create a *company-data-covered* Patient record
+  // Will also attach athena_id to the UnverifiedPatient record
+  rpc FindOrCreatePatientForUnverifiedPatient(
+      FindOrCreatePatientForUnverifiedPatientRequest)
+      returns (FindOrCreatePatientForUnverifiedPatientResponse) {
+    option (audit.rule) = {
+      event_data_type: "UnverifiedPatient"
+    };
+  }
+}
+
+message GetPatientRequest {
+  optional string patient_id = 1;
+}
+
+message GetPatientResponse {
+  optional common.Patient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+// CreatePatientRequest expects a Patient proto with:
+// 1. Given Name
+// 2. Family Name
+// 3. Date of Birth
+// 4. At least one of:
+//   a. Email
+//   b. Guarantor Email
+//   c. Social Security Number
+//   d. Home Phone
+//   e. Mobile Phone
+//   f. Work Phone
+//   g. Zip Code
+message CreatePatientRequest {
+  optional common.Patient patient = 1;
+  reserved 2;
+  reserved "department_id";
+}
+
+message CreatePatientResponse {
+  optional common.Patient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+message UpdatePatientRequest {
+  optional common.Patient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+message UpdatePatientResponse {
+  optional common.Patient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+message DeletePatientRequest {
+  optional string patient_id = 1;
+}
+
+message DeletePatientResponse {}
+
+message SearchPatientsRequest {
+  optional string given_name = 1;
+  optional string family_name = 2;
+  optional common.Date date_of_birth = 3;
+  optional string zip_code = 4;
+  optional string search_term = 5;
+  repeated int64 channel_item_ids = 6;
+  optional string partner_id = 7;
+}
+
+message SearchPatientsResponse {
+  repeated SearchPatientsResult results = 1;
+}
+
+message SearchPatientsResult {
+  optional common.Patient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+message CreateInsuranceRequest {
+  optional InsuranceRecord insurance_record = 1;
+}
+
+message CreateInsuranceResponse {
+  optional InsuranceRecord insurance_record = 1;
+  optional bytes consistency_token = 2;
+}
+
+message GetInsuranceRequest {
+  optional string insurance_id = 1;
+  optional string patient_id = 2;
+  // If true, patient insurance records will be synced with the EHR insurances
+  // before retrieving the requested insurance record.
+  bool sync_ehr = 3;
+}
+
+message GetInsuranceResponse {
+  optional InsuranceRecord insurance_record = 1;
+  optional bytes consistency_token = 2;
+}
+
+message UpdateInsuranceRequest {
+  optional InsuranceRecord insurance_record = 1;
+  optional bytes consistency_token = 2;
+}
+
+message UpdateInsuranceResponse {
+  optional InsuranceRecord insurance_record = 1;
+  optional bytes consistency_token = 2;
+}
+
+message DeleteInsuranceRequest {
+  optional string insurance_id = 1;
+  optional string patient_id = 2;
+}
+
+message DeleteInsuranceResponse {}
+
+message ListInsurancesRequest {
+  optional string patient_id = 1;
+}
+
+message ListInsurancesResponse {
+  repeated ListInsurancesResult results = 1;
+}
+
+message ListInsurancesResult {
+  optional InsuranceRecord insurance_record = 1;
+  optional bytes consistency_token = 2;
+}
+
+message AddInsuranceImageRequest {
+  optional string insurance_id = 1;
+  optional string patient_id = 2;
+  optional InsuranceCardImage card_image = 3;
+  // If false, the insurance card image requires verification by a provider.
+  bool verified = 4;
+}
+
+message Image {
+  // based on extension white list in license uploader in Station
+  enum MIMEType {
+    MIME_TYPE_UNSPECIFIED = 0;
+    // image/png
+    MIME_TYPE_PNG = 1;
+    // image/jpeg
+    MIME_TYPE_JPG = 2;
+    // image/jpeg
+    MIME_TYPE_JPEG = 3;
+    // image/tff
+    MIME_TYPE_TIFF = 4;
+  }
+  bytes data = 1;
+  MIMEType type = 2;
+}
+
+message InsuranceCardImage {
+  enum SideType {
+    SIDE_TYPE_UNSPECIFIED = 0;
+    SIDE_TYPE_FRONT = 1;
+    SIDE_TYPE_BACK = 2;
+  }
+  Image image = 1;
+  SideType side_type = 2;
+}
+
+message AddInsuranceImageResponse {}
+
+message RemoveInsuranceImageRequest {
+  optional string insurance_id = 1;
+  optional string patient_id = 2;
+  optional InsuranceImageType image_type = 3;
+}
+
+message RemoveInsuranceImageResponse {}
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {}
+
+message GetPrimaryCareProviderRequest {
+  optional string patient_id = 1;
+}
+
+message GetPrimaryCareProviderResponse {
+  optional bool patient_has_pcp = 1;
+  optional PrimaryCareProvider primary_care_provider = 2;
+}
+
+message UpdatePrimaryCareProviderRequest {
+  string patient_id = 1;
+  string clinical_provider_id = 2;
+}
+
+message UpdatePrimaryCareProviderResponse {}
+
+message DeletePrimaryCareProviderRequest {
+  string patient_id = 1;
+}
+
+message DeletePrimaryCareProviderResponse {}
+
+message DeleteCareTeamRequest {
+  string patient_id = 1;
+  string member_id = 2;
+  string department_id = 3;
+}
+
+message DeleteCareTeamResponse {}
+
+message UpsertCareTeamRequest {
+  string patient_id = 1;
+  string clinical_provider_id = 2;
+  string department_id = 3;
+  string recipient_class_id = 4;
+}
+
+message UpsertCareTeamResponse {}
+
+message UpdateDefaultPharmacyRequest {
+  // Required
+  string patient_id = 1;
+  string clinical_provider_id = 2;
+  string department_id = 3;
+}
+
+message UpdateDefaultPharmacyResponse {}
+
+message GetDefaultPharmacyRequest {
+  // Required
+  string patient_id = 1;
+  string department_id = 2;
+}
+
+message GetDefaultPharmacyResponse {
+  reserved 1;
+  reserved "default_pharmacy";
+  athena.Pharmacy pharmacy = 2;
+}
+
+message GetPreferredPharmaciesRequest {
+  // Required
+  string patient_id = 1;
+  string department_id = 2;
+}
+
+message GetPreferredPharmaciesResponse {
+  repeated athena.Pharmacy pharmacies = 1;
+}
+
+message DeletePreferredPharmacyRequest {
+  // Required
+  string patient_id = 1;
+  string clinical_provider_id = 2;
+  string department_id = 3;
+}
+
+message DeletePreferredPharmacyResponse {}
+
+message UpdatePreferredPharmacyRequest {
+  // Required
+  // athenaNet patient identifier
+  string patient_id = 1 [(google.api.field_behavior) = REQUIRED];
+  // clinical_provider_id represents the unique identifier for clinical
+  // providers.
+  string clinical_provider_id = 2 [(google.api.field_behavior) = REQUIRED];
+  // athenaNet uses department_id to add to the local patient.
+  string department_id = 3 [(google.api.field_behavior) = REQUIRED];
+}
+
+message UpdatePreferredPharmacyResponse {}
+
+message ListPatientsRequest {
+  // Required
+  string first_name = 1;
+  string last_name = 2;
+  common.Date date_of_birth = 3;
+
+  // Optional
+  repeated int64 channel_item_ids = 4;
+  string partner_id = 5;
+  // Zip code of the patient. This may or may not be the same as the zip code of
+  // their last care request.
+  string zip_code = 6;
+}
+
+message ListPatientsResponse {
+  repeated ListPatientsResult results = 1;
+}
+
+message ListPatientsResult {
+  optional common.Patient patient = 1;
+  optional bytes consistency_token = 2;
+}
+
+message CreateUnverifiedPatientRequest {
+  optional int64 athena_id = 1;
+  common.Date date_of_birth = 2;
+  common.PhoneNumber phone_number = 4;
+  common.Sex legal_sex = 5;
+  common.BirthSex birth_sex = 6;
+  common.GenderIdentity gender_identity = 7;
+  optional string given_name = 9;
+  optional string family_name = 10;
+
+  reserved 3;
+  reserved "name";
+  reserved 8;
+  reserved "gender_identity_details";
+}
+
+message CreateUnverifiedPatientResponse {
+  UnverifiedPatient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+message ListUnverifiedPatientResult {
+  UnverifiedPatient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+message ListUnverifiedPatientsRequest {
+  repeated int64 ids = 1;
+}
+
+message ListUnverifiedPatientsResponse {
+  repeated ListUnverifiedPatientResult results = 1;
+}
+
+message UpdateUnverifiedPatientRequest {
+  UnverifiedPatient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+message UpdateUnverifiedPatientResponse {
+  UnverifiedPatient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+message GetPatientInsuranceBenefitDetailsRequest {
+  // Required
+  // *company-data-covered* patient ID
+  string patient_id = 1;
+  // *company-data-covered* insurance ID
+  string insurance_id = 2;
+
+  // Optional
+  // STC Code for which we are checking the eligibility
+  optional string service_type_code = 3;
+  // Date of service for eligibility verification
+  optional common.Date date_of_service = 4;
+}
+
+message GetPatientInsuranceBenefitDetailsResponse {
+  InsuranceBenefitDetails details = 1;
+}
+
+message TriggerPatientInsuranceEligibilityCheckRequest {
+  // *company-data-covered* patient ID
+  string patient_id = 1;
+  // *company-data-covered* insurance ID
+  string insurance_id = 2;
+  // Date of service for eligibility verification
+  optional common.Date date_of_service = 3;
+  // STC Code for which we are checking the eligibility
+  optional string service_type_code = 4;
+}
+
+message TriggerPatientInsuranceEligibilityCheckResponse {}
+
+message ListPatientsByIDRequest {
+  // DH patient IDs
+  repeated int64 patient_ids = 1;
+}
+
+message ListPatientsByIDResult {
+  optional common.Patient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+message ListPatientsByIDResponse {
+  repeated ListPatientsByIDResult results = 1;
+}
+
+message GetUnverifiedPatientRequest {
+  // Unverified patient ID
+  optional int64 id = 1;
+}
+
+message GetUnverifiedPatientResponse {
+  UnverifiedPatient patient = 1;
+  optional bytes consistency_token = 2;
+}
+
+message FindOrCreatePatientForUnverifiedPatientRequest {
+  // Unverified patient ID
+  optional int64 id = 1;
+  // Billing city ID needed to create patient from unverified_patient
+  optional int64 billing_city_id = 2;
+}
+
+message FindOrCreatePatientForUnverifiedPatientResponse {
+  common.Patient patient = 1;
+  // Opaque token to pass back to the server.
+  optional bytes consistency_token = 2;
+}
+
+message SearchPatientsByNameRequest {
+  string search_term = 1;
+}
+
+message SearchPatientsByNameResponse {
+  repeated SearchPatientsByNameResult results = 1;
+}
+
+message SearchPatientsByNameResult {
+  common.Patient patient = 1;
+  bytes consistency_token = 2;
+}

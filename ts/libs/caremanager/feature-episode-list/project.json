@@ -1,0 +1,67 @@
+{
+  "name": "caremanager-feature-episode-list",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/libs/caremanager/feature-episode-list/src",
+  "projectType": "library",
+  "tags": ["type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "ts/libs/caremanager/feature-episode-list/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/ts/libs/caremanager/feature-episode-list"],
+      "options": {
+        "coverage": true,
+        "passWithNoTests": true,
+        "reportsDirectory": "../../../../coverage/ts/libs/caremanager/feature-episode-list"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.lib.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p tsconfig.spec.json --pretty --noEmit",
+            "forwardAllArgs": false
+          },
+          {
+            "command": "tsc -p cypress/tsconfig.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/libs/caremanager/feature-episode-list"
+      }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "defaultConfiguration": "development",
+      "options": {
+        "cypressConfig": "ts/libs/caremanager/feature-episode-list/cypress.config.ts",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "development": {
+          "devServerTarget": "caremanager:serve:development"
+        },
+        "production": {
+          "devServerTarget": "caremanager:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "caremanager:serve-static"
+        }
+      }
+    }
+  }
+}

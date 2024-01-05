@@ -1,0 +1,3 @@
+export const CLINICAL_KPI_STATSIG_PROVIDER_TEST_IDS = {
+  LOADING_COMPONENT_PREFIX: 'statsig-provider',
+};

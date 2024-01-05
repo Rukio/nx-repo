@@ -1,0 +1,30 @@
+{
+  "name": "clinical-kpi-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/clinical-kpi-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "ts/apps/clinical-kpi-e2e/cypress.config.ts",
+        "devServerTarget": "clinical-kpi:serve:development",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "clinical-kpi:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/clinical-kpi-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": ["scope:clinical-kpi", "type:e2e"],
+  "implicitDependencies": ["clinical-kpi"]
+}

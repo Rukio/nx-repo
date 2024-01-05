@@ -1,0 +1,1 @@
+console.error = vi.fn();

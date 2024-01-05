@@ -1,0 +1,61 @@
+{
+  "name": "caremanager-e2e",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ts/apps/caremanager-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "defaultConfiguration": "development",
+      "options": {
+        "cypressConfig": "ts/apps/caremanager-e2e/cypress.config.ts",
+        "testingType": "e2e"
+      },
+      "configurations": {
+        "development": {
+          "devServerTarget": "caremanager:serve:development"
+        },
+        "qa": {},
+        "uat": {},
+        "production": {
+          "devServerTarget": "caremanager:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "caremanager:serve-static",
+          "spec": "**/integration/**"
+        }
+      }
+    },
+    "integration-test": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "ts/apps/caremanager-e2e/cypress.config.ts",
+        "devServerTarget": "caremanager:serve:development",
+        "testingType": "e2e",
+        "spec": "**/integration/**"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["ts/apps/caremanager-e2e/**/*.{js,ts}"]
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          {
+            "command": "tsc -p tsconfig.json --pretty --noEmit",
+            "forwardAllArgs": false
+          }
+        ],
+        "cwd": "ts/apps/caremanager-e2e"
+      }
+    }
+  },
+  "tags": ["type:app"],
+  "implicitDependencies": ["caremanager"]
+}

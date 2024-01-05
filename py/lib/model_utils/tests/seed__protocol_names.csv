@@ -1,0 +1,227 @@
+protocol_name,protocol_name_standardized,is_dhfu_protocol
+ED to Home (Patient),ED to Home (Patient),False
+(Fix) Chest Pain Placeholder,(Fix) Chest Pain Placeholder,False
+Abdominal Pain,Abdominal Pain / Constipation,False
+Abdominal pain,Abdominal Pain / Constipation,False
+Abdominal Pain (Non Covid-19),Abdominal Pain / Constipation,False
+Acute Care Team Assessment,Acute Care Team Assessment,False
+Advanced Care,Advanced Care,False
+Advanced Care - Monoclonal Antibodies,Advanced Care - Monoclonal Antibodies,False
+AdvancedCare Evaluation,AdvancedCare Evaluation,False
+Allergic Reaction,Allergic Reaction,False
+Allergic Reaction (Non Covid-19),Allergic Reaction,False
+Animal bite,Animal bite,False
+Animal bite/Bite injury,Animal bite,False
+Anthem Well Visit (HEDIS),Anthem Well Visit (HEDIS),False
+Anxiety/Panic,Anxiety / Panic / Hallucination,False
+Anxiety/Panic  (Non Covid-19),Anxiety / Panic / Hallucination,False
+Anxiety/Panic (Non Covid-19),Anxiety / Panic / Hallucination,False
+Back Pain,Back Pain,False
+back pain,Back Pain,False
+Back Pain (Non Covid-19),Back Pain,False
+Baystate Behavioral Health Patients - screening/on-boarding,Baystate Behavioral Health Patients - screening/on-boarding,False
+Bladder Catheter Issue,Bladder Catheter Issue,False
+Bladder catheter issue,Bladder Catheter Issue,False
+Bladder Catheter Issue (Non Covid-19),Bladder Catheter Issue,False
+Blood in Stool,Blood in Stool,False
+Blood in stool,Blood in Stool,False
+Blood in Stool (Non Covid-19),Blood in Stool,False
+Blood sugar concerns,Blood sugar concerns,False
+Bridge Care / Post-Acute Follow Up (Post Hospital/Skilled Nursing Facility/Rehabilitation Facility Discharge patient),Bridge Care / Post-Acute Follow Up (Post Hospital/Skilled Nursing Facility/Rehabilitation Facility Discharge patient),False
+Burn,Burn,False
+Burn (Non Covid-19),Burn,False
+Cellulitis - extremities torso (trunk),Cellulitis/skin abscesses - extremities torso (trunk),False
+"Cellulitis - extremities, torso (trunk)",Cellulitis/skin abscesses - extremities torso (trunk),False
+Cellulitis/skin abscesses - extremities torso (trunk),Cellulitis/skin abscesses - extremities torso (trunk),False
+"Cellulitis/skin abscesses - extremities, torso (trunk)",Cellulitis/skin abscesses - extremities torso (trunk),False
+Chest Pain,Chest Pain,False
+Chest pain,Chest Pain,False
+Chest Pain (Non Covid-19),Chest Pain,False
+Confusion,Confusion,False
+Confusion (Non Covid-19),Confusion,False
+Constipation,Abdominal Pain / Constipation,False
+Constipation (Non Covid-19),Abdominal Pain / Constipation,False
+Cough/Upper Respiratory Infection,Cough / URI / Sinusitis / Sore Throat,False
+Cough/Upper Respiratory Symptoms,Cough / URI / Sinusitis / Sore Throat,False
+Cough/Upper Respiratory Symptoms  (Non Covid-19),Cough / URI / Sinusitis / Sore Throat,False
+Cough/Upper Respiratory Symptoms (Non Covid-19),Cough / URI / Sinusitis / Sore Throat,False
+Cough/URI,Cough / URI / Sinusitis / Sore Throat,False
+COVID-19 Facility Testing,COVID-19 Facility Testing,False
+COVID-19 Testing Request (for patients without symptoms),COVID-19 Testing Request (for patients without symptoms),False
+Dehydration,Weakness / Lethargy / Dehydration,False
+Dehydration (Non Covid-19),Weakness / Lethargy / Dehydration,False
+Dental/oral pain,Dental/oral pain,False
+Dental/oral pain (Non Covid-19),Dental/oral pain,False
+Diarrhea,Nausea / Vomiting / Diarrhea,False
+diarrhea,Nausea / Vomiting / Diarrhea,False
+Diarrhea (Non Covid-19),Nausea / Vomiting / Diarrhea,False
+Difficulty pain or blood with urination,Difficulty Urinating,False
+Difficulty Urinating,Difficulty Urinating,False
+Difficulty urinating,Difficulty Urinating,False
+Difficulty Urinating (Non Covid-19),Difficulty Urinating,False
+"Difficulty, pain or blood with urination",Difficulty Urinating,False
+*company-data-covered* Acute Care - follow up visit,*company-data-covered* Acute Care - follow up visit,False
+*company-data-covered* Acute Care - follow up visit (Non Covid-19),*company-data-covered* Acute Care - follow up visit,False
+*company-data-covered* Acute Care follow-up visit,*company-data-covered* Acute Care - follow up visit,False
+*company-data-covered* Education Program (Emergency Department use education Asthma diabetes education),*company-data-covered* Education Program (Emergency Department use education Asthma diabetes education),False
+*company-data-covered* Education Program (Emergency Department use education Asthma education),*company-data-covered* Education Program (Emergency Department use education Asthma diabetes education),False
+"*company-data-covered* Education Program (Emergency Department use education, Asthma education)",*company-data-covered* Education Program (Emergency Department use education Asthma diabetes education),False
+"*company-data-covered* Education Program (Emergency Department use education, Asthma, diabetes education)",*company-data-covered* Education Program (Emergency Department use education Asthma diabetes education),False
+Dizziness,Dizziness,False
+Dizziness (Non Covid-19),Dizziness,False
+Dizziness/Dizzy,Dizziness,False
+"Doctor, Advanced Practice Provider, Nurse Practitioner or Physician Assistant calling for patient to be seen by *company-data-covered*","Doctor, Advanced Practice Provider, Nurse Practitioner or Physician Assistant calling for patient to be seen by *company-data-covered*",False
+Domestic Violence / Sexual Assault,Domestic Violence / Sexual Assault,False
+Ear pain,Ear pain,False
+Ear pain (Non Covid-19),Ear pain,False
+"EMS ET3 ""Treat in place"" or ""Treat and release"" protocol","EMS ET3 ""Treat in place"" or ""Treat and release"" protocol",False
+"EMS ET3 ""Treat in place"" or ""Treat and release"" protocol v2","EMS ET3 ""Treat in place"" or ""Treat and release"" protocol",False
+Epistaxis (nose bleed),Epistaxis (nose bleed),False
+Epistaxis (nose bleed) (Non Covid-19),Epistaxis (nose bleed),False
+Epistaxis/ Nose bleed,Epistaxis (nose bleed),False
+Extremity Injury,Extremity Injury,False
+Extremity injury,Extremity Injury,False
+Extremity Injury/Pain,Extremity Injury,False
+Extremity Injury/Pain (includes hip pain),Extremity Injury,False
+Extremity Injury/Pain (Non Covid-19),Extremity Injury,False
+Extremity Swelling,Extremity Swelling,False
+Extremity Swelling (Non Covid-19),Extremity Swelling,False
+Fall,Fall,False
+Fall - without injury,Fall - without injury,False
+Fall - without injury (Non Covid-19),Fall - without injury,False
+Fever,Fever,False
+Fever (Non Covid-19),Fever,False
+"Fever, Chills",Fever / Chills,False
+Fever / Chills,Fever / Chills,False
+FIX - Chest Pain,FIX - Chest Pain,False
+Flu-like symptoms,Flu-like symptoms,False
+Gastric tube abnormality (G-tube),Gastric tube abnormality (G-tube),False
+General Complaint,General Complaint,False
+General complaint,General Complaint,False
+General Complaint (Non Covid-19),General Complaint,False
+General Respiratory Complaint - Senior Living,General Respiratory Complaint - Senior Living,False
+Gynecological issues,Gynecological issues,False
+"Gynecological issues, Vaginal pain, bleeding or discharge",Gynecological issues,False
+Hallucinations,Anxiety / Panic / Hallucination,False
+Hallucinations (Non Covid-19),Anxiety / Panic / Hallucination,False
+Head Injury,Head Injury,False
+Head injury,Head Injury,False
+Head Injury (Non Covid-19),Head Injury,False
+Headache,Headache,False
+Headache (Non Covid-19),Headache,False
+High blood pressure (hypertension),High blood pressure (hypertension),False
+High blood pressure (hypertension) (Non Covid-19),High blood pressure (hypertension),False
+High Risk < 18,High Risk < 18,False
+High Risk 18+,High Risk 18+,False
+Hospice care request,Hospice care request,False
+Hypertension (high blood pressure),Hypertension (high blood pressure),False
+Hypotension (low blood pressure),Hypotension (low blood pressure),False
+Kaiser or KP lab request,Kaiser or KP lab request,False
+Laboratory test concern,Laboratory test concern,False
+Laboratory test concern (Non Covid-19),Laboratory test concern,False
+Laceration,Laceration,False
+Laceration (Non Covid-19),Laceration,False
+Leg Swelling,Leg Swelling,False
+Leg swelling,Leg Swelling,False
+Lethargic,Weakness / Lethargy / Dehydration,False
+Lethargic/Lethargy,Weakness / Lethargy / Dehydration,False
+Lethargic/Lethargy (Non Covid-19),Weakness / Lethargy / Dehydration,False
+Low blood pressure  (hypotension),Low blood pressure (hypotension),False
+Low blood pressure  (hypotension) (Non Covid-19),Low blood pressure (hypotension),False
+Low blood pressure (hypotension),Low blood pressure (hypotension),False
+Low blood pressure (hypotension) (Non Covid-19),Low blood pressure (hypotension),False
+MedStar (MedStar Mobile Healthcare) - Texas patient on-boarding,MedStar (MedStar Mobile Healthcare) - Texas patient on-boarding,False
+Nausea/Vomiting,Nausea / Vomiting / Diarrhea,False
+Nausea/Vomiting (Non Covid-19),Nausea / Vomiting / Diarrhea,False
+Neck/Spine pain,Neck/Spine pain,False
+Neck/Spine pain (Non Covid-19),Neck/Spine pain,False
+Neurologic (nervous system) complaint,Neurologic complaint / Numbness,False
+"Neurologic, Neuro (nervous system) complaint",Neurologic complaint / Numbness,False
+Neurologic complaint / Numbness,Neurologic complaint / Numbness,False
+Numbness,Neurologic complaint / Numbness,False
+Numbness (Non Covid-19),Neurologic complaint / Numbness,False
+Optum Skilled Nursing Facilities Onboarding process,Optum Skilled Nursing Facilities Onboarding process,False
+Overdose poisoning,Overdose poisoning,False
+Pacemaker complication/issue,Palpitations / Abnormal heart rate / Pacemaker issue,False
+Pain with urinating and/or blood in urine,Pain with urinating and/or blood in urine,False
+Pain with urinating and/or blood in urine (Non Covid-19),Pain with urinating and/or blood in urine,False
+Palpitations,Palpitations / Abnormal heart rate / Pacemaker issue,False
+"Palpitations, abnormal heart rate",Palpitations / Abnormal heart rate / Pacemaker issue,False
+Palpitations/abnormal heart rate,Palpitations / Abnormal heart rate / Pacemaker issue,False
+Palpitations/abnormal heart rate (Non Covid-19),Palpitations / Abnormal heart rate / Pacemaker issue,False
+"Partner using Nationally Accredited Risk Stratification process (formerly: R.C.C. (Resource Coordination Center) - Optum Las Vegas, NV)","Partner using Nationally Accredited Risk Stratification process (formerly: R.C.C. (Resource Coordination Center) - Optum Las Vegas, NV)",False
+"Partner using Schmitt-Thompson protocols (formerly R.C.C. - Resource Coordination Center - Optum Las Vegas, NV)","Partner using Schmitt-Thompson protocols (formerly R.C.C. - Resource Coordination Center - Optum Las Vegas, NV)",False
+Post-acute Patient,Post-acute Patient,False
+Post-acute patient,Post-acute Patient,False
+Post-acute Patient (Post Hospital Discharge patient),Post-acute Patient Follow Up (Post Hospital/Skilled Nursing Facility/Rehabilitation Facility Discharge patient),False
+Post-acute Patient (Post Hospital/Skilled Nursing Facility/Rehabilitation Facility Discharge patient),Post-acute Patient Follow Up (Post Hospital/Skilled Nursing Facility/Rehabilitation Facility Discharge patient),False
+Post-acute Patient Follow Up (Post Hospital/Skilled Nursing Facility/Rehabilitation Facility Discharge patient),Post-acute Patient Follow Up (Post Hospital/Skilled Nursing Facility/Rehabilitation Facility Discharge patient),False
+Pregnancy issues,Pregnancy / Gynecological,False
+"Provider (PA, NP, MD, DO) calling for patient to be seen by *company-data-covered*","Provider (PA, NP, MD, DO) calling for patient to be seen by *company-data-covered*",False
+Provider calling for patient to be seen by *company-data-covered*,Provider calling for patient to be seen by *company-data-covered*,False
+Pulse Heart,Pulse Heart,False
+R.C.C. (Resource Coordination Center) - Optum Las Vegas NV,R.C.C. (Resource Coordination Center) - Optum Las Vegas NV,False
+"R.C.C. (Resource Coordination Center) - Optum Las Vegas, NV",R.C.C. (Resource Coordination Center) - Optum Las Vegas NV,False
+RAA (Richmond Ambulance Authority) - Richmond patient on-boarding,RAA (Richmond Ambulance Authority) - Richmond patient on-boarding,False
+Rash,Rash,False
+Rash - pediatric,Rash - pediatric,False
+Rash - pediatric (Non Covid-19),Rash - pediatric,False
+Rash (Non Covid-19),Rash,False
+Rectal pain,Rectal pain,False
+RN Only,RN Only,False
+RN Only (for use by *company-data-covered* RN only),RN Only,False
+Seizure,Seizure,False
+Seizure (Non Covid-19),Seizure,False
+Self harm,Self harm,False
+"Self harm, suicidal thoughts",Self harm,False
+Shortness of Breath,Shortness of breath / Trouble breathing,False
+Shortness of breath,Shortness of breath / Trouble breathing,False
+Shortness of Breath (Non Covid-19),Shortness of breath / Trouble breathing,False
+Shortness of breath / Trouble breathing,Shortness of breath / Trouble breathing,False
+Sinus pain,Cough / URI / Sinusitis / Sore Throat,False
+Sinus pain (Non Covid-19),Cough / URI / Sinusitis / Sore Throat,False
+"Sinus pain, sinusitis",Cough / URI / Sinusitis / Sore Throat,False
+"Skin rash, Skin infection (cellulitis), Skin abscess, Bug bites ",Skin rash(cellulitis)/skin abscesses - extremities torso (trunk),False
+"Skin rash, Skin infection (cellulitis), Skin abscess, Wound, Bug bites ",Skin rash(cellulitis)/skin abscesses - extremities torso (trunk),False
+"Skin rash, Wound, Skin infection (cellulitis), Skin abscess, Bug bites ",Skin rash(cellulitis)/skin abscesses - extremities torso (trunk),False
+Skin rash(cellulitis)/skin abscesses - extremities torso (trunk),Skin rash(cellulitis)/skin abscesses - extremities torso (trunk),False
+Skin rash(cellulitis)/skin abscesses - extremities torso (trunk) (Non Covid-19),Skin rash(cellulitis)/skin abscesses - extremities torso (trunk),False
+"Skin rash(cellulitis)/skin abscesses - extremities, torso (trunk)",Skin rash(cellulitis)/skin abscesses - extremities torso (trunk),False
+"Skin rash(cellulitis)/skin abscesses - extremities, torso (trunk) (Non Covid-19)",Skin rash(cellulitis)/skin abscesses - extremities torso (trunk),False
+Sore throat,Cough / URI / Sinusitis / Sore Throat,False
+Sore throat  (Non Covid-19),Cough / URI / Sinusitis / Sore Throat,False
+Sore throat (Non Covid-19),Cough / URI / Sinusitis / Sore Throat,False
+Sore throat 2,Cough / URI / Sinusitis / Sore Throat,False
+Sound Family Medicine - clinic onboarding,Sound Family Medicine - clinic onboarding,False
+Suicidal ideation,Suicidal ideation,False
+Surprise Fire Department - Arizona patient on-boarding,Surprise Fire Department - Arizona patient on-boarding,False
+Syncope (passing out),Syncope (passing out),False
+Syncope (passing out) (Non Covid-19),Syncope (passing out),False
+"Syncope, fainting, passing-out",Syncope (passing out),False
+Testicular pain,Testicular pain,False
+Testicular pain (Non Covid-19),Testicular pain,False
+Testicular pain or swelling,Testicular pain,False
+Touchless Web Onboarding,Touchless Web Onboarding,False
+Unable to urinate,Unable to urinate,False
+Urinary Tract Infection,Urinary Tract Infection,False
+Urinary Tract Infection and blood in urine,Urinary Tract Infection,False
+Vision Problem,Vision Problem,False
+Vision problem,Vision Problem,False
+"Vision, eye problem",Vision Problem,False
+Vision/eye problem,Vision Problem,False
+Vision/eye problem (Non Covid-19),Vision Problem,False
+Weakness,Weakness / Lethargy / Dehydration,False
+Weakness (Non Covid-19),Weakness / Lethargy / Dehydration,False
+Weakness / Lethargy / Dehydration,Weakness / Lethargy / Dehydration,False
+"Weakness, Lethargy",Weakness / Lethargy / Dehydration,False
+Wellness Visit (HEDIS): proactive appointment,Wellness Visit (HEDIS): proactive appointment,False
+Wound evaluation,Wound evaluation,False
+Wound evaluation (Non Covid-19),Wound evaluation,False
+DO NOT USE - Chest Pain,DO NOT USE - Chest Pain,False
+Nausea / Vomiting / Diarrhea,Nausea / Vomiting / Diarrhea,False
+Abdominal Pain / Constipation,Abdominal Pain / Constipation,False
+Anxiety / Panic / Hallucination,Anxiety / Panic / Hallucination,False
+"Pregnancy / Gynecological issues (Vaginal pain, bleeding or discharge)",Pregnancy / Gynecological,False
+Cough / URI / Sinusitis / Sore Throat,Cough / URI / Sinusitis / Sore Throat,False
+Palpitations / Abnormal heart rate / Pacemaker issue,Palpitations / Abnormal heart rate / Pacemaker issue,False
+Neck / Back / Spine pain,Neck / Back / Spine pain,False

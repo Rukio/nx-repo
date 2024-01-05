@@ -1,0 +1,72 @@
+# Lints any other files that are not linted in the langauge specific test workflows
+
+name: Lint
+
+run-name: Lint ${{ github.head_ref || github.ref }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - trunk
+    paths:
+      - '**.md'
+      - '**.yaml'
+      - '**.yml'
+      - '**.json'
+      - '**.js'
+  pull_request:
+    paths:
+      - '**.md'
+      - '**.yaml'
+      - '**.yml'
+      - '**.json'
+      - '**.js'
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  lint-misc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'npm'
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: v1-node_modules-${{ hashFiles('package-lock.json') }}-${{ github.head_ref }}
+          restore-keys: |
+            v1-node_modules-${{ hashFiles('package-lock.json') }}-
+      - name: Install Dependencies
+        run: npm install
+      - name: Verify npm dependencies are unchanged
+        run: |
+          (git diff --exit-code package-lock.json && git diff --exit-code package.json) || echo \
+            "::error::There was a dependency updated during installation. Install locally and commit changes"
+      - name: Lint
+        run: |
+          make lint-markdown
+          make lint-yaml
+          make lint-json
+          make lint-js
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure() && github.ref == 'refs/heads/trunk'
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *Trunk GitHub Action Job Failed*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}

@@ -1,0 +1,55 @@
+name: Deploy Policy Service
+
+run-name: ${{ github.ref }}
+concurrency:
+  group: deploy-policy-service # Only one deploy at a time
+
+on:
+  push:
+    branches:
+      - trunk
+    paths:
+      - .github/workflows/deploy_policy_service.yml
+      - docker/opa.Dockerfile
+      - opa/bundle/**
+
+jobs:
+  test:
+    uses: ./.github/workflows/test_opa.yml
+    secrets: inherit
+
+  build:
+    needs: test
+    uses: ./.github/workflows/build_policy_service.yml
+    with:
+      ref: ${{ github.ref }}
+    secrets: inherit
+
+  deploy-qa:
+    needs: build
+    uses: ./.github/workflows/manual_deploy_service_to_aptible.yml
+    with:
+      service_name: policy-service
+      tag: ${{ github.sha }}
+      environment: qa
+    secrets: inherit
+
+  deploy-uat:
+    needs: build
+    uses: ./.github/workflows/manual_deploy_service_to_aptible.yml
+    with:
+      service_name: policy-service
+      tag: ${{ github.sha }}
+      environment: uat
+    secrets: inherit
+
+  deploy-prod:
+    needs:
+      - deploy-qa
+      - deploy-uat
+    uses: ./.github/workflows/manual_deploy_service_to_aptible.yml
+    with:
+      service_name: policy-service
+      tag: ${{ github.sha }}
+      environment: prod
+    secrets: inherit

@@ -1,0 +1,68 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "first_name": "John",
+      "middle_name": "Dane",
+      "last_name": "Doe",
+      "email": "john@example.com",
+      "job_title": "CRN"
+    },
+    {
+      "id": "2",
+      "first_name": "Jack",
+      "last_name": "Johnson",
+      "email": "jack@example.com",
+      "job_title": "MDR"
+    },
+    {
+      "id": "3",
+      "first_name": "Gustav",
+      "last_name": "Mahler",
+      "email": "gustav@example.com",
+      "job_title": "MUS"
+    },
+    {
+      "id": "4",
+      "first_name": "Pablasso",
+      "last_name": "Ortiz",
+      "email": "pablasso@example.com",
+      "job_title": "IOP"
+    },
+    {
+      "id": "5",
+      "first_name": "Gabo",
+      "last_name": "Acosta",
+      "email": "gabo@example.com",
+      "job_title": "PPP"
+    },
+    {
+      "id": "6",
+      "first_name": "Roberto",
+      "last_name": "Fierros",
+      "email": "cesar@example.com",
+      "job_title": "RTT"
+    },
+    {
+      "id": "7",
+      "first_name": "Rodrigo",
+      "last_name": "Guinea",
+      "email": "john@example.com",
+      "job_title": "GUI"
+    },
+    {
+      "id": "8",
+      "first_name": "César",
+      "last_name": "Landeros",
+      "email": "cesar@example.com",
+      "job_title": "RTT"
+    },
+    {
+      "id": "9",
+      "first_name": "A guy named Joe",
+      "last_name": "",
+      "email": "john@example.com",
+      "job_title": "AAA"
+    }
+  ]
+}

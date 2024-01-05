@@ -1,0 +1,94 @@
+name: Test Java
+
+run-name: Test Java ${{ github.head_ref || github.ref }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - trunk
+    paths:
+      - java/**
+      - build.gradle
+      - .tool-versions
+      - proto/**
+      - .github/workflows/test_java.yml
+      - sonar.java.properties
+      - Makefile
+      - '!**/*.md'
+  pull_request:
+    paths:
+      - java/**
+      - build.gradle
+      - .tool-versions
+      - proto/**
+      - .github/workflows/test_java.yml
+      - sonar.java.properties
+      - Makefile
+      - '!**/*.md'
+
+jobs:
+  test_java:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of sonarcloud reporting
+          fetch-depth: 0
+
+      - name: Parse .tool-versions
+        uses: wistia/parse-tool-versions@v1.0
+        with:
+          uppercase: 'true'
+          postfix: '_tool_version'
+          filename: '.tool-versions'
+
+      - name: Set Java version
+        # Get Java version from `temurin-17.0.5+8` to `17.0.5+8` for java setup
+        run: echo "JAVA_TOOL_VERSION=${JAVA_TOOL_VERSION:8}" >> $GITHUB_ENV
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ env.JAVA_TOOL_VERSION }}
+          distribution: 'temurin'
+          java-package: 'jdk'
+          cache: 'gradle'
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: ${{ env.GRADLE_TOOL_VERSION }}
+
+      - name: Run test java logistics optimizer
+        run: make test-java-logistics-optimizer
+
+      - name: Lint Java
+        run: make lint-java
+
+      - name: Verifies that all files are checked using git diff
+        run: git diff --exit-code
+
+      - name: Setup sonarcloud
+        run: mv sonar.java.properties sonar-project.properties
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure() && github.ref == 'refs/heads/trunk'
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *Trunk GitHub Action Job Failed*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}

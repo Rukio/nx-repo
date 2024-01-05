@@ -1,0 +1,21 @@
+syntax = "proto3";
+package audit;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/audit";
+option ruby_package = "AuditGRPC";
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.MethodOptions {
+  AuditRule rule = 50133;
+}
+
+message AuditRule {
+  // event_data_type is the logical entity being mutated or accessed.
+  // This is identical to the event_data_type as defined in
+  // CreateAuditEventRequest
+  string event_data_type = 1;
+
+  // When true, indicates that auditing is not necessary for this gRPC method.
+  bool skip_audit = 2;
+}

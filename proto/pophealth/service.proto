@@ -1,0 +1,342 @@
+syntax = "proto3";
+package pophealth;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/pophealthpb";
+option ruby_package = "PopHealthGRPC";
+
+import "google/protobuf/timestamp.proto";
+import "common/auth/auth.proto";
+import "common/date.proto";
+
+service PopHealthService {
+  rpc ListConfigurations(ListConfigurationsRequest)
+      returns (ListConfigurationsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:pophealth:all"
+    };
+  }
+  rpc GetConfiguration(GetConfigurationRequest)
+      returns (GetConfigurationResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:pophealth:all"
+    };
+  }
+  rpc UpsertConfiguration(UpsertConfigurationRequest)
+      returns (UpsertConfigurationResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:pophealth:all"
+    };
+  }
+  rpc DeleteConfiguration(DeleteConfigurationRequest)
+      returns (DeleteConfigurationResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:pophealth:all"
+    };
+  }
+
+  rpc ListBuckets(ListBucketsRequest) returns (ListBucketsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:pophealth:all"
+    };
+  }
+  rpc GetBucket(GetBucketRequest) returns (GetBucketResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:pophealth:all"
+    };
+  }
+  rpc UpsertBucket(UpsertBucketRequest) returns (UpsertBucketResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:pophealth:all"
+    };
+  }
+  rpc DeleteBucket(DeleteBucketRequest) returns (DeleteBucketResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:pophealth:all"
+    };
+  }
+  rpc DeactivateBucket(DeactivateBucketRequest)
+      returns (DeactivateBucketResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:pophealth:all"
+    };
+  }
+
+  rpc ListFiles(ListFilesRequest) returns (ListFilesResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:pophealth:all"
+    };
+  }
+  rpc UploadFile(stream UploadFileRequest) returns (UploadFileResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:pophealth:all"
+    };
+  }
+  rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:pophealth:all"
+    };
+  }
+  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:pophealth:all"
+    };
+  }
+
+  rpc SyncPatients(SyncPatientsRequest) returns (SyncPatientsResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:pophealth:all"
+    };
+  }
+
+  rpc UpdateBackfillFileStatus(UpdateBackfillFileStatusRequest)
+      returns (UpdateBackfillFileStatusResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "manage:pophealth:all"
+    };
+  }
+}
+
+enum FileType {
+  FILE_TYPE_UNSPECIFIED = 0;
+  FILE_TYPE_EXCEL = 1;
+  FILE_TYPE_CSV = 2;
+  FILE_TYPE_PIPE_DELIMITED = 3;
+}
+
+message FileIdentifier {
+  enum FileIdentifierType {
+    FILE_IDENTIFIER_TYPE_UNSPECIFIED = 0;
+    FILE_IDENTIFIER_TYPE_PREFIX = 1;
+    FILE_IDENTIFIER_TYPE_SUFFIX = 2;
+  }
+  FileIdentifierType type = 1;
+  string value = 2;
+}
+
+message PopHealthConfiguration {
+  optional int64 id = 1;
+  string name = 2;
+  FileType file_type = 3;
+
+  FileIdentifier file_identifier = 4;
+  int64 bucket_folder_id = 5;
+  int64 channel_item_id = 6;
+  repeated ColumnMapping column_mapping = 7;
+  int64 market_id = 8;
+}
+
+enum DataType {
+  DATA_TYPE_UNSPECIFIED = 0;
+  DATA_TYPE_INTEGER = 1;
+  DATA_TYPE_DATE = 2;
+  DATA_TYPE_STRING = 3;
+}
+
+enum DHColumnName {
+  DH_COLUMN_NAME_UNSPECIFIED = 0;
+  DH_COLUMN_NAME_FIRST_NAME = 1;
+  DH_COLUMN_NAME_LAST_NAME = 2;
+  DH_COLUMN_NAME_EMAIL = 3;
+  DH_COLUMN_NAME_DOB = 4;
+  DH_COLUMN_NAME_GENDER = 5;
+  DH_COLUMN_NAME_SSN = 6;
+  DH_COLUMN_NAME_STREET_ADDRESS_1 = 7;
+  DH_COLUMN_NAME_STREET_ADDRESS_2 = 8;
+  DH_COLUMN_NAME_CITY = 9;
+  DH_COLUMN_NAME_STATE = 10;
+  DH_COLUMN_NAME_ZIPCODE = 11;
+  DH_COLUMN_NAME_INS_MEMBER_ID = 12;
+  DH_COLUMN_NAME_POLICY_NUMBER = 13;
+  DH_COLUMN_NAME_PCP = 14;
+  DH_COLUMN_NAME_MEMBER_ID = 15;
+}
+
+message ColumnMapping {
+  string source_column_name = 1;
+  DHColumnName destination_column_name = 2;
+  DataType data_type = 3;
+  bool is_required = 4;
+  enum DateFormat {
+    DATE_FORMAT_UNSPECIFIED = 0;
+    DATE_FORMAT_DDMMYYYY_SLASH = 1;
+    DATE_FORMAT_MMDDYYYY_SLASH = 2;
+    DATE_FORMAT_YYYYMMDD_SLASH = 3;
+    DATE_FORMAT_YYYYMMDD_DASH = 4;
+    DATE_FORMAT_YYYYMMDD = 5;
+  }
+  optional DateFormat date_format = 5;
+}
+
+message ListConfigurationsRequest {
+  int64 bucket_folder_id = 1;
+}
+
+message ListConfigurationsResponse {
+  repeated PopHealthConfiguration configurations = 1;
+}
+
+message GetConfigurationRequest {
+  int64 id = 1;
+}
+
+message GetConfigurationResponse {
+  PopHealthConfiguration configuration = 1;
+}
+
+message UpsertConfigurationRequest {
+  PopHealthConfiguration configuration = 1;
+}
+
+message UpsertConfigurationResponse {
+  int64 id = 1;
+}
+
+message DeleteConfigurationRequest {
+  int64 id = 1;
+}
+
+message DeleteConfigurationResponse {}
+
+message PopHealthBucket {
+  optional int64 id = 1;
+  string display_name = 2;
+  string s3_bucket_name = 3;
+  repeated string email_list = 4;
+}
+
+message ListBucketsRequest {}
+
+message ListBucketsResponse {
+  repeated PopHealthBucket buckets = 1;
+}
+
+message GetBucketRequest {
+  int64 id = 1;
+}
+
+message GetBucketResponse {
+  PopHealthBucket bucket = 1;
+}
+
+message UpsertBucketRequest {
+  PopHealthBucket bucket = 1;
+}
+
+message UpsertBucketResponse {
+  int64 id = 1;
+}
+
+message DeleteBucketRequest {
+  int64 id = 1;
+}
+
+message DeleteBucketResponse {}
+
+message DeactivateBucketRequest {
+  int64 id = 1;
+  repeated int64 channel_item_ids = 2;
+}
+
+message DeactivateBucketResponse {}
+
+message PopHealthFile {
+  int64 id = 1;
+  string file_name = 2;
+  string template_name = 3;
+  FileType file_type = 4;
+  enum FileStatus {
+    FILE_STATUS_UNSPECIFIED = 0;
+    FILE_STATUS_NEW = 1;
+    FILE_STATUS_PREPROCESS = 2;
+    FILE_STATUS_INVALID = 3;
+    FILE_STATUS_FAILED = 4;
+    FILE_STATUS_PROCESSED = 5;
+    FILE_STATUS_WAITING = 6;
+    FILE_STATUS_PROCESSING = 7;
+  }
+  FileStatus status = 5;
+  string user_error = 6;
+  string process_error = 7;
+  google.protobuf.Timestamp uploaded_time = 8;
+  google.protobuf.Timestamp processed_time = 9;
+  // Indicate whether this file was used to backfill PopHealth data
+  bool is_backfill = 10;
+  // Misc parameters used for PopHealth file processing flows
+  FileParameters file_parameters = 11;
+}
+
+message PaginationData {
+  int64 total_items = 1;
+  int64 total_pages = 2;
+  int32 current_page = 3;
+}
+
+message ListFilesRequest {
+  int64 bucket_folder_id = 1;
+  optional uint32 page_size = 2;
+  optional bytes page_token = 3;
+  optional string search_file_name = 4;
+  enum Filter {
+    FILTER_UNSPECIFIED = 0;
+    FILTER_UNPROCESSED = 1;
+    FILTER_PROCESSED = 2;
+  }
+  optional Filter filter = 5;
+  optional uint32 page_number = 6;
+}
+
+message ListFilesResponse {
+  repeated PopHealthFile files = 1;
+  optional bytes next_page_token = 2;
+  PaginationData data = 3;
+}
+
+message FileParameters {
+  bool force_upload = 1;
+  common.Date start_date = 2;
+  common.Date end_date = 3;
+}
+
+message UploadFileRequest {
+  int64 bucket_folder_id = 1;
+  string file_name = 2;
+  bytes data_chunk = 3;
+  FileParameters file_parameters = 4;
+}
+
+message UploadFileResponse {}
+
+message DownloadFileRequest {
+  int64 file_id = 1;
+}
+
+message DownloadFileResponse {
+  string file_name = 1;
+  bytes data_chunk = 2;
+}
+
+message DeleteFileRequest {
+  int64 file_id = 1;
+}
+
+message DeleteFileResponse {}
+
+message SyncPatientsRequest {
+  int64 channel_item_id = 1;
+}
+
+message SyncPatientsResponse {}
+
+enum BackfillStatus {
+  BACKFILL_STATUS_UNSPECIFIED = 0;
+  BACKFILL_STATUS_FAILED = 1;
+  BACKFILL_STATUS_PROCESSED = 2;
+}
+
+message UpdateBackfillFileStatusRequest {
+  int64 channel_item_id = 1;
+  int32 number_of_matches = 2;
+  BackfillStatus status = 3;
+}
+
+message UpdateBackfillFileStatusResponse {}

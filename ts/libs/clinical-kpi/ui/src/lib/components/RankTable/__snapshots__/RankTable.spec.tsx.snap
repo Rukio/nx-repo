@@ -1,0 +1,1021 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RankTable OnSceneTime Type should render correctly 1`] = `
+<DocumentFragment>
+  .emotion-1 {
+  width: 100%;
+  overflow-x: auto;
+  background-color: #fff;
+  overflow-x: unset;
+}
+
+.emotion-2 {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.emotion-2 caption {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: left;
+  caption-side: bottom;
+}
+
+.emotion-3 {
+  display: table-header-group;
+}
+
+.emotion-4 {
+  color: inherit;
+  display: table-row;
+  vertical-align: middle;
+  outline: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  border-bottom: 2px solid;
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+  border-bottom-style: solid;
+}
+
+.emotion-4.MuiTableRow-hover:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.emotion-4.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.emotion-4.Mui-selected:hover {
+  background-color: rgba(25, 118, 210, 0.12);
+}
+
+.emotion-5 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 600;
+  width: 60px;
+}
+
+.emotion-6 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 600;
+  width: 120px;
+}
+
+.emotion-9 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 600;
+  width: 120px;
+}
+
+@media (max-width:599.95px) {
+  .emotion-9 {
+    display: none;
+  }
+}
+
+.emotion-10 {
+  display: table-row-group;
+}
+
+.emotion-11 {
+  color: inherit;
+  display: table-row;
+  vertical-align: middle;
+  outline: 0;
+}
+
+.emotion-11.MuiTableRow-hover:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.emotion-11.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.emotion-11.Mui-selected:hover {
+  background-color: rgba(25, 118, 210, 0.12);
+}
+
+.emotion-11:hover {
+  cursor: pointer;
+  background-color: rgba(25, 118, 210, 0.08)!important;
+}
+
+.emotion-11:last-child td,
+.emotion-11:last-child th {
+  border: 0px solid;
+}
+
+.emotion-12 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.emotion-15 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 600;
+}
+
+.emotion-16 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  color: #2e7d32;
+}
+
+@media (max-width:599.95px) {
+  .emotion-16 {
+    display: none;
+  }
+}
+
+.emotion-17 {
+  color: inherit;
+  display: table-row;
+  vertical-align: middle;
+  outline: 0;
+  background-color: #fafafa;
+}
+
+.emotion-17.MuiTableRow-hover:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.emotion-17.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.emotion-17.Mui-selected:hover {
+  background-color: rgba(25, 118, 210, 0.12);
+}
+
+.emotion-17:hover {
+  cursor: pointer;
+  background-color: rgba(25, 118, 210, 0.08)!important;
+}
+
+.emotion-17:last-child td,
+.emotion-17:last-child th {
+  border: 0px solid;
+}
+
+.emotion-28 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  color: #d32f2f;
+}
+
+@media (max-width:599.95px) {
+  .emotion-28 {
+    display: none;
+  }
+}
+
+.emotion-34 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.38);
+}
+
+@media (max-width:599.95px) {
+  .emotion-34 {
+    display: none;
+  }
+}
+
+.emotion-38 {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.11);
+  height: 1.2em;
+  margin: inherit;
+}
+
+<div
+    class="MuiBox-root emotion-0"
+  >
+    <div
+      class="MuiTableContainer-root emotion-1"
+    >
+      <table
+        class="MuiTable-root emotion-2"
+        data-testid="rank-table"
+      >
+        <thead
+          class="MuiTableHead-root emotion-3"
+        >
+          <tr
+            class="MuiTableRow-root MuiTableRow-head emotion-4"
+          >
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-5"
+              data-testid="rank-table-rank-heading"
+              scope="col"
+            >
+              #
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-6"
+              data-testid="rank-table-provider-name-heading"
+              scope="col"
+            >
+              Name
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-6"
+              data-testid="rank-table-provider-position-heading"
+              scope="col"
+            >
+              Position
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-6"
+              data-testid="rank-table-value-heading"
+              scope="col"
+            >
+              On Scene Time
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-9"
+              data-testid="rank-table-value-change-heading"
+              scope="col"
+            >
+              Change
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="MuiTableBody-root emotion-10"
+        >
+          <tr
+            class="MuiTableRow-root MuiTableRow-hover emotion-11"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-rank-4"
+            >
+              4
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-name-4"
+            >
+              Luigi Martiniello
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-position-4"
+            >
+              DHMT
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-15"
+              data-testid="rank-table-value-4"
+            >
+              5.67 mins
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-16"
+              data-testid="rank-table-value-change-4"
+            >
+              -11.67 mins
+            </td>
+          </tr>
+          <tr
+            class="MuiTableRow-root MuiTableRow-hover emotion-17"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-rank-5"
+            >
+              5
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-name-5"
+            >
+              Connie Garcia
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-position-5"
+            >
+              APP
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-15"
+              data-testid="rank-table-value-5"
+            >
+              6 mins
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-16"
+              data-testid="rank-table-value-change-5"
+            >
+              -0.02 mins
+            </td>
+          </tr>
+          <tr
+            class="MuiTableRow-root MuiTableRow-hover emotion-11"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-rank-6"
+            >
+              6
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-name-6"
+            >
+              Steve Tomis
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-position-6"
+            >
+              APP
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-15"
+              data-testid="rank-table-value-6"
+            >
+              6.17 mins
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-28"
+              data-testid="rank-table-value-change-6"
+            >
+              +1.67 mins
+            </td>
+          </tr>
+          <tr
+            class="MuiTableRow-root MuiTableRow-hover emotion-17"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-rank-7"
+            >
+              7
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-name-7"
+            >
+              Veerle de Bree
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-position-7"
+            >
+              APP
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-15"
+              data-testid="rank-table-value-7"
+            >
+              7.02 mins
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-34"
+              data-testid="rank-table-value-change-7"
+            >
+              no change
+            </td>
+          </tr>
+          <tr
+            class="MuiTableRow-root MuiTableRow-hover emotion-11"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-rank-8"
+            >
+              8
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-name-8"
+            >
+              <span
+                class="MuiSkeleton-root MuiSkeleton-rectangular emotion-38"
+                style="width: 120px; height: 20px;"
+              />
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-position-8"
+            >
+              DHMT
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-15"
+              data-testid="rank-table-value-8"
+            >
+              7.5 mins
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-28"
+              data-testid="rank-table-value-change-8"
+            >
+              +0.17 mins
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RankTable should render correctly for different type 1`] = `
+<DocumentFragment>
+  .emotion-1 {
+  width: 100%;
+  overflow-x: auto;
+  background-color: #fff;
+  overflow-x: unset;
+}
+
+.emotion-2 {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.emotion-2 caption {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: left;
+  caption-side: bottom;
+}
+
+.emotion-3 {
+  display: table-header-group;
+}
+
+.emotion-4 {
+  color: inherit;
+  display: table-row;
+  vertical-align: middle;
+  outline: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  border-bottom: 2px solid;
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+  border-bottom-style: solid;
+}
+
+.emotion-4.MuiTableRow-hover:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.emotion-4.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.emotion-4.Mui-selected:hover {
+  background-color: rgba(25, 118, 210, 0.12);
+}
+
+.emotion-5 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 600;
+  width: 60px;
+}
+
+.emotion-6 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 600;
+  width: 120px;
+}
+
+.emotion-9 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 600;
+  width: 120px;
+}
+
+@media (max-width:599.95px) {
+  .emotion-9 {
+    display: none;
+  }
+}
+
+.emotion-10 {
+  display: table-row-group;
+}
+
+.emotion-11 {
+  color: inherit;
+  display: table-row;
+  vertical-align: middle;
+  outline: 0;
+}
+
+.emotion-11.MuiTableRow-hover:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.emotion-11.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.emotion-11.Mui-selected:hover {
+  background-color: rgba(25, 118, 210, 0.12);
+}
+
+.emotion-11:hover {
+  cursor: pointer;
+  background-color: rgba(25, 118, 210, 0.08)!important;
+}
+
+.emotion-11:last-child td,
+.emotion-11:last-child th {
+  border: 0px solid;
+}
+
+.emotion-12 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.emotion-14 {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.11);
+  height: 1.2em;
+  margin: inherit;
+}
+
+.emotion-16 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 600;
+}
+
+.emotion-17 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  color: #2e7d32;
+}
+
+@media (max-width:599.95px) {
+  .emotion-17 {
+    display: none;
+  }
+}
+
+.emotion-18 {
+  color: inherit;
+  display: table-row;
+  vertical-align: middle;
+  outline: 0;
+  background-color: #fafafa;
+}
+
+.emotion-18.MuiTableRow-hover:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.emotion-18.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.emotion-18.Mui-selected:hover {
+  background-color: rgba(25, 118, 210, 0.12);
+}
+
+.emotion-18:hover {
+  cursor: pointer;
+  background-color: rgba(25, 118, 210, 0.08)!important;
+}
+
+.emotion-18:last-child td,
+.emotion-18:last-child th {
+  border: 0px solid;
+}
+
+.emotion-23 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.38);
+}
+
+@media (max-width:599.95px) {
+  .emotion-23 {
+    display: none;
+  }
+}
+
+.emotion-35 {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: table-cell;
+  vertical-align: inherit;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-align: left;
+  padding: 16px;
+  color: rgba(0, 0, 0, 0.87);
+  color: #d32f2f;
+}
+
+@media (max-width:599.95px) {
+  .emotion-35 {
+    display: none;
+  }
+}
+
+<div
+    class="MuiBox-root emotion-0"
+  >
+    <div
+      class="MuiTableContainer-root emotion-1"
+    >
+      <table
+        class="MuiTable-root emotion-2"
+        data-testid="rank-table"
+      >
+        <thead
+          class="MuiTableHead-root emotion-3"
+        >
+          <tr
+            class="MuiTableRow-root MuiTableRow-head emotion-4"
+          >
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-5"
+              data-testid="rank-table-rank-heading"
+              scope="col"
+            >
+              #
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-6"
+              data-testid="rank-table-provider-name-heading"
+              scope="col"
+            >
+              Name
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-6"
+              data-testid="rank-table-provider-position-heading"
+              scope="col"
+            >
+              Position
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-6"
+              data-testid="rank-table-value-heading"
+              scope="col"
+            >
+              Chart Closure
+            </th>
+            <th
+              class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium emotion-9"
+              data-testid="rank-table-value-change-heading"
+              scope="col"
+            >
+              Change
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="MuiTableBody-root emotion-10"
+        >
+          <tr
+            class="MuiTableRow-root MuiTableRow-hover emotion-11"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-rank-4"
+            >
+              4
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-name-4"
+            >
+              <span
+                class="MuiSkeleton-root MuiSkeleton-rectangular emotion-14"
+                style="width: 120px; height: 20px;"
+              />
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-position-4"
+            >
+              DHMT
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-16"
+              data-testid="rank-table-value-4"
+            >
+              7.5%
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-17"
+              data-testid="rank-table-value-change-4"
+            >
+              +0.17%
+            </td>
+          </tr>
+          <tr
+            class="MuiTableRow-root MuiTableRow-hover emotion-18"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-rank-5"
+            >
+              5
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-name-5"
+            >
+              Veerle de Bree
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-position-5"
+            >
+              APP
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-16"
+              data-testid="rank-table-value-5"
+            >
+              7.02%
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-23"
+              data-testid="rank-table-value-change-5"
+            >
+              no change
+            </td>
+          </tr>
+          <tr
+            class="MuiTableRow-root MuiTableRow-hover emotion-11"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-rank-6"
+            >
+              6
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-name-6"
+            >
+              Steve Tomis
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-position-6"
+            >
+              APP
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-16"
+              data-testid="rank-table-value-6"
+            >
+              6.17%
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-17"
+              data-testid="rank-table-value-change-6"
+            >
+              +1.67%
+            </td>
+          </tr>
+          <tr
+            class="MuiTableRow-root MuiTableRow-hover emotion-18"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-rank-7"
+            >
+              7
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-name-7"
+            >
+              Connie Garcia
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-position-7"
+            >
+              APP
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-16"
+              data-testid="rank-table-value-7"
+            >
+              6%
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+              data-testid="rank-table-value-change-7"
+            >
+              -0.02%
+            </td>
+          </tr>
+          <tr
+            class="MuiTableRow-root MuiTableRow-hover emotion-11"
+          >
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-rank-8"
+            >
+              8
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-alignLeft MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-name-8"
+            >
+              Luigi Martiniello
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-12"
+              data-testid="rank-table-provider-position-8"
+            >
+              DHMT
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-16"
+              data-testid="rank-table-value-8"
+            >
+              5.67%
+            </td>
+            <td
+              class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium emotion-35"
+              data-testid="rank-table-value-change-8"
+            >
+              -11.67%
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</DocumentFragment>
+`;

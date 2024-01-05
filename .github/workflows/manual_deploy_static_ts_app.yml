@@ -1,0 +1,167 @@
+########################################################################################################################
+# Manually deploy a static TS app/frontend
+# ----------------------------------------------------------------------------------------------------------------------
+# This workflow can be used to manually deploy typescript frontend app to an s3 bucket
+#
+# REQUIREMENTS
+# ------------
+# 1. A bucket and cloudfront distribution have been created using the cloudfront-s3-lambda module
+#     in ./infra/terraform/modules/cloudfront-s3-lambda
+# 2. A github environment should be created for the project
+#   a. It should be called '<project-name>-static-ts'
+#   b. It must have the following secrets setup in it:
+#     i.    PRODUCTION_S3_BUCKET: s3 bucket name (no s3://) of the production s3 bucket
+#     ii.   PRODUCTION_CF_DISTRO_ID: the distribution ID of the production cloudfront
+#     iii.  QA_S3_BUCKET: s3 bucket name (no s3://) of the qa s3 bucket
+#     iv.   QA_CF_DISTRO_ID: the distribution ID of the qa cloudfront
+#     v.    UAT_S3_BUCKET: s3 bucket name (no s3://) of the uat s3 bucket
+#     vi.   UAT_CF_DISTRO_ID: the distribution ID of the uat cloudfront
+#
+# It can only be run manually through github
+# Optionally, you can use the github cli to run the workflow:
+# >  gh workflow run manual_deploy_service_to_aptible.yml -f project_name="<my_project>" -f environment="<env>"
+#
+# REFERENCES
+# ----------
+# See the github docs for more info:
+# https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
+########################################################################################################################
+
+name: Deploy Static TS App
+
+run-name: Deploy ${{ inputs.project_name }} (${{ github.head_ref || github.ref_name }}) to ${{ inputs.environment }}
+
+# OIDC
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_name:
+        description: The project to deploy
+        required: true
+        type: choice
+        default: ''
+        options:
+          - ''
+          - athena-credit-card-form
+          - caremanager
+          - clinical-kpi
+          - consumer-web
+          - insurance-dashboard
+          - modality-dashboard
+          - widgets
+      environment:
+        description: Environment to deploy to
+        type: choice
+        required: true
+        default: ''
+        options:
+          - ''
+          - qa
+          - uat
+          - prod
+      ref:
+        description: The sha to build, otherwise builds HEAD of branch
+        type: string
+        required: false
+
+jobs:
+  build-and-deploy:
+    timeout-minutes: 30
+    concurrency:
+      group: ${{ github.workflow }}-${{ inputs.project_name }}-${{ inputs.environment }}
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.project_name }}-static-ts
+    steps:
+      - name: Setup
+        id: setup
+        run: |
+          case "${{ inputs.environment }}" in
+            prod)
+              if ! { [[ "${{ github.ref_name }}" == "trunk" ]] || [[ "${{ github.ref_name }}" =~ ^release/* ]]; }; then
+                echo "::error::Cannot deploy non-trunk or non-release branch to production" >&2
+                exit 1
+              fi
+              echo "AWS_ACCOUNT_ID=329245343759" >> $GITHUB_OUTPUT
+              echo "NX_CONFIGURATION=production" >> $GITHUB_OUTPUT
+              echo "S3_BUCKET=${{ secrets.PRODUCTION_S3_BUCKET }}" >> $GITHUB_OUTPUT
+              echo "CF_DISTRO_ID=${{ secrets.PRODUCTION_CF_DISTRO_ID }}" >> $GITHUB_OUTPUT
+              ;;
+            qa)
+              echo "AWS_ACCOUNT_ID=530082637045" >> $GITHUB_OUTPUT
+              echo "NX_CONFIGURATION=qa" >> $GITHUB_OUTPUT
+              echo "S3_BUCKET=${{ secrets.QA_S3_BUCKET }}" >> $GITHUB_OUTPUT
+              echo "CF_DISTRO_ID=${{ secrets.QA_CF_DISTRO_ID }}" >> $GITHUB_OUTPUT
+              ;;
+            uat)
+              echo "AWS_ACCOUNT_ID=530082637045" >> $GITHUB_OUTPUT
+              echo "NX_CONFIGURATION=uat" >> $GITHUB_OUTPUT
+              echo "S3_BUCKET=${{ secrets.UAT_S3_BUCKET }}" >> $GITHUB_OUTPUT
+              echo "CF_DISTRO_ID=${{ secrets.UAT_CF_DISTRO_ID }}" >> $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "::error ::Unexpected input environment - ${{ inputs.environment }}"
+              exit 1
+              ;;
+          esac
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::${{ steps.setup.outputs.AWS_ACCOUNT_ID }}:role/github-actions
+          aws-region: us-east-1
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'npm'
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: v1-node_modules-${{ hashFiles('package-lock.json') }}-${{ github.head_ref }}
+          restore-keys: |
+            v1-node_modules-${{ hashFiles('package-lock.json') }}-
+
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Verify npm dependencies are unchanged
+        run: |
+          (git diff --exit-code package-lock.json && git diff --exit-code package.json) || echo \
+            "::error::There was a dependency updated during installation. Install locally and commit changes"
+
+      - name: Build Application
+        run: npx nx run ${{ inputs.project_name }}:build:${{ steps.setup.outputs.NX_CONFIGURATION }}
+
+      - name: Sync S3 bucket - ${{ steps.setup.outputs.S3_BUCKET }}
+        run: |
+          aws s3 sync \
+            dist/ts/apps/${{ inputs.project_name }} \
+            s3://${{ steps.setup.outputs.S3_BUCKET }} \
+            --cache-control "max-age=86400"
+
+      - name: Invalidate CloudFront Distribution
+        run: AWS_MAX_ATTEMPTS=10 aws cloudfront create-invalidation --distribution-id ${{ steps.setup.outputs.CF_DISTRO_ID }} --paths "/*"
+
+      - name: Alert on trunk fail
+        uses: archive/github-actions-slack@v2.6.0
+        if: failure() && github.ref == 'refs/heads/trunk'
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: C04C33SCSKC #alert-trunk-services
+          slack-text: |
+            :this-is-fine: *Failed to deploy trunk ${{ inputs.project_name }} to ${{ steps.setup.outputs.S3_BUCKET }}*
+            *Job*: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|${{ github.job }}>
+            *Author*: ${{ github.actor }}

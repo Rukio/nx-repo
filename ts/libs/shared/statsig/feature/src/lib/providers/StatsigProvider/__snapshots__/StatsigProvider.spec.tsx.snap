@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`StatsigProvider > should wait for init and render loading component correctly and render component after init 1`] = `
+<DocumentFragment>
+  <div
+    data-testid="mock-loading-component"
+  >
+    ...Loading
+  </div>
+</DocumentFragment>
+`;

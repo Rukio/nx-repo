@@ -1,0 +1,12 @@
+syntax = "proto3";
+package insurance_eligibility;
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/insurance_eligibility";
+option ruby_package = "InsuranceEligibilityGRPC";
+
+enum EligibilityStatus {
+  ELIGIBILITY_STATUS_UNSPECIFIED = 0;
+  ELIGIBILITY_STATUS_ELIGIBLE = 1;
+  ELIGIBILITY_STATUS_INELIGIBLE = 2;
+  ELIGIBILITY_STATUS_UNVERIFIED = 3;
+}

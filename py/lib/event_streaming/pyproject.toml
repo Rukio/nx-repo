@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "event-streaming"
+version = "0.1.0"
+description = ""
+authors = ["Michael Duncan <michael.duncan@*company-data-covered*.com>"]
+readme = "README.md"
+packages = [{include = "event_streaming"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10.12 <3.11"
+python-decouple = "^3.8"
+confluent-kafka = "^2.1.1"
+# requests is imported by dependencies. we force the latest version for security
+requests = "^2.31.0"
+# note: cryptography not directly needed, but must bump due to unsafe old vers
+cryptography = "^41.0.2"
+fastavro = "^1.7.4"
+beartype = "^0.14.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+pytest-cov = "^4.1.0"
+requests-mock = "^1.11.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,143 @@
+# Note: There is no deployment method for this configuration.
+# ReleaseHub is the source of truth.
+---
+mapping:
+  STATION_URL: STATION_INGRESS_URL
+  ONBOARDING_BASE_URL: ONBOARDING_WEB_INGRESS_URL
+defaults: []
+services:
+  logistics-service:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/logistics
+    - key: AUTHORIZATION_DISABLED
+      value: false
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: LOGISTICS_SERVICE_M2M_AUTH0_CLIENT_ID
+      secret: true
+    - key: LOGISTICS_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      secret: true
+    - key: LOGISTICS_SERVICE_M2M_AUTH0_AUDIENCE
+      value: station.*company-data-covered*.com
+    - key: LOGISTICS_SERVICE_M2M_AUTH0_URL
+      value: https://staging-auth.*company-data-covered*.com/oauth/token
+    - key: OSRM_ADDR
+      value: https://vroom.*company-data-covered*.com:5000
+    - key: OPTIMIZER_GRPC_ADDR
+      value: logistics-optimizer:8081
+    - key: OPTIMIZER_SETTINGS_POLL_INTERVAL
+      value: 1m
+    - key: STATION_GRPC_ADDR
+      value: station-grpc:9001
+    - key: STATSIG_SDK_SERVER_SECRET_KEY
+      secret: true
+    - key: STATSIG_ENVIRONMENT
+      value: uat
+  clinicalkpi-service:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/clinicalkpi
+    - key: AUTHORIZATION_DISABLED
+      value: false
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: CLINICALKPI_SERVICE_M2M_AUTH0_CLIENT_ID
+      secret: true
+    - key: CLINICALKPI_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      secret: true
+  patients-service:
+    - key: AUTHORIZATION_DISABLED
+      value: false
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: PATIENTS_SERVICE_M2M_AUTH0_CLIENT_ID
+      secret: true
+    - key: PATIENTS_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      secret: true
+  caremanager-service:
+    - key: ACT_AS_PROXY
+      value: false
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/caremanager
+    - key: AUTHORIZATION_DISABLED
+      value: false
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: AUTH0_AUDIENCE
+      secret: true
+    - key: CAREMANAGER_SERVICE_M2M_AUTH0_CLIENT_ID
+      secret: true
+    - key: CAREMANAGER_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      secret: true
+    - key: AUTH0_AUDIT_SERVICE_AUDIENCE
+      value: internal.*company-data-covered*.com
+    - key: ALLOWED_HTTP_ORIGINS
+      value: https://caremanager-*.release.*company-data-covered*.com
+    - key: STATION_GRPC_ADDRESS
+      value: station-grpc:9001
+  modality-service:
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: ALLOWED_HTTP_ORIGINS
+      value: https://*.*company-data-covered*.com
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/modality
+  services-postgres:
+    - key: POSTGRES_HOST_AUTH_METHOD
+      value: trust
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432
+    - key: DATABASE_NAME
+      value: logistics
+    - key: AUDIT_DATABASE_NAME
+      value: audit
+    - key: CLINICALKPI_DATABASE_NAME
+      value: clinicalkpi
+    - key: CAREMANAGER_DATABASE_NAME
+      value: caremanager
+    - key: MODALITY_DATABASE_NAME
+      value: modality
+  audit-service:
+    - key: GRPC_LISTEN_ADDR
+      value: ':8482'
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/audit?sslmode=disable
+  tytocare-service:
+    - key: AUTH0_ISSUER_URL
+      value: https://staging-auth.*company-data-covered*.com/
+    - key: TYTOCARE_SERVICE_M2M_AUTH0_CLIENT_ID
+      secret: true
+    - key: TYTOCARE_SERVICE_M2M_AUTH0_CLIENT_SECRET
+      secret: true
+    - key: TYTOCARE_SERVICE_M2M_AUTH0_AUDIENCE
+      value: station.*company-data-covered*.com
+    - key: TYTOCARE_SERVICE_M2M_AUTH0_URL
+      value: https://staging-auth.*company-data-covered*.com/oauth/token
+    - key: TYTO_CARE_BASE_URL
+      value: https://app-stage1.tytocare.com/api
+    - key: TYTO_CARE_TOKEN_TYPE
+      value: Basic
+    - key: TYTO_CARE_ACCESS_TOKEN
+      secret: true
+    - key: ALLOWED_HTTP_ORIGINS
+      value: https://*.*company-data-covered*.com
+    - key: SSL_PROTOCOLS_OVERRIDE
+      value: TLSv1.2
+    - key: AUTH0_STATION_AUDIENCE
+      secret: true
+  logistics-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/logistics?sslmode=disable
+  audit-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/audit?sslmode=disable
+  clinicalkpi-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/clinicalkpi?sslmode=disable
+  caremanager-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/caremanager?sslmode=disable
+  modality-db-migrations:
+    - key: DATABASE_URL
+      value: postgres://postgres@services-postgres:5432/modality?sslmode=disable

@@ -1,0 +1,41 @@
+syntax = "proto3";
+package ml_models.acuity;
+
+import "common/auth/auth.proto";
+import "common/risk_strat.proto";
+
+option go_package = "github.com/*company-data-covered*/services/go/pkg/generated/proto/ml_models/acuity";
+option ruby_package = "MlModels::AcuityGRPC";
+
+service AcuityV1Service {
+  rpc GetAcuity(GetAcuityRequest) returns (GetAcuityResponse) {
+    option (common.auth.rule) = {
+      jwt_permission: "read:acuity:all"
+    };
+  }
+}
+
+message GetAcuityRequest {
+  common.RiskProtocolV1 risk_protocol = 1;
+  int32 age = 2;
+  optional string override_reason = 3;
+  // True if a partner on express has been accredited
+  // to be able to Bypass Risk Strat.
+  optional bool risk_strat_bypassed = 4;
+  // Represents the short name of the CareRequest market.
+  // Examples: "PHX", "DEN".
+  optional string market_short_name = 5;
+  // Represents the statsig_care_request_id from Station.
+  optional string statsig_care_request_id = 6;
+}
+
+message GetAcuityResponse {
+  Acuity acuity = 1;
+}
+
+enum Acuity {
+  ACUITY_UNSPECIFIED = 0;
+  ACUITY_LOW = 1;
+  ACUITY_MEDIUM = 2;
+  ACUITY_HIGH = 3;
+}
